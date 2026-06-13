@@ -1,0 +1,13 @@
+{
+  "client": "Bl4den",
+  "release": "bl4den-prom-night-r2-20260613",
+  "cdnBase": "https://bl4den.com/",
+  "entry": "https://bl4den.com/index.html?release=bl4den-prom-night-r2-20260613",
+  "r2Bucket": "bl4den-cdn",
+  "hosting": "cloudflare-r2-public-bucket",
+  "cloudflareWorker": false,
+  "dnsCutover": "pending",
+  "sourceDirectory": "Clients/Bl4den",
+  "wrapper": "landing.tsx",
+  "wrapperKind": "valencore-style-host-tsx"
+}
