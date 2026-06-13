@@ -1,0 +1,3087 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bl4den</title>
+
+    <meta property="og:title" content="Bl4den" />
+    <meta name="description" content="Bl4den PROM NIGHT phone site." />
+    <meta property="og:description" content="Bl4den PROM NIGHT phone site." />
+    <meta property="og:image" content="summer.jpg" />
+    <meta property="og:url" content="https://bl4den.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bl4den" />
+
+    <meta name="twitter:title" content="Bl4den" />
+    <meta name="twitter:description" content="Bl4den PROM NIGHT phone site." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="summer.jpg" />
+
+
+    <link rel="icon" href="icons/c32.png" sizes="32x32" type="image/png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icons/c96.png">
+    <link rel="apple-touch-icon" href="icons/c180.png" sizes="180x180">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: white;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        @font-face {
+            font-family: "tally";
+            src: url("font/Tally Text Bold 1.ttf") format("truetype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+
+        img {
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        p {
+            user-select: none;
+            -webkit-user-select: none;
+            /* Chrome, Safari */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* Internet Explorer/Edge legacy */
+            -o-user-select: none;
+        }
+
+        #lockscreen {
+            z-index: 10;
+            height: 100%;
+            width: 100vw;
+            /* background-image: url(lock.jpg); */
+            background-size: 100% 100%;
+            background-position: center;
+
+
+
+        }
+
+        #iphonediv {
+            height: 100dvh;
+            width: 100vw;
+            /* background-color: aqua; */
+            background-image: url(vodka.jpg);
+            background-size: 100% 100dvh;
+            background-position: center;
+            z-index: 1;
+
+            display: flex;
+            /* display: none; */
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        #top {
+
+            width: 100%;
+            height: 8vw;
+            background-color: black;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 4vw;
+        }
+
+
+
+        #topmid {
+            position: absolute;
+        }
+
+        #topleft {
+            position: absolute;
+            left: 0;
+        }
+
+        #topright {
+            position: absolute;
+            right: 0;
+            display: flex;
+            align-items: center;
+            gap: 1vw;
+
+
+        }
+
+        #topright .radio-status {
+            font-size: 3vw;
+            white-space: nowrap;
+        }
+
+        #topright img {
+            width: 8vw;
+        }
+
+        #bottom {
+            z-index: 2;
+            height: 35vw;
+            width: 100%;
+            background-color: rgb(0, 0, 0);
+
+            /* position: absolute;
+            bottom: 0; */
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #button {
+            width: 20vw;
+            height: 20vw;
+            background-color: rgb(67, 67, 67);
+
+            border-radius: 10vw;
+        }
+
+        #unlock {
+            height: 100%;
+
+            display: none;
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+
+            background-image: url(summer.jpg);
+            background-size: 120% 100%;
+            background-position: center;
+        }
+
+
+        @keyframes unlockExpand {
+            from {
+                transform: scaleY(1);
+
+
+            }
+
+            to {
+
+                transform: scaleY(2);
+                opacity: 0;
+            }
+        }
+
+
+        #main {
+            height: 100%;
+
+
+            /* display: flex; */
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeinsize 0.3s ease-in-out forwards;
+        }
+
+        @keyframes fadeinsize {
+            from {
+                transform: scale(1.5);
+                opacity: 0;
+
+            }
+
+            to {
+
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        #appdiv {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            grid-template-rows: repeat(3, 1fr);
+
+
+
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #main a {
+            padding: 2vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            position: relative;
+        }
+
+
+
+        #main a img {
+            position: relative;
+
+            width: 100%;
+            height: 100%;
+
+            border-radius: 5vw;
+            /* animation: camerapull 0.3s linear forwards; */
+        }
+
+        #main a p {
+            margin-top: 1vw;
+            font-size: 3vw;
+        }
+
+        .downloadOverlay {
+
+            border-radius: 5vw;
+
+            width: 20vw;
+            height: 20vw;
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dwo {
+            border-radius: 5vw;
+            /* background-color: rgba(0, 0, 0, 0.422); */
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+
+        }
+
+        .downloaddiv {
+            z-index: 3;
+            position: absolute;
+            bottom: 2vw;
+
+            width: 80%;
+            height: 2.5vw;
+            border-radius: 2vw;
+
+
+            background:
+                linear-gradient(to bottom,
+                    rgb(255, 255, 255) 30%,
+                    rgb(69, 141, 255) 100%);
+            /* Semi-transparent blue overlay */
+
+            /* Starts completely squished to the left side */
+            transform: scaleX(0);
+            transform-origin: left center;
+
+            /* Runs the animation smoothly for 3 seconds */
+            animation: downloadLine 2s linear forwards;
+
+        }
+
+
+        #bottomappdiv {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+        }
+
+        #bottomappdiv a img {
+            width: 22vw;
+            height: 22vw;
+        }
+
+        #table {
+            bottom: 0;
+            z-index: -1;
+            width: 100vw;
+            height: 17vw;
+            position: absolute;
+
+        }
+
+        #unlocktop {
+            height: 55vw;
+            width: 100%;
+            background:
+                linear-gradient(to bottom,
+                    rgba(192, 192, 192, 0.7) 0%,
+                    rgba(59, 59, 59, 0.7) 49.9%,
+                    rgba(30, 30, 30, 0.7) 50.1%,
+                    rgba(0, 0, 0, 0.7) 100%);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #songdiv {
+
+            width: 100vw;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #songbuttons {
+
+            display: flex;
+            width: 100vw;
+            justify-content: space-evenly;
+
+        }
+
+        #songbuttons img {
+            width: 14vw;
+            cursor: pointer;
+        }
+
+        #unlockbottom {
+            height: 50vw;
+            width: 100%;
+            background:
+                linear-gradient(to bottom,
+                    rgba(192, 192, 192, 0.7) 0%,
+                    rgba(31, 31, 31, 0.7) 49.9%,
+                    rgba(21, 21, 21, 0.7) 50.1%,
+                    rgba(15, 15, 15, 0.7) 100%);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #slide {
+            width: 80vw;
+            height: 15vw;
+            background-color: rgb(126, 126, 126);
+            border-radius: 2vw;
+
+
+
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                linear-gradient(to bottom,
+                    rgb(0, 0, 0) 0%,
+
+
+                    rgb(83, 83, 83) 100%);
+
+
+            outline: 1px solid gray;
+            outline-offset: 1px;
+        }
+
+        #slider {
+            border-radius: 2vw;
+            width: 22vw;
+            height: 15vw;
+
+            background:
+                linear-gradient(to bottom,
+                    rgb(255, 255, 255) 0%,
+
+                    rgb(255, 255, 255) 50%,
+
+
+
+                    rgb(124, 124, 124) 100%);
+
+
+
+            position: absolute;
+            left: 0;
+            touch-action: none;
+            cursor: grab;
+            transition: left 0.3s ease;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #slider img {
+            width: 12vw;
+
+        }
+
+        #slider.dragging {
+            transition: none;
+            /* disable snap while moving */
+            cursor: grabbing;
+        }
+
+        #time {
+            margin-top: 3vw;
+            font-size: 20vw;
+
+            line-height: 16vw;
+        }
+
+        #date {
+            font-size: 6vw;
+
+        }
+
+        #unlocktext {
+            text-align: center;
+            width: 58vw;
+            position: absolute;
+            right: 0;
+            font-size: 8vw;
+            pointer-events: none;
+
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.9) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            background-size: 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+
+            animation: glowmove 6s linear infinite;
+        }
+
+        @keyframes glowmove {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -100% 0;
+            }
+        }
+
+        .popup {
+
+            width: 100vw;
+            height: 20vw;
+            background-color: rgba(0, 0, 0, 0.571);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            display: none;
+
+            animation: slidein 0.2s ease-in-out;
+        }
+
+        @keyframes slidein {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+
+            }
+
+            to {
+
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .popuplogo {
+            width: 13vw;
+            height: 13vw;
+            border-radius: 1vw;
+        }
+
+        .popuptext {
+            width: 65%;
+        }
+
+        .popuphead {
+            font-weight: bold;
+            font-size: 4.3vw;
+        }
+
+        .popupdes {
+            font-size: 4vw;
+        }
+
+        .popuptime {
+
+            font-weight: bold;
+            font-size: 4vw;
+            margin-bottom: 10vw;
+        }
+
+        #locktime {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #locktime img {
+            width: 5vw;
+        }
+
+        #cameradiv {
+            position: absolute;
+            display: none;
+            /* display: flex; */
+            justify-content: start;
+            align-items: start;
+            flex-direction: column;
+
+            width: 100%;
+            height: 100dvh;
+            overflow: hidden;
+
+            z-index: 10;
+            animation: camerapull 0.3s linear forwards;
+
+
+
+
+        }
+
+        #cameradiv div {
+            color: black;
+        }
+
+        @keyframes camerapull {
+            from {
+                transform: scale(0);
+
+
+            }
+
+            to {
+
+                transform: scale(1);
+
+            }
+        }
+
+
+        #videocamera {
+
+            width: 100vw;
+            height: 100%;
+            object-fit: cover;
+
+            background: black;
+
+
+
+        }
+
+        #cameratop {
+
+            height: 20vw;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            z-index: 2;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+        }
+
+        #cameratop div {
+            width: 15vw;
+            height: 8vw;
+            text-align: center;
+            outline: 1px solid rgb(157, 157, 157);
+            border-radius: 10vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: linear-gradient(to bottom,
+                    rgb(217, 217, 217) 0%,
+
+                    rgb(134, 134, 134) 100%);
+        }
+
+        #camerabottom {
+
+            background: linear-gradient(to bottom,
+                    rgb(217, 217, 217) 0%,
+
+                    rgb(134, 134, 134) 100%);
+
+
+            height: 20vw;
+            width: 100%;
+
+
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #camerabottom div {
+            width: 30vw;
+            text-align: center;
+        }
+
+        #shot {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            outline: 1px solid rgb(157, 157, 157);
+            width: 30vw;
+            height: 12vw;
+
+            border-radius: 10vw;
+
+        }
+
+        #shot img {
+
+            width: 10vw;
+
+        }
+
+
+
+        #switchcamera img {
+            width: 8vw;
+        }
+
+        #fl img {
+            width: 6vw;
+        }
+
+        #songsliderdiv,
+        #songslider {
+            touch-action: none;
+        }
+
+
+        #songsliderdiv {
+            position: relative;
+
+            margin: 2vw;
+            height: 3vw;
+            width: 80%;
+            border-radius: 5vw;
+
+
+            background: linear-gradient(to bottom,
+                    rgb(132, 132, 132) 0%,
+
+                    rgb(151, 151, 151) 30%,
+
+
+                    rgb(255, 255, 255) 100%);
+
+
+
+
+
+        }
+
+        #songsliderfill {
+            background: linear-gradient(to bottom,
+                    rgb(255, 255, 255) 0%,
+                    rgb(125, 236, 255) 30%,
+                    rgb(59, 160, 255) 60%,
+
+                    rgb(59, 160, 255) 70%,
+                    rgb(125, 236, 255) 100%);
+
+            height: 100%;
+            width: 0%;
+            position: absolute;
+            border-radius: 5vw;
+        }
+
+        #songslider {
+            position: absolute;
+            width: 6vw;
+            height: 6vw;
+            border-radius: 5vw;
+
+
+            background-color: rgb(255, 255, 255);
+            top: 50%;
+            left: 100%;
+            transform: translate(-50%, -50%);
+
+        }
+
+        #songnamediv {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            font-size: 4vw;
+
+        }
+
+        #notediv {
+            height: 100%;
+            width: 100%;
+            background-color: black;
+
+            display: none;
+            animation: camerapull 0.3s linear forwards;
+            z-index: 2;
+
+            position: relative;
+
+        }
+
+
+
+        #notetop {
+            background: linear-gradient(to bottom,
+                    #8d6553 0%,
+                    #423227 100%);
+
+            width: 100%;
+            height: 20vw;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            font-size: 6vw;
+        }
+
+        #notebgdiv {
+
+            height: 100%;
+            width: 100%;
+
+            background-image: url(note.png);
+            background-size: 100% 100%;
+
+
+        }
+
+
+
+
+
+        #notedate {
+            width: 100%;
+            position: absolute;
+
+
+
+
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 3vw;
+
+        }
+
+        #notedate p {
+            color: #8d6553;
+            font-size: 5vw;
+        }
+
+        #note {
+
+            font-size: 7vw;
+            text-align: left;
+            position: absolute;
+            color: black;
+            margin-top: 13vw;
+            width: 90%;
+            margin-left: 10%;
+
+
+            font-family: tally;
+        }
+
+        #note a {
+            font-family: tally;
+            color: black;
+            text-decoration: underline;
+        }
+
+        #appstore {
+
+            height: 96%;
+
+
+            display: flex;
+            display: none;
+
+            animation: camerapull 0.3s ease-in-out forwards;
+
+
+            align-items: center;
+            flex-direction: column;
+
+            background: linear-gradient(to bottom,
+                    #a1a2a5 0%,
+                    #d3d4d6 20%,
+                    #d3d4d6 100%);
+        }
+
+        #storetop {
+            height: 11%;
+            width: 100%;
+
+            background: linear-gradient(to bottom,
+                    #b1bacc 0%,
+                    #7384a3 100%);
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            border: 2px rgb(52, 52, 52) solid;
+            /* box-sizing: border-box; */
+        }
+
+
+
+        #infotopdiv,
+        #menutopdiv {
+
+            display: flex;
+
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+        }
+
+        #menutopdiv {
+            display: none;
+        }
+
+        .storetopback {
+            position: absolute;
+            left: 4vw;
+
+            border-radius: 2vw;
+            padding: 2.5vw;
+
+
+            background: linear-gradient(to bottom,
+                    #627397 0%,
+
+                    #2d559b 100%);
+
+            cursor: pointer;
+
+            border: 2px #2d559b solid;
+        }
+
+        .storetoptell {
+            position: absolute;
+            right: 4vw;
+
+            border-radius: 2vw;
+            padding: 2.5vw;
+
+            background: linear-gradient(to bottom,
+                    #627397 0%,
+
+                    #2d559b 100%);
+
+            cursor: pointer;
+
+            border: 2px #2d559b solid;
+        }
+
+
+
+        .storenew {
+            display: flex;
+            border-radius: 2vw;
+            border: 0.5px black solid;
+
+            overflow: hidden;
+        }
+
+        .storenew p {
+            width: 30vw;
+            padding: 2vw;
+
+            text-align: center;
+
+            background: linear-gradient(to bottom,
+                    #b1bacc 30%,
+                    #7384a3 100%);
+
+            border: 0.5px black solid;
+
+        }
+
+        .storenew p.selectedtop {
+            background: linear-gradient(to bottom,
+                    #90a3c3 30%,
+                    #4b6a96 100%);
+
+        }
+
+        #storemid {
+            height: 78%;
+            width: 100%;
+
+            background: linear-gradient(to bottom,
+                    #a6a5aa 10%,
+                    #d3d4d6 20%);
+
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            overflow: scroll;
+        }
+
+
+
+        #storemidmargin {
+            margin-top: 5vw;
+            width: 90%;
+            height: auto;
+
+            display: none;
+            margin-bottom: 10vw;
+
+
+        }
+
+        .shirtdiv {
+            display: flex;
+            justify-content: space-around;
+
+        }
+
+        .shirt {
+            width: 45vw;
+            height: 45vw;
+
+            border-radius: 10vw;
+
+        }
+
+        .shirttitle {
+            position: relative;
+            margin-top: 2vw;
+            width: 40vw;
+
+            /* display: flex;
+            justify-content: space-between;
+            flex-direction: column; */
+        }
+
+        .shirtdes {
+            margin-top: 12vw;
+
+        }
+
+        .shirtdes p {
+            color: black;
+        }
+
+        .shirthead {
+            font-size: 8vw;
+            font-weight: 500;
+            color: black;
+        }
+
+        #storebottom {
+            height: 11%;
+            width: 100%;
+
+            background: linear-gradient(to bottom,
+                    #2d2d2d 50%,
+                    black 55%,
+                    black 100%);
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+        }
+
+        #storebottom div {
+            cursor: pointer;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+        }
+
+        #storebottom div img {
+            width: 14vw;
+        }
+
+        #storebottom div p {
+            font-size: 3.5vw;
+            color: #7a7a7a;
+            line-height: 2vw;
+
+        }
+
+        #storebottom div.selected {
+
+            background: linear-gradient(to bottom,
+                    #474847 50%,
+                    #262626 55%,
+                    #262626 100%);
+
+        }
+
+        #storebottom div.selected p {
+            color: #ffffff;
+
+        }
+
+        #buy {
+            width: auto;
+            text-align: center;
+            padding: 2vw;
+            padding-left: 2vw;
+            padding-right: 2vw;
+            font-size: 5vw;
+            margin: 0vw;
+            right: 0vw;
+            margin-top: 2vw;
+            /* bottom: -12vw; */
+
+            border-radius: 2vw;
+
+            font-weight: 500;
+
+            position: absolute;
+
+            border: 2px #1a9420 solid;
+
+            background: linear-gradient(to bottom,
+                    #a8f57c 0%,
+
+                    #75B45B 100%);
+        }
+
+
+
+        .appdiv {
+            display: flex;
+            width: 100%;
+            height: 22vw;
+            /* background-color: gray; */
+
+            border-bottom: gray 1px solid;
+
+            justify-content: space-around;
+            align-items: center;
+
+            cursor: pointer;
+
+            animation: camerapull 0.3s ease-in-out forwards;
+        }
+
+        .appdiv:nth-child(odd) {
+            background-color: #a6a5aa;
+
+        }
+
+        .appdiv:nth-child(even) {
+
+            background-color: #c1c1c1;
+        }
+
+        .applogodiv {
+            width: 18vw;
+            height: 18vw;
+
+        }
+
+        .applogo {
+            width: 100%;
+            height: 100%;
+            border-radius: 2vw;
+
+            border-top: 1px solid #ffffff;
+            border-left: 1px solid gray;
+            border-right: 1px solid gray;
+            border-bottom: none;
+            box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 1.0);
+        }
+
+        .overapplogo {
+
+            position: absolute;
+            width: 18vw;
+            height: 18vw;
+            z-index: 3;
+        }
+
+        .appprice {
+            display: flex;
+            position: absolute;
+            right: 0;
+
+            font-size: 3.5vw;
+
+        }
+
+        .appdes {
+            width: 72vw;
+        }
+
+        .appprice p {
+            color: rgb(66, 66, 66);
+            margin: 1vw;
+            font-weight: 500;
+        }
+
+        #appflex {
+            width: 100%;
+        }
+
+        .adddiv {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-color: #a6a5aa;
+
+        }
+
+        .add {
+            width: 46vw;
+            height: 65vw;
+
+            margin: 0.5vw;
+            margin-top: 3vw;
+            margin-bottom: 3vw;
+
+            border-radius: 4vw;
+            overflow: hidden;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .add img {
+            object-fit: fill;
+
+        }
+
+        .apphead {
+            font-size: 5.5vw;
+            font-weight: 500;
+            color: black;
+        }
+
+        .appcorp {
+
+            color: rgb(66, 66, 66);
+            font-weight: 600;
+            font-size: 3.5vw;
+        }
+
+        .appstar {
+
+            color: rgb(66, 66, 66);
+            font-size: 3.5vw;
+
+            margin-left: -1vw;
+        }
+
+        #updatediv {
+            position: absolute;
+            z-index: 2;
+
+            background-color: #151c46c7;
+
+            padding: 2vw;
+            border-radius: 4vw;
+            border: 2px rgb(198, 198, 198) solid;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            animation: camerapull 0.3s ease-in-out forwards;
+        }
+
+        .updatechoicediv {
+            display: flex;
+            width: 100%;
+
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .updatechoicediv p {
+
+            cursor: pointer;
+
+            padding: 2vw;
+            padding-left: 10vw;
+            padding-right: 10vw;
+            margin: 1vw;
+
+            background: linear-gradient(to bottom,
+                    #ffffff79 0%,
+                    #ffffff89 45%,
+                    #47484776 55%,
+                    #ffffff4d 100%);
+
+
+            border-radius: 2vw;
+            font-size: 6vw;
+        }
+
+        .updatehead {
+            font-size: 5vw;
+            font-weight: 500;
+            margin: 2vw;
+
+        }
+
+        .updatedes {
+            font-size: 5vw;
+            margin: 2vw;
+
+        }
+
+        /* 
+        .shirtimg {
+            margin-top: 5vw;
+            width: 100%;
+            height: 100vw;
+
+            overflow: hidden;
+
+        }
+
+        .shirtimg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        } */
+        .carousel-container {
+            width: 100%;
+            overflow-x: scroll;
+            display: flex;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+
+            padding: 0 10%;
+            box-sizing: border-box;
+        }
+
+        .carousel-container::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+            background: transparent;
+        }
+
+        .shirtimg {
+            display: flex;
+            align-items: center;
+
+        }
+
+        .shirtimg img {
+            margin: 2vw;
+            width: 60vw;
+
+            height: auto;
+            object-fit: cover;
+            flex-shrink: 0;
+
+
+            scroll-snap-align: center;
+
+        }
+
+
+
+        .indicators-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+
+            margin-top: 2vw;
+        }
+
+        .box {
+
+            width: 2.5vw;
+            height: 2.5vw;
+            background-color: #b3b3b3;
+
+            border-radius: 2vw;
+
+            transition: background-color 0.3s ease;
+        }
+
+        .box.selected {
+            background-color: #ffffff;
+
+        }
+
+        .rating {
+            /* margin-top: 2vw; */
+            display: flex;
+            justify-content: start;
+            align-items: end;
+        }
+
+        .rating img {
+            width: 4vw;
+            height: 4vw;
+
+        }
+
+        .rating p {
+
+            color: rgb(66, 66, 66);
+
+            margin-left: 1.5vw;
+            font-size: 3vw;
+
+
+        }
+
+        .reflect {
+            -webkit-box-reflect: below 0px linear-gradient(to bottom,
+                    transparent 60%,
+                    rgba(250, 250, 250, 0.265) 100%,
+                    transparent 100%);
+
+
+
+        }
+
+        .ssize {
+            display: flex;
+
+            /* margin-left: 1vw; */
+            width: 100%;
+            margin-top: 4vw;
+
+            justify-content: space-between;
+
+        }
+
+        .ssize div {
+            width: 12vw;
+            height: 8vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            text-align: center;
+            gap: 1vw;
+            margin-bottom: 2vw;
+
+
+            background: linear-gradient(to bottom,
+                    #627397 0%,
+                    #2d559b 100%);
+            border-radius: 2vw;
+            border: 2px #2d559b solid;
+        }
+
+        .ssize div.selected {
+            background: linear-gradient(to bottom,
+                    #dedede 0%,
+                    #6dacff 100%);
+
+        }
+
+        #sq {
+            justify-content: space-between;
+            display: flex;
+            /* margin-left: 1vw; */
+            width: 100%;
+        }
+
+        #sq div {
+            width: 12vw;
+            height: 5vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            cursor: pointer;
+            text-align: center;
+            gap: 1vw;
+
+
+            background: linear-gradient(to bottom,
+                    #627397 0%,
+                    #2d559b 100%);
+            border-radius: 2vw;
+            border: 2px #2d559b solid;
+
+
+        }
+
+        #sq div.selected {
+            background: linear-gradient(to bottom,
+                    #dedede 0%,
+                    #6dacff 100%);
+
+        }
+
+
+        /* The animation timeline that scales the line from 0% to 100% width */
+        @keyframes downloadLine {
+            0% {
+                transform: scaleX(0);
+            }
+
+            100% {
+                transform: scaleX(1);
+            }
+        }
+
+        .customapp {
+            width: 100%;
+            height: 100%;
+            border-radius: 5vw;
+            box-shadow: inset 0 0.6vw 1vw rgba(255, 255, 255, 0.35), 0 0.8vw 1.8vw rgba(0, 0, 0, 0.25);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .customapp p {
+            position: relative;
+            z-index: 2;
+            margin: 0;
+            font-weight: 700;
+            text-shadow: 0 0.3vw 0.8vw rgba(0, 0, 0, 0.35);
+        }
+
+        .musiclyicon {
+            background:
+                radial-gradient(circle at 70% 25%, rgba(255, 255, 255, 0.28), transparent 25%),
+                linear-gradient(135deg, #18f6ef 0%, #101010 46%, #ff2f70 100%);
+        }
+
+        .musiclyicon p {
+            font-size: 11vw;
+            font-family: Georgia, serif;
+            font-style: italic;
+        }
+
+        .mailicon {
+            background: linear-gradient(to bottom, #74c7ff 0%, #0a72df 100%);
+        }
+
+        .mailicon::before {
+            content: "";
+            width: 13vw;
+            height: 8vw;
+            border: 0.8vw solid white;
+            border-radius: 1vw;
+            background:
+                linear-gradient(145deg, transparent 48%, white 49%, white 52%, transparent 53%),
+                linear-gradient(35deg, transparent 48%, white 49%, white 52%, transparent 53%);
+        }
+
+
+
+
+        @media (min-width: 600px) {
+
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #lockscreen {
+
+
+                width: 50vw;
+
+
+            }
+
+            #iphonediv {
+
+                width: 50vw;
+
+            }
+
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="updatediv">
+        <p class="updatehead">Prom Night Update</p>
+        <p class="updatedes">Album releases August 25th. </p>
+
+        <div class="updatechoicediv">
+            <p onclick="closeupdate()">Close</p>
+            <p onclick="openupdate()">OK</p>
+        </div>
+    </div>
+
+
+    <div id="cameradiv">
+        <div id="cameratop">
+            <div onclick="turnoffcamera()">back</div>
+            <div id="fl"><img src="icons/nofl.png" alt=""></div>
+            <div id="switchcamera"><img src="icons/switch.png" alt=""></div>
+        </div>
+
+        <video src="" id="videocamera"></video>
+
+
+
+        <div id="camerabottom">
+            <div>photos</div>
+            <div id="shot"><img src="icons/cmr.png" alt=""></div>
+            <div>#</div>
+
+        </div>
+
+
+
+    </div>
+
+    <div id="iphonediv">
+
+
+
+        <div id="top">
+            <div id="topleft">
+                <p>Pro-Mobile</p>
+            </div>
+            <div id="topmid">
+                <p id="locktime"> <img src="icons/lock.png" alt=""></p>
+
+            </div>
+            <div id="topright">
+                <p class="radio-status">Wi-Fi BT</p>
+                <p>77%</p>
+                <img src="icons/bat.png" alt="">
+            </div>
+        </div>
+
+
+
+        <div id="appstore">
+
+            <div id="storetop">
+                <!-- <div class="storenew">
+                    <p class="selectedtop">New</p>
+                    <p>Whats Hot</p>
+                </div> -->
+                <div id="infotopdiv">
+                    <p onclick="backapp()" class="storetopback">Back</p>
+                    <p style="font-size: 5vw;">Info</p>
+                    <p id="tell" class="storetoptell" onclick="tell()">Tell a Friend</p>
+                </div>
+
+                <div id="menutopdiv">
+                    <p onclick="turnoffapp()" class="storetopback">Back</p>
+                    <p style="font-size: 5vw;" id="menutopdivname">Featured</p>
+                </div>
+
+
+            </div>
+            <div id="storemid">
+
+                <div id="storemidmargin">
+                    <div class="shirtdiv">
+                        <div>
+                            <img id="appicon" class="shirt reflect" src="appstore/st.png" alt="">
+                        </div>
+                        <div class="shirttitle">
+                            <p id="apptitle" class="shirthead">PROM NIGHT</p>
+                            <p id="appcomp" style="color: rgb(66, 66, 66);margin-top: 1vw; font-size: 3.5vw;">
+                                Bl4den</p>
+                            <!-- <p style="color: rgb(66, 66, 66); margin-top: 2vw; font-size: 3vw;">⭐️⭐️⭐️⭐️⭐️ 132 reviews
+                            </p> -->
+
+                            <div id="shirtrating" class="rating reflect">
+                                <img src="appstore/s1.png" alt="">
+                                <img src="appstore/s1.png" alt="">
+                                <img src="appstore/s1.png" alt="">
+                                <img src="appstore/s1.png" alt="">
+                                <img src="appstore/s1.png" alt="">
+                                <p id="apprev">132
+                                    reviews</p>
+                            </div>
+
+
+                            <div class="ssize" id="ssize">
+                                <div data-id="gid://shopify/ProductVariant/49764737745136" class="selected">M</div>
+                                <div data-id="gid://shopify/ProductVariant/49764737777904">L</div>
+                                <div data-id="gid://shopify/ProductVariant/49764737810672">XL</div>
+                            </div>
+
+                            <div>
+                                <div id="sq">
+                                    <div id="minus-btn">-</div>
+                                    <div id="qty-display">1</div>
+                                    <div id="plus-btn">+</div>
+                                </div>
+
+
+                                <a id="buy" onclick="createDirectCheckout()">$30</a>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="shirtdes">
+                        <p id="appdes">
+                            <!-- *** 2026 T-Shirt Design Award Winner! ***
+                            <br><br>
+                            *** Notice: Big things coming soon! Whole new Collection etc etc ***
+                            <br><br> -->
+                            PROM NIGHT releases August 25th.<br><br>Upcoming shows July 24th.<br><br><a
+                                href="https://www.instagram.com/1bladen/" style="color: blue;"
+                                target="_blank">@1bladen</a>
+
+
+                        </p>
+
+                    </div>
+                    <div style="margin-top: 10vw;">
+                        <p style="color: black;">Images: </p>
+                        <div class="carousel-container">
+                            <div id="appimgs" class="shirtimg">
+                                <img src="cat/g6.png">
+                                <!-- <img src="cat/g5.png"> -->
+                                <img src="cat/b1.png">
+                                <img src="cat/b4.png">
+                                <!-- <img src="cat/g3.png"> -->
+                                <img src="cat/g4.png">
+                                <!-- <img src="cat/g1.png"> -->
+
+
+                                <!-- <img src="cat/b3.png"> -->
+                                <img src="cat/b2.png">
+
+                            </div>
+                        </div>
+                        <div class="indicators-container"></div>
+
+
+                    </div>
+                </div>
+
+                <div id="appflex">
+
+                    <div class="adddiv" id="adddiv">
+                        <a href="https://bl4den.com" target="_blank" class="add">
+                            <img src="appstore/poster.jpg" class="add" alt="">
+                        </a>
+                        <div class="add" onclick="app()">
+                            <img src="cat/g6.png" class="add" alt="">
+                        </div>
+
+
+                    </div>
+
+                    <div onclick="app(this)" class="appdiv" id="tt" data-title="PROM NIGHT" data-comp="Bl4den"
+                        data-icon="appstore/st.png"
+                        data-des='PROM NIGHT releases August 25th.<br><br>Upcoming shows July 24th.<br><br><a href="https://www.instagram.com/1bladen/" style="color: blue;" target="_blank">@1bladen</a>'
+                        data-button="AUG 25" data-rev="934"
+                        data-images="cat/g6.png, cat/b1.png, cat/b4.png, cat/g4.png, cat/b2.png">
+
+                        <div class="applogodiv">
+                            <img class="overapplogo" src="icons/over.png" alt="">
+                            <img class="applogo" src="appstore/st.png" alt="">
+                        </div>
+
+                        <div class="appdes">
+                            <p class="appcorp">Bl4den</p>
+                            <p class="apphead">PROM NIGHT</p>
+                            <!-- <p class="appstar">⭐️⭐️⭐️⭐️⭐️ 132 Ratings</p> -->
+
+                            <div class="rating reflect">
+                                <img src="appstore/s1.png" alt="">
+                                <img src="appstore/s1.png" alt="">
+                                <img src="appstore/s1.png" alt="">
+                                <img src="appstore/s1.png" alt="">
+                                <img src="appstore/s1.png" alt="">
+                                <p>934
+                                    reviews</p>
+                            </div>
+                        </div>
+                        <div class="appprice">
+                            <p>$30</p>
+                            <p>></p>
+                        </div>
+                    </div>
+
+                    <div onclick="app(this)" class="appdiv" data-title="July 24th" data-comp="Upcoming Shows"
+                        data-icon="icons/designer.png" data-des='Upcoming shows July 24th.<br><br>More details through Bl4den.' data-button="SOON" data-rev="0"
+                        data-images="appstore/dong-nguyen.jpg">
+
+                        <div class="applogodiv">
+                            <img class="overapplogo" src="icons/over.png" alt="">
+                            <img class="applogo" src="icons/designer.png" alt="">
+                        </div>
+                        <div class="appdes">
+                            <p class="appcorp">Upcoming Shows</p>
+                            <p class="apphead">July 24th</p>
+                            <!-- <p class="appstar">⭐️⭐️⭐️⭐️⭐️ 0 Ratings</p> -->
+
+                            <div class="rating reflect">
+                                <img src="appstore/s3.png" alt="">
+                                <img src="appstore/s3.png" alt="">
+                                <img src="appstore/s3.png" alt="">
+                                <img src="appstore/s3.png" alt="">
+                                <img src="appstore/s3.png" alt="">
+                                <p>0
+                                    reviews</p>
+                            </div>
+                        </div>
+                        <div class="appprice">
+                            <p>COMING SOON</p>
+                            <p>></p>
+                        </div>
+                    </div>
+
+                    <div onclick="app(this)" class="appdiv" data-title="bl4den.com" data-comp="Bl4den"
+                        data-icon="appstore/bundle.png"
+                        data-des='Official Bl4den site.<br><br><a href="https://bl4den.com" style="color: blue;" target="_blank">bl4den.com</a>'
+                        data-button="OPEN" data-rev="590" data-link="https://bl4den.com"
+                        data-images="appstore/2.webp, appstore/dbb/1.png, appstore/dbb/3.png, appstore/dbg/1.png">
+
+                        <div class="applogodiv">
+                            <img class="overapplogo" src="icons/over.png" alt="">
+                            <img class="applogo" src="appstore/bundle.png" alt="">
+                        </div>
+
+                        <div class="appdes">
+                            <p class="appcorp">Bl4den</p>
+                            <p class="apphead">bl4den.com</p>
+                            <!-- <p class="appstar">⭐️⭐️⭐️⭐️⭐️ 590 Ratings</p> -->
+
+                            <div class="rating reflect">
+                                <img src="appstore/s1.png" alt="">
+                                <img src="appstore/s1.png" alt="">
+                                <img src="appstore/s1.png" alt="">
+                                <img src="appstore/s1.png" alt="">
+                                <img src="appstore/s2.png" alt="">
+                                <p>590
+                                    reviews</p>
+                            </div>
+                        </div>
+                        <div class="appprice">
+                            <p>OPEN</p>
+                            <p>></p>
+                        </div>
+                    </div>
+
+
+
+                    <div onclick="app(this)" class="appdiv" data-title="Fan Mail" data-comp="Mail"
+                        data-icon="appstore/iam.jpeg"
+                        data-des='Send fan mail to Bl4den.<br><br><a href="mailto:booking@bl4den.com?subject=Bl4den%20fan%20mail&body=PROM%20NIGHT%0A%0AHey%20Bl4den%2C" style="color: blue;">booking@bl4den.com</a>'
+                        data-button="MAIL" data-rev="275" data-link="mailto:booking@bl4den.com?subject=Bl4den%20fan%20mail&body=PROM%20NIGHT%0A%0AHey%20Bl4den%2C" data-images="appstore/rich.png">
+
+                        <div class="applogodiv">
+                            <img class="overapplogo" src="icons/over.png" alt="">
+                            <img class="applogo" src="appstore/iam.jpeg" alt="">
+                        </div>
+
+                        <div class="appdes">
+                            <p class="appcorp">Mail</p>
+                            <p class="apphead">Fan Mail</p>
+                            <!-- <p class="appstar">⭐️⭐️⭐️⭐️⭐️ 275 Ratings</p> -->
+                            <div class="rating reflect">
+                                <img src="appstore/s1.png" alt="">
+                                <img src="appstore/s1.png" alt="">
+                                <img src="appstore/s3.png" alt="">
+                                <img src="appstore/s3.png" alt="">
+                                <img src="appstore/s3.png" alt="">
+                                <p>275
+                                    reviews</p>
+                            </div>
+                        </div>
+                        <div class="appprice">
+                            <p>MAIL</p>
+                            <p>></p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <div id="storebottom">
+                <div class="selected">
+                    <img src="appicons/featuredb.png" alt="">
+                    <p>Featured</p>
+                </div>
+                <div>
+                    <img src="appicons/cat.png" alt="">
+                    <p>Categories</p>
+                </div>
+                <div>
+                    <img src="appicons/top.png" alt="">
+                    <p>Top 25</p>
+                </div>
+                <div id="search">
+                    <img src="appicons/search.png" alt="">
+                    <p>Search</p>
+                </div>
+                <div>
+                    <img src="appicons/updates.png" alt="">
+                    <p>Updates</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="notediv">
+            <div id="notetop">
+                <p onclick="turnoffnote() ">back</p>
+                <p>PROM NIGHT</p>
+                <p>+</p>
+            </div>
+            <div id="notebgdiv">
+                <div id="notedate">
+                    <p style="font-weight: bold;">Today</p>
+                    <p>July 24th 23:17</p>
+                </div>
+                <p id="note">PROM NIGHT
+                    <br><br>album releases August 25th
+                    <br><br>upcoming shows July 24th
+                    <br><br>bl4den.com
+
+
+                </p>
+
+
+
+            </div>
+
+        </div>
+
+        <div id="unlock">
+            <div id="unlocktop">
+                <p id="time"></p>
+                <p id="date"></p>
+            </div>
+
+            <div id="lockscreen">
+
+
+                <a class="popup" href="https://bl4den.com" target="_blank">
+                    <img class="popuplogo" src="appstore/ny.png" alt="">
+                    <div class="popuptext">
+                        <p class="popuphead">PROM NIGHT</p>
+                        <p class="popupdes">Album releases August 25th</p>
+                    </div>
+                    <p class="popuptime">1h ago</p>
+                </a>
+
+            </div>
+            <div id="unlockbottom">
+                <div id="slide">
+                    <div id="slider"> <img src="icons/arrow.png" draggable="false" alt=""></div>
+                    <p id="unlocktext">slide to unlock</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="main">
+
+
+
+            <div id="appdiv">
+                <a href="https://music.youtube.com/search?q=Bl4den" target="_blank">
+
+                    <div class="downloadOverlay">
+                        <div class="dwo"></div>
+                        <img src="icons/youtube.png" alt="">
+                    </div>
+                    <p>YouTube</p>
+                </a>
+
+                </a><a href="https://open.spotify.com/search/bl4den" target="_blank">
+                    <div class="downloadOverlay">
+                        <div class="dwo"></div>
+                        <img src="icons/spotify.png" alt="">
+                    </div>
+                    <p>Spotify</p>
+                </a>
+
+                <a href="https://soundcloud.com/search?q=bl4den" target="_blank">
+                    <div class="downloadOverlay">
+                        <div class="dwo"></div>
+                        <img src="icons/sound.png" alt="">
+                    </div>
+                    <p>SoundCloud</p>
+                </a>
+
+                <a onclick="backapp()">
+                    <div class="downloadOverlay">
+                        <div class="dwo"></div>
+                        <img src="icons/apps.png" alt="">
+                    </div>
+                    <p>App Store</p>
+                </a>
+
+                <a onclick="turnonnote()" target="_blank">
+                    <div class="downloadOverlay">
+                        <div class="dwo"></div>
+                        <img src="icons/note.png" alt="">
+                    </div>
+                    <p>Notes</p>
+                </a>
+
+                <a href="https://www.instagram.com/1bladen/" target="_blank">
+
+                    <div class="downloadOverlay">
+                        <div class="dwo"></div>
+                        <img src="icons/ig.png" alt="">
+                    </div>
+                    <p>Instagram</p>
+                </a>
+
+                <a href="https://www.tiktok.com/search?q=bl4den" target="_blank">
+                    <div class="downloadOverlay">
+                        <div class="dwo"></div>
+                        <div class="customapp musiclyicon">
+                            <p>m</p>
+                        </div>
+                    </div>
+                    <p>musical.ly</p>
+                </a>
+
+                <a href="https://music.apple.com/us/search?term=bl4den" target="_blank">
+                    <div class="downloadOverlay">
+                        <div class="dwo"></div>
+                        <img src="icons/applemusic.png" alt="">
+                    </div>
+                    <p>Apple Music</p>
+                </a>
+
+                <a href="mailto:booking@bl4den.com?subject=Bl4den%20fan%20mail&body=PROM%20NIGHT%0A%0AHey%20Bl4den%2C">
+                    <div class="downloadOverlay">
+                        <div class="dwo"></div>
+                        <div class="customapp mailicon"></div>
+                    </div>
+
+                    <p>Mail</p>
+                </a>
+
+
+
+
+            </div>
+            <div id="bottomappdiv">
+                <img id="table" src="table.png" alt="">
+
+                <a target="_blank"><img src="icons/phone.png" alt="">
+                    <p>Phone</p>
+                </a>
+
+                <a target="_blank"><img src="icons/photo.png" alt="">
+                    <p>Photos</p>
+                </a><a onclick="turnoncamera()" target="_blank"><img src="icons/camera.png" alt="">
+                    <p>Camera</p>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+<!-- BL4DEN HOME SCREEN -->
+<script>
+    function randomizeHomeApps() {
+        const appDiv = document.getElementById("appdiv");
+        if (!appDiv) return;
+
+        const apps = Array.from(appDiv.children);
+        for (let i = apps.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [apps[i], apps[j]] = [apps[j], apps[i]];
+        }
+        apps.forEach(app => appDiv.appendChild(app));
+    }
+
+    randomizeHomeApps();
+</script>
+
+<!-- checkout -->
+<script>
+
+    // Initialize tq as a safe mathematical integer
+    let tq = 1;
+
+    const minusBtn = document.getElementById('minus-btn');
+    const plusBtn = document.getElementById('plus-btn');
+    const qtyDisplay = document.getElementById('qty-display');
+    const buyBtn = document.getElementById('buy');
+
+    function updateButtonText() {
+        if (buyBtn) {
+            const totalPrice = 30 * tq;
+            buyBtn.textContent = `$${totalPrice}`;
+        }
+    }
+
+    function flashButton(buttonElement) {
+        if (buttonElement) {
+            buttonElement.classList.add('selected');
+
+            setTimeout(() => {
+                buttonElement.classList.remove('selected');
+            }, 200); // 500 milliseconds = 0.5 seconds
+        }
+    }
+    // Handle the Plus (+) Click
+    if (plusBtn) {
+        plusBtn.addEventListener('click', () => {
+            tq++; // Add 1
+            qtyDisplay.innerText = tq; // Update the HTML text on screen
+            updateButtonText();
+            flashButton(plusBtn);
+        });
+    }
+
+    // Handle the Minus (-) Click
+    if (minusBtn) {
+        minusBtn.addEventListener('click', () => {
+            // Prevent the quantity from dropping below 1
+            if (tq > 1) {
+                tq--; // Subtract 1
+                qtyDisplay.innerText = tq; // Update the HTML text on screen
+
+                updateButtonText();
+                flashButton(minusBtn);
+            }
+        });
+    }
+
+    // Initialize tsize with the default selected size (Medium)
+    let tsize = 'gid://shopify/ProductVariant/49764737745136';
+
+    const sizeContainer = document.getElementById('ssize');
+
+    if (sizeContainer) {
+        sizeContainer.addEventListener('click', (event) => {
+            // Ensure the user actually clicked one of the size boxes
+            const clickedSize = event.target.closest('.ssize > div');
+
+            if (clickedSize) {
+                // 1. Remove '.selected' from all sizes in the container
+                Array.from(sizeContainer.children).forEach(div => {
+                    div.classList.remove('selected');
+                });
+
+                // 2. Add '.selected' to the one that was just clicked
+                clickedSize.classList.add('selected');
+
+                // 3. Update the tsize variable with the clicked element's variant ID
+                tsize = clickedSize.getAttribute('data-id');
+
+                console.log("Updated tsize to:", tsize); // For testing
+            }
+        });
+    }
+
+    const STORE_DOMAIN = "";
+    const API_TOKEN = "";
+
+    async function createDirectCheckout() {
+        alert("PROM NIGHT releases August 25th.");
+        return;
+
+        const button = document.getElementById('buy-btn');
+        if (button) {
+            button.innerText = "Creating Checkout...";
+            button.disabled = true;
+        }
+
+        // const selectedVariantId = document.getElementById('shirt-size').value;
+        // const selectedQuantity = parseInt(document.getElementById('shirt-qty').value);
+
+        const selectedVariantId = tsize;
+        const selectedQuantity = tq;
+        // FIX: Updated to the modern Cart API mutation
+        const query = `
+        mutation cartCreate($input: CartInput!) {
+            cartCreate(input: $input) {
+                cart {
+                    checkoutUrl
+                }
+                userErrors {
+                    field
+                    message
+                }
+            }
+        }
+    `;
+
+        const variables = {
+            input: {
+                lines: [
+                    {
+                        merchandiseId: selectedVariantId,
+                        // Force an absolute base-10 mathematical integer conversion
+                        quantity: Number(selectedQuantity) || 1
+                    }
+                ]
+            }
+        };
+
+        try {
+            const response = await fetch(`https://${STORE_DOMAIN}/api/2024-01/graphql.json`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Shopify-Storefront-Access-Token': API_TOKEN,
+                },
+                body: JSON.stringify({ query, variables }),
+            });
+
+            const result = await response.json();
+
+            // Check for top-level graphQL errors or user input errors
+            if (result.errors || (result.data?.cartCreate?.userErrors && result.data.cartCreate.userErrors.length > 0)) {
+                console.error("Shopify Error:", result.errors || result.data.cartCreate.userErrors);
+                alert("Error creating checkout. Ensure your variant ID format is correct (gid://shopify/ProductVariant/...)");
+                if (button) { button.innerText = "Buy Now"; button.disabled = false; }
+                return;
+            }
+
+            // Success! Get the checkout link and redirect them
+            const checkoutUrl = result.data.cartCreate.cart.checkoutUrl;
+            // Change your final redirect line to this:
+            window.top.location.href = checkoutUrl;
+
+        } catch (error) {
+            console.error("Network error:", error);
+            alert("Something went wrong with the checkout request.");
+            if (button) { button.innerText = "Buy Now"; button.disabled = false; }
+        }
+    }
+</script>
+
+<!-- img carousel -->
+<script>
+    const container = document.querySelector('.carousel-container');
+    const track = document.querySelector('.shirtimg');
+    const indicatorsContainer = document.querySelector('.indicators-container');
+    const items = Array.from(track.children);
+
+
+
+    function moveToTargetImage(index) {
+        if (!items[index]) return;
+
+        // 1. Kill snap temporarily so the browser doesn't block the glide
+        container.style.scrollSnapType = 'none';
+
+        // 2. Target the exact center point of the specified image
+        const targetOffset = items[index].offsetLeft + (items[index].offsetWidth / 2) - (container.clientWidth / 2);
+
+        // 3. Glide smoothly to it
+        container.scrollTo({
+            left: targetOffset,
+            behavior: 'smooth'
+        });
+
+        // 4. Re-engage snap mechanics once the glide is done
+        setTimeout(() => {
+            container.style.scrollSnapType = 'x mandatory';
+        }, 300);
+    }
+
+    // 1. Keep a global reference to the observer so we can shut it down later
+    let carouselObserver = null;
+
+    function carousel(currentItems) {
+        currentItems = currentItems.filter(item => item instanceof Element);
+
+        indicatorsContainer.innerHTML = "";
+
+        // 2. Kill the old observer if it exists before making a new one
+        if (carouselObserver) {
+            carouselObserver.disconnect();
+        }
+
+        if (currentItems.length > 0) {
+            // Generate the exact number of boxes based on image count
+            currentItems.forEach((_, index) => {
+                const box = document.createElement('div');
+                box.classList.add('box');
+                if (index === 0) box.classList.add('selected');
+                indicatorsContainer.appendChild(box);
+            });
+
+            const boxes = Array.from(indicatorsContainer.children);
+
+            const observerOptions = {
+                root: container,
+                rootMargin: '0px -45% 0px -45%',
+                threshold: 0
+            };
+
+            // 3. Assign the new observer to our global variable
+            carouselObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Look through the FRESH items list, not an old global one
+                        const activeIndex = currentItems.indexOf(entry.target);
+
+                        boxes.forEach((box, idx) => {
+                            box.classList.toggle('selected', idx === activeIndex);
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            // Start tracking the NEW images
+            currentItems.forEach(item => carouselObserver.observe(item));
+        }
+    }
+
+</script>
+
+
+<!-- TELL -->
+<script>
+    async function tell() {
+
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: document.title,          // Grabs your page's title
+                    text: 'Check out this page!',   // Custom message text
+                    url: window.location.href       // Grabs the current page URL
+                });
+                console.log('Page shared successfully!');
+            } catch (error) {
+                console.log('Sharing failed or user cancelled:', error);
+            }
+        } else {
+            // Fallback logic for older browsers or desktop browsers that don't support it
+            alert("Copy this link to share: " + window.location.href);
+        }
+
+    }
+
+</script>
+
+<!-- DOWNLOAD APP -->
+<script>
+    function downloadapp() {
+
+        const container = document.getElementById("appdiv");
+
+        const link = document.createElement("a");
+        link.target = "_blank";
+
+        const img = document.createElement("img");
+        img.src = document.getElementById('appicon').src;
+        img.alt = "";
+
+        const p = document.createElement("p");
+        p.textContent = "Installing...";
+
+        const div = document.createElement("div");
+        div.classList.add("downloaddiv");
+        div.addEventListener("animationend", () => {
+            div.remove();
+            dwo.remove();
+            console.log("Download visualization finished!");
+            p.textContent = document.getElementById('apptitle').textContent;
+
+            link.href = "https://bl4den.com";
+        });
+
+        const dwo = document.createElement("div");
+        dwo.classList.add("dwo");
+        dwo.style.background = "rgba(0, 0, 0, 0.5)"
+
+        const downloadOverlay = document.createElement("div");
+        downloadOverlay.classList.add("downloadOverlay");
+
+        downloadOverlay.appendChild(dwo);
+        downloadOverlay.appendChild(img);
+        downloadOverlay.appendChild(div);
+        link.appendChild(downloadOverlay);
+        link.appendChild(p);
+        container.appendChild(link);
+
+        turnoffapp()
+
+
+    }
+</script>
+
+<!-- APPSTORE popup -->
+<script>
+
+
+    const storeBottom = document.getElementById('storebottom');
+    const menutopdivname = document.getElementById('menutopdivname')
+
+    storeBottom.addEventListener('click', (event) => {
+
+
+        const clickedDiv = event.target.closest('#storebottom > div');
+        if (!clickedDiv) return;
+
+        const appFlex = document.getElementById('appflex');
+        const allDivs = Array.from(appFlex.children);
+
+        if (clickedDiv.id === 'search') {
+
+            allDivs.forEach(div => {
+                div.style.display = 'none';
+            });
+
+
+        } else {
+
+            allDivs.forEach(div => {
+                div.style.display = 'flex';
+            });
+
+        }
+
+        backapp()
+
+        const currentSelected = storeBottom.querySelector('.selected');
+        if (currentSelected) {
+            currentSelected.classList.remove('selected');
+
+            const oldImg = currentSelected.querySelector('img');
+            if (oldImg && oldImg.src.includes('b.png')) {
+                oldImg.src = oldImg.src.replace('b.png', '.png');
+            }
+        }
+
+        clickedDiv.classList.add('selected');
+
+        menutopdivname.textContent = clickedDiv.querySelector('p').textContent;
+
+
+
+        const newImg = clickedDiv.querySelector('img');
+        if (newImg) {
+            if (!newImg.src.includes('b.png')) {
+                newImg.src = newImg.src.replace('.png', 'b.png');
+            }
+        }
+
+
+        if (appFlex) {
+            const divs = Array.from(appFlex.children);
+
+            // Fisher-Yates Shuffle algorithm
+            for (let i = divs.length - 1; i > 0; i--) {
+                // SKIP: If the current element has id "tt", leave it exactly where it is
+                if (divs[i].id === 'tt' || divs[i].id === 'adddiv') continue;
+
+                const j = Math.floor(Math.random() * (i + 1));
+
+                // SKIP: If the target element we want to swap with has id "tt", skip this swap
+                // if (divs[j].id === 'tt') continue;
+                if (divs[j].id === 'tt' || divs[j].id === 'adddiv') continue;
+
+                // Perform the swap if neither element is "tt"
+                [divs[i], divs[j]] = [divs[j], divs[i]];
+            }
+
+            // Re-append them in the new random order
+            divs.forEach(div => appFlex.appendChild(div));
+        }
+    });
+
+
+
+
+    function app(yup) {
+        if (!yup) return;
+
+        document.getElementById("appflex").style.display = "none"
+
+        document.getElementById("storemidmargin").style.display = "block"
+
+
+        document.getElementById("infotopdiv").style.display = "flex"
+        document.getElementById("menutopdiv").style.display = "none"
+
+        document.getElementById("storemid").scrollTop = 0;
+
+        let title = document.getElementById("apptitle");
+        let icon = document.getElementById("appicon");
+        let des = document.getElementById("appdes");
+        let button = document.getElementById("buy");
+        let rev = document.getElementById("apprev");
+
+
+        const data = yup.dataset;
+
+        title.textContent = data.title;
+        icon.src = data.icon;
+        des.innerHTML = data.des;
+        button.textContent = data.button;
+        // rev.textContent = data.rev + " reviews";
+        appcomp.textContent = data.comp;
+
+        //SHOP BUTTON
+        if (!data.shop) {
+            document.getElementById("ssize").style.display = "none";
+            document.getElementById("sq").style.display = "none";
+
+            button.onclick = null;
+
+            if (data.link) {
+                button.onclick = function () {
+                    if (data.link.startsWith("mailto:")) {
+                        window.location.href = data.link;
+                    } else {
+                        window.open(data.link, "_blank", "noopener");
+                    }
+                };
+            }
+
+            if (data.install == "INSTALL") {
+
+                button.onclick = function () {
+                    new Audio("sounds/cash.mp3").play();
+                    button.textContent = 'INSTALL';
+                    button.onclick = downloadapp;
+                };
+
+
+            }
+
+        } else {
+            document.getElementById("ssize").style.display = "flex";
+            document.getElementById("sq").style.display = "flex";
+
+            button.onclick = createDirectCheckout;
+
+
+        }
+
+
+
+        //IMGS APPEND
+        const appimgs = document.getElementById("appimgs");
+        appimgs.innerHTML = "";
+        const imageList = data.images.split(", ");
+        imageList.forEach(imgUrl => {
+            const newImg = document.createElement("img");
+            newImg.src = imgUrl;
+            appimgs.appendChild(newImg);
+        });
+        const freshImgElements = appimgs.querySelectorAll("img");
+        carousel(Array.from(freshImgElements));
+
+        //RATINGSTAR
+        const shirtRatingDiv = document.getElementById("shirtrating");
+        shirtRatingDiv.innerHTML = "";
+        const sourceRating = yup.querySelector('.rating');
+        if (sourceRating) {
+            Array.from(sourceRating.children).forEach(child => {
+                const clonedChild = child.cloneNode(true);
+                shirtRatingDiv.appendChild(clonedChild);
+            });
+        }
+
+    }
+
+    function backapp() {
+
+        document.getElementById("main").style.display = "none"
+        document.getElementById("appstore").style.display = "flex"
+        document.getElementById("appflex").style.display = "block"
+        document.getElementById("storemidmargin").style.display = "none"
+
+        document.getElementById("infotopdiv").style.display = "none"
+        document.getElementById("menutopdiv").style.display = "flex"
+    }
+
+    function turnoffapp() {
+        document.getElementById("main").style.display = "flex"
+        document.getElementById("appstore").style.display = "none"
+    }
+
+
+    function openupdate() {
+
+
+        document.getElementById("main").style.display = "none"
+        document.getElementById("unlock").style.display = "none"
+        document.getElementById("appstore").style.display = "flex"
+
+
+        const targetDiv = document.getElementById("tt");
+        app(targetDiv);
+        closeupdate();
+
+        moveToTargetImage(1);
+    }
+
+    function closeupdate() {
+        document.getElementById("updatediv").style.display = "none"
+
+
+        const popups = document.querySelectorAll('.popup');
+
+
+        popups.forEach(popup => {
+            popup.style.display = 'flex';
+        });
+    }
+
+
+
+
+</script>
+
+<script>
+    // openupdate();
+    // backapp();
+</script>
+
+
+<!-- <script>
+    const songslider = document.getElementById("songsliderdiv");
+    const thumb = document.getElementById("songslider");
+    const fill = document.getElementById("songsliderfill");
+
+    let dragging = false;
+
+    function setSlider(x) {
+        const rect = songslider.getBoundingClientRect();
+        x = Math.max(0, Math.min(x, rect.width));
+
+        thumb.style.left = `${x}px`;
+        fill.style.width = `${x}px`;
+    }
+
+    /* init */
+    window.addEventListener("load", () => {
+        const rect = songslider.getBoundingClientRect();
+        setSlider(rect.width * 0.8);
+    });
+
+    /* pointer down */
+    thumb.addEventListener("pointerdown", (e) => {
+        dragging = true;
+        thumb.setPointerCapture(e.pointerId);
+        e.preventDefault();
+    });
+
+    /* pointer move */
+    songslider.addEventListener("pointermove", (e) => {
+        if (!dragging) return;
+
+        const rect = songslider.getBoundingClientRect();
+        setSlider(e.clientX - rect.left);
+    });
+
+    /* pointer up */
+    document.addEventListener("pointerup", () => dragging = false);
+
+    /* tap on bar */
+    songslider.addEventListener("pointerdown", (e) => {
+        const rect = songslider.getBoundingClientRect();
+        setSlider(e.clientX - rect.left);
+    });
+
+
+
+</script> -->
+
+<!-- I THINK VOLUME? -->
+<script>
+    const slider = document.getElementById("slider");
+    const slide = document.getElementById("slide");
+
+    let opened = false;
+
+    let isDragging = false;
+    let startX = 0;
+    let startLeft = 0;
+
+
+    const unlockSound = new Audio('sounds/unlock.MP3');
+
+
+    function start(e) {
+        isDragging = true;
+        slider.classList.add("dragging");
+        startX = (e.touches ? e.touches[0].clientX : e.clientX);
+        startLeft = slider.offsetLeft;
+
+
+
+    }
+
+
+    function move(e) {
+        if (!isDragging) return;
+
+        const x = (e.touches ? e.touches[0].clientX : e.clientX);
+        let newLeft = startLeft + (x - startX);
+
+        newLeft = Math.max(0, Math.min(newLeft, slide.clientWidth - slider.clientWidth));
+        slider.style.left = newLeft + "px";
+
+
+        //opacity
+        const unlockText = document.getElementById("unlocktext");
+        const maxLeft = slide.clientWidth - slider.clientWidth;
+        let opacity = 1 - (newLeft / maxLeft) * 2;
+        opacity = Math.max(0, Math.min(1, opacity));
+        unlockText.style.opacity = opacity;
+    }
+
+    const unlock = document.getElementById("unlock");
+    const main = document.getElementById("main");
+    const tops = document.getElementById("top");
+
+
+    function stop() {
+        if (!isDragging) return;
+        isDragging = false;
+        slider.classList.remove("dragging");
+
+        const max = slide.clientWidth - slider.clientWidth;
+        const position = slider.offsetLeft;
+
+        if (position > max / 2) {
+            // Snap Right
+            slider.style.left = max + "px";
+
+            setTimeout(() => {
+                // alert("hi");
+
+
+
+                unlockSound.currentTime = 0;
+                unlockSound.play();
+
+                closeupdate()
+
+
+
+
+                opened = true;
+
+                unlock.style.animation = 'unlockExpand 0.3s ease-in-out forwards';
+                setTimeout(() => {
+                    unlock.style.display = "none"
+                    main.style.display = "flex"
+                    updateTime();
+
+
+
+                    tops.style.background = "rgba(0,0,0,0.7)";
+
+                }, 300);
+
+
+
+
+            }, 300);
+        } else {
+            // Snap Left
+            slider.style.left = "0px";
+        }
+    }
+
+    slider.addEventListener("mousedown", start);
+    slider.addEventListener("touchstart", start);
+
+    document.addEventListener("mousemove", move);
+    document.addEventListener("touchmove", move, { passive: false });
+
+    document.addEventListener("mouseup", stop);
+    document.addEventListener("touchend", stop);
+
+</script>
+
+
+<!-- NOTE -->
+<script>
+    function turnonnote() {
+        // fademain();
+
+
+
+        document.getElementById("main").style.display = "none"
+        document.getElementById("notediv").style.display = "block"
+
+    }
+
+    function turnoffnote() {
+        document.getElementById("notediv").style.display = "none"
+
+        document.getElementById("main").style.display = "flex";
+
+
+    }
+</script>
+
+
+<script>
+    function fademain() {
+        document.getElementById("iphonediv").style.opacity = "0";
+    }
+</script>
+
+<!-- CAMERA PHOTO -->
+<script>
+
+
+    //CAPTURE PHOTO
+    const video = document.getElementById("videocamera");
+
+
+    const shotBtn = document.getElementById("shot");
+
+    // Take screenshot of visible video area
+    shotBtn.addEventListener("click", () => {
+
+        const audio = new Audio('sounds/camera.MP3');
+        audio.play();
+        // Get visible video size
+        const rect = video.getBoundingClientRect();
+        const cw = rect.width;
+        const ch = rect.height;
+
+        const vw = video.videoWidth;
+        const vh = video.videoHeight;
+
+        const canvas = document.createElement("canvas");
+        canvas.width = cw;
+        canvas.height = ch;
+        const ctx = canvas.getContext("2d");
+
+        // Handle object-fit: cover crop
+        const containerRatio = cw / ch;
+        const videoRatio = vw / vh;
+
+        let sx, sy, sw, sh;
+
+        if (videoRatio > containerRatio) {
+            sw = vh * containerRatio;
+            sh = vh;
+            sx = (vw - sw) / 2;
+            sy = 0;
+        } else {
+            sw = vw;
+            sh = vw / containerRatio;
+            sx = 0;
+            sy = (vh - sh) / 2;
+        }
+
+        // Handle mirror if applied
+        const style = window.getComputedStyle(video);
+        const transform = style.transform || "none";
+        if (transform.includes("-1")) {
+            ctx.translate(cw, 0);
+            ctx.scale(-1, 1);
+        }
+
+        ctx.drawImage(video, sx, sy, sw, sh, 0, 0, cw, ch);
+
+        // Save or share
+        if (window.innerWidth < 600 && navigator.share) {
+            // Mobile: try Web Share API
+            canvas.toBlob((blob) => {
+                if (!blob) return;
+                const file = new File([blob], 'IMG_1258.png', { type: 'image/png' });
+
+                navigator.share({
+                    files: [file],
+                    title: 'Shot on Iphone',
+                    text: 'Shot on Bl4den'
+                }).catch(err => {
+                    console.log('Share failed, opening preview instead:', err);
+                    const url = URL.createObjectURL(blob);
+                    window.open(url, '_blank'); // fallback
+                });
+            }, 'image/png');
+        } else {
+            // Desktop fallback: download
+            canvas.toBlob(blob => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `shot-${Date.now()}.png`;
+                a.click();
+                URL.revokeObjectURL(url);
+            }, "image/png");
+        }
+    });
+
+
+</script>
+
+<!-- CAMREPROJECT -->
+<script>
+    //CAMERA PROJECT
+    const cameraDiv = document.getElementById("cameradiv");
+
+    function turnoncamera() {
+        fademain();
+
+        cameraDiv.style.display = "flex";
+        video.autoplay = true;
+        video.playsInline = true;
+
+
+
+
+        // Access camera
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                console.error("Camera access denied:", err);
+            });
+
+        startCamera("user");
+
+    }
+
+    function turnoffcamera() {
+        if (currentStream) {
+            currentStream.getTracks().forEach(track => track.stop());
+            currentStream = null;
+        }
+
+        cameraDiv.style.display = "none";
+        document.getElementById("iphonediv").style.display = "flex";
+        document.getElementById("iphonediv").style.opacity = "1";
+    }
+
+
+
+</script>
+
+<!-- CAMERASWITCH -->
+<script>
+
+    let switchBtn = document.getElementById("switchcamera");
+    let currentStream = null;
+    let usingFrontCamera = true; // start with front camera
+
+    async function startCamera(facingMode = "user") {
+        try {
+            // Stop any existing streams
+            if (currentStream) {
+                currentStream.getTracks().forEach(track => track.stop());
+            }
+
+            // Request media
+            currentStream = await navigator.mediaDevices.getUserMedia({
+                video: { facingMode: facingMode },
+                audio: false
+            });
+
+            video.srcObject = currentStream;
+
+            // Mirror front camera
+            if (facingMode === "user") {
+                video.style.transform = "scaleX(-1)";
+            } else {
+                video.style.transform = "scaleX(1)";
+            }
+
+            usingFrontCamera = facingMode === "user";
+
+        } catch (err) {
+            console.warn("No back/front camera or error:", err);
+            // Desktop fallback: just flip horizontally
+            video.style.transform = usingFrontCamera ? "scaleX(1)" : "scaleX(-1)";
+            usingFrontCamera = !usingFrontCamera;
+        }
+    }
+
+    // Initial camera
+
+
+    switchBtn.addEventListener("click", () => {
+        // Flip between front and back if available
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            const newFacing = usingFrontCamera ? "environment" : "user";
+            startCamera(newFacing);
+        } else {
+            // Fallback for desktop
+            video.style.transform = usingFrontCamera ? "scaleX(1)" : "scaleX(-1)";
+            usingFrontCamera = !usingFrontCamera;
+        }
+    });
+</script>
+
+
+
+<!-- TIME -->
+<script>
+    const locktime = document.getElementById("locktime");
+    function updateTime() {
+        const timeEl = document.getElementById("time");
+
+        if (!timeEl) {
+            return;
+        }
+        const now = new Date();
+
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+
+        // Optional: leading zero for nicer format
+        if (hours < 10) hours = "0" + hours;
+        if (minutes < 10) minutes = "0" + minutes;
+
+        timeEl.textContent = `${hours}:${minutes}`;
+        if (opened === true) {
+            let displayHours = now.getHours();
+            let period = displayHours >= 12 ? "PM" : "AM";
+
+
+            displayHours = displayHours % 12 || 12;
+
+
+
+            locktime.textContent = `${displayHours}:${minutes} ${period}`;
+        }
+    }
+
+    // Run instantly
+    updateTime();
+    // Update every second
+    setInterval(updateTime, 1000);
+
+
+</script>
+
+<!-- DATE -->
+<script>
+    function updateDate() {
+        const dateEl = document.getElementById("date");
+        const now = new Date();
+
+        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        const day = days[now.getDay()];
+        const month = months[now.getMonth()];
+        const date = now.getDate();
+
+        dateEl.textContent = `${day}, ${month} ${date}`;
+    }
+
+    updateDate(); // run once on load
+
+</script>
+
+<!-- DESKTOP -->
+<script>
+    const isMobilePreview = new URLSearchParams(window.location.search).get('mobile') === '1';
+    if (window.innerWidth >= 600 && window.self === window.top && !isMobilePreview) {
+        document.body.innerHTML = `
+            <style>
+                * { margin: 0; padding: 0; }
+                body { 
+                    background: black; 
+                    display: flex; 
+                    justify-content: center; 
+                    align-items: center; 
+                    height: 100vh;
+                    overflow: hidden;
+                }
+                iframe {
+                    width: 390px;
+                    height: 100dvh;
+                    border: none;
+                    border-radius: 1vw;
+                    overflow: hidden;
+                }
+            </style>
+            <iframe src="${window.location.href}?mobile=1"></iframe>
+        `;
+    }
+    if (!isMobilePreview && window.innerWidth >= 600) {
+        // will be handled by iframe loader
+    }
+</script>
+
+
+
+
+</html>
