@@ -1,2 +1,10 @@
 .wrangler/
 **/.wrangler/
+.playwright-cli/
+**/.playwright-cli/
+node_modules/
+**/node_modules/
+**/output/
+**/tmp/
+.DS_Store
+**/.DS_Store

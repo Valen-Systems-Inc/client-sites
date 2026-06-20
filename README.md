@@ -13,6 +13,8 @@ Clients/
 └── ArciniegaVenturesLLC/
     └── MasterflowPlumbing/
         ├── README.md
+        ├── cdn-manifest.json
+        ├── index.html
         ├── landing.tsx
         └── proof-manifest.md
 ```

@@ -7,18 +7,28 @@ This manifest keeps the client artifact honest.
 | Field | Value |
 | --- | --- |
 | Client owner folder | `Sites/Clients/ArciniegaVenturesLLC/MasterflowPlumbing/` |
-| Source file | `landing.tsx` |
+| Wrapper file | `landing.tsx` |
+| Static entry | `index.html` |
+| Target R2 bucket | `masterflowplumbing-cdn` |
+| Target custom domain | `masterflowplumbing.net` |
 | Business | Masterflow Plumbing |
-| Artifact type | Sanitized Audos-style landing page source |
+| Artifact type | Sanitized Audos-style landing page source plus R2-ready static entry |
 
 ## Current Proof
 
 | Proof item | Status |
 | --- | --- |
-| Source file exists in repo | Present. |
+| Wrapper file exists in repo | Present. |
+| Static entry exists in repo | Present. |
+| Remote R2 bucket | Created: `masterflowplumbing-cdn`. |
+| Remote R2 upload | `index.html`, empty root object key, `index`, `cdn-manifest.json`, `landing.tsx`, and `r2-cors.json` uploaded on 2026-06-16; root, `index.html`, and key objects hash-verified against `index.html`. |
+| Custom domain | Active: `masterflowplumbing.net`, SSL active, minimum TLS 1.2. |
+| WWW custom domain | Active: `www.masterflowplumbing.net`; public root returned the hash-matched R2 object on 2026-06-16. Cloudflare SSL status was still pending immediately after binding. |
+| CORS | Applied read-only GET/HEAD CORS policy; live response includes `access-control-allow-origin: *` for cross-origin requests. |
+| Wrapper compile proof | `landing.tsx` bundles with esbuild. |
 | Local build proof | Not attached in this repo. |
 | Screenshot proof | Not attached in this repo. |
-| Live URL proof | Not attached in this repo. |
+| Live URL proof | `https://masterflowplumbing.net/`, `https://www.masterflowplumbing.net/`, and `https://masterflowplumbing.net/index.html?release=masterflow-plumbing-r2-20260616` returned the hash-matched R2 object on 2026-06-16. |
 | Approval state | Not recorded in this repo. |
 | Source/import note | This file is a sanitized client artifact. It is not a deployment receipt. |
 
