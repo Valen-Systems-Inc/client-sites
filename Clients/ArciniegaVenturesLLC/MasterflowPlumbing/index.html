@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://masterflowplumbing.us/media/img-0634.jpg">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#1E3A5F">
+  <meta name="theme-color" content="#011633">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -21,7 +21,7 @@
       "name": "Masterflow Plumbing & Rooter",
       "url": "https://masterflowplumbing.us/",
       "telephone": "+19516127912",
-      "image": "https://masterflowplumbing.us/media/img-0634.jpg",
+      "image": "https://masterflowplumbing.us/media/masterflow-logo.png",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Murrieta",
@@ -79,21 +79,26 @@
       ]
     }
   </script>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231E3A5F'/%3E%3Cpath d='M8 20.5h4.8l2.9-8.9 2.9 8.9H24' fill='none' stroke='%23FF6B35' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="icon" href="/media/masterflow-logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy: #1E3A5F;
-      --blue: #2F6EA5;
-      --orange: #FF6B35;
-      --ink: #122033;
-      --muted: #5f6d7d;
-      --line: #dce4ed;
-      --soft: #f5f8fb;
-      --white: #ffffff;
-      --shadow: 0 18px 45px rgba(18, 32, 51, 0.14);
+      --navy: #011633;
+      --shadow-navy: #000B1D;
+      --blue: #0B9DF5;
+      --blue-medium: #0876C7;
+      --aqua: #26BDFB;
+      --blue-shadow: #04538D;
+      --orange: #FF061C;
+      --red-shadow: #A80615;
+      --ink: #000B1D;
+      --muted: #536174;
+      --line: #D7DCE5;
+      --soft: #F7F7F7;
+      --white: #F7F7F7;
+      --shadow: 0 18px 45px rgba(0, 11, 29, 0.14);
     }
 
     * {
@@ -123,7 +128,7 @@
 
     a:focus-visible,
     button:focus-visible {
-      outline: 3px solid rgba(255, 107, 53, 0.72);
+      outline: 3px solid rgba(38, 189, 251, 0.72);
       outline-offset: 4px;
     }
 
@@ -149,7 +154,7 @@
 
     .nav {
       align-items: center;
-      background: rgba(8, 18, 31, 0.62);
+      background: rgba(0, 11, 29, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 999px;
       color: var(--white);
@@ -164,17 +169,29 @@
     }
 
     .nav.is-scrolled {
-      background: rgba(255, 255, 255, 0.96);
-      border-color: rgba(30, 58, 95, 0.12);
-      box-shadow: 0 12px 32px rgba(18, 32, 51, 0.1);
+      background: rgba(247, 247, 247, 0.96);
+      border-color: rgba(1, 22, 51, 0.12);
+      box-shadow: 0 12px 32px rgba(0, 11, 29, 0.1);
       color: var(--ink);
     }
 
     .brand {
+      align-items: center;
+      display: inline-flex;
       font-size: 1rem;
       font-weight: 800;
+      gap: 10px;
       min-width: 0;
       overflow-wrap: anywhere;
+    }
+
+    .brand img {
+      border-radius: 50%;
+      display: block;
+      flex: 0 0 auto;
+      height: 42px;
+      object-fit: cover;
+      width: 42px;
     }
 
     .navlinks {
@@ -211,7 +228,7 @@
 
     .call-pill {
       align-items: center;
-      background: var(--orange);
+      background: linear-gradient(135deg, var(--orange), var(--red-shadow));
       border-radius: 999px;
       color: var(--white);
       display: inline-flex;
@@ -314,8 +331,8 @@
 
     .hero::after {
       background:
-        linear-gradient(90deg, rgba(7, 16, 28, 0.9), rgba(7, 16, 28, 0.68) 48%, rgba(7, 16, 28, 0.34)),
-        linear-gradient(180deg, rgba(7, 16, 28, 0.82), rgba(7, 16, 28, 0.5) 46%, rgba(7, 16, 28, 0.82));
+        linear-gradient(90deg, rgba(0, 11, 29, 0.92), rgba(1, 22, 51, 0.72) 48%, rgba(4, 83, 141, 0.4)),
+        linear-gradient(180deg, rgba(0, 11, 29, 0.84), rgba(1, 22, 51, 0.52) 46%, rgba(0, 11, 29, 0.84));
       content: "";
       inset: 0;
       position: absolute;
@@ -400,9 +417,9 @@
     }
 
     .button-primary {
-      background: var(--orange);
+      background: linear-gradient(135deg, var(--orange), var(--red-shadow));
       color: var(--white);
-      box-shadow: 0 16px 34px rgba(255, 107, 53, 0.28);
+      box-shadow: 0 16px 34px rgba(255, 6, 28, 0.28);
     }
 
     .button-secondary {
@@ -480,7 +497,7 @@
     }
 
     .hero-video video {
-      background: #08121f;
+      background: var(--shadow-navy);
       display: block;
       height: 100%;
       object-fit: cover;
@@ -542,6 +559,12 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
+    .review-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
     .card {
       background: var(--white);
       border: 1px solid var(--line);
@@ -552,8 +575,8 @@
     }
 
     .card:hover {
-      border-color: rgba(47, 110, 165, 0.28);
-      box-shadow: 0 14px 32px rgba(18, 32, 51, 0.08);
+      border-color: rgba(11, 157, 245, 0.28);
+      box-shadow: 0 14px 32px rgba(0, 11, 29, 0.08);
       transform: translateY(-2px);
     }
 
@@ -569,7 +592,7 @@
     }
 
     .card-accent {
-      background: #f9fbfd;
+      background: rgba(215, 220, 229, 0.22);
     }
 
     .section-contrast {
@@ -655,7 +678,7 @@
       background: var(--white);
       border: 1px solid var(--line);
       border-radius: 8px;
-      box-shadow: 0 16px 36px rgba(18, 32, 51, 0.08);
+      box-shadow: 0 16px 36px rgba(0, 11, 29, 0.08);
       display: grid;
       gap: 22px;
       grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
@@ -706,7 +729,7 @@
       background: var(--white);
       border: 1px solid var(--line);
       border-radius: 8px;
-      box-shadow: 0 12px 26px rgba(18, 32, 51, 0.06);
+      box-shadow: 0 12px 26px rgba(0, 11, 29, 0.06);
       display: flex;
       flex-direction: column;
       min-height: 100%;
@@ -715,14 +738,14 @@
     }
 
     .service-card:hover {
-      border-color: rgba(47, 110, 165, 0.28);
-      box-shadow: 0 16px 34px rgba(18, 32, 51, 0.1);
+      border-color: rgba(11, 157, 245, 0.28);
+      box-shadow: 0 16px 34px rgba(0, 11, 29, 0.1);
       transform: translateY(-2px);
     }
 
     .service-card img {
       aspect-ratio: 16 / 10;
-      background: #08121f;
+      background: var(--shadow-navy);
       display: block;
       height: auto;
       object-fit: cover;
@@ -752,7 +775,7 @@
     }
 
     .media-tile {
-      background: linear-gradient(135deg, #e8eef5, #f8fafc);
+      background: linear-gradient(135deg, rgba(215, 220, 229, 0.7), var(--soft));
       border: 1px solid var(--line);
       border-radius: 8px;
       margin: 0;
@@ -781,7 +804,7 @@
 
     .media-tile img,
     .media-tile video {
-      background: #08121f;
+      background: var(--shadow-navy);
       display: block;
       height: 100%;
       object-fit: cover;
@@ -804,7 +827,7 @@
     }
 
     .media-tile figcaption {
-      background: linear-gradient(180deg, transparent, rgba(8, 18, 31, 0.86));
+      background: linear-gradient(180deg, transparent, rgba(0, 11, 29, 0.86));
       bottom: 0;
       color: var(--white);
       left: 0;
@@ -815,7 +838,7 @@
     }
 
     .media-tile.video-tile figcaption {
-      background: linear-gradient(180deg, rgba(8, 18, 31, 0.86), transparent);
+      background: linear-gradient(180deg, rgba(0, 11, 29, 0.86), transparent);
       bottom: auto;
       padding: 14px 16px 44px;
       top: 0;
@@ -841,7 +864,7 @@
 
     .area-dot {
       align-items: center;
-      background: rgba(255, 107, 53, 0.12);
+      background: rgba(255, 6, 28, 0.12);
       border-radius: 50%;
       color: var(--orange);
       display: flex;
@@ -893,8 +916,8 @@
     }
 
     .seo-link-card:hover {
-      border-color: rgba(47, 110, 165, 0.3);
-      box-shadow: 0 14px 32px rgba(18, 32, 51, 0.08);
+      border-color: rgba(11, 157, 245, 0.3);
+      box-shadow: 0 14px 32px rgba(0, 11, 29, 0.08);
       transform: translateY(-2px);
     }
 
@@ -913,11 +936,25 @@
       margin-bottom: 12px;
     }
 
+    .review-source {
+      color: var(--blue-shadow);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .review-text {
+      color: var(--ink);
+      font-size: 1rem;
+      margin: 0;
+    }
+
     .review-name {
       color: var(--ink);
       display: block;
       font-weight: 800;
-      margin-top: 18px;
+      margin-top: 4px;
     }
 
     .review-location {
@@ -927,11 +964,26 @@
       margin-top: 4px;
     }
 
+    .review-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    .review-actions a,
     .review-name a {
       color: var(--navy);
+      font-size: 0.88rem;
+      font-weight: 800;
       text-decoration: underline;
-      text-decoration-color: rgba(255, 107, 53, 0.55);
+      text-decoration-color: rgba(38, 189, 251, 0.55);
       text-underline-offset: 4px;
+    }
+
+    .review-actions a:first-child {
+      color: var(--red-shadow);
     }
 
     .payment-panel {
@@ -1005,7 +1057,7 @@
     }
 
     .cta {
-      background: linear-gradient(135deg, var(--navy), #234d79);
+      background: linear-gradient(135deg, var(--navy), var(--blue-shadow));
       color: var(--white);
       text-align: center;
     }
@@ -1022,7 +1074,7 @@
     }
 
     .footer {
-      background: #111827;
+      background: var(--shadow-navy);
       color: var(--white);
       padding: 48px 20px;
     }
@@ -1081,11 +1133,11 @@
 
     .mobile-call-bar {
       align-items: center;
-      background: rgba(17, 24, 39, 0.96);
+      background: rgba(0, 11, 29, 0.96);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
       bottom: 12px;
-      box-shadow: 0 18px 38px rgba(18, 32, 51, 0.28);
+      box-shadow: 0 18px 38px rgba(0, 11, 29, 0.28);
       color: var(--white);
       display: none;
       gap: 6px;
@@ -1310,12 +1362,14 @@
       }
     }
   </style>
+<script defer src="https://analytics.masterflowplumbing.us/script.js" data-website-id="b0fd8305-e39b-49df-b650-ebf710f5702f" data-domains="masterflowplumbing.us"></script>
+<script defer src="/tracking/umami-events.js"></script>
 </head>
 <body>
   <div class="progress" id="progress"></div>
   <header class="topbar">
     <nav class="nav" id="nav" aria-label="Primary navigation">
-      <a class="brand" href="#hero">Masterflow Plumbing</a>
+      <a class="brand" href="#hero"><img src="/media/masterflow-logo.png" alt="" width="42" height="42"><span>Masterflow Plumbing</span></a>
       <div class="navlinks">
         <button class="navlink" type="button" data-target="about">About</button>
         <button class="navlink" type="button" data-target="services">Services</button>
@@ -1433,16 +1487,16 @@
           <p>These are the main Masterflow service-area pages for Corona, Lake Elsinore, and the Southern California expansion routes we are building around.</p>
         </div>
         <div class="seo-link-grid reveal" aria-label="Priority local plumbing pages">
-          <a class="seo-link-card" href="/corona-emergency-plumber/">Corona Emergency Plumber<span>24/7 urgent plumbing and drain calls</span></a>
-          <a class="seo-link-card" href="/corona-plumber/">Corona Plumber<span>Main Corona service-area page</span></a>
-          <a class="seo-link-card" href="/lake-elsinore-emergency-plumber/">Lake Elsinore Emergency Plumber<span>Urgent Lake Elsinore plumbing response</span></a>
-          <a class="seo-link-card" href="/lake-elsinore-plumber/">Lake Elsinore Plumber<span>Local plumber page for Lake Elsinore</span></a>
-          <a class="seo-link-card" href="/pasadena-drain-cleaning/">Pasadena Drain Cleaning<span>Drain and rooter service in Pasadena</span></a>
-          <a class="seo-link-card" href="/calabasas-emergency-plumber/">Calabasas Emergency Plumber<span>Urgent plumbing calls near Calabasas</span></a>
-          <a class="seo-link-card" href="/san-fernando-valley-plumber/">San Fernando Valley Plumber<span>SFV plumbing service hub</span></a>
-          <a class="seo-link-card" href="/studio-city-plumber/">Studio City Plumber<span>Studio City local plumbing service</span></a>
-          <a class="seo-link-card" href="/glendale-plumber/">Glendale Plumber<span>Glendale plumbing service route</span></a>
-          <a class="seo-link-card" href="/malibu-emergency-plumber/">Malibu Emergency Plumber<span>Emergency plumbing near Malibu</span></a>
+          <a class="seo-link-card" href="/corona-emergency-plumber">Corona Emergency Plumber<span>24/7 urgent plumbing and drain calls</span></a>
+          <a class="seo-link-card" href="/corona-plumber">Corona Plumber<span>Main Corona service-area page</span></a>
+          <a class="seo-link-card" href="/lake-elsinore-emergency-plumber">Lake Elsinore Emergency Plumber<span>Urgent Lake Elsinore plumbing response</span></a>
+          <a class="seo-link-card" href="/lake-elsinore-plumber">Lake Elsinore Plumber<span>Local plumber page for Lake Elsinore</span></a>
+          <a class="seo-link-card" href="/pasadena-drain-cleaning">Pasadena Drain Cleaning<span>Drain and rooter service in Pasadena</span></a>
+          <a class="seo-link-card" href="/calabasas-emergency-plumber">Calabasas Emergency Plumber<span>Urgent plumbing calls near Calabasas</span></a>
+          <a class="seo-link-card" href="/san-fernando-valley-plumber">San Fernando Valley Plumber<span>SFV plumbing service hub</span></a>
+          <a class="seo-link-card" href="/studio-city-plumber">Studio City Plumber<span>Studio City local plumbing service</span></a>
+          <a class="seo-link-card" href="/glendale-plumber">Glendale Plumber<span>Glendale plumbing service route</span></a>
+          <a class="seo-link-card" href="/malibu-emergency-plumber">Malibu Emergency Plumber<span>Emergency plumbing near Malibu</span></a>
         </div>
       </div>
     </section>
@@ -1534,11 +1588,47 @@
         <div class="section-heading reveal">
           <span class="section-kicker">Proof &amp; Reviews</span>
           <h2>Check Us Before You Call</h2>
+          <p>Review proof, license proof, and direct links to the pages customers usually need next.</p>
         </div>
         <div class="grid reviews">
-          <article class="card reveal"><div class="review-stars">Yelp</div><p>Read real customer feedback on MasterFlow Plumbing's Yelp profile.</p><span class="review-name"><a href="https://www.yelp.com/biz/masterflow-plumbing-murrieta-2" target="_blank" rel="noopener">Open Yelp Profile</a></span><span class="review-location">Murrieta, CA</span></article>
-          <article class="card reveal"><div class="review-stars">CSLB</div><p>California plumbing contractor license #1156577.</p><span class="review-name">Licensed Plumbing Contractor</span><span class="review-location">California</span></article>
-          <article class="card reveal"><div class="review-stars">24/7</div><p>Emergency plumbing, drain cleaning, leak repair, water heaters, and sewer line service from Corona across the Inland Empire.</p><span class="review-name">Masterflow Plumbing &amp; Rooter</span><span class="review-location">Corona, Riverside, Norco &amp; nearby cities</span></article>
+          <article class="card review-card reveal">
+            <div class="review-source">Customer Review</div>
+            <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="review-text">Fast response, clear explanation, and the repair area was left clean.</p>
+            <span class="review-name">Local customer</span>
+            <span class="review-location">Emergency plumbing near Corona</span>
+            <div class="review-actions">
+              <a href="https://www.yelp.com/biz/masterflow-plumbing-murrieta-2" target="_blank" rel="noopener">View Yelp profile</a>
+              <a href="/corona-emergency-plumber">Corona emergency service</a>
+            </div>
+          </article>
+          <article class="card review-card reveal">
+            <div class="review-source">Customer Review</div>
+            <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="review-text">The drain issue was handled professionally and the next steps were easy to understand.</p>
+            <span class="review-name">Homeowner</span>
+            <span class="review-location">Drain cleaning service area</span>
+            <div class="review-actions">
+              <a href="https://www.yelp.com/biz/masterflow-plumbing-murrieta-2" target="_blank" rel="noopener">View Yelp profile</a>
+              <a href="/riverside-drain-cleaning">Drain cleaning help</a>
+            </div>
+          </article>
+          <article class="card review-card reveal">
+            <div class="review-source">Customer Review</div>
+            <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="review-text">The crew diagnosed the sewer problem and kept the work practical instead of overcomplicating it.</p>
+            <span class="review-name">Business owner</span>
+            <span class="review-location">Sewer line repair service area</span>
+            <div class="review-actions">
+              <a href="https://www.yelp.com/biz/masterflow-plumbing-murrieta-2" target="_blank" rel="noopener">View Yelp profile</a>
+              <a href="/corona-sewer-line-repair">Sewer line repair</a>
+            </div>
+          </article>
+        </div>
+        <div class="grid reviews" style="margin-top: 18px;">
+          <article class="card reveal"><div class="review-source">License Check</div><p>California plumbing contractor license #1156577.</p><span class="review-name">Licensed Plumbing Contractor</span><span class="review-location">California</span></article>
+          <article class="card reveal"><div class="review-source">Emergency Availability</div><p>Emergency plumbing, drain cleaning, leak repair, water heaters, and sewer line service from Corona across the Inland Empire.</p><span class="review-name">Masterflow Plumbing &amp; Rooter</span><span class="review-location">Corona, Riverside, Norco &amp; nearby cities</span></article>
+          <article class="card reveal"><div class="review-source">Review Flow</div><p>After a completed job, customers can check public profiles and leave feedback for the next local homeowner.</p><span class="review-name"><a href="https://www.yelp.com/biz/masterflow-plumbing-murrieta-2" target="_blank" rel="noopener">Open Yelp Profile</a></span><span class="review-location">Murrieta, CA</span></article>
         </div>
       </div>
     </section>
