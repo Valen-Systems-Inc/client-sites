@@ -3,7 +3,6 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
-import fg from "fast-glob";
 
 const execFileAsync = promisify(execFile);
 
@@ -23,10 +22,11 @@ const clientConfig = process.env.MASTERFLOW_WRANGLER_CONFIG_HOME || "/tmp/wrangl
 let wranglerCommand;
 
 function parseArgs(argv = process.argv.slice(2)) {
-  const opts = { root: "seo-preview", targetPrefix: "seo-preview", dryRun: false, includeMedia: true, concurrency: 4 };
+  const opts = { root: "seo-preview", targetPrefix: "seo-preview", dryRun: false, includeMedia: true, concurrency: 4, sitemapOnly: false };
   for (const arg of argv) {
     if (arg === "--dry-run") opts.dryRun = true;
     else if (arg === "--skip-media") opts.includeMedia = false;
+    else if (arg === "--sitemap-only") opts.sitemapOnly = true;
     else if (arg.startsWith("--prefix=")) {
       const prefix = normalizeR2Prefix(arg.slice("--prefix=".length));
       opts.root = prefix;
@@ -41,10 +41,6 @@ function parseArgs(argv = process.argv.slice(2)) {
 
 function normalizeR2Prefix(value) {
   return String(value ?? "").replace(/^\/+|\/+$/g, "");
-}
-
-function escapeGlob(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function r2Key(targetPrefix, relUnderRoot) {
@@ -63,6 +59,25 @@ function contentType(file) {
   if (ext === ".mp4") return "video/mp4";
   if (ext === ".mov") return "video/quicktime";
   return "application/octet-stream";
+}
+
+async function sitemapAllowedFiles(sourceRoot) {
+  const sitemapFile = path.join(sourceRoot, "sitemap.xml");
+  const text = await fs.readFile(sitemapFile, "utf8");
+  const allowed = new Set(["sitemap.xml", "robots.txt"]);
+  for (const match of text.matchAll(/<loc>([^<]+)<\/loc>/gi)) {
+    const url = match[1].trim();
+    let pathname;
+    try {
+      pathname = new URL(url).pathname;
+    } catch {
+      continue;
+    }
+    const cleanPath = decodeURIComponent(pathname).replace(/^\/+|\/+$/g, "");
+    if (!cleanPath) continue;
+    allowed.add(`${cleanPath}/index.html`);
+  }
+  return allowed;
 }
 
 function sleep(ms) {
@@ -96,6 +111,20 @@ async function run(args, { quiet = false, timeoutMs = 90000 } = {}) {
     const stderr = error.stderr ?? "";
     throw new Error(`${[command.bin, ...command.prefixArgs, ...args].join(" ")} failed\n${stdout}\n${stderr}`);
   }
+}
+
+async function listFiles(rootDir) {
+  const entries = [];
+  async function walk(currentDir) {
+    const dirents = await fs.readdir(currentDir, { withFileTypes: true });
+    for (const dirent of dirents) {
+      const abs = path.join(currentDir, dirent.name);
+      if (dirent.isDirectory()) await walk(abs);
+      else if (dirent.isFile()) entries.push(abs);
+    }
+  }
+  await walk(rootDir);
+  return entries.sort();
 }
 
 async function resolveWranglerCommand() {
@@ -155,30 +184,44 @@ async function uploadFile(localFile, key, dryRun) {
 async function collectUploads(opts) {
   const sourceRoot = path.join(siteDir, opts.root);
   await fs.access(sourceRoot);
-  const sourceFiles = await fg(`${escapeGlob(opts.root)}/**/*`, {
-    cwd: siteDir,
-    onlyFiles: true,
-    dot: false,
-  });
+  const allowedFiles = opts.sitemapOnly ? await sitemapAllowedFiles(sourceRoot) : null;
+  const sourceFiles = allowedFiles
+    ? (await Promise.all(
+        [...allowedFiles].map(async (relUnderRoot) => {
+          const abs = path.join(sourceRoot, relUnderRoot);
+          try {
+            await fs.access(abs);
+            return path.join(opts.root, relUnderRoot).split(path.sep).join("/");
+          } catch {
+            console.warn(`[skip missing sitemap file] ${path.join(opts.root, relUnderRoot)}`);
+            return null;
+          }
+        }),
+      )).filter(Boolean)
+    : (await listFiles(sourceRoot)).map((file) => path.relative(siteDir, file).split(path.sep).join("/"));
   const uploads = [];
   for (const rel of sourceFiles) {
     const relUnderRoot = path.relative(opts.root, rel).split(path.sep).join("/");
+    if (allowedFiles && !allowedFiles.has(relUnderRoot)) continue;
     const key = r2Key(opts.targetPrefix, relUnderRoot);
     uploads.push({ localFile: path.join(siteDir, rel), key });
     if (rel.endsWith("/index.html")) {
       const slashKey = key.slice(0, -"index.html".length);
       uploads.push({ localFile: path.join(siteDir, rel), key: slashKey });
+      const bareKey = slashKey.replace(/\/$/, "");
+      if (bareKey && bareKey !== slashKey) uploads.push({ localFile: path.join(siteDir, rel), key: bareKey });
     }
   }
   if (opts.includeMedia) {
-    const mediaFiles = await fg("media/**/*", { cwd: siteDir, onlyFiles: true, dot: false });
+    const mediaRoot = path.join(siteDir, "media");
+    const mediaFiles = (await listFiles(mediaRoot)).map((file) => path.relative(siteDir, file).split(path.sep).join("/"));
     for (const rel of mediaFiles) uploads.push({ localFile: path.join(siteDir, rel), key: rel });
   }
   return uploads;
 }
 
 const opts = parseArgs();
-await assertWrangler();
+if (!opts.dryRun) await assertWrangler();
 const uploads = await collectUploads(opts);
 let cursor = 0;
 async function uploadWorker() {

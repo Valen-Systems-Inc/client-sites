@@ -14,7 +14,7 @@
     "seo:intel": "node seo/engine/collect-search-intel.mjs",
     "seo:queue": "node seo/engine/build-microsite-queue.mjs",
     "seo:deploy-preview": "node seo/engine/deploy-r2-preview.mjs --prefix=seo-preview",
-    "seo:deploy-production": "node seo/engine/deploy-r2-preview.mjs --root=seo-production --target-prefix= --skip-media",
+    "seo:deploy-production": "node seo/engine/deploy-r2-preview.mjs --root=seo-production --target-prefix= --skip-media --sitemap-only",
     "seo:publish-audos": "node seo/engine/publish-audos-engine.mjs",
     "seo:stage-microsite": "node seo/engine/stage-audos-microsite.mjs"
   },
