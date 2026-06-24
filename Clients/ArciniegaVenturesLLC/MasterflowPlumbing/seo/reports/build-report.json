@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-06-24T10:26:41.741Z",
+  "generatedAt": "2026-06-24T11:23:15.920Z",
   "allPass": true,
-  "indexable": true,
-  "output": "seo-production",
+  "indexable": false,
+  "output": "seo-preview",
   "counts": {
-    "pages": 373,
+    "pages": 374,
     "cityHubs": 33,
     "serviceHubs": 10,
     "cityServicePages": 330,
@@ -60,8 +60,8 @@
   "issues": [],
   "maxDuplicate": {
     "score": 0.6398176291793313,
-    "a": "/san-fernando-valley-leak-detection/",
-    "b": "/san-fernando-valley-repiping/"
+    "a": "/seo-preview/locations/san-fernando-valley/leak-detection/",
+    "b": "/seo-preview/locations/san-fernando-valley/repiping/"
   },
   "publicDataSources": [
     {
@@ -120,9 +120,9 @@
         "name": "build",
         "status": "pass",
         "evidence": {
-          "pages": 373,
-          "indexable": true,
-          "output": "seo-production"
+          "pages": 374,
+          "indexable": false,
+          "output": "seo-preview"
         }
       },
       {
