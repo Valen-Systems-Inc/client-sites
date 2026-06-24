@@ -903,8 +903,12 @@ function validateRenderedPages({ pages, htmlByUrl, business, options }) {
 }
 
 function sitemapXml(business, pages) {
-  const locs = pages
-    .map((page) => `  <url><loc>${business.primary_domain}${page.urlPath}</loc></url>`)
+  const urls = [
+    ...(isProductionRouteMode(business) ? [`${business.primary_domain}/`] : []),
+    ...pages.map((page) => `${business.primary_domain}${page.urlPath}`),
+  ];
+  const locs = [...new Set(urls)]
+    .map((url) => `  <url><loc>${url}</loc></url>`)
     .join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${locs}\n</urlset>\n`;
 }
@@ -1061,8 +1065,9 @@ export async function buildSeo(rawOptions = {}) {
 
   const validation = validateRenderedPages({ pages, htmlByUrl, business: data.business, options });
   const sitemapLocCount = (sitemapXml(data.business, pages).match(/<loc>/g) ?? []).length;
-  if (sitemapLocCount !== pages.length) {
-    validation.issues.push({ guard: "sitemapParity", expected: pages.length, actual: sitemapLocCount });
+  const expectedSitemapLocCount = pages.length + (isProductionRouteMode(data.business) ? 1 : 0);
+  if (sitemapLocCount !== expectedSitemapLocCount) {
+    validation.issues.push({ guard: "sitemapParity", expected: expectedSitemapLocCount, actual: sitemapLocCount });
     const sitemapGuard = validation.guards.find((guard) => guard.name === "sitemapParity");
     if (sitemapGuard) sitemapGuard.pass = false;
   }
