@@ -102,12 +102,26 @@ function parseArgs(argv = process.argv.slice(2)) {
     limitMarkets: null,
     limitServices: null,
     indexable: false,
+    routePrefix: null,
+    omitIndex: false,
+    marketSlugs: null,
+    serviceSlugs: null,
   };
   for (const arg of argv) {
     if (arg === "--full") opts.full = true;
     else if (arg === "--validate-only") opts.validateOnly = true;
     else if (arg === "--indexable") opts.indexable = true;
+    else if (arg === "--production") {
+      opts.indexable = true;
+      opts.routePrefix = "/";
+      opts.out = "seo-production";
+      opts.omitIndex = true;
+    }
+    else if (arg === "--omit-index") opts.omitIndex = true;
     else if (arg.startsWith("--out=")) opts.out = arg.slice("--out=".length);
+    else if (arg.startsWith("--route-prefix=")) opts.routePrefix = arg.slice("--route-prefix=".length);
+    else if (arg.startsWith("--markets=")) opts.marketSlugs = arg.slice("--markets=".length).split(",").map((item) => item.trim()).filter(Boolean);
+    else if (arg.startsWith("--services=")) opts.serviceSlugs = arg.slice("--services=".length).split(",").map((item) => item.trim()).filter(Boolean);
     else if (arg.startsWith("--limit-markets=")) opts.limitMarkets = Number(arg.slice("--limit-markets=".length));
     else if (arg.startsWith("--limit-services=")) opts.limitServices = Number(arg.slice("--limit-services=".length));
     else if (arg.startsWith("--milestone=")) {
@@ -158,13 +172,65 @@ function serviceSeoName(service) {
 
 function makeUrl(prefix, parts = []) {
   const cleaned = parts.filter(Boolean).map((part) => String(part).replace(/^\/+|\/+$/g, ""));
-  return `${prefix.replace(/\/$/, "")}/${cleaned.join("/")}${cleaned.length ? "/" : ""}`;
+  const normalized = normalizePrefix(prefix);
+  const base = normalized === "/" ? "" : normalized.replace(/\/$/, "");
+  return `${base}/${cleaned.join("/")}${cleaned.length ? "/" : ""}`;
 }
 
 function outputFileForUrl(outputRoot, prefix, urlPath) {
   const rel = urlPath.replace(prefix, "").replace(/^\/+/, "");
   if (!rel) return path.join(outputRoot, "index.html");
   return path.join(outputRoot, rel, "index.html");
+}
+
+function normalizePrefix(prefix) {
+  const raw = String(prefix || "/").trim();
+  if (!raw || raw === "/") return "/";
+  return `/${raw.replace(/^\/+|\/+$/g, "")}`;
+}
+
+function isProductionRouteMode(business) {
+  return normalizePrefix(business.preview_prefix) === "/";
+}
+
+function templatePrefix(prefix) {
+  return normalizePrefix(prefix) === "/" ? "" : normalizePrefix(prefix);
+}
+
+function serviceRouteSlug(service) {
+  return new Map([
+    ["emergency-plumbing", "emergency-plumber"],
+    ["drain-cleaning", "drain-cleaning"],
+    ["hydro-jetting", "hydro-jetting"],
+    ["water-heater-repair-install", "water-heater-repair"],
+    ["sewer-line-repair", "sewer-line-repair"],
+    ["leak-detection", "leak-detection"],
+    ["slab-leak-repair", "slab-leak-repair"],
+    ["repiping", "repiping"],
+    ["gas-line-services", "gas-line-services"],
+    ["fixture-install-repair", "fixture-repair"],
+  ]).get(service.slug) ?? service.slug;
+}
+
+function cityHubUrl(business, market) {
+  if (isProductionRouteMode(business)) return makeUrl("/", [`${market.slug}-plumber`]);
+  return makeUrl(business.preview_prefix, ["locations", market.slug]);
+}
+
+function serviceHubUrl(business, service) {
+  if (isProductionRouteMode(business)) return makeUrl("/", ["services", serviceRouteSlug(service)]);
+  return makeUrl(business.preview_prefix, ["services", service.slug]);
+}
+
+function cityServiceUrl(business, market, service) {
+  if (isProductionRouteMode(business)) return makeUrl("/", [`${market.slug}-${serviceRouteSlug(service)}`]);
+  return makeUrl(business.preview_prefix, ["locations", market.slug, service.slug]);
+}
+
+function breadcrumbRoot(business) {
+  return isProductionRouteMode(business)
+    ? { name: "Home", urlPath: "/" }
+    : { name: "SEO Preview", urlPath: makeUrl(business.preview_prefix) };
 }
 
 function absoluteMedia(business, mediaPath) {
@@ -199,10 +265,11 @@ function pageShell({
   const primaryMarket = markets.find((item) => item.slug === "corona") ?? markets[0];
   const primaryService = services.find((item) => item.slug === "emergency-plumbing") ?? services[0];
   const robots = options.indexable ? "index,follow" : "noindex,nofollow";
+  const normalizedPrefix = normalizePrefix(business.preview_prefix);
   return {
     kind,
     urlPath,
-    outFile: outputFileForUrl(path.join(siteDir, options.out), business.preview_prefix, urlPath),
+    outFile: outputFileForUrl(path.join(siteDir, options.out), normalizedPrefix, urlPath),
     meta: {
       title: smartTrim(metaTitle, 60),
       description: smartTrim(metaDescription, 155),
@@ -214,7 +281,11 @@ function pageShell({
     eyebrow,
     body,
     business,
-    prefix: business.preview_prefix,
+    prefix: templatePrefix(normalizedPrefix),
+    navHomeHref: makeUrl(normalizedPrefix),
+    navPrimaryMarketHref: cityHubUrl(business, primaryMarket),
+    navServicesHref: serviceHubUrl(business, primaryService),
+    sitemapHref: makeUrl(normalizedPrefix, ["sitemap.xml"]).replace(/\/$/, ""),
     locationLabel: market?.city ?? "Corona",
     primaryMarket,
     primaryService,
@@ -399,14 +470,14 @@ function cityServiceBody({ business, market, service, marketMap, services, faqs 
       <h2>Related Masterflow pages</h2>
       ${relatedList([
         ...near.slice(0, 4).map((item) => ({
-          href: makeUrl(business.preview_prefix, ["locations", item.slug, service.slug]),
+          href: cityServiceUrl(business, item, service),
           label: `${serviceSeoName(service)} in ${item.city}`,
         })),
         ...services
           .filter((item) => item.slug !== service.slug)
           .slice(0, 4)
           .map((item) => ({
-            href: makeUrl(business.preview_prefix, ["locations", market.slug, item.slug]),
+            href: cityServiceUrl(business, market, item),
             label: `${item.name} in ${market.city}`,
           })),
       ])}
@@ -438,7 +509,7 @@ function cityHubBody({ business, market, marketMap, services }) {
         services.map((service) => ({
           title: service.name,
           text: `${service.short_desc} This ${market.city} page ties the service to ${sentenceJoin(market.neighborhoods.slice(0, 3))} and ${market.county} routing.`,
-          href: makeUrl(business.preview_prefix, ["locations", market.slug, service.slug]),
+          href: cityServiceUrl(business, market, service),
           linkText: `Open ${service.name}`,
         })),
       )}
@@ -446,7 +517,7 @@ function cityHubBody({ business, market, marketMap, services }) {
     <section>
       <span class="section-kicker">Neighboring hubs</span>
       <h2>Nearby service-area pages</h2>
-      ${relatedList(near.map((item) => ({ href: makeUrl(business.preview_prefix, ["locations", item.slug]), label: `${item.city} plumbing hub` })))}
+      ${relatedList(near.map((item) => ({ href: cityHubUrl(business, item), label: `${item.city} plumbing hub` })))}
     </section>
   `;
 }
@@ -470,13 +541,13 @@ function serviceHubBody({ business, service, markets }) {
         priorityMarkets.map((market) => ({
           title: `${serviceSeoName(service)} in ${market.city}`,
           text: `Generated from ${market.city} data, ${market.county} routing, neighborhoods including ${sentenceJoin(market.neighborhoods.slice(0, 3))}, and Masterflow service rules.`,
-          href: makeUrl(business.preview_prefix, ["locations", market.slug, service.slug]),
+          href: cityServiceUrl(business, market, service),
           linkText: `Open ${market.city}`,
         })),
       )}
       ${relatedList(
         markets.slice(12).map((market) => ({
-          href: makeUrl(business.preview_prefix, ["locations", market.slug, service.slug]),
+          href: cityServiceUrl(business, market, service),
           label: `${market.city} ${serviceSeoName(service)}`,
         })),
       )}
@@ -502,7 +573,7 @@ function indexBody({ business, markets, services }) {
         markets.map((market) => ({
           title: `${market.city}, ${market.state}`,
           text: `${market.county} hub with ZIPs ${market.zips.join(", ")} and local signals: ${sentenceJoin(market.local_signals.map((item) => item.toLowerCase()))}.`,
-          href: makeUrl(business.preview_prefix, ["locations", market.slug]),
+          href: cityHubUrl(business, market),
           linkText: "Open city hub",
         })),
       )}
@@ -514,7 +585,7 @@ function indexBody({ business, markets, services }) {
         services.map((service) => ({
           title: service.name,
           text: service.short_desc,
-          href: makeUrl(business.preview_prefix, ["services", service.slug]),
+          href: serviceHubUrl(business, service),
           linkText: "Open service hub",
         })),
       )}
@@ -527,20 +598,24 @@ function buildPages({ business, markets, services, faqs, options }) {
   const localBusiness = localBusinessSchema(business, markets);
   const pages = [];
 
-  pages.push(
+  if (!options.omitIndex) pages.push(
     pageShell({
       kind: "index",
       urlPath: makeUrl(business.preview_prefix),
-      metaTitle: "Masterflow Plumbing SEO Preview Directory",
-      metaDescription: "Private noindex preview of localized Masterflow Plumbing city and service pages for validation before live SEO activation.",
-      h1: "Masterflow localized plumbing SEO preview",
-      heroCopy: "A private, noindex directory of city and service micro-pages generated from structured Masterflow data, public region signals, and validation gates.",
-      eyebrow: "Private preview",
+      metaTitle: isProductionRouteMode(business) ? "Masterflow Plumbing Service Areas" : "Masterflow Plumbing SEO Preview Directory",
+      metaDescription: isProductionRouteMode(business)
+        ? "Masterflow Plumbing emergency plumbing, drain, water heater, sewer, leak, and rooter service-area pages across Southern California."
+        : "Private noindex preview of localized Masterflow Plumbing city and service pages for validation before live SEO activation.",
+      h1: isProductionRouteMode(business) ? "Masterflow Plumbing service-area directory" : "Masterflow localized plumbing SEO preview",
+      heroCopy: isProductionRouteMode(business)
+        ? "City and service pages for emergency plumbing, drains, water heaters, sewer lines, leaks, and rooter service across the Masterflow service area."
+        : "A private, noindex directory of city and service micro-pages generated from structured Masterflow data, public region signals, and validation gates.",
+      eyebrow: isProductionRouteMode(business) ? "Service areas" : "Private preview",
       body: indexBody({ business, markets, services }),
       business,
       markets,
       services,
-      schema: [localBusiness, breadcrumbSchema(business, [{ name: "SEO Preview", urlPath: makeUrl(business.preview_prefix) }])],
+      schema: [localBusiness, breadcrumbSchema(business, [breadcrumbRoot(business)])],
       options,
     }),
   );
@@ -549,7 +624,7 @@ function buildPages({ business, markets, services, faqs, options }) {
     pages.push(
       pageShell({
         kind: "city",
-        urlPath: makeUrl(business.preview_prefix, ["locations", market.slug]),
+        urlPath: cityHubUrl(business, market),
         metaTitle: `Plumber in ${market.city}, CA | Masterflow`,
         metaDescription: `Masterflow Plumbing ${market.city} hub for emergency plumbing, drains, water heaters, leaks, sewer lines, and repair planning.`,
         h1: `Plumber in ${market.city}, CA`,
@@ -564,8 +639,8 @@ function buildPages({ business, markets, services, faqs, options }) {
         schema: [
           localBusiness,
           breadcrumbSchema(business, [
-            { name: "SEO Preview", urlPath: makeUrl(business.preview_prefix) },
-            { name: market.city, urlPath: makeUrl(business.preview_prefix, ["locations", market.slug]) },
+            breadcrumbRoot(business),
+            { name: market.city, urlPath: cityHubUrl(business, market) },
           ]),
         ],
         options,
@@ -577,9 +652,11 @@ function buildPages({ business, markets, services, faqs, options }) {
     pages.push(
       pageShell({
         kind: "service",
-        urlPath: makeUrl(business.preview_prefix, ["services", service.slug]),
+        urlPath: serviceHubUrl(business, service),
         metaTitle: `${serviceSeoName(service)} | Masterflow Plumbing`,
-        metaDescription: `${service.short_desc} Private noindex service hub for localized Masterflow Plumbing SEO validation.`,
+        metaDescription: options.indexable
+          ? `Masterflow Plumbing ${serviceSeoName(service).toLowerCase()} service-area hub for Corona, Lake Elsinore, Inland Empire, and Los Angeles County pages.`
+          : `${service.short_desc} Private noindex service hub for localized Masterflow Plumbing SEO validation.`,
         h1: `${service.name} service area`,
         heroCopy: `${service.short_desc} This hub links every ${service.name.toLowerCase()} city micro-page in the Masterflow service map.`,
         eyebrow: "Service hub",
@@ -592,8 +669,8 @@ function buildPages({ business, markets, services, faqs, options }) {
         schema: [
           localBusiness,
           breadcrumbSchema(business, [
-            { name: "SEO Preview", urlPath: makeUrl(business.preview_prefix) },
-            { name: service.name, urlPath: makeUrl(business.preview_prefix, ["services", service.slug]) },
+            breadcrumbRoot(business),
+            { name: service.name, urlPath: serviceHubUrl(business, service) },
           ]),
         ],
         options,
@@ -607,9 +684,9 @@ function buildPages({ business, markets, services, faqs, options }) {
       pages.push(
         pageShell({
           kind: "city-service",
-          urlPath: makeUrl(business.preview_prefix, ["locations", market.slug, service.slug]),
+          urlPath: cityServiceUrl(business, market, service),
           metaTitle: `${serviceSeoName(service)} in ${market.city}, CA | Masterflow`,
-          metaDescription: `${service.short_desc} Call ${business.phone_display}. ${business.license_no}. Local ${market.city} plumbing service.`,
+          metaDescription: `Masterflow ${market.city} ${serviceSeoName(service).toLowerCase()} for ${market.county} homes and businesses. Call ${business.phone_display}. ${business.license_no}.`,
           h1: `${service.name} in ${market.city}, CA`,
           heroCopy: `Licensed Masterflow help for ${service.name.toLowerCase()} in ${market.city}, ${market.county}, with local routing around ${sentenceJoin(market.neighborhoods.slice(0, 3))}.`,
           eyebrow: `${market.city} ${service.name}`,
@@ -624,9 +701,9 @@ function buildPages({ business, markets, services, faqs, options }) {
             serviceSchema(business, market, service),
             faqSchema(selectedFaqs),
             breadcrumbSchema(business, [
-              { name: "SEO Preview", urlPath: makeUrl(business.preview_prefix) },
-              { name: market.city, urlPath: makeUrl(business.preview_prefix, ["locations", market.slug]) },
-              { name: service.name, urlPath: makeUrl(business.preview_prefix, ["locations", market.slug, service.slug]) },
+              breadcrumbRoot(business),
+              { name: market.city, urlPath: cityHubUrl(business, market) },
+              { name: service.name, urlPath: cityServiceUrl(business, market, service) },
             ]),
           ],
           options,
@@ -726,8 +803,11 @@ function jaccard(a, b) {
   return intersection / (a.size + b.size - intersection);
 }
 
-function validateRenderedPages({ pages, htmlByUrl, business }) {
+function validateRenderedPages({ pages, htmlByUrl, business, options }) {
   const pageUrlSet = new Set(pages.map((page) => page.urlPath));
+  const allowedStaticHrefs = isProductionRouteMode(business)
+    ? new Set(["/", "/privacy.html/", "/terms.html/"])
+    : new Set();
   const titles = new Map();
   const descriptions = new Map();
   const guards = [];
@@ -754,10 +834,15 @@ function validateRenderedPages({ pages, htmlByUrl, business }) {
     descriptions.set(description, page.urlPath);
 
     if (!html.includes(business.phone_display) || !html.includes(business.license_no)) issues.push({ guard: "nap", urlPath: page.urlPath });
-    if (!html.includes('noindex,nofollow')) issues.push({ guard: "previewNoindex", urlPath: page.urlPath });
+    if (options.indexable) {
+      if (!html.includes('index,follow') || /\bnoindex\b/i.test(html)) issues.push({ guard: "robotsMeta", urlPath: page.urlPath });
+    } else if (!html.includes('noindex,nofollow')) {
+      issues.push({ guard: "robotsMeta", urlPath: page.urlPath });
+    }
 
     for (const href of internalHrefs(html, business.preview_prefix)) {
       const normalized = href.endsWith("/") ? href : `${href}/`;
+      if (allowedStaticHrefs.has(normalized)) continue;
       if (!pageUrlSet.has(normalized) && !normalized.endsWith("/sitemap.xml/")) issues.push({ guard: "links", urlPath: page.urlPath, href });
     }
 
@@ -807,7 +892,7 @@ function validateRenderedPages({ pages, htmlByUrl, business }) {
   }
   if (maxDuplicate.score > 0.84) issues.push({ guard: "duplicateRisk", ...maxDuplicate });
 
-  const guardNames = ["wordCount", "meta", "uniqueMeta", "nap", "previewNoindex", "links", "jsonLd", "badString", "noPii", "duplicateRisk", "sitemapParity"];
+  const guardNames = ["wordCount", "meta", "uniqueMeta", "nap", "robotsMeta", "links", "jsonLd", "badString", "noPii", "duplicateRisk", "sitemapParity"];
   for (const guardName of guardNames) {
     guards.push({
       name: guardName,
@@ -888,14 +973,17 @@ function pipelineReport({ markets, services, pages, validation, options }) {
   };
 }
 
-async function writeOutput({ pages, htmlByUrl, business, outputRoot }) {
+async function writeOutput({ pages, htmlByUrl, business, outputRoot, options }) {
   await fs.rm(outputRoot, { recursive: true, force: true });
   for (const page of pages) {
     await fs.mkdir(path.dirname(page.outFile), { recursive: true });
     await fs.writeFile(page.outFile, htmlByUrl.get(page.urlPath));
   }
   await fs.writeFile(path.join(outputRoot, "sitemap.xml"), sitemapXml(business, pages));
-  await fs.writeFile(path.join(outputRoot, "robots.txt"), `User-agent: *\nDisallow: /\nSitemap: ${business.primary_domain}${business.preview_prefix}/sitemap.xml\n`);
+  const robots = options.indexable
+    ? `User-agent: *\nAllow: /\nSitemap: ${business.primary_domain}${makeUrl(business.preview_prefix, ["sitemap.xml"]).replace(/\/$/, "")}\n`
+    : `User-agent: *\nDisallow: /\nSitemap: ${business.primary_domain}${makeUrl(business.preview_prefix, ["sitemap.xml"]).replace(/\/$/, "")}\n`;
+  await fs.writeFile(path.join(outputRoot, "robots.txt"), robots);
 }
 
 export async function loadSeoData() {
@@ -913,8 +1001,20 @@ export async function loadSeoData() {
 export async function buildSeo(rawOptions = {}) {
   const options = { ...parseArgs([]), ...rawOptions };
   const data = await loadSeoData();
+  data.business = {
+    ...data.business,
+    preview_prefix: normalizePrefix(options.routePrefix ?? data.business.preview_prefix),
+  };
   let markets = data.markets;
   let services = data.services;
+  if (options.marketSlugs?.length) {
+    const wanted = new Set(options.marketSlugs);
+    markets = markets.filter((market) => wanted.has(market.slug));
+  }
+  if (options.serviceSlugs?.length) {
+    const wanted = new Set(options.serviceSlugs);
+    services = services.filter((service) => wanted.has(service.slug));
+  }
   if (!options.full) {
     if (Number.isFinite(options.limitMarkets)) markets = markets.slice(0, options.limitMarkets);
     if (Number.isFinite(options.limitServices)) services = services.slice(0, options.limitServices);
@@ -959,7 +1059,7 @@ export async function buildSeo(rawOptions = {}) {
     htmlByUrl.set(page.urlPath, await eta.renderString(template, page));
   }
 
-  const validation = validateRenderedPages({ pages, htmlByUrl, business: data.business });
+  const validation = validateRenderedPages({ pages, htmlByUrl, business: data.business, options });
   const sitemapLocCount = (sitemapXml(data.business, pages).match(/<loc>/g) ?? []).length;
   if (sitemapLocCount !== pages.length) {
     validation.issues.push({ guard: "sitemapParity", expected: pages.length, actual: sitemapLocCount });
@@ -994,7 +1094,7 @@ export async function buildSeo(rawOptions = {}) {
     throw new Error(`render validation failed: ${JSON.stringify(validation.issues.slice(0, 5))}`);
   }
 
-  await writeOutput({ pages, htmlByUrl, business: data.business, outputRoot });
+  await writeOutput({ pages, htmlByUrl, business: data.business, outputRoot, options });
   await writeReport(report);
 
   return report;

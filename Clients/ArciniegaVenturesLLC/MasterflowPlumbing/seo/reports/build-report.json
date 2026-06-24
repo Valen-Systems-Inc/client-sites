@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-24T01:26:15.499Z",
+  "generatedAt": "2026-06-24T10:10:58.898Z",
   "allPass": true,
-  "indexable": false,
-  "output": "seo-preview",
+  "indexable": true,
+  "output": "seo-production",
   "counts": {
-    "pages": 275,
-    "cityHubs": 24,
+    "pages": 373,
+    "cityHubs": 33,
     "serviceHubs": 10,
-    "cityServicePages": 240,
-    "markets": 24,
+    "cityServicePages": 330,
+    "markets": 33,
     "services": 10
   },
   "guards": [
@@ -29,7 +29,7 @@
       "pass": true
     },
     {
-      "name": "previewNoindex",
+      "name": "robotsMeta",
       "pass": true
     },
     {
@@ -59,9 +59,9 @@
   ],
   "issues": [],
   "maxDuplicate": {
-    "score": 0.6303317535545023,
-    "a": "/seo-preview/locations/rancho-cucamonga/leak-detection/",
-    "b": "/seo-preview/locations/rancho-cucamonga/repiping/"
+    "score": 0.6398176291793313,
+    "a": "/san-fernando-valley-leak-detection/",
+    "b": "/san-fernando-valley-repiping/"
   },
   "publicDataSources": [
     {
@@ -120,18 +120,18 @@
         "name": "build",
         "status": "pass",
         "evidence": {
-          "pages": 275,
-          "indexable": false,
-          "output": "seo-preview"
+          "pages": 373,
+          "indexable": true,
+          "output": "seo-production"
         }
       },
       {
         "name": "match",
         "status": "pass",
         "evidence": {
-          "markets": 24,
+          "markets": 33,
           "services": 10,
-          "cityServicePages": 240
+          "cityServicePages": 330
         }
       },
       {
@@ -140,7 +140,7 @@
         "evidence": {
           "guards": 11,
           "issues": 0,
-          "maxDuplicateScore": 0.6303317535545023
+          "maxDuplicateScore": 0.6398176291793313
         }
       },
       {
