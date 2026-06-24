@@ -1,0 +1,47 @@
+{
+  "legal_name": "Masterflow Plumbing",
+  "dba": "Masterflow Plumbing & Rooter",
+  "phone": "+19516127912",
+  "phone_display": "951-612-7912",
+  "license_no": "CSLB #1156577",
+  "primary_domain": "https://masterflowplumbing.us",
+  "preview_prefix": "/seo-preview",
+  "email": "",
+  "address": {
+    "street": "",
+    "city": "Corona",
+    "state": "CA",
+    "zip": "",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 33.8753,
+    "lng": -117.5664
+  },
+  "price_range": "$$",
+  "hours": "Mo-Su 00:00-23:59",
+  "service_area_model": "service_area_business",
+  "brand": {
+    "primary": "#1E3A5F",
+    "secondary": "#2F6EA5",
+    "accent": "#FF6B35",
+    "ink": "#122033",
+    "soft": "#F5F8FB"
+  },
+  "social": [
+    "https://instagram.com/masterflow_plumbing",
+    "https://www.yelp.com/biz/masterflow-plumbing-murrieta-2"
+  ],
+  "media": {
+    "hero": "/media/img-0634.jpg?v=rotation-20260617",
+    "proof": "/media/img-1059-poster.jpg",
+    "gallery": [
+      "/media/img-0617.jpg?v=rotation-20260617",
+      "/media/img-6137.jpg?v=rotation-20260617",
+      "/media/img-0637.jpg?v=rotation-20260617",
+      "/media/img-1669.jpg",
+      "/media/80220303036-84fc15af-5fea-4bf1-ac12-f732cbea3924.jpg",
+      "/media/dc1a645d-e617-4475-ad94-ccf3bb26cc00.jpg"
+    ]
+  }
+}

@@ -1,0 +1,704 @@
+{
+  "generatedAt": "2026-06-17T04:14:24.918Z",
+  "ok": true,
+  "mode": "sample",
+  "counts": {
+    "markets": 1,
+    "services": 1,
+    "queries": 4,
+    "competitors": 15,
+    "errors": 0
+  },
+  "sources": [
+    "DuckDuckGo HTML search results"
+  ],
+  "notes": [
+    "Search intelligence is review-only and must not directly publish page claims.",
+    "Competitor hosts are candidates for manual review, not assertions of market rank.",
+    "Public publish, ads, outreach, and contact writes remain approval-gated."
+  ],
+  "errors": [],
+  "competitors": [
+    {
+      "host": "emergencyplumbingsquad.com",
+      "title": "Corona, CA Emergency Plumber - 24 Hour Plumbing",
+      "sampleUrl": "https://www.emergencyplumbingsquad.com/corona-ca",
+      "mentions": 4,
+      "bestRank": 1,
+      "opportunityPressure": 400,
+      "markets": [
+        "corona"
+      ],
+      "services": [
+        "emergency-plumbing"
+      ],
+      "sampleQueries": [
+        "emergency plumbing Corona CA",
+        "emergency plumbing plumber Corona CA",
+        "emergency plumber Corona CA",
+        "Corona emergency plumbing near me"
+      ]
+    },
+    {
+      "host": "rotorooter.com",
+      "title": "24/7 Emergency Plumber in Corona, CA | Roto-Rooter",
+      "sampleUrl": "https://www.rotorooter.com/coronaca/emergency-plumber/",
+      "mentions": 3,
+      "bestRank": 1,
+      "opportunityPressure": 300,
+      "markets": [
+        "corona"
+      ],
+      "services": [
+        "emergency-plumbing"
+      ],
+      "sampleQueries": [
+        "emergency plumbing plumber Corona CA",
+        "emergency plumber Corona CA",
+        "Corona emergency plumbing near me"
+      ]
+    },
+    {
+      "host": "socalemergencyplumbingcorona.com",
+      "title": "Emergency Plumber Corona CA | 24/7 Plumbing — SoCal Emergency Plumbing",
+      "sampleUrl": "https://socalemergencyplumbingcorona.com/",
+      "mentions": 2,
+      "bestRank": 1,
+      "opportunityPressure": 200,
+      "markets": [
+        "corona"
+      ],
+      "services": [
+        "emergency-plumbing"
+      ],
+      "sampleQueries": [
+        "emergency plumbing Corona CA",
+        "emergency plumber Corona CA"
+      ]
+    },
+    {
+      "host": "expertise.com",
+      "title": "12 Best Corona, CA Emergency Plumbers | Expertise.com",
+      "sampleUrl": "https://www.expertise.com/home-improvement/emergency-plumber/california/corona",
+      "mentions": 2,
+      "bestRank": 1,
+      "opportunityPressure": 200,
+      "markets": [
+        "corona"
+      ],
+      "services": [
+        "emergency-plumbing"
+      ],
+      "sampleQueries": [
+        "emergency plumbing plumber Corona CA",
+        "Corona emergency plumbing near me"
+      ]
+    },
+    {
+      "host": "mrrooter.com",
+      "title": "Emergency Plumber in Corona, California | (760) 350-4022",
+      "sampleUrl": "https://www.mrrooter.com/locations/california/corona/emergency-plumber/",
+      "mentions": 3,
+      "bestRank": 3,
+      "opportunityPressure": 100,
+      "markets": [
+        "corona"
+      ],
+      "services": [
+        "emergency-plumbing"
+      ],
+      "sampleQueries": [
+        "emergency plumbing Corona CA",
+        "emergency plumbing plumber Corona CA",
+        "emergency plumber Corona CA"
+      ]
+    },
+    {
+      "host": "onestopplumbers.com",
+      "title": "Corona, CA Emergency Plumber",
+      "sampleUrl": "https://www.onestopplumbers.com/services/emergency-plumber/",
+      "mentions": 4,
+      "bestRank": 4,
+      "opportunityPressure": 100,
+      "markets": [
+        "corona"
+      ],
+      "services": [
+        "emergency-plumbing"
+      ],
+      "sampleQueries": [
+        "emergency plumbing Corona CA",
+        "emergency plumbing plumber Corona CA",
+        "emergency plumber Corona CA",
+        "Corona emergency plumbing near me"
+      ]
+    },
+    {
+      "host": "canyonhillsplumbing.com",
+      "title": "Corona Plumber | Emergency Plumber In Corona, CA - Canyon Hills Plumbing",
+      "sampleUrl": "https://canyonhillsplumbing.com/corona-plumber/",
+      "mentions": 3,
+      "bestRank": 5,
+      "opportunityPressure": 60,
+      "markets": [
+        "corona"
+      ],
+      "services": [
+        "emergency-plumbing"
+      ],
+      "sampleQueries": [
+        "emergency plumbing Corona CA",
+        "emergency plumber Corona CA",
+        "Corona emergency plumbing near me"
+      ]
+    },
+    {
+      "host": "guardianplumbers.com",
+      "title": "Plumbers in Corona, CA: Emergency Plumbing, Repairs, Drain & Sewer ...",
+      "sampleUrl": "https://guardianplumbers.com/locations/corona-ca/",
+      "mentions": 2,
+      "bestRank": 6,
+      "opportunityPressure": 33,
+      "markets": [
+        "corona"
+      ],
+      "services": [
+        "emergency-plumbing"
+      ],
+      "sampleQueries": [
+        "emergency plumbing plumber Corona CA",
+        "Corona emergency plumbing near me"
+      ]
+    },
+    {
+      "host": "corona-ca.okaneplumbingandelectrics.com",
+      "title": "24 Hour Plumbing Corona, CA 92879 | Expert Emergency Plumber Corona",
+      "sampleUrl": "https://corona-ca.okaneplumbingandelectrics.com/",
+      "mentions": 2,
+      "bestRank": 7,
+      "opportunityPressure": 29,
+      "markets": [
+        "corona"
+      ],
+      "services": [
+        "emergency-plumbing"
+      ],
+      "sampleQueries": [
+        "emergency plumbing Corona CA",
+        "Corona emergency plumbing near me"
+      ]
+    },
+    {
+      "host": "rooterhero.com",
+      "title": "Local Plumber in Corona, CA | Rooter Hero",
+      "sampleUrl": "https://www.rooterhero.com/inland-empire/corona/",
+      "mentions": 2,
+      "bestRank": 8,
+      "opportunityPressure": 25,
+      "markets": [
+        "corona"
+      ],
+      "services": [
+        "emergency-plumbing"
+      ],
+      "sampleQueries": [
+        "emergency plumbing Corona CA",
+        "emergency plumber Corona CA"
+      ]
+    },
+    {
+      "host": "jigplumbinginc.com",
+      "title": "Emergency Plumbing Excellence in Corona CA",
+      "sampleUrl": "https://www.jigplumbinginc.com/san-bernardino-county-plumbing/plumbing-service-corona-ca/",
+      "mentions": 2,
+      "bestRank": 8,
+      "opportunityPressure": 25,
+      "markets": [
+        "corona"
+      ],
+      "services": [
+        "emergency-plumbing"
+      ],
+      "sampleQueries": [
+        "emergency plumbing plumber Corona CA",
+        "Corona emergency plumbing near me"
+      ]
+    },
+    {
+      "host": "davisphinc.com",
+      "title": "Emergency Plumber in Corona, CA — Fast 24/7 Plumbing Repairs",
+      "sampleUrl": "https://davisphinc.com/2025/08/30/emergency-plumber-in-corona-ca/",
+      "mentions": 1,
+      "bestRank": 9,
+      "opportunityPressure": 11,
+      "markets": [
+        "corona"
+      ],
+      "services": [
+        "emergency-plumbing"
+      ],
+      "sampleQueries": [
+        "emergency plumbing Corona CA"
+      ]
+    },
+    {
+      "host": "plumbingproscalifornia.com",
+      "title": "Emergency Plumbers in Corona CA - 24 Hr Plumbing Pros",
+      "sampleUrl": "https://plumbingproscalifornia.com/corona/",
+      "mentions": 1,
+      "bestRank": 9,
+      "opportunityPressure": 11,
+      "markets": [
+        "corona"
+      ],
+      "services": [
+        "emergency-plumbing"
+      ],
+      "sampleQueries": [
+        "emergency plumbing plumber Corona CA"
+      ]
+    },
+    {
+      "host": "drainsewerplumbing.com",
+      "title": "Corona Emergency Plumbing Services | AAP All American Plumbing",
+      "sampleUrl": "https://www.drainsewerplumbing.com/emergency-plumbing-corona",
+      "mentions": 1,
+      "bestRank": 9,
+      "opportunityPressure": 11,
+      "markets": [
+        "corona"
+      ],
+      "services": [
+        "emergency-plumbing"
+      ],
+      "sampleQueries": [
+        "Corona emergency plumbing near me"
+      ]
+    },
+    {
+      "host": "emergency-plumber.org",
+      "title": "Emergency Plumber Corona, CA (877) 398-9231 | 24 Hour Plumber",
+      "sampleUrl": "https://www.emergency-plumber.org/locations/corona-ca/",
+      "mentions": 1,
+      "bestRank": 10,
+      "opportunityPressure": 10,
+      "markets": [
+        "corona"
+      ],
+      "services": [
+        "emergency-plumbing"
+      ],
+      "sampleQueries": [
+        "emergency plumber Corona CA"
+      ]
+    }
+  ],
+  "keywordCandidates": [
+    {
+      "query": "Corona emergency plumbing near me",
+      "market": {
+        "slug": "corona",
+        "city": "Corona",
+        "county": "Riverside County"
+      },
+      "service": {
+        "slug": "emergency-plumbing",
+        "name": "Emergency Plumbing"
+      },
+      "resultCount": 10,
+      "usefulResultCount": 9
+    },
+    {
+      "query": "emergency plumbing Corona CA",
+      "market": {
+        "slug": "corona",
+        "city": "Corona",
+        "county": "Riverside County"
+      },
+      "service": {
+        "slug": "emergency-plumbing",
+        "name": "Emergency Plumbing"
+      },
+      "resultCount": 10,
+      "usefulResultCount": 8
+    },
+    {
+      "query": "emergency plumbing plumber Corona CA",
+      "market": {
+        "slug": "corona",
+        "city": "Corona",
+        "county": "Riverside County"
+      },
+      "service": {
+        "slug": "emergency-plumbing",
+        "name": "Emergency Plumbing"
+      },
+      "resultCount": 10,
+      "usefulResultCount": 8
+    },
+    {
+      "query": "emergency plumber Corona CA",
+      "market": {
+        "slug": "corona",
+        "city": "Corona",
+        "county": "Riverside County"
+      },
+      "service": {
+        "slug": "emergency-plumbing",
+        "name": "Emergency Plumbing"
+      },
+      "resultCount": 10,
+      "usefulResultCount": 8
+    }
+  ],
+  "rawSearches": [
+    {
+      "query": "emergency plumbing Corona CA",
+      "source": "duckduckgo-html",
+      "fetchedAt": "2026-06-17T04:14:21.375Z",
+      "resultCount": 10,
+      "results": [
+        {
+          "rank": 1,
+          "title": "Corona, CA Emergency Plumber - 24 Hour Plumbing",
+          "url": "https://www.emergencyplumbingsquad.com/corona-ca",
+          "host": "emergencyplumbingsquad.com",
+          "snippet": "Need an emergency plumber in Corona? Call (855) 812-2311 for 24/7 plumbing services. Fast response, expert repairs, and reliable service — call now!"
+        },
+        {
+          "rank": 2,
+          "title": "Emergency Plumber Corona CA | 24/7 Plumbing — SoCal Emergency Plumbing",
+          "url": "https://socalemergencyplumbingcorona.com/",
+          "host": "socalemergencyplumbingcorona.com",
+          "snippet": "Fast, reliable 24/7 emergency plumbing in Corona, CA. Licensed, insured, and locally owned. Call now for same-day service!"
+        },
+        {
+          "rank": 3,
+          "title": "Emergency Plumber in Corona, California | (760) 350-4022",
+          "url": "https://www.mrrooter.com/locations/california/corona/emergency-plumber/",
+          "host": "mrrooter.com",
+          "snippet": "Rooter Plumbing® in Corona, California can assist with all manner of plumbing emergencies, such as gas leaks, burst pipes, and sewer line blockages. Whether you have an emergency situation or need regular polumbing service, you can expect excellent service, professionalism, and reliability from our experienced plumbing team. 375 Customer ..."
+        },
+        {
+          "rank": 4,
+          "title": "Corona, CA Emergency Plumber",
+          "url": "https://www.onestopplumbers.com/services/emergency-plumber/",
+          "host": "onestopplumbers.com",
+          "snippet": "Home - Services - Emergency Plumbing Emergency Plumber in Corona, CA When a pipe bursts or a sewer backs up, every second counts. You need an experienced emergency plumber in Corona, CA, who knows how to stop the damage promptly and fix the problem right the first time."
+        },
+        {
+          "rank": 5,
+          "title": "Emergency Plumbing Corona, CA - Last Updated June 2026 - Yelp",
+          "url": "https://www.yelp.com/search?find_desc=emergency+plumbing&find_loc=Corona,+CA",
+          "host": "yelp.com",
+          "snippet": "emergency plumbing Corona, CA Sort:Recommended All Yelp Guaranteed Open Now Fast-responding Request a Quote Virtual Consultations"
+        },
+        {
+          "rank": 6,
+          "title": "TOP 10 BEST Emergency Plumbers in Corona, CA - Yelp",
+          "url": "https://www.yelp.com/search?find_desc=Emergency+Plumbers&find_loc=Corona,+CA",
+          "host": "yelp.com",
+          "snippet": "Top 10 Best Emergency Plumbers Near Corona, California Sort:Recommended All Yelp Guaranteed Open Now Fast-responding Request a Quote Virtual Consultations"
+        },
+        {
+          "rank": 7,
+          "title": "24 Hour Plumbing Corona, CA 92879 | Expert Emergency Plumber Corona",
+          "url": "https://corona-ca.okaneplumbingandelectrics.com/",
+          "host": "corona-ca.okaneplumbingandelectrics.com",
+          "snippet": "Plumbing emergency in Corona? Our local licensed Emergency Plumber arrive within minutes, bringing solutions to your doorstep 24/7 — contact (833) 876-1141 now!. Expert 24 hr plumbing services in Corona, CA, including emergency repairs, burst pipes, drain cleaning, gas line leak, fixing water heater, and more. Serving all 92879 neighborhoods."
+        },
+        {
+          "rank": 8,
+          "title": "Local Plumber in Corona, CA | Rooter Hero",
+          "url": "https://www.rooterhero.com/inland-empire/corona/",
+          "host": "rooterhero.com",
+          "snippet": "At Rooter Hero, we offer high quality residential plumbing and commercial plumbing in Corona, California and nearby communities. Whether you want to upgrade your kitchen with a new sink and faucet installation or need an emergency plumbing repair in Rancho Palos Verde, our team of qualified specialists are ready to lend a hand."
+        },
+        {
+          "rank": 9,
+          "title": "Emergency Plumber in Corona, CA — Fast 24/7 Plumbing Repairs",
+          "url": "https://davisphinc.com/2025/08/30/emergency-plumber-in-corona-ca/",
+          "host": "davisphinc.com",
+          "snippet": "Need an emergency plumber in Corona, CA? Davis Plumbing provides 24-hr service for leaks, clogs, and water heater repairs. Call 951-657-0393."
+        },
+        {
+          "rank": 10,
+          "title": "Corona Plumber | Emergency Plumber In Corona, CA - Canyon Hills Plumbing",
+          "url": "https://canyonhillsplumbing.com/corona-plumber/",
+          "host": "canyonhillsplumbing.com",
+          "snippet": "Our licensed Corona plumbers provide fast, affordable emergency plumbing, sewer, & drain services when you need it most. Call 951-970-7550 for a FREE estimate."
+        }
+      ],
+      "market": {
+        "slug": "corona",
+        "city": "Corona",
+        "county": "Riverside County"
+      },
+      "service": {
+        "slug": "emergency-plumbing",
+        "name": "Emergency Plumbing"
+      }
+    },
+    {
+      "query": "emergency plumbing plumber Corona CA",
+      "source": "duckduckgo-html",
+      "fetchedAt": "2026-06-17T04:14:22.530Z",
+      "resultCount": 10,
+      "results": [
+        {
+          "rank": 1,
+          "title": "24/7 Emergency Plumber in Corona, CA | Roto-Rooter",
+          "url": "https://www.rotorooter.com/coronaca/emergency-plumber/",
+          "host": "rotorooter.com",
+          "snippet": "Need an emergency plumber in Corona, CA? Roto-Rooter is available 24/7 for burst or leaking pipes, sewage backups, and flooding in the Inland Empire. Call now."
+        },
+        {
+          "rank": 2,
+          "title": "THE BEST 10 PLUMBING IN CORONA, CA - UPDATED JUNE 2026 - Yelp",
+          "url": "https://www.yelp.com/search?cflt=plumbing&find_loc=Corona,+CA",
+          "host": "yelp.com",
+          "snippet": "Best Plumbing in Corona, CA - Last Updated June 2026 - All-Star Plumbing, R & R Plumbing, Bogart Plumbing Solutions, OneStop Plumbers - Plumbing & Leak Detection, Advance Plumbing, All City Plumbing, Air & Electrical, Circle City Plumbing and Rooter, Henley's, Tonys Plumbing and Rooter, HMS Plumbing & Construction"
+        },
+        {
+          "rank": 3,
+          "title": "12 Best Corona, CA Emergency Plumbers | Expertise.com",
+          "url": "https://www.expertise.com/home-improvement/emergency-plumber/california/corona",
+          "host": "expertise.com",
+          "snippet": "Find and connect with the 12 Best Emergency Plumbers in Corona, CA. Hand picked by an independent editorial team and updated for 2026."
+        },
+        {
+          "rank": 4,
+          "title": "Top 10 Best Plumbers in Corona, CA | Angi",
+          "url": "https://www.angi.com/companylist/us/ca/corona/plumbing.htm",
+          "host": "angi.com",
+          "snippet": "Read real reviews and see ratings for Corona, CA plumbers for free! This list will help you pick the right plumbers in Corona, CA."
+        },
+        {
+          "rank": 5,
+          "title": "Corona, CA Emergency Plumber - 24 Hour Plumbing",
+          "url": "https://www.emergencyplumbingsquad.com/corona-ca",
+          "host": "emergencyplumbingsquad.com",
+          "snippet": "Need an emergency plumber in Corona? Call (855) 812-2311 for 24/7 plumbing services. Fast response, expert repairs, and reliable service — call now!"
+        },
+        {
+          "rank": 6,
+          "title": "Emergency Plumber in Corona, California | (760) 350-4022",
+          "url": "https://www.mrrooter.com/locations/california/corona/emergency-plumber/",
+          "host": "mrrooter.com",
+          "snippet": "Rooter Plumbing® in Corona, California can assist with all manner of plumbing emergencies, such as gas leaks, burst pipes, and sewer line blockages. Whether you have an emergency situation or need regular polumbing service, you can expect excellent service, professionalism, and reliability from our experienced plumbing team. 375 Customer ..."
+        },
+        {
+          "rank": 7,
+          "title": "Corona, CA Emergency Plumber",
+          "url": "https://www.onestopplumbers.com/services/emergency-plumber/",
+          "host": "onestopplumbers.com",
+          "snippet": "Emergency Plumbing Services in Corona When you're dealing with an emergency, you need help right away. Our team at OneStop Plumbers - Plumbing and Leak Detection is your go-to partner for emergency plumbing services in Corona, CA, bringing the right tools, knowledge, and experience to promptly diagnose and repair urgent plumbing problems."
+        },
+        {
+          "rank": 8,
+          "title": "Emergency Plumbing Excellence in Corona CA",
+          "url": "https://www.jigplumbinginc.com/san-bernardino-county-plumbing/plumbing-service-corona-ca/",
+          "host": "jigplumbinginc.com",
+          "snippet": "Plumbing emergencies don't wait for convenient times, and that's why J.I.G. Plumbing provides 24/7 emergency plumber services in Corona, CA. Whether you're dealing with a burst pipe, a severely clogged drain, or an overflowing toilet, we respond quickly to minimize damage and get your plumbing back on track."
+        },
+        {
+          "rank": 9,
+          "title": "Emergency Plumbers in Corona CA - 24 Hr Plumbing Pros",
+          "url": "https://plumbingproscalifornia.com/corona/",
+          "host": "plumbingproscalifornia.com",
+          "snippet": "The Emergency Plumbing Pros of Corona provides local repair and installation services, fix sewer lines, broken pipes, hot water heaters and more!"
+        },
+        {
+          "rank": 10,
+          "title": "Plumbers in Corona, CA: Emergency Plumbing, Repairs, Drain & Sewer ...",
+          "url": "https://guardianplumbers.com/locations/corona-ca/",
+          "host": "guardianplumbers.com",
+          "snippet": "Guardian Plumbers offers expert plumbing in Corona, CA—repairs, drain cleaning, sewer service & 24/6 emergency help. Call now for rapid service!"
+        }
+      ],
+      "market": {
+        "slug": "corona",
+        "city": "Corona",
+        "county": "Riverside County"
+      },
+      "service": {
+        "slug": "emergency-plumbing",
+        "name": "Emergency Plumbing"
+      }
+    },
+    {
+      "query": "emergency plumber Corona CA",
+      "source": "duckduckgo-html",
+      "fetchedAt": "2026-06-17T04:14:23.601Z",
+      "resultCount": 10,
+      "results": [
+        {
+          "rank": 1,
+          "title": "Emergency Plumber Corona CA | 24/7 Plumbing — SoCal Emergency Plumbing",
+          "url": "https://socalemergencyplumbingcorona.com/",
+          "host": "socalemergencyplumbingcorona.com",
+          "snippet": "Fast, reliable 24/7 emergency plumbing in Corona, CA. Licensed, insured, and locally owned. Call now for same-day service!"
+        },
+        {
+          "rank": 2,
+          "title": "Emergency Plumbing Corona, CA - Last Updated June 2026 - Yelp",
+          "url": "https://www.yelp.com/search?find_desc=emergency+plumbing&find_loc=Corona,+CA",
+          "host": "yelp.com",
+          "snippet": "What are people saying about plumbing services in Corona, CA? This is a review for a plumbing business in Corona, CA: \"We called Henley's Plumbing & Air for a clogged toilet, and they had plumbers at our home within the hour. Billy and Ricardo were knowledgeable, professional, and very customer-service oriented. We will definitely be using Henley's for any future plumbing needs.\" See more ..."
+        },
+        {
+          "rank": 3,
+          "title": "THE BEST 10 PLUMBING IN CORONA, CA - UPDATED JUNE 2026 - Yelp",
+          "url": "https://www.yelp.com/search?cflt=plumbing&find_loc=Corona,+CA",
+          "host": "yelp.com",
+          "snippet": "What are people saying about plumbing services in Corona, CA? This is a review for a plumbing business in Corona, CA: \"Great and quick service! My 10 year old thought it would be a great idea to stuff the toilet with paper towels. However, R&R fixed the issue promptly. The only downside is the prices. On the flip side I totally understand how costly plumbing can be, so I wasn't that surprised ..."
+        },
+        {
+          "rank": 4,
+          "title": "Corona, CA Emergency Plumber",
+          "url": "https://www.onestopplumbers.com/services/emergency-plumber/",
+          "host": "onestopplumbers.com",
+          "snippet": "Emergency Plumbing Services in Corona When you're dealing with an emergency, you need help right away. Our team at OneStop Plumbers - Plumbing and Leak Detection is your go-to partner for emergency plumbing services in Corona, CA, bringing the right tools, knowledge, and experience to promptly diagnose and repair urgent plumbing problems."
+        },
+        {
+          "rank": 5,
+          "title": "Corona Plumber | Emergency Plumber In Corona, CA - Canyon Hills Plumbing",
+          "url": "https://canyonhillsplumbing.com/corona-plumber/",
+          "host": "canyonhillsplumbing.com",
+          "snippet": "Our licensed Corona plumbers provide fast, affordable emergency plumbing, sewer, & drain services when you need it most. Call 951-970-7550 for a FREE estimate."
+        },
+        {
+          "rank": 6,
+          "title": "Emergency Plumber in Corona, California | (760) 350-4022",
+          "url": "https://www.mrrooter.com/locations/california/corona/emergency-plumber/",
+          "host": "mrrooter.com",
+          "snippet": "Licensed & Insured Emergency Plumber in Corona, California. 24/7 Scheduling. Get Upfront Pricing. Satisfaction Guaranteed. Call (760) 350-4022."
+        },
+        {
+          "rank": 7,
+          "title": "24/7 Emergency Plumber in Corona, CA | Roto-Rooter",
+          "url": "https://www.rotorooter.com/coronaca/emergency-plumber/",
+          "host": "rotorooter.com",
+          "snippet": "Need an emergency plumber in Corona, CA? Roto-Rooter is available 24/7 for burst or leaking pipes, sewage backups, and flooding in the Inland Empire. Call now."
+        },
+        {
+          "rank": 8,
+          "title": "Local Plumber in Corona, CA | Rooter Hero",
+          "url": "https://www.rooterhero.com/inland-empire/corona/",
+          "host": "rooterhero.com",
+          "snippet": "At Rooter Hero, we offer high quality residential plumbing and commercial plumbing in Corona, California and nearby communities. Whether you want to upgrade your kitchen with a new sink and faucet installation or need an emergency plumbing repair in Rancho Palos Verde, our team of qualified specialists are ready to lend a hand."
+        },
+        {
+          "rank": 9,
+          "title": "Corona, CA Emergency Plumber - 24 Hour Plumbing",
+          "url": "https://www.emergencyplumbingsquad.com/corona-ca",
+          "host": "emergencyplumbingsquad.com",
+          "snippet": "Need an emergency plumber in Corona? Call (855) 812-2311 for 24/7 plumbing services. Fast response, expert repairs, and reliable service — call now!"
+        },
+        {
+          "rank": 10,
+          "title": "Emergency Plumber Corona, CA (877) 398-9231 | 24 Hour Plumber",
+          "url": "https://www.emergency-plumber.org/locations/corona-ca/",
+          "host": "emergency-plumber.org",
+          "snippet": "Emergency plumber Corona, CA. Call (877) 398-9231 to get 24 hour help with urgent plumbing needs for residential and commercial projects."
+        }
+      ],
+      "market": {
+        "slug": "corona",
+        "city": "Corona",
+        "county": "Riverside County"
+      },
+      "service": {
+        "slug": "emergency-plumbing",
+        "name": "Emergency Plumbing"
+      }
+    },
+    {
+      "query": "Corona emergency plumbing near me",
+      "source": "duckduckgo-html",
+      "fetchedAt": "2026-06-17T04:14:24.667Z",
+      "resultCount": 10,
+      "results": [
+        {
+          "rank": 1,
+          "title": "12 Best Corona, CA Emergency Plumbers | Expertise.com",
+          "url": "https://www.expertise.com/home-improvement/emergency-plumber/california/corona",
+          "host": "expertise.com",
+          "snippet": "Find and connect with the 12 Best Emergency Plumbers in Corona, CA. Hand picked by an independent editorial team and updated for 2026."
+        },
+        {
+          "rank": 2,
+          "title": "THE BEST 10 PLUMBING IN CORONA, CA - UPDATED JUNE 2026 - Yelp",
+          "url": "https://www.yelp.com/search?cflt=plumbing&find_loc=Corona,+CA",
+          "host": "yelp.com",
+          "snippet": "What are people saying about plumbing services in Corona, CA? This is a review for a plumbing business in Corona, CA: \"Great and quick service! My 10 year old thought it would be a great idea to stuff the toilet with paper towels. However, R&R fixed the issue promptly. The only downside is the prices. On the flip side I totally understand how costly plumbing can be, so I wasn't that surprised ..."
+        },
+        {
+          "rank": 3,
+          "title": "Corona, CA Emergency Plumber - 24 Hour Plumbing",
+          "url": "https://www.emergencyplumbingsquad.com/corona-ca",
+          "host": "emergencyplumbingsquad.com",
+          "snippet": "Need an emergency plumber in Corona? Call (855) 812-2311 for 24/7 plumbing services. Fast response, expert repairs, and reliable service — call now!"
+        },
+        {
+          "rank": 4,
+          "title": "24/7 Emergency Plumber in Corona, CA | Roto-Rooter",
+          "url": "https://www.rotorooter.com/coronaca/emergency-plumber/",
+          "host": "rotorooter.com",
+          "snippet": "Emergency Plumber in Corona Key Takeaways for Corona Emergency Plumbing Roto-Rooter answers emergency plumbing calls in Corona 24/7, 365 days a year, including nights, weekends, and holidays. We respond promptly to burst or leaking pipes, sewage backups, flooding, no hot water, severe clogs, and gas-line concerns across Corona and the Inland ..."
+        },
+        {
+          "rank": 5,
+          "title": "Corona, CA Emergency Plumber",
+          "url": "https://www.onestopplumbers.com/services/emergency-plumber/",
+          "host": "onestopplumbers.com",
+          "snippet": "Emergency Plumbing Services in Corona When you're dealing with an emergency, you need help right away. Our team at OneStop Plumbers - Plumbing and Leak Detection is your go-to partner for emergency plumbing services in Corona, CA, bringing the right tools, knowledge, and experience to promptly diagnose and repair urgent plumbing problems."
+        },
+        {
+          "rank": 6,
+          "title": "Plumbers in Corona, CA: Emergency Plumbing, Repairs, Drain & Sewer ...",
+          "url": "https://guardianplumbers.com/locations/corona-ca/",
+          "host": "guardianplumbers.com",
+          "snippet": "Guardian Plumbers offers expert plumbing in Corona, CA—repairs, drain cleaning, sewer service & 24/6 emergency help. Call now for rapid service!"
+        },
+        {
+          "rank": 7,
+          "title": "24 Hour Plumbing Corona, CA 92879 | Expert Emergency Plumber Corona",
+          "url": "https://corona-ca.okaneplumbingandelectrics.com/",
+          "host": "corona-ca.okaneplumbingandelectrics.com",
+          "snippet": "Plumbing emergency in Corona? Our local licensed Emergency Plumber arrive within minutes, bringing solutions to your doorstep 24/7 — contact (833) 876-1141 now!. Expert 24 hr plumbing services in Corona, CA, including emergency repairs, burst pipes, drain cleaning, gas line leak, fixing water heater, and more. Serving all 92879 neighborhoods."
+        },
+        {
+          "rank": 8,
+          "title": "Emergency Plumbing Excellence in Corona CA",
+          "url": "https://www.jigplumbinginc.com/san-bernardino-county-plumbing/plumbing-service-corona-ca/",
+          "host": "jigplumbinginc.com",
+          "snippet": "Plumbing emergencies don't wait for convenient times, and that's why J.I.G. Plumbing provides 24/7 emergency plumber services in Corona, CA. Whether you're dealing with a burst pipe, a severely clogged drain, or an overflowing toilet, we respond quickly to minimize damage and get your plumbing back on track."
+        },
+        {
+          "rank": 9,
+          "title": "Corona Emergency Plumbing Services | AAP All American Plumbing",
+          "url": "https://www.drainsewerplumbing.com/emergency-plumbing-corona",
+          "host": "drainsewerplumbing.com",
+          "snippet": "When a plumbing emergency strikes in Corona, CA, AAP All American Plumbing is your trusted solution for fast, professional service. Our expert plumbers have been serving Corona and the surrounding areas for over two decades, offering reliable 24/7 emergency plumbing services to both residential and commercial clients. Whether you're facing a burst pipe, an overflowing toilet, or a major water ..."
+        },
+        {
+          "rank": 10,
+          "title": "Corona Plumber | Emergency Plumber In Corona, CA - Canyon Hills Plumbing",
+          "url": "https://canyonhillsplumbing.com/corona-plumber/",
+          "host": "canyonhillsplumbing.com",
+          "snippet": "Our licensed Corona plumbers provide fast, affordable emergency plumbing, sewer, & drain services when you need it most. Call 951-970-7550 for a FREE estimate."
+        }
+      ],
+      "market": {
+        "slug": "corona",
+        "city": "Corona",
+        "county": "Riverside County"
+      },
+      "service": {
+        "slug": "emergency-plumbing",
+        "name": "Emergency Plumbing"
+      }
+    }
+  ]
+}

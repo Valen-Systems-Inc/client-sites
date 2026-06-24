@@ -1,0 +1,570 @@
+{
+  "generatedAt": "2026-06-17T03:55:39.638Z",
+  "ok": true,
+  "notes": [
+    "Only public, non-personal region data is fetched.",
+    "Existing hand-curated city signals remain authoritative for generated pages.",
+    "Census or Nominatim failures do not block local preview generation.",
+    "Set CENSUS_API_KEY to hydrate census_population and census_geoid when available."
+  ],
+  "sources": [
+    "US Census ACS 2023 5-year API",
+    "OpenStreetMap Nominatim search API"
+  ],
+  "censusError": null,
+  "censusSkipped": "CENSUS_API_KEY not set; retained curated local population values",
+  "regions": [
+    {
+      "slug": "corona",
+      "city": "Corona",
+      "county": "Riverside County",
+      "existing_population": 157136,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 33.8752945,
+        "lng": -117.566444
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 10908821,
+        "display_name": "Corona, Riverside County, California, United States",
+        "lat": 33.8752945,
+        "lng": -117.566444,
+        "type": "administrative",
+        "importance": 0.5345115025157072
+      }
+    },
+    {
+      "slug": "norco",
+      "city": "Norco",
+      "county": "Riverside County",
+      "existing_population": 26176,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 33.9323307,
+        "lng": -117.5508901
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 11065467,
+        "display_name": "Norco, Riverside County, California, 92860, United States",
+        "lat": 33.9323307,
+        "lng": -117.5508901,
+        "type": "administrative",
+        "importance": 0.495181891634015
+      }
+    },
+    {
+      "slug": "riverside",
+      "city": "Riverside",
+      "county": "Riverside County",
+      "existing_population": 314998,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 33.9824949,
+        "lng": -117.374238
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 11051996,
+        "display_name": "Riverside, Riverside County, California, United States",
+        "lat": 33.9824949,
+        "lng": -117.374238,
+        "type": "administrative",
+        "importance": 0.6167582271486978
+      }
+    },
+    {
+      "slug": "rancho-cucamonga",
+      "city": "Rancho Cucamonga",
+      "county": "San Bernardino County",
+      "existing_population": 174453,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 34.1033192,
+        "lng": -117.575173
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 6411728,
+        "display_name": "Rancho Cucamonga, San Bernardino County, California, United States",
+        "lat": 34.1033192,
+        "lng": -117.575173,
+        "type": "administrative",
+        "importance": 0.5216905701628699
+      }
+    },
+    {
+      "slug": "ontario",
+      "city": "Ontario",
+      "county": "San Bernardino County",
+      "existing_population": 175265,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 34.065846,
+        "lng": -117.64843
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 11066252,
+        "display_name": "Ontario, San Bernardino County, California, United States",
+        "lat": 34.065846,
+        "lng": -117.64843,
+        "type": "administrative",
+        "importance": 0.5693746755338667
+      }
+    },
+    {
+      "slug": "chino",
+      "city": "Chino",
+      "county": "San Bernardino County",
+      "existing_population": 93011,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 34.0133561,
+        "lng": -117.690075
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 111793,
+        "display_name": "Chino, San Bernardino County, California, United States",
+        "lat": 34.0133561,
+        "lng": -117.690075,
+        "type": "administrative",
+        "importance": 0.516142832118325
+      }
+    },
+    {
+      "slug": "claremont",
+      "city": "Claremont",
+      "county": "Los Angeles County",
+      "existing_population": 37176,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 34.0966764,
+        "lng": -117.7197785
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 112055,
+        "display_name": "Claremont, Los Angeles County, California, 91711, United States",
+        "lat": 34.0966764,
+        "lng": -117.7197785,
+        "type": "administrative",
+        "importance": 0.5555165588070033
+      }
+    },
+    {
+      "slug": "fontana",
+      "city": "Fontana",
+      "county": "San Bernardino County",
+      "existing_population": 212475,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 34.0922947,
+        "lng": -117.43433
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 6411727,
+        "display_name": "Fontana, San Bernardino County, California, United States",
+        "lat": 34.0922947,
+        "lng": -117.43433,
+        "type": "administrative",
+        "importance": 0.5368070737817536
+      }
+    },
+    {
+      "slug": "upland",
+      "city": "Upland",
+      "county": "San Bernardino County",
+      "existing_population": 79040,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 34.09751,
+        "lng": -117.6483876
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 11065548,
+        "display_name": "Upland, San Bernardino County, California, United States",
+        "lat": 34.09751,
+        "lng": -117.6483876,
+        "type": "administrative",
+        "importance": 0.504857332921787
+      }
+    },
+    {
+      "slug": "pomona",
+      "city": "Pomona",
+      "county": "Los Angeles County",
+      "existing_population": 151713,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 34.0553813,
+        "lng": -117.7517496
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 1532363,
+        "display_name": "Pomona, Los Angeles County, California, United States",
+        "lat": 34.0553813,
+        "lng": -117.7517496,
+        "type": "administrative",
+        "importance": 0.5665487595557226
+      }
+    },
+    {
+      "slug": "san-bernardino",
+      "city": "San Bernardino",
+      "county": "San Bernardino County",
+      "existing_population": 222101,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 34.1081621,
+        "lng": -117.28946
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 253639,
+        "display_name": "San Bernardino, San Bernardino County, California, United States",
+        "lat": 34.1081621,
+        "lng": -117.28946,
+        "type": "administrative",
+        "importance": 0.6053290826929144
+      }
+    },
+    {
+      "slug": "redlands",
+      "city": "Redlands",
+      "county": "San Bernardino County",
+      "existing_population": 73506,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 34.0550328,
+        "lng": -117.1827445
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 111825,
+        "display_name": "Redlands, San Bernardino County, California, United States",
+        "lat": 34.0550328,
+        "lng": -117.1827445,
+        "type": "administrative",
+        "importance": 0.5252087255417615
+      }
+    },
+    {
+      "slug": "yucaipa",
+      "city": "Yucaipa",
+      "county": "San Bernardino County",
+      "existing_population": 54405,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 34.033625,
+        "lng": -117.0430865
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 11117404,
+        "display_name": "Yucaipa, San Bernardino County, California, 92399, United States",
+        "lat": 34.033625,
+        "lng": -117.0430865,
+        "type": "administrative",
+        "importance": 0.4887796323695434
+      }
+    },
+    {
+      "slug": "murrieta",
+      "city": "Murrieta",
+      "county": "Riverside County",
+      "existing_population": 110949,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 33.560832,
+        "lng": -117.210656
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 3105450,
+        "display_name": "Murrieta, Riverside County, California, United States",
+        "lat": 33.560832,
+        "lng": -117.210656,
+        "type": "administrative",
+        "importance": 0.5089037070348175
+      }
+    },
+    {
+      "slug": "temecula",
+      "city": "Temecula",
+      "county": "Riverside County",
+      "existing_population": 110003,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 33.4946353,
+        "lng": -117.147366
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 3866463,
+        "display_name": "Temecula, Riverside County, California, United States",
+        "lat": 33.4946353,
+        "lng": -117.147366,
+        "type": "administrative",
+        "importance": 0.5318995413880754
+      }
+    },
+    {
+      "slug": "wildomar",
+      "city": "Wildomar",
+      "county": "Riverside County",
+      "existing_population": 36626,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 33.5942948,
+        "lng": -117.2399869
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 3105862,
+        "display_name": "Wildomar, Riverside County, California, 92595, United States",
+        "lat": 33.5942948,
+        "lng": -117.2399869,
+        "type": "administrative",
+        "importance": 0.487297624928011
+      }
+    },
+    {
+      "slug": "menifee",
+      "city": "Menifee",
+      "county": "Riverside County",
+      "existing_population": 106401,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 33.6863987,
+        "lng": -117.1778599
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 16809147,
+        "display_name": "Menifee, Riverside County, California, United States",
+        "lat": 33.6863987,
+        "lng": -117.1778599,
+        "type": "administrative",
+        "importance": 0.4916826333919277
+      }
+    },
+    {
+      "slug": "perris",
+      "city": "Perris",
+      "county": "Riverside County",
+      "existing_population": 82000,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 33.7818729,
+        "lng": -117.2298477
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 112037,
+        "display_name": "Perris, Riverside County, California, 92571, United States",
+        "lat": 33.7818729,
+        "lng": -117.2298477,
+        "type": "administrative",
+        "importance": 0.5016958337507611
+      }
+    },
+    {
+      "slug": "moreno-valley",
+      "city": "Moreno Valley",
+      "county": "Riverside County",
+      "existing_population": 208634,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 33.9375177,
+        "lng": -117.2305791
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 11112117,
+        "display_name": "Moreno Valley, Riverside County, California, United States",
+        "lat": 33.9375177,
+        "lng": -117.2305791,
+        "type": "administrative",
+        "importance": 0.5162664225194973
+      }
+    },
+    {
+      "slug": "hesperia",
+      "city": "Hesperia",
+      "county": "San Bernardino County",
+      "existing_population": 99818,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 34.4220358,
+        "lng": -117.3046869
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 111809,
+        "display_name": "Hesperia, San Bernardino County, California, United States",
+        "lat": 34.4220358,
+        "lng": -117.3046869,
+        "type": "administrative",
+        "importance": 0.49422079736455954
+      }
+    },
+    {
+      "slug": "victorville",
+      "city": "Victorville",
+      "county": "San Bernardino County",
+      "existing_population": 134810,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 34.5361067,
+        "lng": -117.2911565
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 111840,
+        "display_name": "Victorville, San Bernardino County, California, United States",
+        "lat": 34.5361067,
+        "lng": -117.2911565,
+        "type": "administrative",
+        "importance": 0.520936088916698
+      }
+    },
+    {
+      "slug": "eastvale",
+      "city": "Eastvale",
+      "county": "Riverside County",
+      "existing_population": 71000,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 33.9747067,
+        "lng": -117.566541
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 11117293,
+        "display_name": "Eastvale, Riverside County, California, 92880, United States",
+        "lat": 33.9747067,
+        "lng": -117.566541,
+        "type": "administrative",
+        "importance": 0.48802381862418537
+      }
+    },
+    {
+      "slug": "jurupa-valley",
+      "city": "Jurupa Valley",
+      "county": "Riverside County",
+      "existing_population": 105053,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 33.9798472,
+        "lng": -117.4515754
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 11117030,
+        "display_name": "Jurupa Valley, Riverside County, California, United States",
+        "lat": 33.9798472,
+        "lng": -117.4515754,
+        "type": "administrative",
+        "importance": 0.4818085053533682
+      }
+    },
+    {
+      "slug": "rialto",
+      "city": "Rialto",
+      "county": "San Bernardino County",
+      "existing_population": 104026,
+      "census_population": null,
+      "census_geoid": null,
+      "public_coordinates": {
+        "lat": 34.1064001,
+        "lng": -117.3703235
+      },
+      "public_place": {
+        "source": "OpenStreetMap Nominatim",
+        "found": true,
+        "osm_type": "relation",
+        "osm_id": 6581672,
+        "display_name": "Rialto, San Bernardino County, California, United States",
+        "lat": 34.1064001,
+        "lng": -117.3703235,
+        "type": "administrative",
+        "importance": 0.49969118456701583
+      }
+    }
+  ]
+}

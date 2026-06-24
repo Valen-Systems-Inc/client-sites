@@ -1,0 +1,157 @@
+{
+  "generatedAt": "2026-06-24T01:26:15.499Z",
+  "allPass": true,
+  "indexable": false,
+  "output": "seo-preview",
+  "counts": {
+    "pages": 275,
+    "cityHubs": 24,
+    "serviceHubs": 10,
+    "cityServicePages": 240,
+    "markets": 24,
+    "services": 10
+  },
+  "guards": [
+    {
+      "name": "wordCount",
+      "pass": true
+    },
+    {
+      "name": "meta",
+      "pass": true
+    },
+    {
+      "name": "uniqueMeta",
+      "pass": true
+    },
+    {
+      "name": "nap",
+      "pass": true
+    },
+    {
+      "name": "previewNoindex",
+      "pass": true
+    },
+    {
+      "name": "links",
+      "pass": true
+    },
+    {
+      "name": "jsonLd",
+      "pass": true
+    },
+    {
+      "name": "badString",
+      "pass": true
+    },
+    {
+      "name": "noPii",
+      "pass": true
+    },
+    {
+      "name": "duplicateRisk",
+      "pass": true
+    },
+    {
+      "name": "sitemapParity",
+      "pass": true
+    }
+  ],
+  "issues": [],
+  "maxDuplicate": {
+    "score": 0.6303317535545023,
+    "a": "/seo-preview/locations/rancho-cucamonga/leak-detection/",
+    "b": "/seo-preview/locations/rancho-cucamonga/repiping/"
+  },
+  "publicDataSources": [
+    {
+      "name": "US Census ACS 5-year profile API",
+      "url": "https://api.census.gov/data/2023/acs/acs5/profile",
+      "fields": [
+        "NAME",
+        "DP05_0001E"
+      ],
+      "use": "Population enrichment for California place records."
+    },
+    {
+      "name": "OpenStreetMap Nominatim",
+      "url": "https://nominatim.openstreetmap.org/search",
+      "fields": [
+        "lat",
+        "lon",
+        "display_name",
+        "boundingbox"
+      ],
+      "use": "Open geocoding and bounding-box enrichment for city pages."
+    },
+    {
+      "name": "schema.org vocabulary",
+      "url": "https://schema.org",
+      "fields": [
+        "Plumber",
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ],
+      "use": "Structured-data vocabulary used by generated pages."
+    }
+  ],
+  "pipeline": {
+    "framework": "ValenFramework",
+    "pattern": "Build -> Match -> Verify -> Execute",
+    "currentPhase": "usage",
+    "verifyBeforeExecute": true,
+    "phaseRecovery": {
+      "strategy": "none",
+      "targetPhase": "usage"
+    },
+    "dualSurfaceState": {
+      "desktop3d": "runtime card can ingest seo/reports/build-report.json",
+      "fieldTablet": "private GUI route /masterflow-seo reads the same report"
+    },
+    "runtimeBridge": {
+      "action": "masterflow.seo.report.ingest",
+      "payloadPath": "seo/reports/build-report.json",
+      "currentPhase": "usage",
+      "approvalGate": "queue-runtime-shipment before indexable publish, DNS, ads, outreach, or contact writes"
+    },
+    "steps": [
+      {
+        "name": "build",
+        "status": "pass",
+        "evidence": {
+          "pages": 275,
+          "indexable": false,
+          "output": "seo-preview"
+        }
+      },
+      {
+        "name": "match",
+        "status": "pass",
+        "evidence": {
+          "markets": 24,
+          "services": 10,
+          "cityServicePages": 240
+        }
+      },
+      {
+        "name": "verify",
+        "status": "pass",
+        "evidence": {
+          "guards": 11,
+          "issues": 0,
+          "maxDuplicateScore": 0.6303317535545023
+        }
+      },
+      {
+        "name": "execute",
+        "status": "ready",
+        "evidence": [
+          "write noindex preview files",
+          "write robots.txt and sitemap.xml",
+          "emit build-report.json"
+        ]
+      }
+    ]
+  }
+}

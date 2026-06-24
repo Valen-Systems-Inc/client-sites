@@ -1,0 +1,22 @@
+[
+  {
+    "q": "Do you service {{city}} for {{service}}?",
+    "a": "Yes. Masterflow Plumbing serves {{city}} and nearby neighborhoods including {{neighborhoods}} for {{service_lower}} and related plumbing work."
+  },
+  {
+    "q": "How fast can Masterflow reach {{city}}?",
+    "a": "For urgent plumbing problems, call 951-612-7912. Dispatch timing depends on traffic, active calls, and the exact address, but {{city}} is part of the active Southern California service area."
+  },
+  {
+    "q": "Are you licensed for plumbing work in California?",
+    "a": "Yes. Masterflow Plumbing lists CSLB #1156577 and provides licensed plumbing service across the Corona-centered service area."
+  },
+  {
+    "q": "Can you help with older homes and newer tract homes?",
+    "a": "Yes. The service approach adjusts to the property. Older lines, newer fixtures, high-use family homes, rentals, and small businesses all get checked for the actual failure before repair options are explained."
+  },
+  {
+    "q": "Do you give pricing before work starts?",
+    "a": "Masterflow explains the visible issue, the likely repair path, and pricing before starting approved work whenever the job conditions allow it."
+  }
+]

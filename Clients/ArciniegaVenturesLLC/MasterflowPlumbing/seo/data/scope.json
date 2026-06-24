@@ -1,0 +1,45 @@
+{
+  "client": "Arciniega Ventures LLC / Masterflow Plumbing",
+  "engagement": "Founding plumbing demand engine - localized SEO, SEM testing, attribution, and workflow replacement support",
+  "first_90_days": {
+    "launch_regions": [
+      "San Fernando Valley",
+      "Hollywood",
+      "Murrieta",
+      "Lake Elsinore",
+      "Riverside",
+      "Broader Southern California expansion"
+    ],
+    "assets_per_region": 12,
+    "target_assets": 72
+  },
+  "ongoing_monthly_asset_capacity": 25,
+  "lead_flow": {
+    "route": "direct-to-phone / preferred inbox",
+    "ai_phone_middleman": false,
+    "tracking_goal": "tie calls, forms, booked work, regions, services, and campaigns back to generated assets"
+  },
+  "operations_scope": [
+    "lead intake",
+    "customer and job status",
+    "quote and invoice status",
+    "follow-up reminders",
+    "weekly owner reporting"
+  ],
+  "sem_scope": {
+    "included_basic_media_testing_usd_monthly": 1000,
+    "additional_spend_requires_approval": true
+  },
+  "quality_guardrail": "Maximum justifiable visibility, not doorway spam. Every generated asset must be useful, differentiated, specific to a real service area/job type, noindex while private, and approval-gated before public indexing.",
+  "audos_hooks_to_reuse": [
+    "valen-kernel-sem",
+    "kestowv-dispatch",
+    "create-preview-microsite-v2",
+    "generate-site-from-card-v2",
+    "queue-runtime-shipment",
+    "record-runtime-shipment-result",
+    "valen-get-funnel-metrics",
+    "valen-get-campaigns",
+    "valen-request-test"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "public_data_sources": [
+    {
+      "name": "US Census ACS 5-year profile API",
+      "url": "https://api.census.gov/data/2023/acs/acs5/profile",
+      "fields": ["NAME", "DP05_0001E"],
+      "use": "Population enrichment for California place records."
+    },
+    {
+      "name": "OpenStreetMap Nominatim",
+      "url": "https://nominatim.openstreetmap.org/search",
+      "fields": ["lat", "lon", "display_name", "boundingbox"],
+      "use": "Open geocoding and bounding-box enrichment for city pages."
+    },
+    {
+      "name": "schema.org vocabulary",
+      "url": "https://schema.org",
+      "fields": ["Plumber", "Service", "FAQPage", "BreadcrumbList"],
+      "use": "Structured-data vocabulary used by generated pages."
+    }
+  ],
+  "manual_sources": [
+    "Current Masterflow root page copy and public phone/license.",
+    "William direction that Corona is the main service hub and Murrieta is a subsection.",
+    "Public service-area cities already listed in the Masterflow page."
+  ]
+}

@@ -26,6 +26,8 @@ This manifest keeps the client artifact honest.
 | WWW custom domain | Active: `www.masterflowplumbing.net`; public root returned the hash-matched R2 object on 2026-06-16. Cloudflare SSL status was still pending immediately after binding. |
 | CORS | Applied read-only GET/HEAD CORS policy; live response includes `access-control-allow-origin: *` for cross-origin requests. |
 | Wrapper compile proof | `landing.tsx` bundles with esbuild. |
+| SEO handoff | Present: `seo-handoff-2026-06-23.md` captures the canonical `.us` decision, redirect priority, missing production sitemap, homepage title/H1 recommendation, media-performance findings, and first page-promotion queue. |
+| SEO engine source | Present: `seo/` contains the local SEO engine, source data, generation scripts, and latest reports. Preview output remains intentionally separate from the reviewed root homepage. |
 | Local build proof | Not attached in this repo. |
 | Screenshot proof | Not attached in this repo. |
 | Live URL proof | `https://masterflowplumbing.net/`, `https://www.masterflowplumbing.net/`, and `https://masterflowplumbing.net/index.html?release=masterflow-plumbing-r2-20260616` returned the hash-matched R2 object on 2026-06-16. |
@@ -51,3 +53,7 @@ Do not add without fresh approval:
 
 Next proof to attach: screenshot plus live URL or draft URL, with the date and
 who approved the artifact state.
+
+Next SEO execution step: promote the approved service/location pages from the
+generated preview state only after redirects, production sitemap, and indexable
+URL decisions are confirmed.

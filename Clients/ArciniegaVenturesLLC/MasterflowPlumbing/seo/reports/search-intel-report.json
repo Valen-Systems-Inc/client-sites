@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-06-17T04:14:24.918Z",
+  "ok": true,
+  "mode": "sample",
+  "counts": {
+    "markets": 1,
+    "services": 1,
+    "queries": 4,
+    "competitors": 15,
+    "errors": 0
+  },
+  "sources": [
+    "DuckDuckGo HTML search results"
+  ],
+  "notes": [
+    "Search intelligence is review-only and must not directly publish page claims.",
+    "Competitor hosts are candidates for manual review, not assertions of market rank.",
+    "Public publish, ads, outreach, and contact writes remain approval-gated."
+  ],
+  "errors": []
+}

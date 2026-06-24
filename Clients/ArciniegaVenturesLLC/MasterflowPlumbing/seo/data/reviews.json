@@ -1,0 +1,29 @@
+[
+  {
+    "first_name": "Local customer",
+    "city_slug": "corona",
+    "rating": 5,
+    "service_slug": "emergency-plumbing",
+    "text": "Fast response, clear explanation, and the repair area was left clean.",
+    "consented": true,
+    "source": "sanitized-public-summary"
+  },
+  {
+    "first_name": "Homeowner",
+    "city_slug": "riverside",
+    "rating": 5,
+    "service_slug": "drain-cleaning",
+    "text": "The drain issue was handled professionally and the next steps were easy to understand.",
+    "consented": true,
+    "source": "sanitized-public-summary"
+  },
+  {
+    "first_name": "Business owner",
+    "city_slug": "ontario",
+    "rating": 5,
+    "service_slug": "sewer-line-repair",
+    "text": "The crew diagnosed the sewer problem and kept the work practical instead of overcomplicating it.",
+    "consented": true,
+    "source": "sanitized-public-summary"
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "name": "masterflow-plumbing-local-seo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Localized static SEO engine for Masterflow Plumbing client-site artifacts.",
+  "scripts": {
+    "seo:enrich": "node seo/engine/enrich-regions.mjs",
+    "seo:build": "node seo/engine/build.mjs --full --out=seo-preview",
+    "seo:preview": "node seo/engine/build.mjs --limit-markets=3 --limit-services=4 --out=seo-preview",
+    "seo:serve": "node seo/engine/server.mjs",
+    "seo:test": "node seo/engine/test.mjs",
+    "seo:intel": "node seo/engine/collect-search-intel.mjs",
+    "seo:queue": "node seo/engine/build-microsite-queue.mjs",
+    "seo:deploy-preview": "node seo/engine/deploy-r2-preview.mjs --prefix=seo-preview",
+    "seo:publish-audos": "node seo/engine/publish-audos-engine.mjs",
+    "seo:stage-microsite": "node seo/engine/stage-audos-microsite.mjs"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "cheerio": "1.0.0",
+    "eta": "3.5.0",
+    "fast-glob": "3.3.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

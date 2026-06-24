@@ -6,5 +6,6 @@ node_modules/
 **/node_modules/
 **/output/
 **/tmp/
+**/seo-preview/
 .DS_Store
 **/.DS_Store
