@@ -4,20 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bl4den</title>
+    <title>Bladen</title>
 
-    <meta property="og:title" content="Bl4den" />
-    <meta name="description" content="Bl4den PROM NIGHT phone site." />
-    <meta property="og:description" content="Bl4den PROM NIGHT phone site." />
-    <meta property="og:image" content="summer.jpg" />
+    <meta property="og:title" content="Bladen" />
+    <meta name="description" content="Bladen PROM NIGHT phone site." />
+    <meta property="og:description" content="Bladen PROM NIGHT phone site." />
+    <meta property="og:image" content="prom-night-bg.jpg" />
     <meta property="og:url" content="https://bl4den.com" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Bl4den" />
+    <meta property="og:site_name" content="Bladen" />
 
-    <meta name="twitter:title" content="Bl4den" />
-    <meta name="twitter:description" content="Bl4den PROM NIGHT phone site." />
+    <meta name="twitter:title" content="Bladen" />
+    <meta name="twitter:description" content="Bladen PROM NIGHT phone site." />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="summer.jpg" />
+    <meta name="twitter:image" content="prom-night-bg.jpg" />
 
 
     <link rel="icon" href="icons/c32.png" sizes="32x32" type="image/png">
@@ -74,9 +74,9 @@
             z-index: 10;
             height: 100%;
             width: 100vw;
-            /* background-image: url(lock.jpg); */
-            background-size: 100% 100%;
-            background-position: center;
+            background-image: url(prom-night-bg.jpg);
+            background-size: cover;
+            background-position: center top;
 
 
 
@@ -85,10 +85,9 @@
         #iphonediv {
             height: 100dvh;
             width: 100vw;
-            /* background-color: aqua; */
-            background-image: url(vodka.jpg);
-            background-size: 100% 100dvh;
-            background-position: center;
+            background-image: url(prom-night-bg.jpg);
+            background-size: cover;
+            background-position: center top;
             z-index: 1;
 
             display: flex;
@@ -132,12 +131,105 @@
         }
 
         #topright .radio-status {
-            font-size: 3vw;
+            display: flex;
+            align-items: center;
+            gap: 1.2vw;
             white-space: nowrap;
         }
 
-        #topright img {
+        .status-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 4vw;
+            width: 4vw;
+        }
+
+        .wifi-symbol {
+            position: relative;
+            width: 4.8vw;
+            height: 3.8vw;
+        }
+
+        .wifi-symbol::before,
+        .wifi-symbol::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            border: 0.55vw solid transparent;
+            border-top-color: white;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        .wifi-symbol::before {
+            bottom: 0;
+            width: 4.8vw;
+            height: 4.8vw;
+        }
+
+        .wifi-symbol::after {
+            bottom: 0.9vw;
+            width: 2.8vw;
+            height: 2.8vw;
+        }
+
+        .wifi-dot {
+            position: absolute;
+            bottom: 0.2vw;
+            left: 50%;
+            width: 0.8vw;
+            height: 0.8vw;
+            background: white;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bluetooth-symbol svg {
+            width: 3.2vw;
+            height: 4.6vw;
+            fill: none;
+            stroke: white;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 1.7;
+        }
+
+        .battery-percent {
+            font-size: 3.5vw;
+        }
+
+        .battery-icon {
+            position: relative;
             width: 8vw;
+            height: 3.8vw;
+            border: 0.45vw solid white;
+            border-radius: 0.8vw;
+            box-sizing: border-box;
+            display: inline-block;
+            margin-right: 1vw;
+        }
+
+        .battery-icon::after {
+            content: "";
+            position: absolute;
+            right: -1.1vw;
+            top: 50%;
+            width: 0.7vw;
+            height: 1.7vw;
+            background: white;
+            border-radius: 0 0.35vw 0.35vw 0;
+            transform: translateY(-50%);
+        }
+
+        .battery-fill {
+            position: absolute;
+            left: 0.35vw;
+            top: 0.35vw;
+            bottom: 0.35vw;
+            width: 55%;
+            border-radius: 0.35vw;
+            background: #67d949;
         }
 
         #bottom {
@@ -172,9 +264,9 @@
             align-items: center;
             flex-direction: column;
 
-            background-image: url(summer.jpg);
-            background-size: 120% 100%;
-            background-position: center;
+            background-image: url(prom-night-bg.jpg);
+            background-size: cover;
+            background-position: center top;
         }
 
 
@@ -203,6 +295,10 @@
             align-items: center;
             flex-direction: column;
             animation: fadeinsize 0.3s ease-in-out forwards;
+            background-image: url(prom-night-bg.jpg);
+            background-size: cover;
+            background-position: center top;
+            overflow: hidden;
         }
 
         @keyframes fadeinsize {
@@ -224,6 +320,12 @@
             grid-template-columns: repeat(4, 1fr);
 
             grid-template-rows: repeat(3, 1fr);
+            width: 100%;
+            flex: 1;
+            align-content: start;
+            box-sizing: border-box;
+            gap: clamp(4px, 1.1dvh, 12px) 0;
+            padding-top: clamp(18px, 7dvh, 58px);
 
 
 
@@ -234,7 +336,7 @@
         }
 
         #main a {
-            padding: 2vw;
+            padding: min(1.5vw, 6px);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -251,21 +353,23 @@
             width: 100%;
             height: 100%;
 
-            border-radius: 5vw;
+            border-radius: min(4vw, 16px);
             /* animation: camerapull 0.3s linear forwards; */
         }
 
         #main a p {
-            margin-top: 1vw;
-            font-size: 3vw;
+            margin-top: min(1vw, 4px);
+            font-size: min(3vw, 12px);
+            text-align: center;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
         }
 
         .downloadOverlay {
 
-            border-radius: 5vw;
+            border-radius: min(4vw, 16px);
 
-            width: 20vw;
-            height: 20vw;
+            width: min(18vw, 70px);
+            height: min(18vw, 70px);
             position: relative;
 
             display: flex;
@@ -315,18 +419,20 @@
             justify-content: center;
             align-items: center;
             width: 100vw;
+            flex: 0 0 auto;
+            padding-bottom: max(6px, env(safe-area-inset-bottom));
         }
 
         #bottomappdiv a img {
-            width: 22vw;
-            height: 22vw;
+            width: min(19vw, 74px);
+            height: min(19vw, 74px);
         }
 
         #table {
             bottom: 0;
             z-index: -1;
             width: 100vw;
-            height: 17vw;
+            height: min(16vw, 62px);
             position: absolute;
 
         }
@@ -1509,16 +1615,10 @@
             text-shadow: 0 0.3vw 0.8vw rgba(0, 0, 0, 0.35);
         }
 
-        .musiclyicon {
-            background:
-                radial-gradient(circle at 70% 25%, rgba(255, 255, 255, 0.28), transparent 25%),
-                linear-gradient(135deg, #18f6ef 0%, #101010 46%, #ff2f70 100%);
-        }
-
-        .musiclyicon p {
-            font-size: 11vw;
-            font-family: Georgia, serif;
-            font-style: italic;
+        .musiclyicon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .mailicon {
@@ -1615,9 +1715,18 @@
 
             </div>
             <div id="topright">
-                <p class="radio-status">Wi-Fi BT</p>
-                <p>77%</p>
-                <img src="icons/bat.png" alt="">
+                <div class="radio-status" aria-label="Wi-Fi and Bluetooth enabled">
+                    <span class="status-icon wifi-symbol" aria-hidden="true"><span class="wifi-dot"></span></span>
+                    <span class="status-icon bluetooth-symbol" aria-hidden="true">
+                        <svg viewBox="0 0 16 24">
+                            <path d="M7 2v20l6-6-6-5 6-5-6-4Z" />
+                            <path d="M2.5 6.5 13 16" />
+                            <path d="M2.5 17.5 13 8" />
+                        </svg>
+                    </span>
+                </div>
+                <p class="battery-percent">77%</p>
+                <span class="battery-icon" aria-hidden="true"><span class="battery-fill"></span></span>
             </div>
         </div>
 
@@ -1648,12 +1757,12 @@
                 <div id="storemidmargin">
                     <div class="shirtdiv">
                         <div>
-                            <img id="appicon" class="shirt reflect" src="appstore/st.png" alt="">
+                            <img id="appicon" class="shirt reflect" src="prom-night-bg.jpg" alt="">
                         </div>
                         <div class="shirttitle">
                             <p id="apptitle" class="shirthead">PROM NIGHT</p>
                             <p id="appcomp" style="color: rgb(66, 66, 66);margin-top: 1vw; font-size: 3.5vw;">
-                                Bl4den</p>
+                                Bladen</p>
                             <!-- <p style="color: rgb(66, 66, 66); margin-top: 2vw; font-size: 3vw;">⭐️⭐️⭐️⭐️⭐️ 132 reviews
                             </p> -->
 
@@ -1682,7 +1791,7 @@
                                 </div>
 
 
-                                <a id="buy" onclick="createDirectCheckout()">$30</a>
+                                <a id="buy" onclick="showUnavailable()">NOT AVAILABLE</a>
                             </div>
 
 
@@ -1740,19 +1849,19 @@
 
                     </div>
 
-                    <div onclick="app(this)" class="appdiv" id="tt" data-title="PROM NIGHT" data-comp="Bl4den"
-                        data-icon="appstore/st.png"
+                    <div onclick="app(this)" class="appdiv" id="tt" data-title="PROM NIGHT" data-comp="Bladen"
+                        data-icon="prom-night-bg.jpg"
                         data-des='PROM NIGHT releases August 25th.<br><br>Upcoming shows July 24th.<br><br><a href="https://www.instagram.com/1bladen/" style="color: blue;" target="_blank">@1bladen</a>'
-                        data-button="AUG 25" data-rev="934"
-                        data-images="cat/g6.png, cat/b1.png, cat/b4.png, cat/g4.png, cat/b2.png">
+                        data-button="NOT AVAILABLE" data-rev="934"
+                        data-images="prom-night-bg.jpg">
 
                         <div class="applogodiv">
                             <img class="overapplogo" src="icons/over.png" alt="">
-                            <img class="applogo" src="appstore/st.png" alt="">
+                            <img class="applogo" src="prom-night-bg.jpg" alt="">
                         </div>
 
                         <div class="appdes">
-                            <p class="appcorp">Bl4den</p>
+                            <p class="appcorp">Bladen</p>
                             <p class="apphead">PROM NIGHT</p>
                             <!-- <p class="appstar">⭐️⭐️⭐️⭐️⭐️ 132 Ratings</p> -->
 
@@ -1767,13 +1876,13 @@
                             </div>
                         </div>
                         <div class="appprice">
-                            <p>$30</p>
+                            <p>NOT AVAILABLE</p>
                             <p>></p>
                         </div>
                     </div>
 
                     <div onclick="app(this)" class="appdiv" data-title="July 24th" data-comp="Upcoming Shows"
-                        data-icon="icons/designer.png" data-des='Upcoming shows July 24th.<br><br>More details through Bl4den.' data-button="SOON" data-rev="0"
+                        data-icon="icons/designer.png" data-des='Upcoming shows July 24th.<br><br>More details through Bladen.' data-button="NOT AVAILABLE" data-rev="0"
                         data-images="appstore/dong-nguyen.jpg">
 
                         <div class="applogodiv">
@@ -1801,10 +1910,10 @@
                         </div>
                     </div>
 
-                    <div onclick="app(this)" class="appdiv" data-title="bl4den.com" data-comp="Bl4den"
+                    <div onclick="app(this)" class="appdiv" data-title="bl4den.com" data-comp="Bladen"
                         data-icon="appstore/bundle.png"
-                        data-des='Official Bl4den site.<br><br><a href="https://bl4den.com" style="color: blue;" target="_blank">bl4den.com</a>'
-                        data-button="OPEN" data-rev="590" data-link="https://bl4den.com"
+                        data-des='Official Bladen site.<br><br><a href="https://bl4den.com" style="color: blue;" target="_blank">bl4den.com</a>'
+                        data-button="NOT AVAILABLE" data-rev="590"
                         data-images="appstore/2.webp, appstore/dbb/1.png, appstore/dbb/3.png, appstore/dbg/1.png">
 
                         <div class="applogodiv">
@@ -1813,7 +1922,7 @@
                         </div>
 
                         <div class="appdes">
-                            <p class="appcorp">Bl4den</p>
+                            <p class="appcorp">Bladen</p>
                             <p class="apphead">bl4den.com</p>
                             <!-- <p class="appstar">⭐️⭐️⭐️⭐️⭐️ 590 Ratings</p> -->
 
@@ -1837,8 +1946,8 @@
 
                     <div onclick="app(this)" class="appdiv" data-title="Fan Mail" data-comp="Mail"
                         data-icon="appstore/iam.jpeg"
-                        data-des='Send fan mail to Bl4den.<br><br><a href="mailto:booking@bl4den.com?subject=Bl4den%20fan%20mail&body=PROM%20NIGHT%0A%0AHey%20Bl4den%2C" style="color: blue;">booking@bl4den.com</a>'
-                        data-button="MAIL" data-rev="275" data-link="mailto:booking@bl4den.com?subject=Bl4den%20fan%20mail&body=PROM%20NIGHT%0A%0AHey%20Bl4den%2C" data-images="appstore/rich.png">
+                        data-des='Send fan mail to Bladen.<br><br><a href="mailto:booking@bl4den.com" style="color: blue;">booking@bl4den.com</a>'
+                        data-button="MAIL" data-rev="275" data-link="mailto:booking@bl4den.com" data-images="appstore/rich.png">
 
                         <div class="applogodiv">
                             <img class="overapplogo" src="icons/over.png" alt="">
@@ -1905,7 +2014,7 @@
             <div id="notebgdiv">
                 <div id="notedate">
                     <p style="font-weight: bold;">Today</p>
-                    <p>July 24th 23:17</p>
+                    <p>July 24th 12:06</p>
                 </div>
                 <p id="note">PROM NIGHT
                     <br><br>album releases August 25th
@@ -1953,7 +2062,7 @@
 
 
             <div id="appdiv">
-                <a href="https://music.youtube.com/search?q=Bl4den" target="_blank">
+                <a href="https://music.youtube.com/search?q=Bladen" target="_blank">
 
                     <div class="downloadOverlay">
                         <div class="dwo"></div>
@@ -1962,7 +2071,7 @@
                     <p>YouTube</p>
                 </a>
 
-                </a><a href="https://open.spotify.com/search/bl4den" target="_blank">
+                </a><a href="https://open.spotify.com/artist/5yy8AHJKcE24IEgd4wvj3H?si=N8ZSKqDCQlaYhUoksweOfA" target="_blank">
                     <div class="downloadOverlay">
                         <div class="dwo"></div>
                         <img src="icons/spotify.png" alt="">
@@ -2003,17 +2112,17 @@
                     <p>Instagram</p>
                 </a>
 
-                <a href="https://www.tiktok.com/search?q=bl4den" target="_blank">
+                <a href="https://www.tiktok.com/@1bladen?_r=1&_t=ZP-97AcM02pYVC" target="_blank">
                     <div class="downloadOverlay">
                         <div class="dwo"></div>
                         <div class="customapp musiclyicon">
-                            <p>m</p>
+                            <img src="icons/musically.jpg" alt="">
                         </div>
                     </div>
                     <p>musical.ly</p>
                 </a>
 
-                <a href="https://music.apple.com/us/search?term=bl4den" target="_blank">
+                <a href="https://music.apple.com/us/artist/bladen/6779022898" target="_blank">
                     <div class="downloadOverlay">
                         <div class="dwo"></div>
                         <img src="icons/applemusic.png" alt="">
@@ -2021,7 +2130,7 @@
                     <p>Apple Music</p>
                 </a>
 
-                <a href="mailto:booking@bl4den.com?subject=Bl4den%20fan%20mail&body=PROM%20NIGHT%0A%0AHey%20Bl4den%2C">
+                <a href="mailto:booking@bl4den.com">
                     <div class="downloadOverlay">
                         <div class="dwo"></div>
                         <div class="customapp mailicon"></div>
@@ -2054,7 +2163,7 @@
 
 </body>
 
-<!-- BL4DEN HOME SCREEN -->
+<!-- BLADEN HOME SCREEN -->
 <script>
     function randomizeHomeApps() {
         const appDiv = document.getElementById("appdiv");
@@ -2152,8 +2261,12 @@
     const STORE_DOMAIN = "";
     const API_TOKEN = "";
 
+    function showUnavailable() {
+        alert("This application is temporarily unavailable.");
+    }
+
     async function createDirectCheckout() {
-        alert("PROM NIGHT releases August 25th.");
+        showUnavailable();
         return;
 
         const button = document.getElementById('buy-btn');
@@ -2497,7 +2610,7 @@
             document.getElementById("ssize").style.display = "none";
             document.getElementById("sq").style.display = "none";
 
-            button.onclick = null;
+            button.onclick = showUnavailable;
 
             if (data.link) {
                 button.onclick = function () {
@@ -2864,7 +2977,7 @@
                 navigator.share({
                     files: [file],
                     title: 'Shot on Iphone',
-                    text: 'Shot on Bl4den'
+                    text: 'Shot on Bladen'
                 }).catch(err => {
                     console.log('Share failed, opening preview instead:', err);
                     const url = URL.createObjectURL(blob);
@@ -2990,32 +3103,30 @@
 <!-- TIME -->
 <script>
     const locktime = document.getElementById("locktime");
+    const californiaClock = new Intl.DateTimeFormat("en-US", {
+        hour: "numeric",
+        hour12: true,
+        minute: "2-digit",
+        timeZone: "America/Los_Angeles"
+    });
+
+    function getCaliforniaTime() {
+        const parts = californiaClock.formatToParts(new Date());
+        const hour = parts.find(part => part.type === "hour")?.value || "12";
+        const minute = parts.find(part => part.type === "minute")?.value || "00";
+        return `${hour}:${minute}`;
+    }
+
     function updateTime() {
         const timeEl = document.getElementById("time");
 
         if (!timeEl) {
             return;
         }
-        const now = new Date();
-
-        let hours = now.getHours();
-        let minutes = now.getMinutes();
-
-        // Optional: leading zero for nicer format
-        if (hours < 10) hours = "0" + hours;
-        if (minutes < 10) minutes = "0" + minutes;
-
-        timeEl.textContent = `${hours}:${minutes}`;
+        const displayTime = getCaliforniaTime();
+        timeEl.textContent = displayTime;
         if (opened === true) {
-            let displayHours = now.getHours();
-            let period = displayHours >= 12 ? "PM" : "AM";
-
-
-            displayHours = displayHours % 12 || 12;
-
-
-
-            locktime.textContent = `${displayHours}:${minutes} ${period}`;
+            locktime.textContent = displayTime;
         }
     }
 
@@ -3032,6 +3143,7 @@
     function updateDate() {
         const dateEl = document.getElementById("date");
         const now = new Date();
+        const californiaDate = new Date(now.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
 
         const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         const months = [
@@ -3039,9 +3151,9 @@
             "July", "August", "September", "October", "November", "December"
         ];
 
-        const day = days[now.getDay()];
-        const month = months[now.getMonth()];
-        const date = now.getDate();
+        const day = days[californiaDate.getDay()];
+        const month = months[californiaDate.getMonth()];
+        const date = californiaDate.getDate();
 
         dateEl.textContent = `${day}, ${month} ${date}`;
     }
