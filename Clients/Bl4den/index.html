@@ -133,7 +133,7 @@
         #topright .radio-status {
             display: flex;
             align-items: center;
-            gap: 1.2vw;
+            gap: 0.9vw;
             white-space: nowrap;
         }
 
@@ -146,43 +146,17 @@
         }
 
         .wifi-symbol {
-            position: relative;
-            width: 4.8vw;
-            height: 3.8vw;
+            width: 5vw;
+            height: 4.4vw;
         }
 
-        .wifi-symbol::before,
-        .wifi-symbol::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            border: 0.55vw solid transparent;
-            border-top-color: white;
-            border-radius: 50%;
-            transform: translateX(-50%);
-        }
-
-        .wifi-symbol::before {
-            bottom: 0;
-            width: 4.8vw;
-            height: 4.8vw;
-        }
-
-        .wifi-symbol::after {
-            bottom: 0.9vw;
-            width: 2.8vw;
-            height: 2.8vw;
-        }
-
-        .wifi-dot {
-            position: absolute;
-            bottom: 0.2vw;
-            left: 50%;
-            width: 0.8vw;
-            height: 0.8vw;
-            background: white;
-            border-radius: 50%;
-            transform: translateX(-50%);
+        .wifi-symbol svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: white;
+            stroke-linecap: round;
+            stroke-width: 2.2;
         }
 
         .bluetooth-symbol svg {
@@ -298,7 +272,6 @@
             background-image: url(prom-night-bg.jpg);
             background-size: cover;
             background-position: center top;
-            overflow: hidden;
         }
 
         @keyframes fadeinsize {
@@ -320,12 +293,6 @@
             grid-template-columns: repeat(4, 1fr);
 
             grid-template-rows: repeat(3, 1fr);
-            width: 100%;
-            flex: 1;
-            align-content: start;
-            box-sizing: border-box;
-            gap: clamp(4px, 1.1dvh, 12px) 0;
-            padding-top: clamp(18px, 7dvh, 58px);
 
 
 
@@ -336,7 +303,7 @@
         }
 
         #main a {
-            padding: min(1.5vw, 6px);
+            padding: 2vw;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -353,23 +320,21 @@
             width: 100%;
             height: 100%;
 
-            border-radius: min(4vw, 16px);
+            border-radius: 5vw;
             /* animation: camerapull 0.3s linear forwards; */
         }
 
         #main a p {
-            margin-top: min(1vw, 4px);
-            font-size: min(3vw, 12px);
-            text-align: center;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+            margin-top: 1vw;
+            font-size: 3vw;
         }
 
         .downloadOverlay {
 
-            border-radius: min(4vw, 16px);
+            border-radius: 5vw;
 
-            width: min(18vw, 70px);
-            height: min(18vw, 70px);
+            width: 20vw;
+            height: 20vw;
             position: relative;
 
             display: flex;
@@ -419,20 +384,18 @@
             justify-content: center;
             align-items: center;
             width: 100vw;
-            flex: 0 0 auto;
-            padding-bottom: max(6px, env(safe-area-inset-bottom));
         }
 
         #bottomappdiv a img {
-            width: min(19vw, 74px);
-            height: min(19vw, 74px);
+            width: 22vw;
+            height: 22vw;
         }
 
         #table {
             bottom: 0;
             z-index: -1;
             width: 100vw;
-            height: min(16vw, 62px);
+            height: 17vw;
             position: absolute;
 
         }
@@ -1716,7 +1679,13 @@
             </div>
             <div id="topright">
                 <div class="radio-status" aria-label="Wi-Fi and Bluetooth enabled">
-                    <span class="status-icon wifi-symbol" aria-hidden="true"><span class="wifi-dot"></span></span>
+                    <span class="status-icon wifi-symbol" aria-hidden="true">
+                        <svg viewBox="0 0 24 18">
+                            <path d="M3 5.5c5-4 13-4 18 0" />
+                            <path d="M7 9.5c2.9-2.2 7.1-2.2 10 0" />
+                            <path d="M11.2 13.3c0.5-0.4 1.1-0.4 1.6 0" />
+                        </svg>
+                    </span>
                     <span class="status-icon bluetooth-symbol" aria-hidden="true">
                         <svg viewBox="0 0 16 24">
                             <path d="M7 2v20l6-6-6-5 6-5-6-4Z" />
