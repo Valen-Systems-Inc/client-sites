@@ -10,9 +10,8 @@
   <meta property="og:description" content="Available 24/7 for drain cleaning, sewer line repair, hydro jetting, camera inspections, water leaks, and emergency plumbing. Proudly serving Corona and the Inland Empire.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://masterflowplumbing.us/">
-  <meta property="og:image" content="https://masterflowplumbing.us/media/masterflow-company-van-1.jpg">
+  <meta property="og:image" content="https://masterflowplumbing.us/media/masterflow-social-card.jpg">
   <meta property="og:locale" content="en_US">
-  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#011633">
   <script type="application/ld+json">
     {
@@ -628,36 +627,63 @@
       background: var(--soft);
     }
 
-    .stats-section {
+    .service-proof {
       background: var(--navy);
       color: var(--white);
       padding: 76px 20px;
     }
 
-    .stats-grid {
-      border-top: 1px solid rgba(255, 255, 255, 0.18);
-      display: grid;
-      gap: 32px 48px;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    .service-proof-inner {
       margin: 0 auto;
-      max-width: 980px;
-      padding-top: 42px;
+      max-width: 1120px;
     }
 
-    .stat-number {
+    .service-proof-header {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      margin-bottom: 34px;
+    }
+
+    .service-proof h2 {
+      color: var(--white);
+      font-size: clamp(2.2rem, 5vw, 4.25rem);
+      line-height: 1.05;
+      margin: 0;
+    }
+
+    .service-proof .lede {
+      color: rgba(255, 255, 255, 0.74);
+      font-size: clamp(1.02rem, 2vw, 1.25rem);
+      margin: 0;
+    }
+
+    .service-proof-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .service-proof-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      padding: 22px;
+    }
+
+    .service-proof-card strong {
       color: var(--white);
       display: block;
-      font-size: clamp(2.4rem, 5vw, 4.4rem);
-      font-weight: 800;
-      line-height: 0.95;
-      margin-bottom: 12px;
+      font-size: 1.02rem;
+      line-height: 1.2;
+      margin-bottom: 10px;
     }
 
-    .stat-label {
+    .service-proof-card span {
       color: rgba(255, 255, 255, 0.72);
       display: block;
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      line-height: 1.35;
+      font-size: .96rem;
+      line-height: 1.5;
     }
 
     .approach {
@@ -1215,7 +1241,7 @@
 
       .grid.services,
       .service-visuals,
-      .stats-grid,
+      .service-proof-grid,
       .star-proof,
       .payment-panel,
       .grid.areas,
@@ -1245,6 +1271,10 @@
       .hero-video {
         justify-self: center;
         width: min(220px, 42vw, calc(38svh * 9 / 16));
+      }
+
+      .service-proof-header {
+        grid-template-columns: 1fr;
       }
 
       .media-mosaic {
@@ -1293,7 +1323,7 @@
 
       .trust-row,
       .service-visuals,
-      .stats-grid,
+      .service-proof-grid,
       .star-proof,
       .payment-panel,
       .grid.services,
@@ -1305,7 +1335,7 @@
         grid-template-columns: 1fr;
       }
 
-      .stats-section {
+      .service-proof {
         padding: 56px 16px;
       }
 
@@ -1439,14 +1469,21 @@
       </div>
     </aside>
 
-    <section class="stats-section" aria-label="Masterflow Plumbing service proof">
-      <div class="stats-grid reveal">
-        <div><span class="stat-number">5.0</span><span class="stat-label">Star Rated Plumbing Service</span></div>
-        <div><span class="stat-number">24/7</span><span class="stat-label">Emergency Service Availability</span></div>
-        <div><span class="stat-number">CSLB</span><span class="stat-label">License #1156577</span></div>
-        <div><span class="stat-number">100%</span><span class="stat-label">Locally Owned and Operated</span></div>
-        <div><span class="stat-number">SoCal</span><span class="stat-label">Southern California Service Area</span></div>
-        <div><span class="stat-number">951</span><span class="stat-label">Direct Local Phone Support</span></div>
+    <section class="service-proof" aria-label="Masterflow Plumbing service proof">
+      <div class="service-proof-inner reveal">
+        <div class="service-proof-header">
+          <span class="section-kicker">Why Customers Call</span>
+          <div>
+            <h2>Fast plumbing help without the runaround.</h2>
+            <p class="lede">Masterflow handles emergency plumbing, drain cleaning, hydro jetting, sewer repairs, leak detection, water heaters, and commercial plumbing with clear estimates before approved work begins.</p>
+          </div>
+        </div>
+        <div class="service-proof-grid">
+          <div class="service-proof-card"><strong>Available 24/7</strong><span>Urgent leaks, clogged drains, sewer backups, and broken fixtures can be handled day or night.</span></div>
+          <div class="service-proof-card"><strong>Licensed Bonded &amp; Insured</strong><span>Lic #1156577. California plumbing contractor for residential and commercial work.</span></div>
+          <div class="service-proof-card"><strong>Drain, sewer, and water heaters</strong><span>One crew for the common problems customers actually need fixed fast.</span></div>
+          <div class="service-proof-card"><strong>Upfront estimate before work</strong><span>Clear options before the job starts, with estimate language customers can understand.</span></div>
+        </div>
       </div>
     </section>
 
@@ -1480,7 +1517,7 @@
           <p>Emergency plumbing, drain cleaning, water heater services, hydro jetting, sewer line repair, leak detection, and commercial trenchless sewer work for Corona and the Inland Empire.</p>
         </div>
         <div class="service-visuals reveal">
-          <article class="service-card"><img src="media/img-0634.jpg?v=rotation-20260617" width="1500" height="2000" alt="Masterflow service vehicle staged for emergency plumbing response" loading="lazy" decoding="async"><div class="service-copy"><h3>Emergency Plumbing</h3><p>24/7 emergency plumbing for burst pipes, active leaks, overflowing fixtures, sewer backups, and urgent repairs.</p></div></article>
+          <article class="service-card"><img src="media/masterflow-company-van-1.jpg" width="1800" height="1350" alt="Masterflow service vehicle staged for emergency plumbing response" loading="lazy" decoding="async"><div class="service-copy"><h3>Emergency Plumbing</h3><p>24/7 emergency plumbing for burst pipes, active leaks, overflowing fixtures, sewer backups, and urgent repairs.</p></div></article>
           <article class="service-card"><img src="media/img-6137.jpg?v=rotation-20260617" width="1500" height="2000" alt="Drain cleaning equipment staged for a rooter service call" loading="lazy" decoding="async"><div class="service-copy"><h3>Drain Cleaning</h3><p>Professional drain cleaning for kitchen, bathroom, laundry, and main sewer line clogs to restore proper flow and help prevent future problems.</p></div></article>
           <article class="service-card"><img src="media/img-0637.jpg?v=rotation-20260617" width="1500" height="2000" alt="Night service access point with drain equipment" loading="lazy" decoding="async"><div class="service-copy"><h3>Hydro Jetting</h3><p>Clear grease, roots, sludge, and heavy buildup with professional hydro jetting when the line is a good fit.</p></div></article>
           <article class="service-card"><img src="media/epoxy-sewer-liner-prep-commercial-3.jpg" width="1200" height="1600" alt="Epoxy sewer liner preparation staged for trenchless commercial sewer repair" loading="lazy" decoding="async"><div class="service-copy"><h3>Epoxy Sewer Liner Prep</h3><p>Prepare sewer lines for trenchless epoxy liner work with minimal intrusion to homes, businesses, parking lots, and commercial properties.</p></div></article>
@@ -1565,7 +1602,7 @@
           <figure class="media-tile landscape"><img src="media/epoxy-sewer-liner-prep-commercial-4.jpg" width="1200" height="1600" alt="Masterflow crew preparing commercial sewer liner work in a parking lot" loading="lazy" decoding="async"><figcaption><strong>Commercial Install Support</strong><span>Repairs and replacements</span></figcaption></figure>
           <figure class="media-tile phone focus-bottom"><img src="media/dc1a645d-e617-4475-ad94-ccf3bb26cc00.jpg" width="1125" height="2000" alt="Open trench plumbing work at a job site" loading="lazy" decoding="async"><figcaption><strong>Copper Line Repair</strong><span>Outdoor service</span></figcaption></figure>
           <figure class="media-tile landscape feature"><img src="media/img-1669.jpg" width="2000" height="1500" alt="Finished black drain pipe installation" loading="lazy" decoding="async"><figcaption><strong>Finished Sewer Line</strong><span>Clean repair work</span></figcaption></figure>
-          <figure class="media-tile tall"><img src="media/img-0634.jpg?v=rotation-20260617" width="1500" height="2000" alt="Masterflow service truck parked outside at night" loading="lazy" decoding="async"><figcaption><strong>Night Commercial Service</strong><span>24/7 dispatch</span></figcaption></figure>
+          <figure class="media-tile tall"><img src="media/masterflow-company-van-1.jpg" width="1800" height="1350" alt="Masterflow service truck parked outside at night" loading="lazy" decoding="async"><figcaption><strong>Night Commercial Service</strong><span>24/7 dispatch</span></figcaption></figure>
           <figure class="media-tile landscape"><img src="media/img-1619.jpg" width="2000" height="1500" alt="Underground pipe repair with exposed fittings" loading="lazy" decoding="async"><figcaption><strong>Sewer Access Work</strong><span>Rooter and sewer line service</span></figcaption></figure>
           <figure class="media-tile tall"><img src="media/img-1072.jpg?v=rotation-20260617" width="1500" height="2000" alt="Masterflow service truck at an outdoor utility line job" loading="lazy" decoding="async"><figcaption><strong>Utility Line Service</strong><span>Residential job site</span></figcaption></figure>
           <figure class="media-tile tall focus-bottom"><img src="media/img-0637.jpg?v=rotation-20260617" width="1500" height="2000" alt="Night service access point with drain equipment" loading="lazy" decoding="async"><figcaption><strong>After-Hours Drain Work</strong><span>Emergency response</span></figcaption></figure>
