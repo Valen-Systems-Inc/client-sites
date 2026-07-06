@@ -714,7 +714,7 @@ function buildPages({ business, markets, services, faqs, options }) {
   return pages;
 }
 
-function validateData({ business, markets, services, reviews, faqs }) {
+function validateData({ business, markets, services, reviews, faqs, allMarketSlugs, allServiceSlugs }) {
   const ajv = new Ajv({ allErrors: true });
   const validators = {
     business: ajv.compile(dataSchemas.business),
@@ -731,14 +731,22 @@ function validateData({ business, markets, services, reviews, faqs }) {
   });
   const marketSlugs = new Set(markets.map((market) => market.slug));
   const serviceSlugs = new Set(services.map((service) => service.slug));
+  // nearby_slugs may point at real markets excluded by a preview limit; rendering
+  // already tolerates that (see nearbyMarkets()'s filter(Boolean)), so validate
+  // against the full market universe rather than the possibly-truncated slice.
+  const nearbySlugs = allMarketSlugs ?? marketSlugs;
   for (const market of markets) {
     for (const nearby of market.nearby_slugs ?? []) {
-      if (!marketSlugs.has(nearby)) issues.push({ scope: `market:${market.slug}`, errors: [{ message: `nearby_slug ${nearby} is not defined` }] });
+      if (!nearbySlugs.has(nearby)) issues.push({ scope: `market:${market.slug}`, errors: [{ message: `nearby_slug ${nearby} is not defined` }] });
     }
   }
+  // reviews aren't filtered to the truncated preview markets/services anywhere in the
+  // pipeline, so their slug references should be checked against the full universe too.
+  const reviewCitySlugs = allMarketSlugs ?? marketSlugs;
+  const reviewServiceSlugs = allServiceSlugs ?? serviceSlugs;
   for (const review of reviews) {
-    if (review.city_slug && !marketSlugs.has(review.city_slug)) issues.push({ scope: "reviews", errors: [{ message: `review city_slug ${review.city_slug} is not defined` }] });
-    if (review.service_slug && !serviceSlugs.has(review.service_slug)) issues.push({ scope: "reviews", errors: [{ message: `review service_slug ${review.service_slug} is not defined` }] });
+    if (review.city_slug && !reviewCitySlugs.has(review.city_slug)) issues.push({ scope: "reviews", errors: [{ message: `review city_slug ${review.city_slug} is not defined` }] });
+    if (review.service_slug && !reviewServiceSlugs.has(review.service_slug)) issues.push({ scope: "reviews", errors: [{ message: `review service_slug ${review.service_slug} is not defined` }] });
     if (review.consented !== true) issues.push({ scope: "reviews", errors: [{ message: "review is not consented" }] });
   }
   if (!Array.isArray(faqs) || faqs.length < 4) issues.push({ scope: "faqs", errors: [{ message: "expected at least four common FAQs" }] });
@@ -1009,6 +1017,8 @@ export async function buildSeo(rawOptions = {}) {
     ...data.business,
     preview_prefix: normalizePrefix(options.routePrefix ?? data.business.preview_prefix),
   };
+  const allMarketSlugs = new Set(data.markets.map((market) => market.slug));
+  const allServiceSlugs = new Set(data.services.map((service) => service.slug));
   let markets = data.markets;
   let services = data.services;
   if (options.marketSlugs?.length) {
@@ -1024,7 +1034,7 @@ export async function buildSeo(rawOptions = {}) {
     if (Number.isFinite(options.limitServices)) services = services.slice(0, options.limitServices);
   }
 
-  const dataIssues = validateData({ ...data, markets, services });
+  const dataIssues = validateData({ ...data, markets, services, allMarketSlugs, allServiceSlugs });
   if (dataIssues.length) {
     const report = {
       allPass: false,
