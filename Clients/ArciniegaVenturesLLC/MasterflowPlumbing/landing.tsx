@@ -10,8 +10,8 @@ declare global {
 }
 
 // Production promotion guard: R2 owns the static payload; this wrapper only boots it.
-const CDN_BASE = "https://masterflowplumbing.net/";
-const CDN_RELEASE = "masterflow-plumbing-r2-20260616";
+const CDN_BASE = "https://clients.valen-systems.com/masterflow-plumbing/";
+const CDN_RELEASE = "mflow-v.1.0.6";
 
 function cdnUrl(fileName: string, includeRelease = true) {
   const url = new URL(fileName, CDN_BASE);
@@ -23,13 +23,13 @@ const CDN_ENTRY_URL = cdnUrl("index.html");
 const REWRITABLE_URL_ATTRIBUTES = ["href", "poster", "src"];
 
 function isExternalOrSpecialUrl(value: string) {
-  return /^(?:[a-z][a-z\d+\-.]*:|#|\/)/i.test(value);
+  return /^(?:[a-z][a-z\d+\-.]*:|#|\/\/)/i.test(value);
 }
 
 function resolveCdnAssetUrl(value: string) {
   const trimmed = value.trim();
   if (!trimmed || isExternalOrSpecialUrl(trimmed)) return value;
-  return new URL(trimmed, CDN_BASE).toString();
+  return new URL(trimmed.replace(/^\/+/, ""), CDN_BASE).toString();
 }
 
 function rewriteCssUrls(cssText: string) {
@@ -68,7 +68,9 @@ function rewriteElementUrls(root: ParentNode) {
   root.querySelectorAll<HTMLElement>("*").forEach((element) => {
     REWRITABLE_URL_ATTRIBUTES.forEach((attribute) => {
       const value = element.getAttribute(attribute);
-      if (value) element.setAttribute(attribute, resolveCdnAssetUrl(value));
+      if (!value) return;
+      if (attribute === "href" && element instanceof HTMLAnchorElement && value.startsWith("/")) return;
+      element.setAttribute(attribute, resolveCdnAssetUrl(value));
     });
 
     const srcset = element.getAttribute("srcset");

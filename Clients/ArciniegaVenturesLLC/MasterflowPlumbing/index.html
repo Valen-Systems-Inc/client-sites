@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="../../media/masterflow-logo-20260704.png">
   <title>Emergency Plumber in Corona, CA | Masterflow</title>
-  <meta name="description" content="Available 24/7 for drain cleaning, sewer line repair, hydro jetting, camera inspections, water leaks, and emergency plumbing. Proudly serving Corona and the Inland Empire.">
+  <meta name="description" content="Emergency plumbing, drains, sewer lines, leaks, water heaters, hydro jetting, camera inspections, and commercial plumbing from Masterflow in Corona.">
   <link rel="canonical" href="https://masterflowplumbing.us/">
   <meta property="og:title" content="Emergency Plumber in Corona, CA | Masterflow">
-  <meta property="og:description" content="Available 24/7 for drain cleaning, sewer line repair, hydro jetting, camera inspections, water leaks, and emergency plumbing. Proudly serving Corona and the Inland Empire.">
+  <meta property="og:description" content="Emergency plumbing, drains, sewer lines, leaks, water heaters, hydro jetting, camera inspections, and commercial plumbing from Masterflow in Corona.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://masterflowplumbing.us/">
   <meta property="og:image" content="https://masterflowplumbing.us/media/masterflow-social-card.jpg">
@@ -18,13 +19,13 @@
       "@context": "https://schema.org",
       "@type": "Plumber",
       "name": "Masterflow Plumbing & Rooter",
-      "description": "Available 24/7 for drain cleaning, sewer line repair, hydro jetting, camera inspections, water leaks, and emergency plumbing. Proudly serving Corona and the Inland Empire.",
+      "description": "Masterflow Plumbing & Rooter handles emergency plumbing, drains, sewer lines, leaks, water heaters, hydro jetting, camera inspections, and commercial work from a Corona-centered Southern California service area.",
       "url": "https://masterflowplumbing.us/",
       "telephone": "+19516127912",
       "image": "https://masterflowplumbing.us/media/masterflow-logo-20260704.png",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Murrieta",
+        "addressLocality": "Corona",
         "addressRegion": "CA",
         "addressCountry": "US"
       },
@@ -67,7 +68,7 @@
       "identifier": "CSLB #1156577",
       "sameAs": [
         "https://instagram.com/masterflow_plumbing",
-        "https://www.yelp.com/biz/masterflow-plumbing-murrieta-2"
+        "https://www.yelp.com/biz/masterflow-plumbing-lake-elsinore"
       ],
       "serviceType": [
         "Emergency plumbing",
@@ -87,7 +88,7 @@
       ]
     }
   </script>
-  <link rel="icon" href="/media/masterflow-logo-20260704.png">
+  <link rel="icon" href="../../media/masterflow-logo-20260704.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -205,20 +206,90 @@
     .navlinks {
       align-items: center;
       display: flex;
-      gap: 18px;
-    }
-
-    .navlink {
-      background: transparent;
-      border: 0;
-      color: inherit;
-      cursor: pointer;
-      font-size: 0.88rem;
-      font-weight: 700;
-      padding: 8px 0;
+      gap: 10px;
     }
 
     .navlink,
+    .service-menu > summary {
+      background: transparent;
+      border: 0;
+      border-radius: 999px;
+      color: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      font-size: 0.88rem;
+      font-weight: 700;
+      line-height: 1;
+      list-style: none;
+      padding: 10px;
+      white-space: nowrap;
+    }
+
+    .service-menu {
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    .service-menu > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .navlink:hover,
+    .service-menu[open] > summary,
+    .service-menu > summary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .nav.is-scrolled .navlink:hover,
+    .nav.is-scrolled .service-menu[open] > summary,
+    .nav.is-scrolled .service-menu > summary:hover {
+      background: rgba(1, 22, 51, 0.08);
+    }
+
+    .dropdown-panel {
+      background: var(--white);
+      border: 1px solid rgba(1, 22, 51, 0.14);
+      border-radius: 8px;
+      box-shadow: 0 22px 60px rgba(0, 11, 29, 0.24);
+      color: var(--ink);
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(2, minmax(180px, 1fr));
+      left: 50%;
+      min-width: 520px;
+      padding: 18px;
+      position: absolute;
+      top: calc(100% + 14px);
+      transform: translateX(-50%);
+    }
+
+    .dropdown-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    .dropdown-group strong {
+      color: var(--navy);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+
+    .dropdown-group a {
+      border-radius: 6px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 800;
+      padding: 7px 8px;
+    }
+
+    .dropdown-group a:hover {
+      background: var(--soft);
+      color: var(--navy);
+    }
+
+    .navlink,
+    .request-pill,
     .call-pill,
     .button-primary,
     .button-secondary,
@@ -226,7 +297,7 @@
       transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
     }
 
-    .navlink:hover,
+    .request-pill:hover,
     .call-pill:hover,
     .button-primary:hover,
     .button-secondary:hover,
@@ -234,11 +305,10 @@
       transform: translateY(-1px);
     }
 
+    .request-pill,
     .call-pill {
       align-items: center;
-      background: linear-gradient(135deg, var(--orange), var(--red-shadow));
       border-radius: 999px;
-      color: var(--white);
       display: inline-flex;
       font-weight: 800;
       gap: 8px;
@@ -246,6 +316,16 @@
       min-height: 42px;
       padding: 10px 18px;
       white-space: nowrap;
+    }
+
+    .request-pill {
+      border: 1px solid currentColor;
+      color: inherit;
+    }
+
+    .call-pill {
+      background: linear-gradient(135deg, var(--orange), var(--red-shadow));
+      color: var(--white);
     }
 
     .menu-toggle {
@@ -304,16 +384,55 @@
     }
 
     .mobile-menu button,
-    .mobile-menu a {
+    .mobile-menu a,
+    .mobile-menu summary {
       background: transparent;
       border: 0;
       color: var(--ink);
       cursor: pointer;
       display: block;
       font-weight: 700;
+      list-style: none;
       padding: 14px 12px;
       text-align: left;
       width: 100%;
+    }
+
+    .mobile-menu summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .mobile-menu details {
+      border-top: 1px solid var(--line);
+    }
+
+    .mobile-menu .mobile-service-link {
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 9px 12px 9px 28px;
+    }
+
+    .mobile-menu .mobile-actions {
+      display: grid;
+      gap: 10px;
+      padding: 10px 8px 4px;
+    }
+
+    .mobile-menu .mobile-actions a {
+      align-items: center;
+      border-radius: 999px;
+      display: flex;
+      justify-content: center;
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .mobile-menu .mobile-actions .request-pill {
+      border: 1px solid var(--line);
+    }
+
+    .mobile-menu .mobile-actions .call-pill {
+      color: var(--white);
     }
 
     .hero {
@@ -351,7 +470,8 @@
       align-items: center;
       display: grid;
       gap: clamp(28px, 5vw, 70px);
-      grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
+      grid-template-columns: minmax(0, 780px);
+      justify-content: start;
       margin: 0 auto;
       max-width: 1180px;
       position: relative;
@@ -435,6 +555,11 @@
       color: var(--white);
     }
 
+    .section-tint .button-secondary {
+      border-color: rgba(1, 22, 51, 0.24);
+      color: var(--navy);
+    }
+
     .trust-row {
       display: grid;
       gap: 22px;
@@ -462,20 +587,25 @@
     .proof-strip {
       background: var(--white);
       border-bottom: 1px solid var(--line);
+      border-top: 1px solid var(--line);
       padding: 0 20px;
     }
 
     .proof-strip-inner {
       display: grid;
-      gap: 1px;
+      gap: 0;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       margin: 0 auto;
       max-width: 1180px;
     }
 
     .proof-item {
-      background: var(--white);
-      padding: 22px 18px;
+      border-left: 1px solid var(--line);
+      padding: 24px 22px;
+    }
+
+    .proof-item:last-child {
+      border-right: 1px solid var(--line);
     }
 
     .proof-label {
@@ -483,33 +613,22 @@
       display: block;
       font-size: 0.72rem;
       font-weight: 800;
-      margin-bottom: 4px;
       text-transform: uppercase;
     }
 
     .proof-value {
       color: var(--navy);
       display: block;
+      font-size: 1rem;
       font-weight: 800;
+      margin-top: 6px;
     }
 
-    .hero-video {
-      aspect-ratio: 9 / 16;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      border-radius: 8px;
-      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.32);
-      justify-self: end;
-      overflow: hidden;
-      position: relative;
-      width: min(320px, 28vw, calc(58svh * 9 / 16));
-    }
-
-    .hero-video video {
-      background: var(--shadow-navy);
+    .proof-note {
+      color: var(--muted);
       display: block;
-      height: 100%;
-      object-fit: cover;
-      width: 100%;
+      font-size: 0.86rem;
+      margin-top: 4px;
     }
 
     section {
@@ -599,6 +718,15 @@
       margin-bottom: 0;
     }
 
+    .section-actions {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 28px;
+    }
+
     .card-accent {
       background: rgba(215, 220, 229, 0.22);
     }
@@ -625,129 +753,6 @@
 
     .section-tint {
       background: var(--soft);
-    }
-
-    .service-proof {
-      background: var(--navy);
-      color: var(--white);
-      padding: 76px 20px;
-    }
-
-    .service-proof-inner {
-      margin: 0 auto;
-      max-width: 1120px;
-    }
-
-    .service-proof-header {
-      display: grid;
-      gap: 18px;
-      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-      margin-bottom: 34px;
-    }
-
-    .service-proof h2 {
-      color: var(--white);
-      font-size: clamp(2.2rem, 5vw, 4.25rem);
-      line-height: 1.05;
-      margin: 0;
-    }
-
-    .service-proof .lede {
-      color: rgba(255, 255, 255, 0.74);
-      font-size: clamp(1.02rem, 2vw, 1.25rem);
-      margin: 0;
-    }
-
-    .service-proof-grid {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .service-proof-card {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 8px;
-      padding: 22px;
-    }
-
-    .service-proof-card strong {
-      color: var(--white);
-      display: block;
-      font-size: 1.02rem;
-      line-height: 1.2;
-      margin-bottom: 10px;
-    }
-
-    .service-proof-card span {
-      color: rgba(255, 255, 255, 0.72);
-      display: block;
-      font-size: .96rem;
-      line-height: 1.5;
-    }
-
-    .approach {
-      background: var(--navy);
-      color: var(--white);
-      text-align: center;
-    }
-
-    .approach h2 {
-      color: var(--white);
-      font-size: clamp(2.55rem, 6vw, 5.25rem);
-      line-height: 1.08;
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 1080px;
-    }
-
-    .approach p {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: clamp(1.08rem, 2vw, 1.55rem);
-      margin: 28px auto 0;
-      max-width: 900px;
-    }
-
-    .star-proof {
-      align-items: center;
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      box-shadow: 0 16px 36px rgba(0, 11, 29, 0.08);
-      display: grid;
-      gap: 22px;
-      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-      margin: 0 auto;
-      max-width: 960px;
-      padding: 26px;
-    }
-
-    .stars {
-      color: var(--orange);
-      display: block;
-      font-size: clamp(2.5rem, 6vw, 4.8rem);
-      letter-spacing: 0;
-      line-height: 1;
-      white-space: nowrap;
-    }
-
-    .star-rating {
-      color: var(--navy);
-      display: block;
-      font-size: clamp(2.3rem, 5vw, 4.2rem);
-      font-weight: 800;
-      line-height: 1;
-      margin-top: 8px;
-    }
-
-    .star-proof h2 {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      margin-bottom: 10px;
-    }
-
-    .star-proof p {
-      color: var(--muted);
-      margin-bottom: 0;
     }
 
     .field-media {
@@ -1166,19 +1171,6 @@
       padding-top: 22px;
     }
 
-    .site-credit {
-      color: rgba(255, 255, 255, 0.44);
-      font-size: 0.78rem;
-      margin: 10px auto 0;
-      max-width: 1180px;
-    }
-
-    .site-credit a {
-      color: rgba(255, 255, 255, 0.58);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
     .mobile-call-bar {
       align-items: center;
       background: rgba(0, 11, 29, 0.96);
@@ -1254,8 +1246,6 @@
 
       .grid.services,
       .service-visuals,
-      .service-proof-grid,
-      .star-proof,
       .payment-panel,
       .grid.areas,
       .grid.reviews,
@@ -1279,15 +1269,6 @@
 
       .trust-row {
         margin: 0 auto;
-      }
-
-      .hero-video {
-        justify-self: center;
-        width: min(220px, 42vw, calc(38svh * 9 / 16));
-      }
-
-      .service-proof-header {
-        grid-template-columns: 1fr;
       }
 
       .media-mosaic {
@@ -1330,14 +1311,8 @@
         width: 100%;
       }
 
-      .hero-video {
-        width: min(190px, 54vw, calc(34svh * 9 / 16));
-      }
-
       .trust-row,
       .service-visuals,
-      .service-proof-grid,
-      .star-proof,
       .payment-panel,
       .grid.services,
       .grid.areas,
@@ -1348,11 +1323,17 @@
         grid-template-columns: 1fr;
       }
 
-      .service-proof {
-        padding: 56px 16px;
+      .proof-item,
+      .proof-item:last-child {
+        border-left: 0;
+        border-right: 0;
+        border-top: 1px solid var(--line);
       }
 
-      .star-proof,
+      .proof-item:first-child {
+        border-top: 0;
+      }
+
       .payment-panel {
         padding: 22px;
       }
@@ -1421,103 +1402,137 @@
   <div class="progress" id="progress"></div>
   <header class="topbar">
     <nav class="nav" id="nav" aria-label="Primary navigation">
-      <a class="brand" href="#hero"><img src="/media/masterflow-logo-20260704.png" alt="" width="42" height="42"><span>Masterflow Plumbing</span></a>
+      <a class="brand" href="/"><img src="../../media/masterflow-logo-20260704.png" alt="Masterflow Plumbing logo" width="42" height="42"><span>Masterflow Plumbing</span></a>
       <div class="navlinks">
-        <button class="navlink" type="button" data-target="about">About</button>
-        <button class="navlink" type="button" data-target="services">Services</button>
-        <button class="navlink" type="button" data-target="commercial">Commercial</button>
-        <button class="navlink" type="button" data-target="areas">Areas</button>
-        <button class="navlink" type="button" data-target="testimonials">Reviews</button>
-        <button class="navlink" type="button" data-target="payment">Financing</button>
-        <button class="navlink" type="button" data-target="faq">FAQ</button>
-        <button class="navlink" type="button" data-target="contact">Contact</button>
+        <a class="navlink" href="/about">About</a>
+        <details class="service-menu" data-service-menu>
+          <summary>Services</summary>
+          <div class="dropdown-panel">
+            <div class="dropdown-group">
+              <strong>Priority Calls</strong>
+              <a href="/services/emergency-plumber">Emergency Plumber</a>
+              <a href="/services/drain-cleaning">Drain Cleaning</a>
+              <a href="/services/leak-detection">Leak Detection</a>
+              <a href="/services/water-heater-repair">Water Heater Services</a>
+            </div>
+            <div class="dropdown-group">
+              <strong>Drain and Sewer</strong>
+              <a href="/services/drain-cleaning">Drain Cleaning</a>
+              <a href="/services/hydro-jetting">Hydro Jetting</a>
+              <a href="/services/sewer-line-repair">Sewer Line Repair</a>
+            </div>
+            <div class="dropdown-group">
+              <strong>Repairs and Installs</strong>
+              <a href="/services/water-heater-repair">Water Heater Services</a>
+              <a href="/services/slab-leak-repair">Slab Leak Repair</a>
+              <a href="/services/repiping">Repiping</a>
+              <a href="/services/gas-line-services">Gas Line Plumbing</a>
+              <a href="/services/fixture-repair">Fixture Plumbing</a>
+            </div>
+            <div class="dropdown-group">
+              <strong>Commercial</strong>
+              <a href="/services/emergency-plumber">Emergency Plumber</a>
+              <a href="/services/hydro-jetting">Hydro Jetting</a>
+              <a href="/services/sewer-line-repair">Sewer Line Repair</a>
+              <a href="/services/leak-detection">Leak Detection</a>
+            </div>
+          </div>
+        </details>
+        <a class="navlink" href="/service-area">Service Area</a>
+        <a class="navlink" href="/commercial/">Commercial</a>
+        <a class="navlink" href="/blog/">Blog</a>
+        <a class="navlink" href="/reviews">Reviews</a>
+        <a class="navlink" href="/contact">Contact</a>
+        <a class="request-pill" href="/contact/#request-service">Request Service</a>
         <a class="call-pill" href="tel:9516127912" aria-label="Call Masterflow Plumbing at 951-612-7912">Call Now</a>
       </div>
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-controls="mobileMenu" aria-expanded="false"><span></span></button>
     </nav>
     <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-      <button type="button" data-target="hero">Home</button>
-      <button type="button" data-target="about">About</button>
-      <button type="button" data-target="services">Services</button>
-      <button type="button" data-target="commercial">Commercial</button>
-      <button type="button" data-target="areas">Areas</button>
-      <button type="button" data-target="testimonials">Reviews</button>
-      <button type="button" data-target="payment">Financing</button>
-      <button type="button" data-target="faq">FAQ</button>
-      <button type="button" data-target="contact">Contact</button>
-      <a href="tel:9516127912">Call 951-612-7912</a>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/services">All Services</a>
+      <details>
+        <summary>Priority Calls</summary>
+        <a class="mobile-service-link" href="/services/emergency-plumber">Emergency Plumber</a>
+        <a class="mobile-service-link" href="/services/drain-cleaning">Drain Cleaning</a>
+        <a class="mobile-service-link" href="/services/leak-detection">Leak Detection</a>
+        <a class="mobile-service-link" href="/services/water-heater-repair">Water Heater Services</a>
+      </details>
+      <details>
+        <summary>Drain and Sewer</summary>
+        <a class="mobile-service-link" href="/services/drain-cleaning">Drain Cleaning</a>
+        <a class="mobile-service-link" href="/services/hydro-jetting">Hydro Jetting</a>
+        <a class="mobile-service-link" href="/services/sewer-line-repair">Sewer Line Repair</a>
+      </details>
+      <details>
+        <summary>Repairs and Installs</summary>
+        <a class="mobile-service-link" href="/services/water-heater-repair">Water Heater Services</a>
+        <a class="mobile-service-link" href="/services/slab-leak-repair">Slab Leak Repair</a>
+        <a class="mobile-service-link" href="/services/repiping">Repiping</a>
+        <a class="mobile-service-link" href="/services/gas-line-services">Gas Line Plumbing</a>
+        <a class="mobile-service-link" href="/services/fixture-repair">Fixture Plumbing</a>
+      </details>
+      <details>
+        <summary>Commercial</summary>
+        <a class="mobile-service-link" href="/services/emergency-plumber">Emergency Plumber</a>
+        <a class="mobile-service-link" href="/services/hydro-jetting">Hydro Jetting</a>
+        <a class="mobile-service-link" href="/services/sewer-line-repair">Sewer Line Repair</a>
+        <a class="mobile-service-link" href="/services/leak-detection">Leak Detection</a>
+      </details>
+      <a href="/service-area">Service Area</a>
+      <a href="/commercial/">Commercial</a>
+      <a href="/blog/">Blog</a>
+      <a href="/reviews">Reviews</a>
+      <a href="/contact">Contact</a>
+      <div class="mobile-actions">
+        <a class="request-pill" href="/contact/#request-service">Request Service</a>
+        <a class="call-pill" href="tel:9516127912">Call 951-612-7912</a>
+      </div>
     </div>
   </header>
 
   <main>
     <section class="hero" id="hero">
-      <img class="hero-bg" src="media/masterflow-company-van-1.jpg" width="1800" height="1350" alt="" fetchpriority="high" decoding="async">
+      <img class="hero-bg" src="../../media/masterflow-company-van-1.jpg" width="1800" height="1350" alt="" fetchpriority="high" decoding="async">
       <div class="hero-inner">
         <div class="hero-copy">
           <span class="eyebrow">Emergency Plumber in Corona &bull; Lic #1156577</span>
           <h1>Emergency Plumber in Corona, CA</h1>
-          <p>Available 24/7 for drain cleaning, sewer line repair, hydro jetting, camera inspections, water leaks, and emergency plumbing. Proudly serving Corona and the Inland Empire.</p>
+          <p>Got a leak, clogged drain, sewer backup, or no hot water? Call Masterflow at 951-612-7912. We answer 24/7, and same-day service is available.</p>
           <div class="hero-actions">
-            <a class="button-primary" href="tel:9516127912">Call Now: 951-612-7912</a>
-            <a class="button-secondary" href="#contact">Request Service</a>
+            <a class="button-primary" href="tel:9516127912">Call for 24/7 Help</a>
+            <a class="button-secondary" href="/contact/#request-service">Request Service</a>
           </div>
           <div class="trust-row" aria-label="Trust indicators">
-            <div><span class="trust-number">5-Star</span><span class="trust-label">Rated</span></div>
-            <div><span class="trust-number">Licensed</span><span class="trust-label">&amp; Insured</span></div>
-            <div><span class="trust-number">24/7</span><span class="trust-label">Emergency Service</span></div>
+            <div><span class="trust-number">5-Star</span><span class="trust-label">Customer Rated</span></div>
+            <div><span class="trust-number">Lic #1156577</span><span class="trust-label">Bonded &amp; Insured</span></div>
+            <div><span class="trust-number">24/7</span><span class="trust-label">Emergency Response</span></div>
           </div>
         </div>
-        <figure class="hero-video" aria-label="Masterflow Plumbing field service video">
-          <video src="media/img-1059.mp4" poster="media/img-1059-poster.jpg" autoplay muted loop playsinline></video>
-        </figure>
       </div>
     </section>
 
-    <aside class="proof-strip" aria-label="Masterflow Plumbing quick proof">
+    <aside class="proof-strip" aria-label="Masterflow Plumbing service proof">
       <div class="proof-strip-inner">
-        <div class="proof-item"><span class="proof-label">Rated</span><span class="proof-value">5-Star Rated</span></div>
-        <div class="proof-item"><span class="proof-label">Protected</span><span class="proof-value">Licensed &amp; Insured</span></div>
-        <div class="proof-item"><span class="proof-label">Available</span><span class="proof-value">24/7 Emergency Service</span></div>
-        <div class="proof-item"><span class="proof-label">Call direct</span><span class="proof-value">951-612-7912</span></div>
+        <div class="proof-item"><span class="proof-label">Emergency Service</span><span class="proof-value">Call 24/7</span><span class="proof-note">Leaks, clogs, backups, burst pipes, and no hot water.</span></div>
+        <div class="proof-item"><span class="proof-label">Fast Scheduling</span><span class="proof-value">Same-day available</span><span class="proof-note">Call to check the schedule for your city and service.</span></div>
+        <div class="proof-item"><span class="proof-label">Price &amp; Payment</span><span class="proof-value">Upfront pricing and financing</span><span class="proof-note">Know the price before work starts and ask about financing.</span></div>
+        <div class="proof-item"><span class="proof-label">Protected</span><span class="proof-value">Licensed, bonded, insured</span><span class="proof-note">Lic #1156577. Ask which warranty or guarantee applies.</span></div>
       </div>
     </aside>
 
-    <section class="service-proof" aria-label="Masterflow Plumbing service proof">
-      <div class="service-proof-inner reveal">
-        <div class="service-proof-header">
-          <span class="section-kicker">Why Customers Call</span>
-          <div>
-            <h2>Fast plumbing help without the runaround.</h2>
-            <p class="lede">Masterflow handles emergency plumbing, drain cleaning, hydro jetting, sewer repairs, leak detection, water heaters, and commercial plumbing with clear estimates before approved work begins.</p>
-          </div>
+    <section id="about" class="section-tint">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <span class="section-kicker">What to expect</span>
+          <h2>Call us. We check the plumbing. You see the price first.</h2>
+          <p>Tell us where it is leaking, clogged, backing up, or losing hot water. We inspect the plumbing, explain what we found, and give you upfront pricing before work starts.</p>
         </div>
-        <div class="service-proof-grid">
-          <div class="service-proof-card"><strong>Available 24/7</strong><span>Urgent leaks, clogged drains, sewer backups, and broken fixtures can be handled day or night.</span></div>
-          <div class="service-proof-card"><strong>Licensed Bonded &amp; Insured</strong><span>Lic #1156577. California plumbing contractor for residential and commercial work.</span></div>
-          <div class="service-proof-card"><strong>Drain, sewer, and water heaters</strong><span>One crew for the common problems customers actually need fixed fast.</span></div>
-          <div class="service-proof-card"><strong>Upfront estimate before work</strong><span>Clear options before the job starts, with estimate language customers can understand.</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="approach">
-      <div class="section-inner reveal">
-        <span class="section-kicker">Our Approach</span>
-        <h2>Plumbing done right with speed, skill, and care.</h2>
-        <p>Masterflow Plumbing &amp; Rooter handles urgent calls, drain problems, pipe repairs, and water heater issues with clear communication, clean work, and respect for your home or business.</p>
-      </div>
-    </section>
-
-    <section aria-label="5 star rating proof">
-      <div class="star-proof reveal">
-        <div>
-          <span class="stars" aria-label="Five stars">★★★★★</span>
-          <span class="star-rating">5.0</span>
-        </div>
-        <div>
-          <span class="section-kicker">5-Star Service</span>
-          <h2>Trusted for fast emergency plumbing and drain work.</h2>
-          <p>Put the number in your phone before you need it: 951-612-7912. Masterflow is built for fast dispatch, clean repairs, and straightforward communication.</p>
+        <div class="grid services reveal">
+          <article class="card"><h3>1. Call or request service</h3><p>Tell us which fixture or line is affected and whether water, sewage, gas odor, or no hot water is active.</p></article>
+          <article class="card"><h3>2. We inspect the plumbing</h3><p>We may use drain equipment, a sewer camera, leak testing, jetting, or direct access to find the cause.</p></article>
+          <article class="card"><h3>3. You see the price first</h3><p>We explain the repair and give you upfront pricing before work starts. Financing is available, and Masterflow stands behind its work.</p></article>
         </div>
       </div>
     </section>
@@ -1525,18 +1540,40 @@
     <section id="services">
       <div class="section-inner">
         <div class="section-heading reveal">
-          <span class="section-kicker">Our Services</span>
-          <h2>Emergency Plumbing &amp; Drain Service</h2>
-          <p>Emergency plumbing, drain cleaning, water heater services, hydro jetting, sewer line repair, leak detection, and commercial trenchless sewer work for Corona and the Inland Empire.</p>
+          <span class="section-kicker">Plumbing services</span>
+          <h2>What can we fix?</h2>
+          <p>Masterflow handles leaks, clogs, sewer lines, water heaters, fixtures, repiping, hydro jetting, and commercial plumbing. Not sure what to book? Tell us what you see and where it is.</p>
         </div>
         <div class="service-visuals reveal">
-          <article class="service-card"><img src="media/masterflow-company-van-1.jpg" width="1800" height="1350" alt="Masterflow service vehicle staged for emergency plumbing response" loading="lazy" decoding="async"><div class="service-copy"><h3>Emergency Plumbing</h3><p>24/7 emergency plumbing for burst pipes, active leaks, overflowing fixtures, sewer backups, and urgent repairs.</p></div></article>
-          <article class="service-card"><img src="media/img-6137.jpg?v=rotation-20260617" width="1500" height="2000" alt="Drain cleaning equipment staged for a rooter service call" loading="lazy" decoding="async"><div class="service-copy"><h3>Drain Cleaning</h3><p>Professional drain cleaning for kitchen, bathroom, laundry, and main sewer line clogs to restore proper flow and help prevent future problems.</p></div></article>
-          <article class="service-card"><img src="media/img-0637.jpg?v=rotation-20260617" width="1500" height="2000" alt="Night service access point with drain equipment" loading="lazy" decoding="async"><div class="service-copy"><h3>Hydro Jetting</h3><p>Clear grease, roots, sludge, and heavy buildup with professional hydro jetting when the line is a good fit.</p></div></article>
-          <article class="service-card"><img src="media/epoxy-sewer-liner-prep-commercial-3.jpg" width="1200" height="1600" alt="Epoxy sewer liner preparation staged for trenchless commercial sewer repair" loading="lazy" decoding="async"><div class="service-copy"><h3>Epoxy Sewer Liner Prep</h3><p>Prepare sewer lines for trenchless epoxy liner work with minimal intrusion to homes, businesses, parking lots, and commercial properties.</p></div></article>
-          <article class="service-card"><img src="media/dan-cutter-sewer-liner-reinstatement-1.jpg" width="1200" height="1600" alt="Masterflow Dan Cutter sewer liner reinstatement tool on a job site" loading="lazy" decoding="async"><div class="service-copy"><h3>Sewer Line Repair</h3><p>Camera inspections, trenchless repairs, sewer line replacement, and robotic tie-in reinstatement with minimal mess when the job allows it.</p></div></article>
-          <article class="service-card"><img src="media/80220303036-84fc15af-5fea-4bf1-ac12-f732cbea3924.jpg" width="2000" height="1500" alt="Exposed pipe and meter repair in a trench" loading="lazy" decoding="async"><div class="service-copy"><h3>Leak Detection &amp; Repair</h3><p>Track down visible and hidden leaks before they turn into structural damage or expensive water loss.</p></div></article>
-          <article class="service-card"><img src="media/dc1a645d-e617-4475-ad94-ccf3bb26cc00.jpg" width="1125" height="2000" alt="Outdoor trench plumbing work" loading="lazy" decoding="async"><div class="service-copy"><h3>Water Heater Services</h3><p>Repair, replacement, and installation for tank and tankless water heaters, leaking units, no-hot-water calls, and new installations.</p></div></article>
+          <article class="service-card"><img src="../../media/masterflow-company-van-1.jpg" width="1800" height="1350" alt="Masterflow service vehicle staged for emergency plumbing response" loading="lazy" decoding="async"><div class="service-copy"><h3>Emergency Plumbing</h3><p>For active leaks, burst pipes, overflowing fixtures, sewer backups, and urgent repairs where waiting can turn one failure into property damage.</p></div></article>
+          <article class="service-card"><img src="../../media/img-0617.jpg" width="1500" height="2000" alt="Masterflow drain inspection equipment set up in a commercial restroom" loading="lazy" decoding="async"><div class="service-copy"><h3>Drain Cleaning</h3><p>Kitchen, bathroom, laundry, and main-line clogs cleared with professional equipment, with further inspection when the blockage keeps returning.</p></div></article>
+          <article class="service-card"><img src="../../media/img-0637.jpg" width="1500" height="2000" alt="Masterflow crew working at an exterior commercial drain access point" loading="lazy" decoding="async"><div class="service-copy"><h3>Hydro Jetting</h3><p>High-pressure cleaning for grease, sludge, roots, and heavy buildup when the pipe is in condition to be jetted safely.</p></div></article>
+          <article class="service-card"><img src="../../media/epoxy-sewer-liner-prep-commercial-3.jpg" width="1200" height="1600" alt="Epoxy sewer liner preparation staged for trenchless commercial sewer repair" loading="lazy" decoding="async"><div class="service-copy"><h3>Epoxy Sewer Liner Prep</h3><p>Commercial and trenchless sewer prep planned around access, downtime, tenant impact, parking lots, and cleanup.</p></div></article>
+          <article class="service-card"><img src="../../media/img-1619.jpg" width="2000" height="1500" alt="Masterflow sewer cleanout installation at a residential property" loading="lazy" decoding="async"><div class="service-copy"><h3>Sewer Line Repair</h3><p>Camera inspection, access planning, trenchless preparation, line repair, replacement, and branch reinstatement for recurring or confirmed sewer problems.</p></div></article>
+          <article class="service-card"><img src="../../media/img-4824.jpg" width="2000" height="1500" alt="Failed copper water line exposed for diagnosis and repair" loading="lazy" decoding="async"><div class="service-copy"><h3>Leak Detection &amp; Repair</h3><p>Leak checks for walls, slabs, fixtures, valves, irrigation connections, and service lines when the source is not obvious.</p></div></article>
+          <article class="service-card"><img src="../../media/img-0634.jpg" width="1500" height="2000" alt="Masterflow commercial service truck staged for an after-hours plumbing call" loading="lazy" decoding="async"><div class="service-copy"><h3>Water Heater Services</h3><p>Service for no hot water, leaking tanks, temperature swings, unusual noise, rusty water, and properly sized replacement planning.</p></div></article>
+        </div>
+        <div class="section-actions reveal">
+          <a class="button-primary" href="tel:9516127912">Call 951-612-7912</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tint" id="property-protection">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <span class="section-kicker">What waiting can cost</span>
+          <h2>Small plumbing symptoms can turn into bigger repairs.</h2>
+          <p>A slow drain, damp spot, or loss of hot water can be the first sign of a larger leak, sewer, or pipe problem. Calling early can keep the repair from spreading.</p>
+        </div>
+        <div class="grid services reveal">
+          <article class="card"><h3>Water where it should not be</h3><p>Leaks and fixture overflows can spread into floors, walls, cabinets, and nearby rooms when the source is not found quickly.</p></article>
+          <article class="card"><h3>Drains that keep coming back</h3><p>Repeated clogs may need more than another clearing. Camera inspection, jetting, or sewer access can show why the line keeps slowing down.</p></article>
+          <article class="card"><h3>Downtime for homes and businesses</h3><p>Restaurants, retail spaces, rentals, and busy homes need plumbing work planned around access, cleanup, and the people using the property.</p></article>
+        </div>
+        <div class="section-actions reveal">
+          <a class="button-primary" href="tel:9516127912">Call 951-612-7912</a>
+          <a class="button-secondary" href="#services">View Plumbing Services</a>
         </div>
       </div>
     </section>
@@ -1546,12 +1583,12 @@
         <div class="section-heading reveal">
           <span class="section-kicker">Commercial Plumbing &amp; Trenchless Sewer Services</span>
           <h2>Commercial Plumbing, Sewer Repair &amp; Trenchless Solutions</h2>
-          <p>Masterflow specializes in commercial plumbing, trenchless sewer repair, CIPP pipe lining, hydro jetting, sewer line replacement, camera inspections, leak detection, and large-scale plumbing projects throughout Lake Elsinore and the Inland Empire.</p>
+          <p>For restaurants, retail centers, offices, HOAs, and property managers, Masterflow plans plumbing and sewer work around access, cleanup, tenant impact, and business downtime.</p>
         </div>
         <div class="grid services">
-          <article class="card reveal"><h3>Commercial Plumbing</h3><p>From restaurants and retail centers to apartment communities, office buildings, industrial facilities, and HOAs, Masterflow handles repairs, installations, maintenance, and emergency service.</p></article>
-          <article class="card reveal"><h3>Trenchless Sewer Repair</h3><p>Trenchless sewer lining, sewer rehabilitation, hydro jetting, inspections, and sewer line replacement using advanced equipment and proven installation methods.</p></article>
-          <article class="card reveal"><h3>CIPP Pipe Lining</h3><p>When trenchless repair is the right solution, Masterflow restores underground piping while reducing excavation, downtime, and property damage.</p></article>
+          <article class="card reveal"><h3>Commercial Plumbing</h3><p>Repairs, replacements, installs, maintenance, and emergency calls for restaurants, retail spaces, apartments, offices, industrial sites, and HOAs.</p></article>
+          <article class="card reveal"><h3>Trenchless Sewer Repair</h3><p>Camera inspections, sewer rehabilitation, hydro jetting, and replacement planning when the property needs a fix without unnecessary digging.</p></article>
+          <article class="card reveal"><h3>CIPP Pipe Lining</h3><p>When the pipe can be lined, the job is planned around access, branch reinstatement, cleanup, and keeping the business open.</p></article>
         </div>
       </div>
     </section>
@@ -1559,21 +1596,21 @@
     <section class="section-tint" id="local-service-pages">
       <div class="section-inner">
         <div class="section-heading reveal">
-          <span class="section-kicker">Local Plumbing Pages</span>
-          <h2>Find emergency plumbing help by service and city.</h2>
-          <p>These are the main Masterflow service-area pages for Corona, Lake Elsinore, and the Southern California expansion routes we are building around.</p>
+          <span class="section-kicker">Areas We Serve</span>
+          <h2>Find Masterflow service near you.</h2>
+          <p>Open your city page for emergency plumbing, drain cleaning, sewer repair, leak detection, water heaters, hydro jetting, and commercial plumbing.</p>
         </div>
         <div class="seo-link-grid reveal" aria-label="Priority local plumbing pages">
-          <a class="seo-link-card" href="/corona-emergency-plumber">Corona Emergency Plumber<span>24/7 urgent plumbing and drain calls</span></a>
-          <a class="seo-link-card" href="/corona-plumber">Corona Plumber<span>Main Corona service-area page</span></a>
-          <a class="seo-link-card" href="/lake-elsinore-emergency-plumber">Lake Elsinore Emergency Plumber<span>Urgent Lake Elsinore plumbing response</span></a>
-          <a class="seo-link-card" href="/lake-elsinore-plumber">Lake Elsinore Plumber<span>Local plumber page for Lake Elsinore</span></a>
-          <a class="seo-link-card" href="/pasadena-drain-cleaning">Pasadena Drain Cleaning<span>Drain and rooter service in Pasadena</span></a>
-          <a class="seo-link-card" href="/calabasas-emergency-plumber">Calabasas Emergency Plumber<span>Urgent plumbing calls near Calabasas</span></a>
-          <a class="seo-link-card" href="/san-fernando-valley-plumber">San Fernando Valley Plumber<span>SFV plumbing service area</span></a>
-          <a class="seo-link-card" href="/studio-city-plumber">Studio City Plumber<span>Studio City local plumbing service</span></a>
-          <a class="seo-link-card" href="/glendale-plumber">Glendale Plumber<span>Glendale plumbing service route</span></a>
-          <a class="seo-link-card" href="/malibu-emergency-plumber">Malibu Emergency Plumber<span>Emergency plumbing near Malibu</span></a>
+          <a class="seo-link-card" href="/corona-emergency-plumber">Corona Emergency Plumber<span>24/7 help for urgent leaks, backups, clogs, and fixture failures.</span></a>
+          <a class="seo-link-card" href="/corona-plumber">Corona Plumber<span>Plumbing, drains, sewer lines, leaks, and water heaters in Corona.</span></a>
+          <a class="seo-link-card" href="/lake-elsinore-emergency-plumber">Lake Elsinore Emergency Plumber<span>Fast emergency plumbing for Lake Elsinore homes and businesses.</span></a>
+          <a class="seo-link-card" href="/lake-elsinore-plumber">Lake Elsinore Plumber<span>Plumbing help for Canyon Hills, Tuscany Hills, Alberhill, Summerly, Rosetta Canyon, and Lakeland Village.</span></a>
+          <a class="seo-link-card" href="/pasadena-drain-cleaning">Pasadena Drain Cleaning<span>Drain and sewer line clogs cleared with professional equipment.</span></a>
+          <a class="seo-link-card" href="/calabasas-emergency-plumber">Calabasas Emergency Plumber<span>Urgent plumbing response for Calabasas and nearby canyon communities.</span></a>
+          <a class="seo-link-card" href="/san-fernando-valley-plumber">San Fernando Valley Plumber<span>Plumbing, drain, sewer, and water heater help across the SFV.</span></a>
+          <a class="seo-link-card" href="/studio-city-plumber">Studio City Plumber<span>Local plumbing service for leaks, drains, fixtures, and water heaters.</span></a>
+          <a class="seo-link-card" href="/glendale-plumber">Glendale Plumber<span>Emergency plumbing, sewer, drain, and leak repair near Glendale.</span></a>
+          <a class="seo-link-card" href="/malibu-emergency-plumber">Malibu Emergency Plumber<span>Emergency plumbing help for Malibu-area homes and properties.</span></a>
         </div>
       </div>
     </section>
@@ -1582,48 +1619,47 @@
       <div class="section-inner">
         <div class="section-heading reveal">
           <span class="section-kicker">Licensed Bonded &amp; Insured</span>
-          <h2>Lic #1156577</h2>
-          <p>When you hire Masterflow Plumbing, you're hiring a licensed, bonded, and insured California plumbing contractor. We provide professional plumbing, drain, sewer, and water heater services for homeowners and businesses throughout Southern California.</p>
+          <h2>Check our license, reviews, and real job photos.</h2>
+          <p>You can verify California license #1156577, read customer feedback, call the direct phone number, and see photos from Masterflow jobs before booking.</p>
         </div>
         <div class="grid services">
-          <article class="card reveal"><h3>California Licensed Contractor</h3><p>Masterflow Plumbing keeps Lic #1156577 visible so customers can verify the company before booking.</p></article>
+          <article class="card reveal"><h3>California License #1156577</h3><p>The contractor number stays visible throughout the site so you can verify the company before booking.</p></article>
           <article class="card reveal"><h3>Bonded &amp; Insured</h3><p>Bonding and insurance help protect homeowners, businesses, and commercial property managers when plumbing work is underway.</p></article>
-          <article class="card reveal"><h3>Residential &amp; Commercial Plumbing</h3><p>The team handles urgent home repairs, drain and sewer calls, water heaters, commercial plumbing, and larger trenchless sewer work.</p></article>
-          <article class="card reveal"><h3>Fast, Reliable Service</h3><p>Customers can call 951-612-7912 for fast help with leaks, clogs, sewer backups, water heater issues, and emergency plumbing.</p></article>
-          <article class="card reveal"><h3>Honest, Upfront Pricing</h3><p>Masterflow explains the problem, the repair path, and the price before work begins so customers know what to expect.</p></article>
-          <article class="card reveal"><h3>Quality Workmanship</h3><p>Repairs are handled with clean work, practical diagnostics, durable materials, and respect for the property.</p></article>
+          <article class="card reveal"><h3>One Direct Phone Line</h3><p>Call 951-612-7912 to describe the problem, confirm service-area fit, and ask about current availability.</p></article>
+          <article class="card reveal"><h3>Residential &amp; Commercial Work</h3><p>The team handles home repairs, drains, sewer lines, water heaters, commercial plumbing, and larger trenchless sewer work.</p></article>
+          <article class="card reveal"><h3>Upfront Pricing &amp; Financing</h3><p>You get the price before work starts. Financing is available for qualifying plumbing, sewer, repiping, and water-heater projects.</p></article>
+          <article class="card reveal"><h3>Real Field Work</h3><p>The site uses photos from actual drain, sewer, pipe, backflow, and commercial jobs rather than stock plumbing scenes.</p></article>
         </div>
-        <p class="section-note reveal">Need a trusted plumber? Call Masterflow Plumbing today for professional service you can count on.</p>
+        <p class="section-note reveal">Need a plumber now? Call 951-612-7912 and tell us where it is leaking, clogged, or backing up.</p>
       </div>
     </section>
 
     <section class="field-media" id="field-work">
       <div class="section-inner">
         <div class="section-heading reveal">
-          <span class="section-kicker">Recent Field Work</span>
-          <h2>Real Repairs, Real Job Sites</h2>
-          <p>Drain cleanouts, sewer access, pipe repairs, epoxy sewer liner prep, Dan Cutter sewer liner reinstatement, and commercial service calls from recent work across Southern California.</p>
+          <span class="section-kicker">Masterflow at work</span>
+          <h2>Actual equipment. Actual job sites.</h2>
+          <p>These photos show drain inspection, sewer access, liner preparation, pipe failures, backflow work, cleanout installation, and commercial service calls handled by Masterflow crews.</p>
         </div>
         <div class="media-mosaic reveal" aria-label="Recent Masterflow Plumbing field work photos and videos">
-          <figure class="media-tile phone video-tile"><video src="media/img-1059.mp4" poster="media/img-1059-poster.jpg" controls playsinline preload="metadata" aria-label="Pipe repair close-up video"></video><figcaption><strong>Emergency Repair Work</strong><span>Pipe repair close-up</span></figcaption></figure>
-          <figure class="media-tile tall focus-top"><img src="media/dan-cutter-sewer-liner-reinstatement-1.jpg" width="1200" height="1600" alt="Masterflow crew using a Dan Cutter sewer liner reinstatement tool" loading="lazy" decoding="async"><figcaption><strong>Dan Cutter Reinstatement</strong><span>One-hole sewer access</span></figcaption></figure>
-          <figure class="media-tile tall focus-top"><img src="media/dan-cutter-sewer-liner-reinstatement-2.jpg" width="1200" height="1600" alt="Masterflow technician operating Dan Cutter controls for sewer liner reinstatement" loading="lazy" decoding="async"><figcaption><strong>Sewer Liner Reinstatement</strong><span>Minimal mess repair path</span></figcaption></figure>
-          <figure class="media-tile tall"><img src="media/dan-cutter-sewer-liner-reinstatement-3.jpg" width="1200" height="1600" alt="Close view of Dan Cutter sewer reinstatement camera and control equipment" loading="lazy" decoding="async"><figcaption><strong>Camera-Guided Cutting</strong><span>Branch line reopening</span></figcaption></figure>
-          <figure class="media-tile tall focus-top"><img src="media/epoxy-sewer-liner-prep-commercial-1.jpg" width="1200" height="1600" alt="Commercial epoxy sewer liner preparation equipment staged at night" loading="lazy" decoding="async"><figcaption><strong>Commercial Liner Prep</strong><span>Trenchless technology</span></figcaption></figure>
-          <figure class="media-tile tall focus-top"><img src="media/epoxy-sewer-liner-prep-commercial-2.jpg" width="1200" height="1600" alt="Commercial sewer liner prep equipment staged outside a retail property" loading="lazy" decoding="async"><figcaption><strong>After-Hours Commercial Work</strong><span>Minimal intrusion</span></figcaption></figure>
-          <figure class="media-tile tall focus-top"><img src="media/epoxy-sewer-liner-prep-commercial-3.jpg" width="1200" height="1600" alt="Epoxy sewer liner material prepared for trenchless sewer repair" loading="lazy" decoding="async"><figcaption><strong>Epoxy Sewer Liner Prep</strong><span>Replacement planning</span></figcaption></figure>
-          <figure class="media-tile landscape"><img src="media/epoxy-sewer-liner-prep-commercial-4.jpg" width="1200" height="1600" alt="Masterflow crew preparing commercial sewer liner work in a parking lot" loading="lazy" decoding="async"><figcaption><strong>Commercial Install Support</strong><span>Repairs and replacements</span></figcaption></figure>
-          <figure class="media-tile phone focus-bottom"><img src="media/dc1a645d-e617-4475-ad94-ccf3bb26cc00.jpg" width="1125" height="2000" alt="Open trench plumbing work at a job site" loading="lazy" decoding="async"><figcaption><strong>Copper Line Repair</strong><span>Outdoor service</span></figcaption></figure>
-          <figure class="media-tile landscape feature"><img src="media/img-1669.jpg" width="2000" height="1500" alt="Finished black drain pipe installation" loading="lazy" decoding="async"><figcaption><strong>Finished Sewer Line</strong><span>Clean repair work</span></figcaption></figure>
-          <figure class="media-tile tall"><img src="media/masterflow-company-van-1.jpg" width="1800" height="1350" alt="Masterflow service truck parked outside at night" loading="lazy" decoding="async"><figcaption><strong>Night Commercial Service</strong><span>24/7 dispatch</span></figcaption></figure>
-          <figure class="media-tile landscape"><img src="media/img-1619.jpg" width="2000" height="1500" alt="Underground pipe repair with exposed fittings" loading="lazy" decoding="async"><figcaption><strong>Sewer Access Work</strong><span>Rooter and sewer line service</span></figcaption></figure>
-          <figure class="media-tile tall"><img src="media/img-1072.jpg?v=rotation-20260617" width="1500" height="2000" alt="Masterflow service truck at an outdoor utility line job" loading="lazy" decoding="async"><figcaption><strong>Utility Line Service</strong><span>Residential job site</span></figcaption></figure>
-          <figure class="media-tile tall focus-bottom"><img src="media/img-0637.jpg?v=rotation-20260617" width="1500" height="2000" alt="Night service access point with drain equipment" loading="lazy" decoding="async"><figcaption><strong>After-Hours Drain Work</strong><span>Emergency response</span></figcaption></figure>
-          <figure class="media-tile landscape focus-left"><img src="media/80220303036-84fc15af-5fea-4bf1-ac12-f732cbea3924.jpg" width="2000" height="1500" alt="Exposed pipe and meter repair in a trench" loading="lazy" decoding="async"><figcaption><strong>Meter &amp; Pipe Repair</strong><span>Trench work</span></figcaption></figure>
-          <figure class="media-tile tall focus-top"><img src="media/img-6137.jpg?v=rotation-20260617" width="1500" height="2000" alt="Drain cleaning equipment staged in a garage" loading="lazy" decoding="async"><figcaption><strong>Rooter Equipment</strong><span>Service-ready tools</span></figcaption></figure>
-          <figure class="media-tile landscape"><img src="media/img-1633.jpg" width="2000" height="1500" alt="Damaged pipe under a structure before repair" loading="lazy" decoding="async"><figcaption><strong>Before Repair</strong><span>Problem diagnosis</span></figcaption></figure>
-          <figure class="media-tile landscape"><img src="media/img-4824.jpg" width="2000" height="1500" alt="Cut pipe exposed during repair work" loading="lazy" decoding="async"><figcaption><strong>Pipe Access</strong><span>Repair detail</span></figcaption></figure>
-          <figure class="media-tile phone video-tile"><video src="media/img-1070.mp4" poster="media/img-1070-poster.jpg" controls playsinline preload="metadata" aria-label="Outdoor utility line service video"></video><figcaption><strong>Outdoor Line Walkthrough</strong><span>Field assessment</span></figcaption></figure>
+          <figure class="media-tile tall focus-top"><img src="../../media/epoxy-sewer-liner-prep-commercial-1.jpg" width="1200" height="1600" alt="Commercial epoxy sewer liner preparation equipment staged at night" loading="lazy" decoding="async"><figcaption><strong>Commercial liner prep</strong><span>Trenchless sewer work staged after hours</span></figcaption></figure>
+          <figure class="media-tile tall focus-top"><img src="../../media/dan-cutter-sewer-liner-reinstatement-1.jpg" width="1200" height="1600" alt="Masterflow crew using a Dan Cutter sewer liner reinstatement tool" loading="lazy" decoding="async"><figcaption><strong>One-hole sewer access</strong><span>Dan Cutter work for lined sewer tie-ins</span></figcaption></figure>
+          <figure class="media-tile tall focus-top"><img src="../../media/dan-cutter-sewer-liner-reinstatement-2.jpg" width="1200" height="1600" alt="Masterflow technician operating Dan Cutter controls for sewer liner reinstatement" loading="lazy" decoding="async"><figcaption><strong>Sewer liner reinstatement</strong><span>Reopening branch lines with less mess</span></figcaption></figure>
+          <figure class="media-tile tall"><img src="../../media/dan-cutter-sewer-liner-reinstatement-3.jpg" width="1200" height="1600" alt="Close view of Dan Cutter sewer reinstatement camera and control equipment" loading="lazy" decoding="async"><figcaption><strong>Camera-guided cutting</strong><span>Seeing the line while the tie-in is reopened</span></figcaption></figure>
+          <figure class="media-tile tall focus-top"><img src="../../media/epoxy-sewer-liner-prep-commercial-2.jpg" width="1200" height="1600" alt="Commercial sewer liner prep equipment staged outside a retail property" loading="lazy" decoding="async"><figcaption><strong>Work around the business</strong><span>Reducing disruption for tenants and customers</span></figcaption></figure>
+          <figure class="media-tile tall focus-top"><img src="../../media/img-0617.jpg" width="1500" height="2000" alt="Drain inspection equipment set up in a commercial restroom" loading="lazy" decoding="async"><figcaption><strong>Commercial drain inspection</strong><span>Equipment positioned at the affected line</span></figcaption></figure>
+          <figure class="media-tile landscape"><img src="../../media/img-0634.jpg" width="1500" height="2000" alt="Masterflow service truck staged outside a commercial property" loading="lazy" decoding="async"><figcaption><strong>After-hours commercial call</strong><span>Service staged around operating hours</span></figcaption></figure>
+          <figure class="media-tile tall focus-top"><img src="../../media/img-0637.jpg" width="1500" height="2000" alt="Crew working at an exterior commercial drain access point" loading="lazy" decoding="async"><figcaption><strong>Exterior drain access</strong><span>Opening the line from the available access point</span></figcaption></figure>
+          <figure class="media-tile landscape feature"><img src="../../media/img-6137.jpg" width="1500" height="2000" alt="Sewer inspection and line equipment inside a commercial restroom" loading="lazy" decoding="async"><figcaption><strong>Sewer inspection equipment</strong><span>Camera and cutting equipment at the affected line</span></figcaption></figure>
+          <figure class="media-tile tall"><img src="../../media/img-1059-poster.jpg" width="720" height="1280" alt="Masterflow crew drilling for outdoor water-line access" loading="lazy" decoding="async"><figcaption><strong>Outdoor water-line access</strong><span>Reaching the problem with a focused opening</span></figcaption></figure>
+          <figure class="media-tile landscape"><img src="../../media/img-1070-poster.jpg" width="720" height="1280" alt="Marked excavation area prepared for underground plumbing work" loading="lazy" decoding="async"><figcaption><strong>Underground line planning</strong><span>Marking the work area before excavation</span></figcaption></figure>
+          <figure class="media-tile tall"><img src="../../media/img-1072.jpg" width="1500" height="2000" alt="Utility truck staged for outdoor plumbing service" loading="lazy" decoding="async"><figcaption><strong>Outdoor utility service</strong><span>Truck and equipment positioned at the site</span></figcaption></figure>
+          <figure class="media-tile tall focus-bottom"><img src="../../media/img-1619.jpg" width="2000" height="1500" alt="New sewer cleanout installed beside a residential property" loading="lazy" decoding="async"><figcaption><strong>Sewer cleanout installation</strong><span>Adding access for future drain and sewer service</span></figcaption></figure>
+          <figure class="media-tile landscape focus-left"><img src="../../media/img-1633.jpg" width="2000" height="1500" alt="Existing drain piping exposed for inspection" loading="lazy" decoding="async"><figcaption><strong>Drain piping inspection</strong><span>Looking at the existing connections before repair</span></figcaption></figure>
+          <figure class="media-tile tall focus-top"><img src="../../media/img-1669.jpg" width="2000" height="1500" alt="Commercial drain repair in progress" loading="lazy" decoding="async"><figcaption><strong>Commercial drain repair</strong><span>Work planned around the property and access</span></figcaption></figure>
+          <figure class="media-tile landscape"><img src="../../media/img-4824.jpg" width="2000" height="1500" alt="Failed copper water line exposed for diagnosis" loading="lazy" decoding="async"><figcaption><strong>Copper line failure</strong><span>The damaged section exposed before repair</span></figcaption></figure>
+          <figure class="media-tile landscape"><img src="../../media/80220303036-84fc15af-5fea-4bf1-ac12-f732cbea3924.jpg" width="2000" height="1500" alt="Backflow and water-service components exposed for repair" loading="lazy" decoding="async"><figcaption><strong>Water-service repair</strong><span>Valves and piping opened for direct access</span></figcaption></figure>
+          <figure class="media-tile tall focus-top"><img src="../../media/dc1a645d-e617-4475-ad94-ccf3bb26cc00.jpg" width="1125" height="2000" alt="Backflow assembly and piping prepared for service" loading="lazy" decoding="async"><figcaption><strong>Backflow service</strong><span>Assembly condition checked at the source</span></figcaption></figure>
         </div>
       </div>
     </section>
@@ -1632,11 +1668,11 @@
       <div class="section-inner">
         <div class="section-heading reveal">
           <span class="section-kicker">Service Areas</span>
-          <h2>Serving Southern California</h2>
-          <p>Masterflow Plumbing proudly serves Riverside County, the Inland Empire, and select communities throughout Orange County and Los Angeles. From emergency plumbing and drain cleaning to trenchless sewer repair, hydro jetting, water heater services, and commercial plumbing, our experienced team is ready to help.</p>
+          <h2>Serving Corona, Riverside County, and nearby Southern California calls</h2>
+          <p>Masterflow's core service area centers on Corona, Riverside County, Lake Elsinore, and the Inland Empire, with select extended Southern California calls when the schedule and job type fit.</p>
         </div>
         <div class="grid areas">
-          <article class="card area-card reveal"><div class="area-dot">+</div><h3>Corona &amp; Norco</h3><p>Fast, reliable plumbing services including emergency plumbing, drain cleaning, hydro jetting, sewer repair, water heater services, leak detection, and commercial plumbing.</p></article>
+          <article class="card area-card reveal"><div class="area-dot">+</div><h3>Corona &amp; Norco</h3><p>Emergency plumbing, drain cleaning, hydro jetting, sewer repair, water heater service, leak detection, and commercial plumbing.</p></article>
           <article class="card area-card reveal"><div class="area-dot">+</div><h3>Riverside &amp; Moreno Valley</h3><p>Residential and commercial plumbing, trenchless sewer repair, sewer camera inspections, drain cleaning, hydro jetting, repiping, and emergency plumbing.</p></article>
           <article class="card area-card reveal"><div class="area-dot">+</div><h3>Lake Elsinore &amp; Menifee</h3><p>24/7 emergency plumbing, sewer line repair, drain cleaning, water heater installation, leak detection, and trenchless sewer solutions.</p></article>
           <article class="card area-card reveal"><div class="area-dot">+</div><h3>Rancho, Ontario &amp; Claremont</h3><p>Coverage through Rancho Cucamonga, Ontario, Claremont, Fontana, Upland, Pomona, and surrounding foothill cities.</p></article>
@@ -1670,9 +1706,9 @@
     <section id="testimonials">
       <div class="section-inner">
         <div class="section-heading reveal">
-          <span class="section-kicker">Proof &amp; Reviews</span>
-          <h2>Check Us Before You Call</h2>
-          <p>Review proof, license proof, and direct links to the pages customers usually need next.</p>
+          <span class="section-kicker">Customer Reviews</span>
+          <h2>Recent feedback from Masterflow customers</h2>
+          <p>Customers call Masterflow for urgent repairs, clogged drains, water heaters, leaks, sewer work, and commercial plumbing problems.</p>
         </div>
         <div class="grid reviews">
           <article class="card review-card reveal">
@@ -1683,7 +1719,7 @@
             <span class="review-location">Same-day plumbing service</span>
             <div class="review-actions">
               <a href="/reviews">Read reviews</a>
-              <a href="https://www.yelp.com/biz/masterflow-plumbing-murrieta-2" target="_blank" rel="noopener">View Yelp profile</a>
+              <a href="https://www.yelp.com/biz/masterflow-plumbing-lake-elsinore" target="_blank" rel="noopener">View Yelp profile</a>
               <a href="/corona-emergency-plumber">Corona emergency service</a>
             </div>
           </article>
@@ -1695,7 +1731,7 @@
             <span class="review-location">Quote and scheduled service</span>
             <div class="review-actions">
               <a href="/reviews">Read reviews</a>
-              <a href="https://www.yelp.com/biz/masterflow-plumbing-murrieta-2" target="_blank" rel="noopener">View Yelp profile</a>
+              <a href="https://www.yelp.com/biz/masterflow-plumbing-lake-elsinore" target="_blank" rel="noopener">View Yelp profile</a>
               <a href="/riverside-drain-cleaning">Drain cleaning help</a>
             </div>
           </article>
@@ -1707,7 +1743,7 @@
             <span class="review-location">Emergency commercial plumbing</span>
             <div class="review-actions">
               <a href="/reviews">Read reviews</a>
-              <a href="https://www.yelp.com/biz/masterflow-plumbing-murrieta-2" target="_blank" rel="noopener">View Yelp profile</a>
+              <a href="https://www.yelp.com/biz/masterflow-plumbing-lake-elsinore" target="_blank" rel="noopener">View Yelp profile</a>
               <a href="/corona-sewer-line-repair">Sewer line repair</a>
             </div>
           </article>
@@ -1715,7 +1751,7 @@
         <div class="grid reviews" style="margin-top: 18px;">
           <article class="card reveal"><div class="review-source">License Check</div><p>Licensed Bonded &amp; Insured. Lic #1156577.</p><span class="review-name">California Plumbing Contractor</span><span class="review-location">Southern California</span></article>
           <article class="card reveal"><div class="review-source">Emergency Availability</div><p>Emergency plumbing, drain cleaning, leak repair, water heaters, and sewer line service from Corona across the Inland Empire.</p><span class="review-name">Masterflow Plumbing &amp; Rooter</span><span class="review-location">Corona, Riverside, Norco &amp; nearby cities</span></article>
-          <article class="card reveal"><div class="review-source">Review Flow</div><p>After a completed job, customers can read real review excerpts and leave feedback for the next local homeowner.</p><span class="review-name"><a href="/reviews">Open Reviews Page</a></span><span class="review-location">Masterflow customer feedback</span></article>
+          <article class="card reveal"><div class="review-source">Leave a Review</div><p>Had work done by Masterflow? Share your feedback so the next homeowner or business owner knows what to expect.</p><span class="review-name"><a href="/reviews">Leave a Review</a></span><span class="review-location">Masterflow customer feedback</span></article>
         </div>
       </div>
     </section>
@@ -1724,11 +1760,11 @@
       <div class="section-inner reveal">
         <div class="payment-panel">
           <div>
-            <span class="section-kicker">Financing &amp; Estimates</span>
+            <span class="section-kicker">Estimates &amp; Financing</span>
             <h2>Honest Estimates. No Surprises.</h2>
-            <p>We provide clear, upfront pricing before any work begins. From emergency plumbing and water heaters to sewer repairs and large trenchless projects, we'll explain your options so you can make an informed decision.</p>
+            <p>Masterflow gives you upfront pricing before work starts. Financing is available. Ask which warranty or guarantee applies to your repair.</p>
           </div>
-          <a class="button-primary" href="tel:9516127912">Request a Free Estimate</a>
+          <a class="button-primary" href="tel:9516127912">Request an Estimate</a>
         </div>
       </div>
     </section>
@@ -1741,11 +1777,12 @@
         </div>
         <div class="faq-list reveal">
           <article class="faq-item is-open"><button class="faq-question" type="button" aria-expanded="true">What areas do you serve?<span class="faq-icon">⌄</span></button><div class="faq-answer">Our main service area is Corona, with coverage through Riverside, Norco, Rancho Cucamonga, Ontario, Claremont, Fontana, Upland, Pomona, San Bernardino, Redlands, Yucaipa, Moreno Valley, Perris, and nearby Southern California communities.</div></article>
-          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false">Do you offer 24/7 emergency service?<span class="faq-icon">⌄</span></button><div class="faq-answer">Yes. Plumbing emergencies don't wait for business hours, and neither do we. Call 951-612-7912 anytime and we'll dispatch a technician to your location.</div></article>
-          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false">Are you licensed and insured?<span class="faq-icon">⌄</span></button><div class="faq-answer">Absolutely. All our technicians are fully licensed and insured. We carry comprehensive liability insurance to protect your home and give you peace of mind. Lic #1156577.</div></article>
-          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false">How much does it cost?<span class="faq-icon">⌄</span></button><div class="faq-answer">We provide upfront, honest pricing before starting any work. No hidden fees, no surprises. We'll assess your situation and give you a clear quote.</div></article>
-          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false">How quickly can you get to me?<span class="faq-icon">⌄</span></button><div class="faq-answer">For emergencies, we aim to arrive within the hour when possible. For scheduled appointments, we offer same-day and next-day service throughout our service area.</div></article>
-          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false">Do you guarantee your work?<span class="faq-icon">⌄</span></button><div class="faq-answer">Yes. We stand behind our workmanship. If something we repaired has an issue, we'll come back and make it right.</div></article>
+          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false">Do you offer 24/7 emergency service?<span class="faq-icon">⌄</span></button><div class="faq-answer">Yes. Call 951-612-7912 anytime for leaks, sewer backups, burst pipes, failed shutoffs, or no hot water. Same-day service is available.</div></article>
+          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false">Are you licensed and insured?<span class="faq-icon">⌄</span></button><div class="faq-answer">Yes. Masterflow Plumbing is licensed, bonded, and insured. Lic #1156577 stays visible so customers can verify the company before booking.</div></article>
+          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false">How much does it cost?<span class="faq-icon">⌄</span></button><div class="faq-answer">The price depends on the repair, access, pipe condition, and materials. Masterflow gives you upfront pricing before work starts.</div></article>
+          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false">How quickly can you get to me?<span class="faq-icon">⌄</span></button><div class="faq-answer">Same-day service is available. Call 951-612-7912 to check the current schedule for your city and the service you need.</div></article>
+          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false">Do you offer financing?<span class="faq-icon">⌄</span></button><div class="faq-answer">Yes. Ask about financing when you call for plumbing, sewer, repiping, or water-heater work.</div></article>
+          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false">What warranty applies to the work?<span class="faq-icon">⌄</span></button><div class="faq-answer">Masterflow stands behind its work. Ask which warranty or guarantee applies to your repair, installation, and materials.</div></article>
         </div>
       </div>
     </section>
@@ -1753,8 +1790,11 @@
     <section class="cta" id="contact">
       <div class="section-inner reveal">
         <h2>Need a Plumber?<br><span style="color: var(--orange)">We're Here 24/7</span></h2>
-        <p>Call Masterflow Plumbing &amp; Rooter for emergency plumbing, drain service, sewer lines, water heaters, and leak repairs across Southern California.</p>
-        <a class="button-primary" href="tel:9516127912">Call 951-612-7912</a>
+        <p>Call Masterflow Plumbing &amp; Rooter for plumbing, drains, sewer lines, leaks, and water heaters. We answer 24/7, same-day service is available, and financing is available.</p>
+        <div class="hero-actions">
+          <a class="button-primary" href="tel:9516127912">Call 951-612-7912</a>
+          <a class="button-secondary" href="/contact/#request-service">Request Service</a>
+        </div>
       </div>
     </section>
   </main>
@@ -1763,7 +1803,7 @@
     <div class="footer-grid">
       <div>
         <h3>Masterflow Plumbing &amp; Rooter</h3>
-        <p>Family-owned plumbing company serving Southern California with 24/7 emergency service. Licensed, insured, and committed to quality. Lic #1156577.</p>
+        <p>Licensed Southern California plumber with 24/7 emergency service, same-day availability, upfront pricing, financing, and work backed by Masterflow. Lic #1156577.</p>
         <a href="tel:9516127912">951-612-7912</a>
       </div>
       <div>
@@ -1772,7 +1812,7 @@
           <li>Corona &amp; Norco</li>
           <li>Riverside &amp; Moreno Valley</li>
           <li>Rancho, Ontario &amp; Claremont</li>
-          <li>Murrieta &amp; surrounding communities</li>
+          <li>Lake Elsinore &amp; Menifee</li>
           <li>San Bernardino, Redlands &amp; extended SoCal calls</li>
         </ul>
       </div>
@@ -1781,7 +1821,9 @@
         <ul>
           <li><a href="tel:9516127912">951-612-7912</a></li>
           <li><a href="https://instagram.com/masterflow_plumbing" target="_blank" rel="noopener">@masterflow_plumbing</a></li>
-            <li>Corona-area service team</li>
+          <li><a href="/commercial/">Commercial Plumbing</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li>Corona-area service team</li>
         </ul>
       </div>
     </div>
@@ -1791,11 +1833,8 @@
       <a href="terms.html">TOS</a>
       <span>|</span>
       <a href="sitemap.html">Sitemap</a>
-      <span>|</span>
-      <a href="/admin">Site maintenance</a>
     </nav>
     <div class="footer-bottom">© <span id="year"></span> Masterflow Plumbing &amp; Rooter. All rights reserved.</div>
-    <p class="site-credit">Created and maintained by <a href="https://www.valen-systems.com/">valen-systems.com</a>.</p>
   </footer>
 
   <nav class="mobile-call-bar" aria-label="Mobile quick actions">
@@ -1811,6 +1850,7 @@
     const menuToggle = document.getElementById("menuToggle");
     const mobileMenu = document.getElementById("mobileMenu");
     const mobileCallBar = document.querySelector(".mobile-call-bar");
+    const serviceMenu = document.querySelector("[data-service-menu]");
 
     document.body.classList.add("is-ready");
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -1827,6 +1867,55 @@
     document.querySelectorAll("[data-target]").forEach((control) => {
       control.addEventListener("click", () => scrollToTarget(control.dataset.target));
     });
+
+    if (serviceMenu) {
+      const hoverInput = window.matchMedia("(hover: hover) and (pointer: fine)");
+      const summary = serviceMenu.querySelector("summary");
+      let openedByHover = false;
+      let closeTimer = 0;
+
+      serviceMenu.addEventListener("pointerenter", () => {
+        if (!hoverInput.matches || serviceMenu.open) return;
+        window.clearTimeout(closeTimer);
+        serviceMenu.open = true;
+        openedByHover = true;
+      });
+
+      serviceMenu.addEventListener("pointerleave", () => {
+        if (!openedByHover) return;
+        window.clearTimeout(closeTimer);
+        closeTimer = window.setTimeout(() => {
+          if (serviceMenu.matches(":hover")) return;
+          serviceMenu.open = false;
+          openedByHover = false;
+        }, 180);
+      });
+
+      summary.addEventListener("click", (event) => {
+        if (hoverInput.matches && openedByHover) event.preventDefault();
+        else openedByHover = false;
+      });
+
+      serviceMenu.addEventListener("focusout", (event) => {
+        if (!serviceMenu.contains(event.relatedTarget) && !serviceMenu.matches(":hover")) {
+          serviceMenu.open = false;
+          openedByHover = false;
+        }
+      });
+
+      serviceMenu.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape") return;
+        serviceMenu.open = false;
+        openedByHover = false;
+        summary.focus();
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (serviceMenu.contains(event.target)) return;
+        serviceMenu.open = false;
+        openedByHover = false;
+      });
+    }
 
     menuToggle.addEventListener("click", () => {
       const isOpen = mobileMenu.classList.toggle("is-open");

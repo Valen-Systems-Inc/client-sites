@@ -2,3 +2,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://masterflowplumbing.us/sitemap.xml
+Sitemap: https://masterflowplumbing.us/commercial/sitemap.xml
