@@ -32,9 +32,10 @@ This manifest keeps the client artifact honest.
 | SEO engine source | Present: `seo/` contains the local SEO engine, source data, generation scripts, and latest reports. Preview output remains intentionally separate from the reviewed root homepage. |
 | Residential build proof | 432 generated pages passed all 15 guards on 2026-07-16. |
 | Commercial build proof | 37 generated pages, 36 public URLs, six industry pages, eight guides, and no residential city matrix passed on 2026-07-16. |
-| Forms proof | Request-service unit tests cover residential and commercial fields; reviews remain pending until explicit moderation. |
-| Screenshot proof | Four desktop/mobile residential/commercial captures are attached under `proof/mflow-v.1.0.7/screenshots/`. |
-| Live URL proof | `mflow-v.1.0.7` passes 480 residential artifacts and 86 commercial artifacts after the originless DNS cutover. |
+| Brand proof | Current source, generated output, and live HTML use `Masterflow Plumbing`; the retired `& Rooter` suffix is retained only in negative regression fixtures and historical third-party evidence. |
+| Forms proof | Request-service unit tests cover residential and commercial fields. Live health checks report database storage for reviews and database plus email delivery for service requests; reviews remain private until explicit moderation. |
+| Screenshot proof | Five desktop/mobile residential/commercial captures are attached under `proof/mflow-v.1.0.8/screenshots/`. |
+| Live URL proof | `mflow-v.1.0.8` passes 483 residential artifacts and 86 commercial artifacts from the Valen-controlled CDN namespace. |
 | Approval state | William explicitly requested the CDN move, residential/commercial split, publish, commit, and push. |
 | Source/import note | This is the sanitized canonical wrapper/static mirror; generator and deployment evidence live in `client-site-tools`. |
 
@@ -55,6 +56,7 @@ Do not add without fresh approval:
 - platform secrets
 - payment or publish credentials
 
-The attached `proof/mflow-v.1.0.7/` bundle contains the CDN release manifests,
-live route matrices, exact rollback verification, domain decommission report,
-and visual proof manifest used for this release.
+The attached `proof/mflow-v.1.0.8/` bundle contains the current CDN release
+manifests, live route matrices, and visual proof. The original exact rollback
+verification and domain decommission report remain under
+`proof/mflow-v.1.0.7/` because those are cutover records, not per-release files.

@@ -131,7 +131,7 @@ async function verifyTarget(target, version) {
   let unrecognizedEdgeFragments = [];
   if (response.status !== 200) failures.push(`status ${response.status}`);
 
-  if (target.kind === "html") {
+  if (target.kind === "html" || target.kind === "html-static") {
     const html = liveBytes.toString("utf8");
     const strippedHtml = normalizeCloudflareHtml(html);
     comparableLiveBytes = Buffer.from(normalizeHtmlWhitespace(strippedHtml));
@@ -144,10 +144,12 @@ async function verifyTarget(target, version) {
       ).slice(0, 3);
       failures.push("unrecognized Cloudflare edge injection remained");
     }
-    if (canonicalFromHtml(html) !== target.canonical) failures.push("canonical mismatch");
-    const liveRobots = robotsFromHtml(html);
-    if (liveRobots !== target.robots && !(target.robots === "index,follow" && liveRobots === "")) {
-      failures.push("robots mismatch");
+    if (target.kind === "html") {
+      if (canonicalFromHtml(html) !== target.canonical) failures.push("canonical mismatch");
+      const liveRobots = robotsFromHtml(html);
+      if (liveRobots !== target.robots && !(target.robots === "index,follow" && liveRobots === "")) {
+        failures.push("robots mismatch");
+      }
     }
   } else if (target.kind === "robots") {
     const liveText = liveBytes.toString("utf8");
@@ -249,7 +251,13 @@ const staticFiles = new Set([
 for (const filename of staticFiles) {
   targets.push({
     id: `static:${filename}`,
-    kind: filename === "robots.txt" ? "robots" : filename.endsWith(".xml") ? "xml" : "text",
+    kind: filename === "robots.txt"
+      ? "robots"
+      : filename.endsWith(".xml")
+        ? "xml"
+        : filename.endsWith(".html")
+          ? "html-static"
+          : "text",
     url: `${options.base}${routePrefix}/${filename}`,
     localFile: path.join(generatedRoot, filename),
   });

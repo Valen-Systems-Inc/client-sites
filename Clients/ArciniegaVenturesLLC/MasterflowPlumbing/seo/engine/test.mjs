@@ -223,6 +223,7 @@ assert.match(liveVerifyScript, /comparableLiveBytes\.equals\(comparableLocalByte
 assert.match(liveVerifyScript, /jsd\|precursor/, "live verification must recognize both known Cloudflare challenge injections");
 assert.match(liveVerifyScript, /pageLedger\.sitemapFamilies/, "live verification must check every sitemap family");
 assert.match(liveVerifyScript, /privacy\.html.*terms\.html.*sitemap\.html/s, "live verification must check generated support pages");
+assert.match(liveVerifyScript, /filename\.endsWith\("\.html"\).*"html-static"/s, "support HTML must normalize known Cloudflare edge injection");
 assert.match(liveVerifyScript, /walkFiles\(path\.join\(siteDir, "media"\)\)/, "live verification must check published media");
 assert.match(reviewsHtml, /Masterflow Plumbing Reviews/);
 assert.match(reviewsHtml, /Real Masterflow customer feedback/);

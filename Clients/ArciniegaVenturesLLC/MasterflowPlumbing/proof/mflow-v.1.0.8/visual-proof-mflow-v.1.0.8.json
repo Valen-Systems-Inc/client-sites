@@ -1,0 +1,141 @@
+{
+  "version": "mflow-v.1.0.8",
+  "capturedAt": "2026-07-17T02:52:25Z",
+  "baseUrl": "https://masterflowplumbing.us",
+  "checks": [
+    {
+      "surface": "residential-desktop",
+      "url": "https://masterflowplumbing.us/?v=mflow-v.1.0.8",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "screenshots/residential-desktop.png",
+      "bytes": 1094007,
+      "sha256": "516405e7c8704ade80e574fd2688b6c2c6834747fa12b599d50e260aec57479e",
+      "observations": [
+        "Primary navigation includes Commercial and Blog.",
+        "Request Service links to /contact/#request-service.",
+        "All 27 page images loaded after lazy-loading was triggered.",
+        "No horizontal overflow, broken images, console errors, or retired brand suffix were present."
+      ]
+    },
+    {
+      "surface": "residential-mobile",
+      "url": "https://masterflowplumbing.us/?v=mflow-v.1.0.8",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "screenshots/residential-mobile.png",
+      "bytes": 305566,
+      "sha256": "eb0e94a9bba7563c824d452f7f124c1cf40b575cf07e079af8ba2ab24cc7e449",
+      "observations": [
+        "Hero copy, both calls to action, license, and proof indicators fit the viewport.",
+        "The next content band remains visible below the hero.",
+        "No horizontal overflow or retired brand suffix was present."
+      ]
+    },
+    {
+      "surface": "residential-mobile-menu",
+      "url": "https://masterflowplumbing.us/?v=mflow-v.1.0.8",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "screenshots/residential-mobile-menu.png",
+      "bytes": 67690,
+      "sha256": "aa98f4798a27771bd7b2dd2ae04933817197dd5d6afb509f4df5da755559233d",
+      "observations": [
+        "Commercial services and Commercial are distinct navigation labels.",
+        "Blog is a first-class navigation destination.",
+        "Request Service reaches /contact/#request-service and the complete menu fits at 390 pixels."
+      ]
+    },
+    {
+      "surface": "commercial-desktop",
+      "url": "https://masterflowplumbing.us/commercial/?v=mflow-v.1.0.8",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "screenshots/commercial-desktop.png",
+      "bytes": 1209261,
+      "sha256": "b0acb2f93c3b6aa33684c34198da170c671c2a94f86957ca0130f8f13c35503c",
+      "observations": [
+        "Commercial navigation includes Residential and Blog.",
+        "All three page images loaded.",
+        "No horizontal overflow, broken images, console errors, or retired brand suffix were present."
+      ]
+    },
+    {
+      "surface": "commercial-mobile",
+      "url": "https://masterflowplumbing.us/commercial/?v=mflow-v.1.0.8",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "screenshots/commercial-mobile.png",
+      "bytes": 362098,
+      "sha256": "e862407b7682ed8d121ae769313a4bd48030710fe5217ad248cc17a0c9a81b61",
+      "observations": [
+        "Commercial hero copy and both primary calls to action fit without overlap.",
+        "The next proof band remains visible below the hero.",
+        "No horizontal overflow or retired brand suffix was present."
+      ]
+    }
+  ],
+  "functionalChecks": [
+    {
+      "surface": "request-service-form",
+      "url": "https://masterflowplumbing.us/contact/#request-service",
+      "method": "post",
+      "action": "https://masterflowplumbing.us/api/request-service",
+      "requiredFields": [
+        "customerName",
+        "phone",
+        "serviceLocation",
+        "serviceNeeded",
+        "urgency",
+        "preferredContact",
+        "details",
+        "consentContact"
+      ],
+      "submitted": false,
+      "note": "Wiring was inspected without creating a fake customer lead."
+    },
+    {
+      "surface": "review-api-health",
+      "url": "https://masterflowplumbing.us/api/reviews/health",
+      "status": 200,
+      "database": true
+    },
+    {
+      "surface": "request-service-api-health",
+      "url": "https://masterflowplumbing.us/api/request-service/health",
+      "status": 200,
+      "database": true,
+      "email": true
+    },
+    {
+      "surface": "sitemap-index",
+      "url": "https://masterflowplumbing.us/sitemap.xml",
+      "status": 200,
+      "children": [
+        "page-sitemap.xml",
+        "services-sitemap.xml",
+        "areas_we_serve-sitemap.xml",
+        "post-sitemap.xml",
+        "category-sitemap.xml"
+      ],
+      "counts": {
+        "services": 11,
+        "areasWeServe": 34,
+        "posts": 46,
+        "categories": 6
+      },
+      "allChildUrlsHaveLastmod": true,
+      "allPublicCanonicalsUseTrailingSlash": true
+    }
+  ]
+}
