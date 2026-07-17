@@ -1,6 +1,62 @@
 {
+  "name": "Masterflow Plumbing",
   "legal_name": "Masterflow Plumbing",
-  "dba": "Masterflow Plumbing & Rooter",
+  "dba": "Masterflow Plumbing",
+  "entity_id": "https://masterflowplumbing.us/#business",
+  "alternate_names": [
+    "Masterflow Plumbing"
+  ],
+  "tagline": "Emergency plumber in Corona, CA.",
+  "description": "Masterflow Plumbing handles emergency plumbing, drains, sewer lines, leaks, water heaters, hydro jetting, camera inspections, and commercial work from a Corona-centered Southern California service area.",
+  "offers": {
+    "emergency_service_24_7": true,
+    "same_day_service_available": true,
+    "financing_available": true,
+    "upfront_pricing": true,
+    "service_guarantee": true
+  },
+  "trust_copy": {
+    "eyebrow": "Licensed Bonded & Insured",
+    "headline": "Lic #1156577",
+    "summary": "Masterflow is a California licensed plumbing contractor for homes and businesses. Call 951-612-7912 anytime. Same-day service, upfront pricing, and financing are available.",
+    "why_choose_heading": "Why customers call Masterflow",
+    "reasons": [
+      "Lic #1156577",
+      "Bonded & Insured",
+      "24/7 Emergency Service",
+      "Same-Day Service Available",
+      "Financing Available",
+      "Upfront Pricing",
+      "Work Backed by Masterflow",
+      "Real Customer Reviews"
+    ],
+    "cta": "Call 951-612-7912 for service, an estimate, or current availability."
+  },
+  "service_area_copy": {
+    "eyebrow": "Service Areas",
+    "headline": "Serving Southern California",
+    "summary": "Masterflow serves Riverside County, the Inland Empire, and selected communities in Orange and Los Angeles counties. Call when timing matters because availability depends on the address, current calls, and type of work.",
+    "cards": [
+      {
+        "title": "Corona & Norco",
+        "text": "Emergency plumbing, drain cleaning, hydro jetting, sewer repair, water-heater service, leak detection, and commercial plumbing."
+      },
+      {
+        "title": "Riverside & Moreno Valley",
+        "text": "Residential and commercial plumbing, trenchless sewer repair, sewer camera inspections, drain cleaning, hydro jetting, repiping, and emergency plumbing."
+      },
+      {
+        "title": "Lake Elsinore & Menifee",
+        "text": "24/7 emergency plumbing, sewer line repair, drain cleaning, water heater installation, leak detection, and trenchless sewer solutions."
+      }
+    ]
+  },
+  "estimate_copy": {
+    "eyebrow": "Estimates & Financing",
+    "headline": "Honest Estimates. No Surprises.",
+    "summary": "Masterflow gives you upfront pricing before work starts. Financing is available. Ask which warranty or guarantee applies to your repair.",
+    "button": "Request Service"
+  },
   "phone": "+19516127912",
   "phone_display": "951-612-7912",
   "license_no": "CSLB #1156577",
@@ -21,27 +77,203 @@
   "price_range": "$$",
   "hours": "Mo-Su 00:00-23:59",
   "service_area_model": "service_area_business",
+  "service_area": {
+    "primary_city": "Corona",
+    "primary_county": "Riverside County",
+    "first_visibility_gap": "Lake Elsinore",
+    "priority_markets": [
+      "Corona",
+      "Lake Elsinore",
+      "Norco",
+      "Riverside",
+      "Ontario",
+      "Calabasas",
+      "San Fernando Valley",
+      "Studio City",
+      "Glendale",
+      "Pasadena"
+    ],
+    "region_label": "Corona-centered Southern California service area"
+  },
+  "knows_about": [
+    "Emergency plumbing",
+    "Drain cleaning",
+    "Rooter service",
+    "Hydro jetting",
+    "Camera inspections",
+    "Water leaks",
+    "Leak detection",
+    "Sewer line repair",
+    "Sewer liner reinstatement",
+    "Dan Cutter sewer reinstatement",
+    "One-hole sewer line access",
+    "Epoxy sewer liner preparation",
+    "Trenchless sewer technology",
+    "Commercial sewer repairs",
+    "Commercial plumbing replacements",
+    "Commercial plumbing installs",
+    "Trenchless sewer solutions",
+    "Water heater repair",
+    "Slab leak repair",
+    "Gas line plumbing",
+    "Fixture repair"
+  ],
   "brand": {
-    "primary": "#1E3A5F",
-    "secondary": "#2F6EA5",
-    "accent": "#FF6B35",
-    "ink": "#122033",
-    "soft": "#F5F8FB"
+    "primary": "#011633",
+    "shadow": "#000B1D",
+    "white": "#F7F7F7",
+    "gray": "#D7DCE5",
+    "accent": "#FF061C",
+    "accent_shadow": "#A80615",
+    "blue": "#0B9DF5",
+    "blue_medium": "#0876C7",
+    "aqua": "#26BDFB",
+    "blue_shadow": "#04538D",
+    "ink": "#000B1D",
+    "soft": "#F7F7F7"
   },
   "social": [
     "https://instagram.com/masterflow_plumbing",
-    "https://www.yelp.com/biz/masterflow-plumbing-murrieta-2"
+    "https://www.yelp.com/biz/masterflow-plumbing-lake-elsinore"
   ],
+  "same_as": [
+    "https://instagram.com/masterflow_plumbing",
+    "https://www.yelp.com/biz/masterflow-plumbing-lake-elsinore"
+  ],
+  "profile_urls_pending": [
+    "Google Business Profile",
+    "Apple Business Connect",
+    "Bing Places",
+    "Facebook Business Page",
+    "Nextdoor Business Page"
+  ],
+  "identity_claims": [
+    "Licensed California plumbing contractor",
+    "Corona-centered emergency plumbing and drain response",
+    "Direct phone line for urgent plumbing calls",
+    "Commercial repairs, replacements, and installs",
+    "Service-area business serving Riverside County and surrounding Southern California markets"
+  ],
+  "commercial_reputation": {
+    "eyebrow": "Commercial Plumbing & Trenchless Sewer Services",
+    "headline": "Commercial Plumbing, Sewer Repair & Trenchless Solutions",
+    "summary": "Masterflow handles commercial plumbing, drain and sewer work, hydro jetting, camera inspections, trenchless preparation, leak detection, and larger repair projects for managed and operating properties.",
+    "commercial_plumbing": "Restaurants, retail centers, apartment communities, offices, industrial facilities, and HOAs need plumbing work planned around access, occupied areas, cleanup, and the fixtures or operations that must stay available.",
+    "trenchless_sewer_repair": "Camera evidence, pipe condition, access, branch connections, and the location of the failure determine whether trenchless preparation, lining support, targeted repair, or replacement fits the property.",
+    "property_types": [
+      "Restaurants",
+      "Retail centers",
+      "Apartment communities",
+      "Office buildings",
+      "Industrial facilities",
+      "HOAs",
+      "Large-scale plumbing projects"
+    ],
+    "service_proof": [
+      "Commercial plumbing",
+      "Trenchless sewer repair",
+      "CIPP pipe lining",
+      "Hydro jetting",
+      "Sewer line replacement",
+      "Camera inspections",
+      "Leak detection",
+      "Large-scale plumbing projects"
+    ],
+    "markets": [
+      "Corona",
+      "Lake Elsinore",
+      "Inland Empire"
+    ]
+  },
   "media": {
-    "hero": "/media/img-0634.jpg?v=rotation-20260617",
+    "logo": "/media/masterflow-logo-20260704.png",
+    "hero": "/media/masterflow-company-van-1.jpg",
+    "social": "/media/masterflow-social-card.jpg",
     "proof": "/media/img-1059-poster.jpg",
+    "dan_cutter": [
+      "/media/dan-cutter-sewer-liner-reinstatement-1.jpg",
+      "/media/dan-cutter-sewer-liner-reinstatement-2.jpg",
+      "/media/dan-cutter-sewer-liner-reinstatement-3.jpg"
+    ],
+    "epoxy_liner": [
+      "/media/epoxy-sewer-liner-prep-commercial-1.jpg",
+      "/media/epoxy-sewer-liner-prep-commercial-2.jpg",
+      "/media/epoxy-sewer-liner-prep-commercial-3.jpg",
+      "/media/epoxy-sewer-liner-prep-commercial-4.jpg"
+    ],
     "gallery": [
-      "/media/img-0617.jpg?v=rotation-20260617",
-      "/media/img-6137.jpg?v=rotation-20260617",
-      "/media/img-0637.jpg?v=rotation-20260617",
+      "/media/epoxy-sewer-liner-prep-commercial-1.jpg",
+      "/media/epoxy-sewer-liner-prep-commercial-2.jpg",
+      "/media/epoxy-sewer-liner-prep-commercial-3.jpg",
+      "/media/epoxy-sewer-liner-prep-commercial-4.jpg",
+      "/media/dan-cutter-sewer-liner-reinstatement-1.jpg",
+      "/media/dan-cutter-sewer-liner-reinstatement-2.jpg",
+      "/media/dan-cutter-sewer-liner-reinstatement-3.jpg",
+      "/media/img-6137.jpg",
+      "/media/img-0637.jpg",
       "/media/img-1669.jpg",
       "/media/80220303036-84fc15af-5fea-4bf1-ac12-f732cbea3924.jpg",
-      "/media/dc1a645d-e617-4475-ad94-ccf3bb26cc00.jpg"
-    ]
+      "/media/dc1a645d-e617-4475-ad94-ccf3bb26cc00.jpg",
+      "/media/img-0617.jpg",
+      "/media/img-0634.jpg",
+      "/media/img-1070-poster.jpg",
+      "/media/img-1072.jpg",
+      "/media/img-1619.jpg",
+      "/media/img-1633.jpg",
+      "/media/img-4824.jpg"
+    ],
+    "service_media": {
+      "emergency-plumbing": [
+        "/media/masterflow-company-van-1.jpg",
+        "/media/img-4824.jpg",
+        "/media/img-0634.jpg"
+      ],
+      "drain-cleaning": [
+        "/media/img-0617.jpg",
+        "/media/img-6137.jpg",
+        "/media/img-0637.jpg"
+      ],
+      "hydro-jetting": [
+        "/media/img-0637.jpg",
+        "/media/img-0634.jpg",
+        "/media/img-6137.jpg"
+      ],
+      "water-heater-repair-install": [
+        "/media/masterflow-company-van-1.jpg",
+        "/media/img-0617.jpg"
+      ],
+      "sewer-line-repair": [
+        "/media/img-1619.jpg",
+        "/media/img-1669.jpg",
+        "/media/dan-cutter-sewer-liner-reinstatement-1.jpg",
+        "/media/epoxy-sewer-liner-prep-commercial-1.jpg"
+      ],
+      "leak-detection": [
+        "/media/img-4824.jpg",
+        "/media/80220303036-84fc15af-5fea-4bf1-ac12-f732cbea3924.jpg",
+        "/media/dc1a645d-e617-4475-ad94-ccf3bb26cc00.jpg"
+      ],
+      "slab-leak-repair": [
+        "/media/img-1070-poster.jpg",
+        "/media/img-1072.jpg",
+        "/media/img-4824.jpg"
+      ],
+      "repiping": [
+        "/media/img-1619.jpg",
+        "/media/img-1669.jpg",
+        "/media/img-1633.jpg",
+        "/media/img-4824.jpg",
+        "/media/80220303036-84fc15af-5fea-4bf1-ac12-f732cbea3924.jpg",
+        "/media/dc1a645d-e617-4475-ad94-ccf3bb26cc00.jpg"
+      ],
+      "gas-line-services": [
+        "/media/masterflow-company-van-1.jpg",
+        "/media/img-1072.jpg"
+      ],
+      "fixture-install-repair": [
+        "/media/img-0617.jpg",
+        "/media/img-6137.jpg"
+      ]
+    }
   }
 }

@@ -11,7 +11,7 @@ declare global {
 
 // Production promotion guard: R2 owns the static payload; this wrapper only boots it.
 const CDN_BASE = "https://clients.valen-systems.com/masterflow-plumbing/";
-const CDN_RELEASE = "mflow-v.1.0.6";
+const CDN_RELEASE = "mflow-v.1.0.8";
 
 function cdnUrl(fileName: string, includeRelease = true) {
   const url = new URL(fileName, CDN_BASE);

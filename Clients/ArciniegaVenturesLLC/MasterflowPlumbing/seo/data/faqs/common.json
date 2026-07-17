@@ -5,7 +5,7 @@
   },
   {
     "q": "How fast can Masterflow reach {{city}}?",
-    "a": "For urgent plumbing problems, call 951-612-7912. Dispatch timing depends on traffic, active calls, and the exact address, but {{city}} is part of the active Southern California service area."
+    "a": "Same-day service is available. Call 951-612-7912 to check the current schedule for {{city}} and the plumbing service you need."
   },
   {
     "q": "Are you licensed for plumbing work in California?",
@@ -13,10 +13,38 @@
   },
   {
     "q": "Can you help with older homes and newer tract homes?",
-    "a": "Yes. The service approach adjusts to the property. Older lines, newer fixtures, high-use family homes, rentals, and small businesses all get checked for the actual failure before repair options are explained."
+    "a": "Yes. Masterflow works on older piping, newer fixtures, tract homes, rentals, busy family homes, and commercial properties. The plumber checks the affected plumbing before recommending a repair."
   },
   {
     "q": "Do you give pricing before work starts?",
-    "a": "Masterflow explains the visible issue, the likely repair path, and pricing before starting approved work whenever the job conditions allow it."
+    "a": "Yes. Masterflow gives you upfront pricing for the recommended repair before work starts."
+  },
+  {
+    "q": "Does Masterflow offer financing?",
+    "a": "Yes. Ask about financing when you call for plumbing, sewer, repiping, or water-heater work."
+  },
+  {
+    "q": "Does Masterflow guarantee its work?",
+    "a": "Masterflow stands behind its work. Ask which warranty or guarantee applies to your repair, installation, and materials."
+  },
+  {
+    "q": "Is Masterflow available 24/7 for {{service}} in {{city}}?",
+    "a": "Yes. For active water, sewage backups, no hot water, urgent drain trouble, or other emergency plumbing issues in {{city}}, call 951-612-7912 for 24/7 help."
+  },
+  {
+    "q": "Can you handle commercial plumbing and sewer work?",
+    "a": "Yes. Masterflow handles commercial plumbing repairs, replacements, installs, drain problems, sewer repair planning, and after-hours work where access, cleanup, and downtime matter."
+  },
+  {
+    "q": "Do you offer hydro jetting and camera inspections?",
+    "a": "Yes. Hydro jetting and camera inspections can be part of drain and sewer troubleshooting when the line condition, access, and symptoms point beyond a basic clog."
+  },
+  {
+    "q": "What is the Dan Cutter sewer liner tool used for?",
+    "a": "The Dan Cutter is a sewer liner reinstatement tool that can reopen branch tie-ins after epoxy liner work from one access point, helping reduce mess and unnecessary intrusion."
+  },
+  {
+    "q": "Do you provide trenchless sewer repair options?",
+    "a": "Masterflow can prep for epoxy sewer liner work and trenchless sewer repair planning when the sewer line condition and access make that approach a good fit."
   }
 ]

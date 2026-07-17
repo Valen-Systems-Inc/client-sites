@@ -3,79 +3,170 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/media/masterflow-logo-20260704.png">
   <title><%= it.meta.title %></title>
   <meta name="description" content="<%= it.meta.description %>">
   <meta name="robots" content="<%= it.meta.robots %>">
   <link rel="canonical" href="<%= it.meta.canonical %>">
   <meta property="og:title" content="<%= it.meta.title %>">
   <meta property="og:description" content="<%= it.meta.description %>">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="<%= it.kind === "post" ? "article" : "website" %>">
   <meta property="og:url" content="<%= it.meta.canonical %>">
-  <meta property="og:image" content="<%= it.absoluteMedia(it.business.media.hero) %>">
+  <meta property="og:image" content="<%= it.absoluteMedia(it.heroMedia || it.business.media.social || it.business.media.hero) %>">
+  <% if (it.kind === "post") { %>
+  <meta property="article:modified_time" content="<%= it.meta.lastmod %>">
+  <% } %>
   <meta name="theme-color" content="<%= it.business.brand.primary %>">
   <% it.schema.forEach((node) => { %>
   <script type="application/ld+json"><%~ JSON.stringify(node) %></script>
   <% }) %>
   <style>
     :root {
-      --navy: #1E3A5F;
-      --blue: #2F6EA5;
-      --orange: #FF6B35;
-      --ink: #122033;
-      --muted: #5F6D7D;
-      --line: #DCE4ED;
-      --soft: #F5F8FB;
-      --mint: #DDF7EA;
-      --white: #FFFFFF;
+      --navy: <%= it.business.brand.primary %>;
+      --shadow: <%= it.business.brand.shadow %>;
+      --white: <%= it.business.brand.white %>;
+      --gray: <%= it.business.brand.gray %>;
+      --red: <%= it.business.brand.accent %>;
+      --red-shadow: <%= it.business.brand.accent_shadow %>;
+      --blue: <%= it.business.brand.blue %>;
+      --blue-medium: <%= it.business.brand.blue_medium %>;
+      --aqua: <%= it.business.brand.aqua %>;
+      --blue-shadow: <%= it.business.brand.blue_shadow %>;
+      --ink: <%= it.business.brand.ink %>;
+      --muted: #4B5B70;
+      --line: #D7DCE5;
+      --soft: <%= it.business.brand.soft %>;
+      --panel: #FFFFFF;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      background: var(--soft);
+      background: linear-gradient(180deg, #F7F7F7 0%, #EEF5FB 46%, #F7F7F7 100%);
       color: var(--ink);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.55;
     }
     a { color: inherit; }
+    .utility-proof {
+      background: var(--shadow);
+      color: rgba(255,255,255,.82);
+      font-size: .82rem;
+      font-weight: 800;
+      padding: 8px 18px;
+    }
+    .utility-proof-inner {
+      align-items: center;
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      margin: 0 auto;
+      max-width: 1160px;
+      text-align: center;
+    }
+    .utility-proof a { color: var(--white); text-decoration: none; }
     .topbar {
-      background: rgba(255,255,255,.96);
-      border-bottom: 1px solid var(--line);
+      background: transparent;
+      padding: 12px 18px 0;
       position: sticky;
       top: 0;
       z-index: 20;
     }
     .nav {
       align-items: center;
+      background: rgba(255,255,255,.96);
+      border: 1px solid rgba(1,22,51,.12);
+      border-radius: 999px;
+      box-shadow: 0 18px 48px rgba(0,11,29,.24);
+      color: var(--ink);
       display: flex;
       gap: 18px;
       justify-content: space-between;
       margin: 0 auto;
       max-width: 1160px;
-      padding: 12px 18px;
+      padding: 10px 12px;
     }
     .brand {
-      color: var(--navy);
+      align-items: center;
+      color: var(--ink);
+      display: inline-flex;
+      gap: 10px;
       font-weight: 900;
       letter-spacing: 0;
       text-decoration: none;
     }
-    .nav-actions {
+    .brand img {
+      border-radius: 999px;
+      box-shadow: 0 8px 18px rgba(0,11,29,.18);
+      display: block;
+      height: 42px;
+      width: 42px;
+    }
+    .desktop-nav,
+    .nav-ctas {
       align-items: center;
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+      gap: 7px;
       justify-content: flex-end;
     }
-    .nav-actions a {
-      color: var(--muted);
+    .desktop-nav { flex: 1; justify-content: center; }
+    .nav-link,
+    .service-menu > summary {
+      align-items: center;
+      background: transparent;
+      border: 0;
+      border-radius: 999px;
+      color: var(--ink);
+      cursor: pointer;
+      display: inline-flex;
       font-size: .9rem;
       font-weight: 800;
+      list-style: none;
+      min-height: 38px;
+      padding: 8px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-link:hover,
+    .service-menu[open] > summary,
+    .service-menu > summary:hover { background: var(--soft); color: var(--navy); }
+    .service-menu {
+      background: transparent;
+      border: 0;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+    .service-menu > summary::-webkit-details-marker { display: none; }
+    .dropdown-panel {
+      background: var(--white);
+      border: 1px solid rgba(1,22,51,.14);
+      border-radius: 8px;
+      box-shadow: 0 22px 60px rgba(0,11,29,.24);
+      color: var(--ink);
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(2, minmax(180px, 1fr));
+      left: 50%;
+      min-width: 480px;
+      padding: 18px;
+      position: absolute;
+      top: calc(100% + 12px);
+      transform: translateX(-50%);
+    }
+    .dropdown-group { display: grid; gap: 8px; }
+    .dropdown-group strong { color: var(--navy); font-size: .82rem; text-transform: uppercase; }
+    .dropdown-group a {
+      border-radius: 6px;
+      color: var(--muted);
+      font-weight: 800;
+      padding: 7px 8px;
       text-decoration: none;
     }
+    .dropdown-group a:hover { background: var(--soft); color: var(--navy); }
     .call {
       align-items: center;
-      background: var(--orange);
+      background: linear-gradient(135deg, var(--red), var(--red-shadow));
       border-radius: 999px;
       color: var(--white) !important;
       display: inline-flex;
@@ -84,10 +175,74 @@
       text-decoration: none;
       white-space: nowrap;
     }
+    .request {
+      border: 1px solid var(--navy);
+      border-radius: 999px;
+      color: var(--navy);
+      font-size: .88rem;
+      font-weight: 900;
+      min-height: 42px;
+      padding: 10px 14px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .mobile-menu {
+      background: transparent;
+      border: 0;
+      display: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+    .mobile-menu > summary {
+      border: 1px solid var(--navy);
+      border-radius: 999px;
+      color: var(--navy);
+      cursor: pointer;
+      font-weight: 900;
+      list-style: none;
+      min-height: 42px;
+      padding: 10px 14px;
+    }
+    .mobile-menu > summary::-webkit-details-marker { display: none; }
+    .mobile-panel {
+      background: var(--white);
+      border: 1px solid rgba(1,22,51,.14);
+      border-radius: 8px;
+      box-shadow: 0 22px 60px rgba(0,11,29,.28);
+      color: var(--ink);
+      display: grid;
+      gap: 8px;
+      min-width: min(88vw, 360px);
+      padding: 14px;
+      position: absolute;
+      right: 0;
+      top: calc(100% + 12px);
+    }
+    .mobile-panel a,
+    .mobile-panel summary {
+      border-radius: 6px;
+      color: var(--navy);
+      font-weight: 900;
+      padding: 10px;
+      text-decoration: none;
+    }
+    .mobile-panel details {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin: 0;
+      padding: 0;
+    }
+    .mobile-panel details a {
+      color: var(--muted);
+      display: block;
+      font-weight: 800;
+      padding-left: 18px;
+    }
     .hero {
       background:
-        linear-gradient(90deg, rgba(18,32,51,.9), rgba(18,32,51,.62), rgba(18,32,51,.18)),
-        url("<%= it.business.media.hero %>") center/cover;
+        linear-gradient(90deg, rgba(0,11,29,.94), rgba(1,22,51,.74), rgba(4,83,141,.16)),
+        url("<%= it.heroMedia || it.business.media.hero %>") center/cover;
       color: var(--white);
       min-height: 74vh;
       padding: 92px 18px 44px;
@@ -98,7 +253,7 @@
       max-width: 1160px;
     }
     .eyebrow {
-      color: #FFD1C0;
+      color: var(--aqua);
       display: block;
       font-size: .82rem;
       font-weight: 900;
@@ -133,10 +288,15 @@
       padding: 12px 18px;
       text-decoration: none;
     }
-    .button.primary { background: var(--orange); border-color: var(--orange); color: var(--white); }
+    .button.primary {
+      background: linear-gradient(135deg, var(--red), var(--red-shadow));
+      border-color: rgba(255,6,28,.84);
+      box-shadow: 0 14px 28px rgba(168,6,21,.28);
+      color: var(--white);
+    }
     .button.secondary { color: var(--white); }
     .proof {
-      background: var(--white);
+      background: var(--panel);
       border-bottom: 1px solid var(--line);
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -161,7 +321,7 @@
       padding: 48px 18px;
     }
     .section-kicker {
-      color: var(--orange);
+      color: var(--red);
       display: block;
       font-size: .8rem;
       font-weight: 900;
@@ -185,7 +345,7 @@
       margin-top: 22px;
     }
     .card {
-      background: var(--white);
+      background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 22px;
@@ -193,7 +353,9 @@
     .card h3 { color: var(--navy); margin: 0 0 8px; }
     .card p { color: var(--muted); margin: 0; }
     .local-panel {
-      background: var(--navy);
+      background:
+        linear-gradient(135deg, rgba(1,22,51,.98), rgba(0,11,29,.96)),
+        radial-gradient(circle at 82% 12%, rgba(38,189,251,.22), transparent 28%);
       color: var(--white);
       display: grid;
       gap: 22px;
@@ -202,7 +364,7 @@
       padding: 56px max(18px, calc((100vw - 1160px) / 2));
     }
     .local-panel h2, .local-panel .section-kicker { color: var(--white); }
-    .local-panel .section-kicker { color: #FFD1C0; }
+    .local-panel .section-kicker { color: var(--aqua); }
     .local-panel p { color: rgba(255,255,255,.84); }
     .chips {
       display: flex;
@@ -222,6 +384,7 @@
     .media-proof {
       aspect-ratio: 4 / 3;
       background: var(--soft);
+      border: 1px solid rgba(38,189,251,.2);
       border-radius: 8px;
       overflow: hidden;
     }
@@ -237,13 +400,13 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
     .step {
-      background: var(--white);
+      background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 18px;
     }
     .step:before {
-      color: var(--orange);
+      color: var(--blue);
       content: counter(step, decimal-leading-zero);
       counter-increment: step;
       display: block;
@@ -257,7 +420,7 @@
       margin-top: 18px;
     }
     .related-list a {
-      background: var(--white);
+      background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 8px;
       color: var(--navy);
@@ -265,8 +428,140 @@
       padding: 14px;
       text-decoration: none;
     }
-    details {
+    .media-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 22px;
+    }
+    .media-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin: 0;
+      overflow: hidden;
+    }
+    .media-card img {
+      aspect-ratio: 3 / 4;
+      display: block;
+      height: auto;
+      object-fit: cover;
+      width: 100%;
+    }
+    .media-card figcaption {
+      display: grid;
+      gap: 4px;
+      padding: 14px;
+    }
+    .media-card strong {
+      color: var(--navy);
+      font-size: .96rem;
+    }
+    .media-card span {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .review-list {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 22px;
+    }
+    .review-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      gap: 10px;
+      padding: 22px;
+    }
+    .review-card-stars {
+      color: var(--red);
+      font-size: 1.3rem;
+      letter-spacing: .04em;
+    }
+    .review-card p {
+      color: var(--muted);
+      margin: 0;
+    }
+    .review-card strong {
+      color: var(--navy);
+    }
+    .review-card span {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .site-form {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+      max-width: 900px;
+      padding: 22px;
+    }
+    .form-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .site-form label {
+      color: var(--navy);
+      display: grid;
+      font-weight: 900;
+      gap: 7px;
+    }
+    .site-form input,
+    .site-form select,
+    .site-form textarea {
       background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      font: inherit;
+      padding: 12px;
+      width: 100%;
+    }
+    .site-form input:focus,
+    .site-form select:focus,
+    .site-form textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(11,157,245,.14);
+      outline: 0;
+    }
+    .site-form textarea { resize: vertical; }
+    .site-form .form-wide { grid-column: 1 / -1; }
+    .site-form .check-row {
+      align-items: start;
+      color: var(--muted);
+      display: grid;
+      font-weight: 700;
+      gap: 10px;
+      grid-template-columns: 18px 1fr;
+    }
+    .site-form .check-row input {
+      margin-top: 5px;
+      width: auto;
+    }
+    .site-form .form-trap {
+      height: 1px;
+      left: -10000px;
+      overflow: hidden;
+      position: absolute;
+      width: 1px;
+    }
+    .form-status {
+      color: var(--muted);
+      font-weight: 800;
+      margin: 0;
+      min-height: 1.5em;
+    }
+    .form-status.is-success { color: #166534; }
+    .form-status.is-error { color: #B91C1C; }
+    .site-form button[disabled] { cursor: wait; opacity: .68; }
+    details {
+      background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 8px;
       margin-top: 10px;
@@ -278,45 +573,218 @@
       font-weight: 900;
     }
     details p { color: var(--muted); margin-bottom: 0; }
+    .request-panel {
+      align-items: start;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      gap: 22px;
+      grid-template-columns: 1.1fr .9fr;
+      margin-top: 26px;
+    }
+    .request-card {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .request-card strong { color: var(--navy); display: block; font-size: 1.05rem; margin-bottom: 10px; }
+    .request-card ul { color: var(--muted); margin: 0 0 18px; padding-left: 18px; }
+    .request-card li + li { margin-top: 8px; }
     .cta {
-      background: linear-gradient(135deg, var(--navy), #174E73);
+      background:
+        linear-gradient(135deg, rgba(1,22,51,.98), rgba(4,83,141,.92)),
+        radial-gradient(circle at 12% 0%, rgba(11,157,245,.25), transparent 32%);
       color: var(--white);
       max-width: none;
       padding: 54px max(18px, calc((100vw - 1160px) / 2));
     }
     .cta h2 { color: var(--white); }
     .footer {
-      background: #0D1928;
+      background: var(--shadow);
       color: rgba(255,255,255,.78);
-      padding: 34px 18px;
+      padding: 44px 18px;
     }
     .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      justify-content: space-between;
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 1.4fr repeat(4, minmax(0, 1fr));
       margin: 0 auto;
       max-width: 1160px;
     }
-    .footer a { color: var(--white); }
+    .footer a { color: var(--white); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .footer-brand { display: grid; gap: 12px; }
+    .footer-brand-row {
+      align-items: center;
+      display: flex;
+      gap: 10px;
+    }
+    .footer-brand-row img {
+      border-radius: 999px;
+      height: 40px;
+      width: 40px;
+    }
+    .footer-column {
+      display: grid;
+      gap: 8px;
+      align-content: start;
+    }
+    .footer-column strong {
+      color: var(--white);
+      font-size: .82rem;
+      text-transform: uppercase;
+    }
+    .footer-column a,
+    .footer-column span {
+      color: rgba(255,255,255,.76);
+      font-size: .92rem;
+    }
+    .site-credit {
+      color: rgba(255,255,255,.62);
+      grid-column: 1 / -1;
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 0;
+    }
+    .site-credit a {
+      color: rgba(255,255,255,.88);
+      font-weight: 800;
+    }
+    .article-body {
+      margin: 0 auto;
+      max-width: 860px;
+      padding: 48px 18px;
+    }
+    .article-body > section {
+      max-width: none;
+      padding: 30px 0;
+    }
+    .article-body p,
+    .article-body li {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    .article-intro {
+      color: var(--ink) !important;
+      font-size: 1.25rem !important;
+      line-height: 1.65;
+      margin: 22px 0 8px;
+    }
+    .breadcrumbs {
+      align-items: center;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .breadcrumbs a { color: var(--navy); font-weight: 800; }
+    .article-checklist,
+    .article-sources {
+      border-top: 1px solid var(--line);
+    }
+    .article-checklist ul,
+    .article-sources ul {
+      padding-left: 22px;
+    }
+    .article-checklist li + li,
+    .article-sources li + li {
+      margin-top: 8px;
+    }
     @media (max-width: 820px) {
-      .nav { align-items: flex-start; flex-direction: column; }
-      .proof, .grid, .process, .local-panel, .related-list { grid-template-columns: 1fr; }
+      .utility-proof-inner { flex-direction: column; gap: 4px; }
+      .topbar { padding: 10px; }
+      .nav { gap: 10px; }
+      .desktop-nav,
+      .nav-ctas { display: none; }
+      .mobile-menu { display: block; }
+      .brand span { font-size: .95rem; }
+      .proof, .grid, .process, .local-panel, .related-list, .media-grid, .review-list, .request-panel, .footer-inner, .form-grid { grid-template-columns: 1fr; }
+      .site-form .form-wide { grid-column: auto; }
       .proof { transform: none; }
       .proof div { border-right: 0; border-bottom: 1px solid var(--line); }
-      .hero { min-height: 70vh; padding-top: 64px; }
+      .hero { min-height: 70vh; padding-top: 70px; }
     }
   </style>
 </head>
 <body>
+  <aside class="utility-proof" aria-label="Masterflow quick proof">
+    <div class="utility-proof-inner">
+      <span><%= it.isCommercial ? "Commercial Service" : "5-Star Rated" %></span>
+      <span><%= it.licenseDisplay %></span>
+      <span>24/7 Emergency Service</span>
+      <a href="tel:9516127912">Call <%= it.business.phone_display %></a>
+    </div>
+  </aside>
   <header class="topbar">
-    <nav class="nav" aria-label="Masterflow localized navigation">
-      <a class="brand" href="<%= it.navHomeHref %>">Masterflow Plumbing & Rooter</a>
-      <div class="nav-actions">
-        <a href="<%= it.navPrimaryMarketHref %>">Corona hub</a>
-        <a href="<%= it.navServicesHref %>">Services</a>
+    <nav class="nav" aria-label="Masterflow site navigation">
+      <a class="brand" href="<%= it.navHomeHref %>">
+        <img src="<%= it.business.media.logo %>" alt="Masterflow Plumbing logo" title="Masterflow Plumbing logo" width="42" height="42">
+        <span>Masterflow Plumbing</span>
+      </a>
+      <div class="desktop-nav" aria-label="Primary navigation">
+        <% if (it.isCommercial) { %>
+        <a class="nav-link" href="<%= it.navResidentialHref %>">Residential</a>
+        <% } else { %>
+        <a class="nav-link" href="<%= it.navAboutHref %>">About</a>
+        <% } %>
+        <details class="service-menu" data-service-menu>
+          <summary>Services</summary>
+          <div class="dropdown-panel">
+            <% it.serviceNavGroups.forEach((group) => { %>
+            <div class="dropdown-group">
+              <strong><%= group.title %></strong>
+              <% group.links.forEach((link) => { %>
+              <a href="<%= link.href %>"><%= link.label %></a>
+              <% }) %>
+            </div>
+            <% }) %>
+          </div>
+        </details>
+        <% if (it.isCommercial) { %>
+        <a class="nav-link" href="<%= it.navIndustriesHref %>">Industries</a>
+        <% } else { %>
+        <a class="nav-link" href="<%= it.navCommercialHref %>">Commercial</a>
+        <% } %>
+        <a class="nav-link" href="<%= it.navServiceAreaHref %>">Service Area</a>
+        <a class="nav-link" href="<%= it.reviewsHref %>">Reviews</a>
+        <a class="nav-link" href="<%= it.navBlogHref %>">Blog</a>
+        <a class="nav-link" href="<%= it.contactHref %>">Contact</a>
+      </div>
+      <div class="nav-ctas">
+        <a class="request" href="<%= it.requestServiceHref %>"><%= it.isCommercial ? "Commercial Request" : "Request Service" %></a>
         <a class="call" href="tel:9516127912">Call <%= it.business.phone_display %></a>
       </div>
+      <details class="mobile-menu">
+        <summary>Menu</summary>
+        <div class="mobile-panel">
+          <% if (it.isCommercial) { %>
+          <a href="<%= it.navResidentialHref %>">Residential Plumbing</a>
+          <% } %>
+          <a href="<%= it.navAboutHref %>">About</a>
+          <a href="<%= it.navServicesHref %>">All Services</a>
+          <% it.serviceNavGroups.forEach((group) => { %>
+          <details>
+            <summary><%= group.title %></summary>
+            <% group.links.forEach((link) => { %>
+            <a href="<%= link.href %>"><%= link.label %></a>
+            <% }) %>
+          </details>
+          <% }) %>
+          <% if (it.isCommercial) { %>
+          <a href="<%= it.navIndustriesHref %>">Industries</a>
+          <% } else { %>
+          <a href="<%= it.navCommercialHref %>">Commercial Plumbing</a>
+          <% } %>
+          <a href="<%= it.navServiceAreaHref %>">Service Area</a>
+          <a href="<%= it.reviewsHref %>">Reviews</a>
+          <a href="<%= it.navBlogHref %>">Blog</a>
+          <a href="<%= it.contactHref %>">Contact</a>
+          <a class="request" href="<%= it.requestServiceHref %>"><%= it.isCommercial ? "Commercial Request" : "Request Service" %></a>
+          <a class="call" href="tel:9516127912">Call <%= it.business.phone_display %></a>
+        </div>
+      </details>
     </nav>
   </header>
   <section class="hero">
@@ -326,38 +794,199 @@
       <p><%= it.heroCopy %></p>
       <div class="hero-actions">
         <a class="button primary" href="tel:9516127912">Call <%= it.business.phone_display %></a>
-        <a class="button secondary" href="#local-proof">See local fit</a>
+        <a class="button secondary" href="<%= it.requestServiceHref %>"><%= it.isCommercial ? "Request Commercial Service" : "Request Service" %></a>
       </div>
     </div>
   </section>
   <aside class="proof" aria-label="Masterflow proof">
-    <div><strong>Corona first</strong><span>Main service hub with regional dispatch.</span></div>
-    <div><strong>24/7</strong><span>Emergency plumbing and drain calls.</span></div>
-    <div><strong><%= it.business.license_no %></strong><span>California plumbing contractor proof.</span></div>
-    <div><strong>Direct line</strong><span><%= it.business.phone_display %></span></div>
+    <div><strong><%= it.isCommercial ? "Commercial Coverage" : "Customer Reviews" %></strong><span><%= it.isCommercial ? "Santa Barbara through San Diego." : "Read approved feedback and Yelp reviews." %></span></div>
+    <div><strong>Licensed Bonded &amp; Insured</strong><span><%= it.licenseDisplay %></span></div>
+    <div><strong>24/7 Emergency Service</strong><span>Same-day service is available. Call for leaks, backups, burst lines, or loss of essential hot water.</span></div>
+    <div><strong>Upfront Pricing &amp; Financing</strong><span>Ask about financing and the guarantee or warranty on your repair.</span></div>
   </aside>
   <main>
     <%~ it.body %>
   </main>
   <section class="cta">
     <span class="section-kicker">Call Masterflow</span>
-    <h2>Need a licensed plumber near <%= it.locationLabel %>?</h2>
-    <p>Call <%= it.business.phone_display %> for emergency plumbing, drains, water heaters, sewer lines, leaks, and repair planning across the Corona-centered service area.</p>
+    <h2><%= it.isCommercial ? "Need commercial plumbing service in Southern California?" : `Need a licensed plumber near ${it.locationLabel}?` %></h2>
+    <p><%= it.isCommercial ? `Call ${it.business.phone_display} for commercial emergencies, drains, sewer lines, hydro jetting, leaks, water heaters, planned maintenance, and larger repairs.` : `Call ${it.business.phone_display} for emergency plumbing, drains, water heaters, sewer lines, and leaks. We answer 24/7, same-day service is available, and financing is available.` %></p>
     <a class="button primary" href="tel:9516127912">Call now</a>
   </section>
   <footer class="footer">
     <div class="footer-inner">
-      <div>
-        <strong>Masterflow Plumbing & Rooter</strong><br>
-        <span><%= it.business.license_no %> | <%= it.business.phone_display %></span>
+      <div class="footer-brand">
+        <div class="footer-brand-row">
+          <img src="<%= it.business.media.logo %>" alt="Masterflow Plumbing logo" title="Masterflow Plumbing logo" width="40" height="40">
+          <strong>Masterflow Plumbing</strong>
+        </div>
+        <span><%= it.licenseDisplay %></span>
+        <span><%= it.isCommercial ? "Commercial plumbing across Southern California with 24/7 emergency response, same-day availability, upfront pricing, and financing." : "24/7 emergency service, same-day availability, upfront pricing, financing, and work backed by Masterflow." %></span>
+        <a class="call" href="tel:9516127912">Call <%= it.business.phone_display %></a>
       </div>
-      <div>
-        <a href="/">Main site</a> |
-        <a href="/privacy.html">Privacy</a> |
-        <a href="/terms.html">Terms</a> |
-        <a href="<%= it.sitemapHref %>">SEO sitemap</a>
+      <div class="footer-column">
+        <strong>Company</strong>
+        <a href="<%= it.navHomeHref %>"><%= it.isCommercial ? "Commercial Home" : "Home" %></a>
+        <a href="<%= it.isCommercial ? it.navResidentialHref : it.navCommercialHref %>"><%= it.isCommercial ? "Residential Plumbing" : "Commercial Plumbing" %></a>
+        <a href="<%= it.navAboutHref %>">About</a>
+        <a href="<%= it.reviewsHref %>">Reviews</a>
+        <a href="<%= it.navBlogHref %>">Blog</a>
+        <a href="<%= it.contactHref %>">Contact</a>
       </div>
+      <div class="footer-column">
+        <strong>Services</strong>
+        <a href="<%= it.navServicesHref %>">All services</a>
+        <% it.footerServiceLinks.slice(0, 8).forEach((link) => { %>
+        <a href="<%= link.href %>"><%= link.label %></a>
+        <% }) %>
+      </div>
+      <div class="footer-column">
+        <strong><%= it.isCommercial ? "Commercial" : "Areas" %></strong>
+        <% if (it.isCommercial) { %>
+        <a href="<%= it.navIndustriesHref %>">Industries</a>
+        <% } %>
+        <a href="<%= it.navServiceAreaHref %>"><%= it.isCommercial ? "Service corridor" : "All service areas" %></a>
+        <% it.footerAreaLinks.slice(0, 8).forEach((link) => { %>
+        <a href="<%= link.href %>"><%= link.label %></a>
+        <% }) %>
+      </div>
+      <div class="footer-column">
+        <strong>Support</strong>
+        <a href="<%= it.sitemapHref %>">Sitemap</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+      </div>
+      <p class="site-credit">Created and maintained by <a href="<%= it.maintainer.url %>"><%= it.maintainer.domain %></a>.</p>
     </div>
   </footer>
+  <script>
+    (() => {
+      const serviceMenu = document.querySelector("[data-service-menu]");
+      if (!serviceMenu) return;
+
+      const hoverInput = window.matchMedia("(hover: hover) and (pointer: fine)");
+      const summary = serviceMenu.querySelector("summary");
+      let openedByHover = false;
+      let closeTimer = 0;
+
+      serviceMenu.addEventListener("pointerenter", () => {
+        if (!hoverInput.matches || serviceMenu.open) return;
+        window.clearTimeout(closeTimer);
+        serviceMenu.open = true;
+        openedByHover = true;
+      });
+
+      serviceMenu.addEventListener("pointerleave", () => {
+        if (!openedByHover) return;
+        window.clearTimeout(closeTimer);
+        closeTimer = window.setTimeout(() => {
+          if (serviceMenu.matches(":hover")) return;
+          serviceMenu.open = false;
+          openedByHover = false;
+        }, 180);
+      });
+
+      summary.addEventListener("click", (event) => {
+        if (hoverInput.matches && openedByHover) event.preventDefault();
+        else openedByHover = false;
+      });
+
+      serviceMenu.addEventListener("focusout", (event) => {
+        if (!serviceMenu.contains(event.relatedTarget) && !serviceMenu.matches(":hover")) {
+          serviceMenu.open = false;
+          openedByHover = false;
+        }
+      });
+
+      serviceMenu.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape") return;
+        serviceMenu.open = false;
+        openedByHover = false;
+        summary.focus();
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (serviceMenu.contains(event.target)) return;
+        serviceMenu.open = false;
+        openedByHover = false;
+      });
+    })();
+  </script>
+  <% if (it.kind === "contact" || it.kind === "reviews") { %>
+  <script>
+    (() => {
+      const apiBase = "<%= it.business.primary_domain %>";
+
+      function setFormStatus(form, message, state = "") {
+        const status = form.querySelector("[data-form-status]");
+        if (!status) return;
+        status.textContent = message;
+        status.className = `form-status${state ? ` is-${state}` : ""}`;
+      }
+
+      document.querySelectorAll(".js-api-form").forEach((form) => {
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const button = form.querySelector('button[type="submit"]');
+          const kind = form.dataset.formKind;
+          const sourcePath = form.elements.namedItem("sourcePath");
+          if (sourcePath) sourcePath.value = window.location.pathname;
+          button.disabled = true;
+          setFormStatus(form, kind === "review" ? "Sending your review..." : "Sending your request...");
+
+          try {
+            const response = await fetch(form.action, {
+              method: "POST",
+              headers: { Accept: "application/json" },
+              body: new FormData(form),
+            });
+            const body = await response.json().catch(() => ({}));
+            if (!response.ok || !body.ok) throw new Error(body.error || "The form could not be sent.");
+            form.reset();
+            setFormStatus(
+              form,
+              kind === "review"
+                ? "Thank you. Your review is saved for private verification and will stay off the site until it is approved."
+                : "Got it. Masterflow received your request. Call 951-612-7912 if the problem gets worse before you hear back.",
+              "success",
+            );
+          } catch (error) {
+            setFormStatus(form, error.message || "The form could not be sent. Please call 951-612-7912.", "error");
+          } finally {
+            button.disabled = false;
+          }
+        });
+      });
+
+      const approvedList = document.getElementById("approvedReviewList");
+      if (approvedList) {
+        fetch(`${apiBase}/api/reviews`, { headers: { Accept: "application/json" } })
+          .then((response) => response.ok ? response.json() : Promise.reject(new Error("Review lookup failed.")))
+          .then((body) => {
+            const reviews = Array.isArray(body.reviews) ? body.reviews : [];
+            if (!reviews.length) return;
+            for (const review of reviews) {
+              const card = document.createElement("article");
+              card.className = "review-card";
+              const stars = document.createElement("div");
+              stars.className = "review-card-stars";
+              stars.setAttribute("aria-label", `${review.rating} out of 5 stars`);
+              stars.textContent = "★★★★★".slice(0, Math.max(1, Math.min(5, Number(review.rating) || 5)));
+              const text = document.createElement("p");
+              text.textContent = review.reviewText;
+              const name = document.createElement("strong");
+              name.textContent = review.reviewerName;
+              const date = document.createElement("span");
+              date.textContent = new Date(review.createdAt).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+              card.append(stars, text, name, date);
+              approvedList.append(card);
+            }
+            document.getElementById("customer-submitted-reviews").hidden = false;
+          })
+          .catch(() => {});
+      }
+    })();
+  </script>
+  <% } %>
 </body>
 </html>

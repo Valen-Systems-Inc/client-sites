@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import http from "node:http";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { buildSeo, loadSeoData } from "./build.mjs";
+import { buildSeo, generatedOutputRoot, loadSeoData } from "./build.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const engineDir = path.dirname(__filename);
@@ -10,6 +10,15 @@ const seoDir = path.dirname(engineDir);
 const siteDir = path.dirname(seoDir);
 const reportsDir = path.join(seoDir, "reports");
 const reportFile = path.join(reportsDir, "build-report.json");
+const domainPolicyFile = path.join(reportsDir, "domain-policy-report.json");
+const sitemapPlanFile = path.join(reportsDir, "sitemap-plan.json");
+const signalInventoryFile = path.join(reportsDir, "signal-inventory.json");
+const feedbackLoopFile = path.join(reportsDir, "feedback-loop.json");
+const liveCrawlFile = path.join(reportsDir, "live-crawl-siteone.json");
+const cdnDeployPlanFile = path.join(reportsDir, "cdn-deploy-plan.json");
+const liveActionPlanFile = path.join(reportsDir, "live-action-plan.json");
+const loopStateFile = path.join(reportsDir, "loop-state.json");
+const promotionCandidatesFile = path.join(siteDir, "promotions", "candidates.json");
 const scopeFile = path.join(seoDir, "data", "scope.json");
 const enrichmentFile = path.join(seoDir, "data", "region-enrichment.json");
 
@@ -370,27 +379,76 @@ function projectHtml(state) {
 </html>`;
 }
 
+function previewTarget(pathname) {
+  if (pathname.startsWith("/seo-preview/")) {
+    return {
+      mount: "/seo-preview/",
+      root: generatedOutputRoot("seo-production"),
+      source: "seo-production",
+    };
+  }
+  if (pathname.startsWith("/generator-preview/")) {
+    return {
+      mount: "/generator-preview/",
+      root: generatedOutputRoot("seo-preview"),
+      source: "seo-preview",
+    };
+  }
+  return {
+    mount: "/",
+    root: siteDir,
+    source: "site",
+  };
+}
+
+function rewritePreviewHtml(html, source) {
+  if (source === "seo-production") {
+    return html.replace(
+      /(href|action)="\/(?!\/|seo-preview\/|generator-preview\/|media\/|api\/|favicon\.ico)([^"]*)"/g,
+      '$1="/seo-preview/$2"',
+    );
+  }
+  if (source === "seo-preview") {
+    return html.replace(/(href|action)="\/seo-preview\//g, '$1="/generator-preview/');
+  }
+  return html;
+}
+
 async function serveStaticPreview(req, res, pathname) {
-  const safePath = pathname.replace(/^\/+/, "");
-  let filePath = path.join(siteDir, safePath);
-  if (pathname.endsWith("/")) filePath = path.join(siteDir, safePath, "index.html");
-  const normalized = path.normalize(filePath);
-  if (!normalized.startsWith(siteDir)) {
+  const target = previewTarget(pathname);
+  const safePath = pathname.slice(target.mount.length);
+  const requestedPath = path.join(target.root, safePath);
+  const candidates = pathname.endsWith("/")
+    ? [path.join(requestedPath, "index.html")]
+    : [requestedPath, ...(path.extname(requestedPath) ? [] : [path.join(requestedPath, "index.html")])];
+  const normalizedRoot = path.resolve(target.root);
+  const normalizedCandidates = candidates.map((candidate) => path.resolve(candidate));
+  if (normalizedCandidates.some((candidate) => candidate !== normalizedRoot && !candidate.startsWith(`${normalizedRoot}${path.sep}`))) {
     jsonResponse(res, 403, { ok: false, error: "outside site root" });
     return true;
   }
-  try {
-    const body = await fs.readFile(normalized);
-    const ext = path.extname(normalized).toLowerCase();
-    res.writeHead(200, {
-      "content-type": contentTypes.get(ext) ?? "application/octet-stream",
-      "cache-control": "no-store",
-      "x-robots-tag": "noindex, nofollow",
-    });
-    res.end(req.method === "HEAD" ? undefined : body);
-  } catch {
-    jsonResponse(res, 404, { ok: false, error: "not found", path: pathname });
+
+  for (const candidate of normalizedCandidates) {
+    try {
+      const body = await fs.readFile(candidate);
+      const ext = path.extname(candidate).toLowerCase();
+      const responseBody = ext === ".html"
+        ? Buffer.from(rewritePreviewHtml(body.toString("utf8"), target.source))
+        : body;
+      res.writeHead(200, {
+        "content-type": contentTypes.get(ext) ?? "application/octet-stream",
+        "cache-control": "no-store",
+        "x-robots-tag": "noindex, nofollow",
+        "x-masterflow-preview-source": target.source,
+      });
+      res.end(req.method === "HEAD" ? undefined : responseBody);
+      return true;
+    } catch (error) {
+      if (error?.code !== "ENOENT" && error?.code !== "EISDIR") throw error;
+    }
   }
+
+  jsonResponse(res, 404, { ok: false, error: "not found", path: pathname });
   return true;
 }
 
@@ -425,6 +483,16 @@ export function createSeoServer({ token = process.env.SEO_ENGINE_TOKEN } = {}) {
 
       if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/" || url.pathname === "/masterflow-seo")) {
         htmlResponse(req, res, 200, projectHtml(await getProjectState()));
+        return;
+      }
+
+      if ((req.method === "GET" || req.method === "HEAD") && url.pathname === "/tracking/umami-events.js") {
+        res.writeHead(200, {
+          "content-type": "application/javascript; charset=utf-8",
+          "cache-control": "no-store",
+          "x-robots-tag": "noindex, nofollow",
+        });
+        res.end(req.method === "HEAD" ? undefined : "window.umami = window.umami || { track() {} };\n");
         return;
       }
 
@@ -491,6 +559,83 @@ export function createSeoServer({ token = process.env.SEO_ENGINE_TOKEN } = {}) {
         return;
       }
 
+      if (req.method === "GET" && url.pathname === "/api/oss-stack/status") {
+        const [domainPolicy, sitemapPlan, signalInventory, feedbackLoop, liveCrawl, promotionCandidates, cdnDeployPlan, liveActionPlan, loopState] = await Promise.all([
+          readJsonMaybe(domainPolicyFile, null),
+          readJsonMaybe(sitemapPlanFile, null),
+          readJsonMaybe(signalInventoryFile, null),
+          readJsonMaybe(feedbackLoopFile, null),
+          readJsonMaybe(liveCrawlFile, null),
+          readJsonMaybe(promotionCandidatesFile, null),
+          readJsonMaybe(cdnDeployPlanFile, null),
+          readJsonMaybe(liveActionPlanFile, null),
+          readJsonMaybe(loopStateFile, null),
+        ]);
+        jsonResponse(res, 200, {
+          ok: true,
+          reports: {
+            domainPolicy: Boolean(domainPolicy),
+            sitemapPlan: Boolean(sitemapPlan),
+            signalInventory: Boolean(signalInventory),
+            feedbackLoop: Boolean(feedbackLoop),
+            liveCrawl: Boolean(liveCrawl),
+            promotionCandidates: Boolean(promotionCandidates),
+            cdnDeployPlan: Boolean(cdnDeployPlan),
+            liveActionPlan: Boolean(liveActionPlan),
+            loopState: Boolean(loopState),
+          },
+          allPass: Boolean(feedbackLoop?.allPass),
+          blockers: feedbackLoop?.blockers ?? [],
+          summary: feedbackLoop?.summary ?? null,
+          signalMissing: signalInventory?.missing ?? null,
+          cdnDeploySummary: cdnDeployPlan?.summary ?? null,
+          liveActionSummary: liveActionPlan?.summary ?? null,
+          lastLoop: loopState
+            ? {
+                generatedAt: loopState.generatedAt,
+                iteration: loopState.iteration,
+                steps: loopState.steps,
+              }
+            : null,
+        });
+        return;
+      }
+
+      if (req.method === "GET" && url.pathname === "/api/oss-stack/feedback") {
+        jsonResponse(res, 200, { ok: true, feedback: await readJsonMaybe(feedbackLoopFile, null) });
+        return;
+      }
+
+      if (req.method === "GET" && url.pathname === "/api/oss-stack/promotion-candidates") {
+        jsonResponse(res, 200, { ok: true, promotionCandidates: await readJsonMaybe(promotionCandidatesFile, null) });
+        return;
+      }
+
+      if (req.method === "GET" && url.pathname === "/api/oss-stack/sitemap-plan") {
+        jsonResponse(res, 200, { ok: true, sitemapPlan: await readJsonMaybe(sitemapPlanFile, null) });
+        return;
+      }
+
+      if (req.method === "GET" && url.pathname === "/api/oss-stack/signal-inventory") {
+        jsonResponse(res, 200, { ok: true, signalInventory: await readJsonMaybe(signalInventoryFile, null) });
+        return;
+      }
+
+      if (req.method === "GET" && url.pathname === "/api/oss-stack/cdn-deploy-plan") {
+        jsonResponse(res, 200, { ok: true, cdnDeployPlan: await readJsonMaybe(cdnDeployPlanFile, null) });
+        return;
+      }
+
+      if (req.method === "GET" && url.pathname === "/api/oss-stack/live-action-plan") {
+        jsonResponse(res, 200, { ok: true, liveActionPlan: await readJsonMaybe(liveActionPlanFile, null) });
+        return;
+      }
+
+      if (req.method === "GET" && url.pathname === "/api/oss-stack/loop-state") {
+        jsonResponse(res, 200, { ok: true, loopState: await readJsonMaybe(loopStateFile, null) });
+        return;
+      }
+
       if ((req.method === "GET" || req.method === "HEAD") && url.pathname === "/favicon.ico") {
         res.writeHead(204, { "cache-control": "no-store", "x-robots-tag": "noindex, nofollow" });
         res.end();
@@ -508,7 +653,7 @@ export function createSeoServer({ token = process.env.SEO_ENGINE_TOKEN } = {}) {
         return;
       }
 
-      if ((req.method === "GET" || req.method === "HEAD") && (url.pathname.startsWith("/seo-preview/") || url.pathname.startsWith("/media/"))) {
+      if ((req.method === "GET" || req.method === "HEAD") && (url.pathname.startsWith("/seo-preview/") || url.pathname.startsWith("/generator-preview/") || url.pathname.startsWith("/media/"))) {
         await serveStaticPreview(req, res, url.pathname);
         return;
       }

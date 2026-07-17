@@ -37,19 +37,21 @@ const servicePriority = [
   "repiping",
 ];
 
-// Source of truth: the live/current site service-area section, not the older invoice region text.
+// Source of truth: this thread's current strategy. Corona is the main area, and
+// Lake Elsinore is the first visibility gap because that is where early results
+// need to surface.
 const siteLaunchWaves = [
   {
     wave: 1,
-    region: "Corona & Norco",
-    source: "site area card: Corona & Norco",
-    markets: ["corona", "norco"],
+    region: "Corona Main + Lake Elsinore First Visibility Gap",
+    source: "thread directive: make Corona primary and surface Lake Elsinore first",
+    markets: ["corona", "lake-elsinore"],
   },
   {
     wave: 2,
-    region: "Riverside & Moreno Valley",
-    source: "site area card: Riverside & Moreno Valley",
-    markets: ["riverside", "moreno-valley", "perris", "jurupa-valley"],
+    region: "Norco / Riverside Support",
+    source: "supporting markets around Corona and the I-15/91 service area",
+    markets: ["norco", "riverside", "moreno-valley", "perris"],
   },
   {
     wave: 3,
@@ -200,7 +202,7 @@ function cityServiceCandidate(market, service) {
 }
 
 function serviceHubCandidate(service) {
-  const rootSlug = `southern-california-${rootServiceSlug(service.slug)}`;
+  const rootSlug = `services/${rootServiceSlug(service.slug)}`;
   const sourcePath = `/seo-preview/services/${service.slug}/`;
   return {
     kind: "service_hub",
@@ -329,10 +331,16 @@ async function main() {
       lead_flow: "direct-to-phone / preferred inbox, no AI phone middleman",
       quality_guardrail:
         "Hyper-localized useful pages only. Noindex private preview until root-path bind and explicit indexable publish approval.",
+      market_strategy: {
+        primary_market: "corona",
+        first_visibility_gap: "lake-elsinore",
+        proof_goal:
+          "Masterflow Plumbing should surface for Corona plumber intent and Lake Elsinore brand/local plumbing intent before broadening the rest of the region.",
+      },
     },
     site_source_of_truth: {
       description:
-        "Launch regions come from the current Masterflow site service-area section and FAQ, not the older invoice region text.",
+        "Launch regions follow the current thread strategy first, then the live site service-area section and FAQ.",
       launch_waves: siteLaunchWaves,
     },
     summary: {

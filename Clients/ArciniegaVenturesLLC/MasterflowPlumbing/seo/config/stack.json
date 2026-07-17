@@ -1,0 +1,536 @@
+{
+  "client": "masterflow",
+  "clientName": "Masterflow Plumbing",
+  "siteDir": "clients/masterflow-plumbing",
+  "canonicalDomain": "https://masterflowplumbing.us",
+  "previewBase": "https://masterflowplumbing.us/seo-preview",
+  "domains": [
+    "https://masterflowplumbing.us/",
+    "http://masterflowplumbing.us/",
+    "https://www.masterflowplumbing.us/",
+    "http://www.masterflowplumbing.us/"
+  ],
+  "decommissionedWebDomains": [
+    "https://masterflowplumbing.net/",
+    "http://masterflowplumbing.net/",
+    "https://www.masterflowplumbing.net/",
+    "http://www.masterflowplumbing.net/"
+  ],
+  "cloudflare": {
+    "accountId": "f3c8cc51d06b88d2dc0f3ff25f5aeacf",
+    "zones": [
+      {
+        "name": "masterflowplumbing.us",
+        "zoneId": "4d2cffb83f7c8944fb8f23cb44d390fe"
+      }
+    ],
+    "decommissionedWebZones": [
+      {
+        "name": "masterflowplumbing.net",
+        "zoneId": "df58a12182116f0ea7b23412c34a3ada",
+        "policy": "No website DNS, Worker routes, API routes, redirects, or R2 custom-domain bindings. Registration and verification records may remain with the domain owner."
+      }
+    ]
+  },
+  "staticHosting": {
+    "accountId": "956cd86d8e5c90c6156a7a7d937c6415",
+    "bucket": "valen-clients-cdn",
+    "keyPrefix": "masterflow-plumbing",
+    "publicBaseUrl": "https://clients.valen-systems.com/masterflow-plumbing",
+    "canonicalProxyAccountId": "f3c8cc51d06b88d2dc0f3ff25f5aeacf",
+    "rollbackArchive": {
+      "bucket": "valen-clients-cdn",
+      "prefix": "masterflow-plumbing/_rollback/masterflowplumbing-cdn-2026-07-16",
+      "publicBaseUrl": "https://clients.valen-systems.com/masterflow-plumbing/_rollback/masterflowplumbing-cdn-2026-07-16"
+    },
+    "retiredSourceBucket": "masterflowplumbing-cdn"
+  },
+  "expectedCanonical": "https://masterflowplumbing.us/",
+  "productionSitemap": "https://masterflowplumbing.us/sitemap.xml",
+  "productionRobots": "https://masterflowplumbing.us/robots.txt",
+  "searchConsole": {
+    "siteUrl": "sc-domain:masterflowplumbing.us",
+    "allowedSiteUrls": [
+      "sc-domain:masterflowplumbing.us",
+      "https://masterflowplumbing.us/"
+    ]
+  },
+  "marketStrategy": {
+    "primaryMarket": "corona",
+    "firstVisibilityGap": "lake-elsinore",
+    "supportMarkets": [
+      "norco",
+      "riverside",
+      "ontario",
+      "moreno-valley",
+      "calabasas",
+      "san-fernando-valley",
+      "hollywood",
+      "studio-city",
+      "topanga",
+      "malibu",
+      "glendale",
+      "pasadena"
+    ],
+    "mustSurfaceFor": [
+      "masterflow plumbing lake elsinore",
+      "lake elsinore plumber",
+      "corona plumber in lake elsinore",
+      "emergency plumber corona",
+      "corona plumber",
+      "emergency plumber calabasas",
+      "san fernando valley plumber",
+      "studio city plumber",
+      "pasadena drain cleaning"
+    ]
+  },
+  "visibilityGoals": [
+    {
+      "id": "corona-plumber-core",
+      "market": "corona",
+      "priority": "primary",
+      "targetPath": "/corona-plumber",
+      "targetUrl": "https://masterflowplumbing.us/corona-plumber",
+      "queries": ["masterflow plumbing corona", "corona plumber", "plumber corona"],
+      "desiredOutcome": "Corona is the main service-area proof page and should surface for brand-local and plumber intent.",
+      "success": {
+        "rankTop": 10,
+        "clicks": 1,
+        "leadEvents": 1
+      },
+      "revisionTriggers": {
+        "impressionsWithoutClicks": 100,
+        "positionWorseThan": 20,
+        "minimumImpressionsForPositionCheck": 25
+      }
+    },
+    {
+      "id": "corona-emergency-plumber",
+      "market": "corona",
+      "priority": "primary",
+      "targetPath": "/corona-emergency-plumber",
+      "targetUrl": "https://masterflowplumbing.us/corona-emergency-plumber",
+      "queries": ["emergency plumber corona", "emergency plumbing corona"],
+      "desiredOutcome": "The emergency plumbing page should own the urgent Corona plumber intent.",
+      "success": {
+        "rankTop": 10,
+        "clicks": 1,
+        "leadEvents": 1
+      },
+      "revisionTriggers": {
+        "impressionsWithoutClicks": 75,
+        "positionWorseThan": 20,
+        "minimumImpressionsForPositionCheck": 20
+      }
+    },
+    {
+      "id": "lake-elsinore-brand-gap",
+      "market": "lake-elsinore",
+      "priority": "first_visibility_gap",
+      "targetPath": "/lake-elsinore-plumber",
+      "targetUrl": "https://masterflowplumbing.us/lake-elsinore-plumber",
+      "queries": ["masterflow plumbing lake elsinore", "masterflow plumbing near lake elsinore"],
+      "desiredOutcome": "When someone near Lake Elsinore searches Masterflow by name, the .us site should surface.",
+      "success": {
+        "rankTop": 5,
+        "clicks": 1,
+        "leadEvents": 1
+      },
+      "revisionTriggers": {
+        "impressionsWithoutClicks": 50,
+        "positionWorseThan": 15,
+        "minimumImpressionsForPositionCheck": 15
+      }
+    },
+    {
+      "id": "lake-elsinore-plumber-gap",
+      "market": "lake-elsinore",
+      "priority": "first_visibility_gap",
+      "targetPath": "/lake-elsinore-plumber",
+      "targetUrl": "https://masterflowplumbing.us/lake-elsinore-plumber",
+      "queries": ["lake elsinore plumber", "plumber lake elsinore", "corona plumber in lake elsinore"],
+      "desiredOutcome": "Lake Elsinore plumbing intent should resolve to the Lake Elsinore page first, with Corona context supporting trust.",
+      "success": {
+        "rankTop": 10,
+        "clicks": 1,
+        "leadEvents": 1
+      },
+      "revisionTriggers": {
+        "impressionsWithoutClicks": 75,
+        "positionWorseThan": 20,
+        "minimumImpressionsForPositionCheck": 20
+      }
+    },
+    {
+      "id": "lake-elsinore-emergency-gap",
+      "market": "lake-elsinore",
+      "priority": "first_visibility_gap",
+      "targetPath": "/lake-elsinore-emergency-plumber",
+      "targetUrl": "https://masterflowplumbing.us/lake-elsinore-emergency-plumber",
+      "queries": ["emergency plumber lake elsinore", "emergency plumbing lake elsinore"],
+      "desiredOutcome": "Emergency Lake Elsinore searches should have a specific urgent page instead of relying on the homepage.",
+      "success": {
+        "rankTop": 10,
+        "clicks": 1,
+        "leadEvents": 1
+      },
+      "revisionTriggers": {
+        "impressionsWithoutClicks": 75,
+        "positionWorseThan": 20,
+        "minimumImpressionsForPositionCheck": 20
+      }
+    },
+    {
+      "id": "calabasas-emergency-plumber",
+      "market": "calabasas",
+      "priority": "sfv_expansion",
+      "targetPath": "/calabasas-emergency-plumber",
+      "targetUrl": "https://masterflowplumbing.us/calabasas-emergency-plumber",
+      "queries": ["emergency plumber calabasas", "calabasas emergency plumber", "24 hour plumber calabasas"],
+      "desiredOutcome": "Calabasas urgent plumbing searches should find a specific emergency page near the SFV expansion corridor.",
+      "success": {
+        "rankTop": 10,
+        "clicks": 1,
+        "leadEvents": 1
+      },
+      "revisionTriggers": {
+        "impressionsWithoutClicks": 75,
+        "positionWorseThan": 20,
+        "minimumImpressionsForPositionCheck": 20
+      }
+    },
+    {
+      "id": "sfv-plumber-core",
+      "market": "san-fernando-valley",
+      "priority": "sfv_expansion",
+      "targetPath": "/san-fernando-valley-plumber",
+      "targetUrl": "https://masterflowplumbing.us/san-fernando-valley-plumber",
+      "queries": ["san fernando valley plumber", "sfv plumber", "plumber san fernando valley"],
+      "desiredOutcome": "The SFV hub should become the broad local proof page for San Fernando Valley plumber searches.",
+      "success": {
+        "rankTop": 10,
+        "clicks": 1,
+        "leadEvents": 1
+      },
+      "revisionTriggers": {
+        "impressionsWithoutClicks": 100,
+        "positionWorseThan": 20,
+        "minimumImpressionsForPositionCheck": 25
+      }
+    },
+    {
+      "id": "studio-city-plumber-core",
+      "market": "studio-city",
+      "priority": "sfv_expansion",
+      "targetPath": "/studio-city-plumber",
+      "targetUrl": "https://masterflowplumbing.us/studio-city-plumber",
+      "queries": ["studio city plumber", "plumber studio city", "emergency plumber studio city"],
+      "desiredOutcome": "Studio City searches should land on the Studio City hub or emergency page instead of a generic regional page.",
+      "success": {
+        "rankTop": 10,
+        "clicks": 1,
+        "leadEvents": 1
+      },
+      "revisionTriggers": {
+        "impressionsWithoutClicks": 75,
+        "positionWorseThan": 20,
+        "minimumImpressionsForPositionCheck": 20
+      }
+    },
+    {
+      "id": "hollywood-emergency-plumber",
+      "market": "hollywood",
+      "priority": "sfv_expansion",
+      "targetPath": "/hollywood-emergency-plumber",
+      "targetUrl": "https://masterflowplumbing.us/hollywood-emergency-plumber",
+      "queries": ["emergency plumber hollywood", "hollywood emergency plumber", "24 hour plumber hollywood"],
+      "desiredOutcome": "Hollywood urgent plumbing searches should have a specific emergency page with LA-area proof.",
+      "success": {
+        "rankTop": 10,
+        "clicks": 1,
+        "leadEvents": 1
+      },
+      "revisionTriggers": {
+        "impressionsWithoutClicks": 75,
+        "positionWorseThan": 20,
+        "minimumImpressionsForPositionCheck": 20
+      }
+    },
+    {
+      "id": "topanga-emergency-plumber",
+      "market": "topanga",
+      "priority": "sfv_expansion",
+      "targetPath": "/topanga-emergency-plumber",
+      "targetUrl": "https://masterflowplumbing.us/topanga-emergency-plumber",
+      "queries": ["emergency plumber topanga", "topanga plumber", "plumber topanga canyon"],
+      "desiredOutcome": "Topanga and canyon-adjacent searches should see a page that reflects access and routing constraints.",
+      "success": {
+        "rankTop": 10,
+        "clicks": 1,
+        "leadEvents": 1
+      },
+      "revisionTriggers": {
+        "impressionsWithoutClicks": 75,
+        "positionWorseThan": 20,
+        "minimumImpressionsForPositionCheck": 20
+      }
+    },
+    {
+      "id": "malibu-emergency-plumber",
+      "market": "malibu",
+      "priority": "sfv_expansion",
+      "targetPath": "/malibu-emergency-plumber",
+      "targetUrl": "https://masterflowplumbing.us/malibu-emergency-plumber",
+      "queries": ["emergency plumber malibu", "malibu plumber", "24 hour plumber malibu"],
+      "desiredOutcome": "Malibu urgent searches should land on a coastal/canyon-specific emergency plumbing page.",
+      "success": {
+        "rankTop": 10,
+        "clicks": 1,
+        "leadEvents": 1
+      },
+      "revisionTriggers": {
+        "impressionsWithoutClicks": 75,
+        "positionWorseThan": 20,
+        "minimumImpressionsForPositionCheck": 20
+      }
+    },
+    {
+      "id": "glendale-plumber-core",
+      "market": "glendale",
+      "priority": "sfv_expansion",
+      "targetPath": "/glendale-plumber",
+      "targetUrl": "https://masterflowplumbing.us/glendale-plumber",
+      "queries": ["glendale plumber", "plumber glendale ca", "emergency plumber glendale"],
+      "desiredOutcome": "Glendale plumber searches should resolve to a Glendale-specific hub with nearby LA proof.",
+      "success": {
+        "rankTop": 10,
+        "clicks": 1,
+        "leadEvents": 1
+      },
+      "revisionTriggers": {
+        "impressionsWithoutClicks": 75,
+        "positionWorseThan": 20,
+        "minimumImpressionsForPositionCheck": 20
+      }
+    },
+    {
+      "id": "pasadena-drain-cleaning",
+      "market": "pasadena",
+      "priority": "sfv_expansion",
+      "targetPath": "/pasadena-drain-cleaning",
+      "targetUrl": "https://masterflowplumbing.us/pasadena-drain-cleaning",
+      "queries": ["drain cleaning pasadena ca", "pasadena drain cleaning", "drain plumber pasadena"],
+      "desiredOutcome": "Pasadena drain searches should have a service-specific page to compete with the top organic pages already seen.",
+      "success": {
+        "rankTop": 10,
+        "clicks": 1,
+        "leadEvents": 1
+      },
+      "revisionTriggers": {
+        "impressionsWithoutClicks": 75,
+        "positionWorseThan": 20,
+        "minimumImpressionsForPositionCheck": 20
+      }
+    }
+  ],
+  "seedKeywords": [
+    {
+      "query": "masterflow plumbing corona",
+      "market": "corona",
+      "intent": "brand_local"
+    },
+    {
+      "query": "masterflow plumbing norco",
+      "market": "norco",
+      "intent": "brand_local"
+    },
+    {
+      "query": "masterflow plumbing lake elsinore",
+      "market": "lake-elsinore",
+      "intent": "brand_local_gap"
+    },
+    {
+      "query": "masterflow plumbing near lake elsinore",
+      "market": "lake-elsinore",
+      "intent": "brand_local_gap"
+    },
+    {
+      "query": "corona plumber",
+      "market": "corona",
+      "intent": "service_local"
+    },
+    {
+      "query": "emergency plumber corona",
+      "market": "corona",
+      "intent": "service_local"
+    },
+    {
+      "query": "lake elsinore plumber",
+      "market": "lake-elsinore",
+      "intent": "service_local_gap"
+    },
+    {
+      "query": "emergency plumber lake elsinore",
+      "market": "lake-elsinore",
+      "intent": "service_local_gap"
+    },
+    {
+      "query": "corona plumber in lake elsinore",
+      "market": "lake-elsinore",
+      "intent": "cross_market_gap"
+    },
+    {
+      "query": "emergency plumber calabasas",
+      "market": "calabasas",
+      "intent": "sfv_emergency"
+    },
+    {
+      "query": "calabasas emergency plumber",
+      "market": "calabasas",
+      "intent": "sfv_emergency"
+    },
+    {
+      "query": "san fernando valley plumber",
+      "market": "san-fernando-valley",
+      "intent": "sfv_general"
+    },
+    {
+      "query": "sfv plumber",
+      "market": "san-fernando-valley",
+      "intent": "sfv_general"
+    },
+    {
+      "query": "studio city plumber",
+      "market": "studio-city",
+      "intent": "sfv_general"
+    },
+    {
+      "query": "emergency plumber hollywood",
+      "market": "hollywood",
+      "intent": "la_emergency"
+    },
+    {
+      "query": "emergency plumber topanga",
+      "market": "topanga",
+      "intent": "la_emergency"
+    },
+    {
+      "query": "emergency plumber malibu",
+      "market": "malibu",
+      "intent": "la_emergency"
+    },
+    {
+      "query": "glendale plumber",
+      "market": "glendale",
+      "intent": "la_general"
+    },
+    {
+      "query": "drain cleaning pasadena ca",
+      "market": "pasadena",
+      "intent": "la_drain"
+    }
+  ],
+  "rankSeedFromUniverseLimit": 120,
+  "reports": {
+    "siteoneCrawl": "seo/reports/live-crawl-siteone.json",
+    "domainPolicy": "seo/reports/domain-policy-report.json",
+    "homepageArtifact": "seo/reports/homepage-index-with-tracking.html",
+    "productionSitemapArtifact": "seo/reports/production-sitemap.xml",
+    "productionRobotsArtifact": "seo/reports/production-robots.txt",
+    "sitemapPlan": "seo/reports/sitemap-plan.json",
+    "inputSync": "seo/reports/input-sync-report.json",
+    "keywordUniverse": "seo/reports/keyword-universe-report.json",
+    "searchIntel": "seo/reports/search-intel-report.json",
+    "dataForSeoSerpPull": "seo/reports/dataforseo-serp-pull.json",
+    "dataForSeoKeywordVolumePull": "seo/reports/dataforseo-keyword-volume-pull.json",
+    "dataForSeoCapabilities": "seo/reports/dataforseo-capabilities.json",
+    "pageGroundedSerpSummary": "seo/reports/page-grounded-serp-summary.json",
+    "competitorPageMap": "seo/reports/competitor-page-map.json",
+    "searchConsoleIndexingRequests": "seo/reports/search-console-indexing-requests.json",
+    "signalInventory": "seo/reports/signal-inventory.json",
+    "feedbackLoop": "seo/reports/feedback-loop.json",
+    "visibilityScorecard": "seo/reports/visibility-scorecard.json",
+    "promotionCandidates": "promotions/candidates.json",
+    "rootPromotionArtifacts": "seo/reports/root-promotion-artifacts.json",
+    "cdnDeployPlan": "seo/reports/cdn-deploy-plan.json",
+    "livePromotionVerification": "seo/reports/live-promotion-verification.json",
+    "liveActionPlan": "seo/reports/live-action-plan.json",
+    "loopState": "seo/reports/loop-state.json"
+  },
+  "optionalInputs": {
+    "searchConsole": "seo/inputs/search-console.json",
+    "keywordDemand": "seo/inputs/keyword-demand.json",
+    "rankTracking": "seo/inputs/rank-tracking.json",
+    "rankObservations": "seo/inputs/rank-observations.json",
+    "cloudflareAnalytics": "seo/inputs/cloudflare-analytics.json",
+    "analytics": "seo/inputs/analytics-events.json",
+    "calls": "seo/inputs/call-events.json",
+    "reviews": "seo/inputs/reviews.json",
+    "editorialDecisions": "promotions/editorial-decisions.json"
+  },
+  "ossComponents": [
+    {
+      "name": "advertools",
+      "role": "keyword permutation generation and SEO/SEM research workflows",
+      "license": "MIT",
+      "repo": "https://github.com/eliasdabbas/advertools",
+      "stackUse": "The keyword-universe builder follows an advertools-style product/location/template expansion model and can be replaced with advertools kw_generate if Python tooling becomes the primary lane."
+    },
+    {
+      "name": "pytrends",
+      "role": "Google Trends demand proxy for common-search prioritization",
+      "license": "Apache-2.0",
+      "repo": "https://github.com/GeneralMills/pytrends",
+      "caveat": "Unofficial Google Trends API; use as relative demand signal, not exact monthly volume."
+    },
+    {
+      "name": "SiteOne Crawler",
+      "role": "live crawler and inventory",
+      "license": "MIT",
+      "repo": "https://github.com/janreges/siteone-crawler",
+      "localCommand": ".tools/bin/siteone-crawler"
+    },
+    {
+      "name": "SerpBear",
+      "role": "rank tracking and keyword checks",
+      "license": "MIT",
+      "repo": "https://github.com/towfiqi/serpbear",
+      "composeService": "serpbear"
+    },
+    {
+      "name": "SearXNG or Whoogle",
+      "role": "optional self-hosted SERP scrape/proxy lane for top-ranking page aggregation",
+      "license": "AGPL-3.0 or MIT depending on selected proxy",
+      "repo": "https://github.com/searxng/searxng",
+      "caveat": "Use for competitor/page discovery. Treat Google-localized rank truth as unproven unless a Google SERP provider or Search Console/Keyword Planner export confirms it."
+    },
+    {
+      "name": "Better Search Console",
+      "role": "Search Console ingestion to SQLite/MCP",
+      "license": "Apache-2.0",
+      "repo": "https://github.com/houtini-ai/better-search-console",
+      "credentialGate": "Google Search Console service account must be added to the property"
+    },
+    {
+      "name": "Umami",
+      "role": "privacy-focused analytics and CTA event tracking",
+      "license": "MIT",
+      "repo": "https://github.com/umami-software/umami",
+      "composeService": "umami"
+    },
+    {
+      "name": "Decap CMS",
+      "role": "Git-native editorial review workflow",
+      "license": "MIT",
+      "repo": "https://github.com/decaporg/decap-cms",
+      "config": "oss-stack/decap/config.yml"
+    },
+    {
+      "name": "Gitea",
+      "role": "optional self-hosted issue/PR gate if GitHub is not the workflow owner",
+      "license": "MIT",
+      "repo": "https://github.com/go-gitea/gitea",
+      "composeService": "gitea"
+    }
+  ]
+}

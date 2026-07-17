@@ -1,0 +1,20 @@
+{
+  "residential": {
+    "id": "residential",
+    "label": "Residential Plumbing",
+    "route_prefix": "/",
+    "preview_route_prefix": "/seo-preview",
+    "preview_output": "seo-preview",
+    "production_output": "seo-production",
+    "cdn_target_prefix": ""
+  },
+  "commercial": {
+    "id": "commercial",
+    "label": "Commercial Plumbing",
+    "route_prefix": "/commercial",
+    "preview_route_prefix": "/commercial",
+    "preview_output": "commercial",
+    "production_output": "commercial-production",
+    "cdn_target_prefix": "commercial"
+  }
+}

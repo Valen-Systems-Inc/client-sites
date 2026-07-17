@@ -1,0 +1,107 @@
+{
+  "generatedAt": "2026-07-16T23:37:12Z",
+  "release": "mflow-v.1.0.7",
+  "policy": {
+    "clientDomainOwnershipPreserved": true,
+    "siteContentDelivery": "Valen-controlled clients CDN behind an originless Cloudflare Worker route",
+    "legacyContentOriginsRemoved": true,
+    "masterflowDataAndEmailPreserved": true
+  },
+  "rollbackArchive": {
+    "verifiedAt": "2026-07-16T23:25:40.543Z",
+    "accountId": "956cd86d8e5c90c6156a7a7d937c6415",
+    "bucket": "valen-clients-cdn",
+    "prefix": "masterflow-plumbing/_rollback/masterflowplumbing-cdn-2026-07-16",
+    "publicBaseUrl": "https://clients.valen-systems.com/masterflow-plumbing/_rollback/masterflowplumbing-cdn-2026-07-16",
+    "objectCount": 2120,
+    "totalBytes": 188943220,
+    "missing": 0,
+    "mismatched": 0
+  },
+  "legacySourceBucket": {
+    "accountId": "f3c8cc51d06b88d2dc0f3ff25f5aeacf",
+    "bucket": "masterflowplumbing-cdn",
+    "objectCountAfterDecommission": 0,
+    "customDomainsAfterDecommission": 0
+  },
+  "canonicalDomain": {
+    "hostname": "masterflowplumbing.us",
+    "originlessDns": [
+      {
+        "hostname": "masterflowplumbing.us",
+        "type": "A",
+        "content": "192.0.2.0",
+        "proxied": true,
+        "recordId": "a98157184dc57ae04afa786292a571ea"
+      },
+      {
+        "hostname": "www.masterflowplumbing.us",
+        "type": "A",
+        "content": "192.0.2.0",
+        "proxied": true,
+        "recordId": "0e7d7f3d2b678ac603825571d72ccaf3"
+      }
+    ],
+    "siteWorker": {
+      "name": "masterflow-site-proxy",
+      "versionId": "286111fd-7992-4332-9e7b-f7de6f82d440",
+      "route": "masterflowplumbing.us/*",
+      "staticOrigin": "https://clients.valen-systems.com/masterflow-plumbing"
+    },
+    "redirectWorker": {
+      "name": "masterflow-canonical-redirect",
+      "versionId": "07489b50-eb31-4106-966f-af7011a59d00",
+      "routes": [
+        "www.masterflowplumbing.us/*",
+        "http://masterflowplumbing.us/*"
+      ]
+    },
+    "apiWorker": {
+      "name": "masterflow-review-api",
+      "versionId": "53257a6a-dc62-432c-871c-cd292c688e2f",
+      "routes": [
+        "masterflowplumbing.us/api/reviews*",
+        "www.masterflowplumbing.us/api/reviews*",
+        "masterflowplumbing.us/api/request-service*",
+        "www.masterflowplumbing.us/api/request-service*"
+      ],
+      "database": "masterflow_reviews",
+      "salesEmail": "sales@masterflowplumbing.us"
+    }
+  },
+  "decommissionedDomain": {
+    "hostname": "masterflowplumbing.net",
+    "webDnsRecords": 0,
+    "workerRoutes": 0,
+    "apiRoutes": 0,
+    "redirectRoutes": 0,
+    "r2CustomDomains": 0,
+    "publicResolution": false,
+    "preservedNonWebRecords": [
+      "_acme-challenge.www.masterflowplumbing.net CNAME",
+      "masterflowplumbing.net Google site-verification TXT"
+    ]
+  },
+  "liveVerification": {
+    "residential": {
+      "verifiedAt": "2026-07-16T23:35:20.150Z",
+      "pass": true,
+      "artifacts": 480,
+      "pages": 432
+    },
+    "commercial": {
+      "verifiedAt": "2026-07-16T23:35:49.292Z",
+      "pass": true,
+      "artifacts": 86,
+      "pages": 37
+    },
+    "canonicalOriginHeader": "x-masterflow-static-origin: valen-clients-cdn",
+    "requestApiHealth": {
+      "database": true,
+      "email": true
+    },
+    "reviewApiHealth": {
+      "database": true
+    }
+  }
+}

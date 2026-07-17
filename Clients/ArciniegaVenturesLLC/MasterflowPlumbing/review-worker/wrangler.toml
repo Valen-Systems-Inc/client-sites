@@ -1,0 +1,24 @@
+name = "masterflow-review-api"
+main = "src/worker.js"
+compatibility_date = "2026-07-16"
+account_id = "f3c8cc51d06b88d2dc0f3ff25f5aeacf"
+
+routes = [
+  { pattern = "masterflowplumbing.us/api/reviews*", zone_name = "masterflowplumbing.us" },
+  { pattern = "www.masterflowplumbing.us/api/reviews*", zone_name = "masterflowplumbing.us" },
+  { pattern = "masterflowplumbing.us/api/request-service*", zone_name = "masterflowplumbing.us" },
+  { pattern = "www.masterflowplumbing.us/api/request-service*", zone_name = "masterflowplumbing.us" }
+]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "masterflow_reviews"
+database_id = "952ab8f1-da35-4db5-942c-01f32a06865d"
+
+[[send_email]]
+name = "SALES_EMAIL"
+allowed_sender_addresses = [ "website@masterflowplumbing.us" ]
+
+[observability]
+enabled = true
+head_sampling_rate = 1

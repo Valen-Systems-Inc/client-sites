@@ -6,7 +6,7 @@ This manifest keeps the client artifact honest.
 
 | Field | Value |
 | --- | --- |
-| Client owner folder | `Sites/Clients/ArciniegaVenturesLLC/MasterflowPlumbing/` |
+| Client owner folder | `Clients/ArciniegaVenturesLLC/MasterflowPlumbing/` |
 | Wrapper file | `landing.tsx` |
 | Static entry | `index.html` |
 | Target R2 namespace | `valen-clients-cdn/masterflow-plumbing` |
@@ -22,9 +22,10 @@ This manifest keeps the client artifact honest.
 | Wrapper file exists in repo | Present. |
 | Static entry exists in repo | Present. |
 | Remote R2 namespace | Created: `valen-clients-cdn/masterflow-plumbing`. |
-| Full mirror | Verified 2026-07-16: 2,120 objects and 188,943,220 bytes, with zero missing or mismatched objects. |
-| Canonical routing | `masterflowplumbing.us` is served through `masterflow-site-proxy`; `.net` and `www` aliases redirect to canonical. |
-| Rollback | The original `masterflowplumbing-cdn` bucket is preserved and was not deleted or detached during migration. |
+| Rollback archive | Verified 2026-07-16: 2,120 objects and 188,943,220 bytes in the Valen rollback namespace, with zero missing or mismatched objects. |
+| Canonical routing | `masterflowplumbing.us` is served through `masterflow-site-proxy` from `clients.valen-systems.com`; apex and `www` use originless proxied DNS. |
+| Legacy source bucket | `masterflowplumbing-cdn` is empty and has zero custom-domain bindings after the verified archive/cutover. |
+| `.net` web surface | Decommissioned: no apex/`www` web DNS, Worker/API routes, redirect, public resolution, or R2 binding. Domain registration and verification records remain client-owned. |
 | CORS and object metadata | Representative HTML, XML, JSON, and image objects returned correct MIME types without forced-download or incorrect gzip headers on 2026-07-16. |
 | Wrapper compile proof | `landing.tsx` bundles with esbuild. |
 | SEO handoff | Present: `seo-handoff-2026-06-23.md` captures the canonical `.us` decision, redirect priority, missing production sitemap, homepage title/H1 recommendation, media-performance findings, and first page-promotion queue. |
@@ -32,8 +33,8 @@ This manifest keeps the client artifact honest.
 | Residential build proof | 432 generated pages passed all 15 guards on 2026-07-16. |
 | Commercial build proof | 37 generated pages, 36 public URLs, six industry pages, eight guides, and no residential city matrix passed on 2026-07-16. |
 | Forms proof | Request-service unit tests cover residential and commercial fields; reviews remain pending until explicit moderation. |
-| Screenshot proof | Not attached in this repo. |
-| Live URL proof | Final `mflow-v.1.0.6` route and form verification is recorded in the generator repository release reports. |
+| Screenshot proof | Four desktop/mobile residential/commercial captures are attached under `proof/mflow-v.1.0.7/screenshots/`. |
+| Live URL proof | `mflow-v.1.0.7` passes 480 residential artifacts and 86 commercial artifacts after the originless DNS cutover. |
 | Approval state | William explicitly requested the CDN move, residential/commercial split, publish, commit, and push. |
 | Source/import note | This is the sanitized canonical wrapper/static mirror; generator and deployment evidence live in `client-site-tools`. |
 
@@ -54,5 +55,6 @@ Do not add without fresh approval:
 - platform secrets
 - payment or publish credentials
 
-Next proof to attach: the final `mflow-v.1.0.6` live route matrix and commercial
-screenshots after the edge proxy is deployed.
+The attached `proof/mflow-v.1.0.7/` bundle contains the CDN release manifests,
+live route matrices, exact rollback verification, domain decommission report,
+and visual proof manifest used for this release.

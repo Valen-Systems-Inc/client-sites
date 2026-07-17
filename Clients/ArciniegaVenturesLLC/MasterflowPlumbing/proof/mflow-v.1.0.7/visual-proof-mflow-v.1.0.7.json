@@ -1,0 +1,71 @@
+{
+  "version": "mflow-v.1.0.7",
+  "capturedAt": "2026-07-16T22:46:31.639Z",
+  "baseUrl": "https://masterflowplumbing.us",
+  "checks": [
+    {
+      "surface": "residential-desktop",
+      "url": "https://masterflowplumbing.us/?v=mflow-v.1.0.7&visual=desktop-final",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "screenshots/mflow-v.1.0.7/residential-desktop.png",
+      "bytes": 1094007,
+      "sha256": "516405e7c8704ade80e574fd2688b6c2c6834747fa12b599d50e260aec57479e",
+      "observations": [
+        "Primary navigation includes Commercial and Blog.",
+        "Request Service links to /contact/#request-service.",
+        "Hero, logo, trust indicators, and proof band fit without overlap."
+      ]
+    },
+    {
+      "surface": "residential-mobile-menu",
+      "url": "https://masterflowplumbing.us/?v=mflow-v.1.0.7&visual=final-menu",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "screenshots/mflow-v.1.0.7/residential-mobile-menu.png",
+      "bytes": 65863,
+      "sha256": "0b82e983abf8e204a05e5c3faeb8a0bf75dc8c057b7cd69e7586226b2d4ea7c3",
+      "observations": [
+        "Commercial services and Commercial are distinct labels.",
+        "Blog is a first-class navigation destination.",
+        "The full menu and request-service button fit at 390 pixels."
+      ]
+    },
+    {
+      "surface": "commercial-desktop",
+      "url": "https://masterflowplumbing.us/commercial/?v=mflow-v.1.0.7&visual=desktop-final",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "screenshots/mflow-v.1.0.7/commercial-desktop.png",
+      "bytes": 1209261,
+      "sha256": "b0acb2f93c3b6aa33684c34198da170c671c2a94f86957ca0130f8f13c35503c",
+      "observations": [
+        "Commercial navigation includes Residential, Services, Industries, Service Area, Reviews, Blog, and Contact.",
+        "Commercial Request is visible in the primary navigation.",
+        "Hero and commercial proof band fit without overlap."
+      ]
+    },
+    {
+      "surface": "commercial-mobile",
+      "url": "https://masterflowplumbing.us/commercial/?v=mflow-v.1.0.7&visual=desktop-final",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "screenshots/mflow-v.1.0.7/commercial-mobile.png",
+      "bytes": 362098,
+      "sha256": "e862407b7682ed8d121ae769313a4bd48030710fe5217ad248cc17a0c9a81b61",
+      "observations": [
+        "Commercial hero copy and both primary calls to action fit without overlap.",
+        "The mobile header remains readable at 390 pixels.",
+        "Request Commercial Service links to /commercial/contact/#request-service."
+      ]
+    }
+  ]
+}
