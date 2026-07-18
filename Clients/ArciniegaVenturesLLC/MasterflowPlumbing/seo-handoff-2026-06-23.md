@@ -94,13 +94,13 @@ approved to be indexable.
 Current homepage title:
 
 ```text
-Masterflow Plumbing & Rooter | 24/7 Emergency Plumbing
+Masterflow Plumbing | 24/7 Emergency Plumbing
 ```
 
 Recommended homepage title:
 
 ```text
-Emergency Plumber in Corona, CA | Masterflow Plumbing & Rooter
+Emergency Plumber in Corona, CA | Masterflow Plumbing
 ```
 
 Current H1:

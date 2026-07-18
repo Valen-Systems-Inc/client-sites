@@ -1,0 +1,43 @@
+{
+  "version": "mflow-v.1.0.7",
+  "generatedAt": "2026-07-16T22:10:09.394Z",
+  "bucket": "valen-clients-cdn",
+  "root": "seo-production",
+  "physicalRoot": ".generated.nosync/seo-production",
+  "keyPrefix": "masterflow-plumbing",
+  "targetPrefix": "masterflow-plumbing",
+  "cdnNamespaceBaseUrl": "https://clients.valen-systems.com/masterflow-plumbing",
+  "publicBaseUrl": "https://clients.valen-systems.com/masterflow-plumbing",
+  "canonicalDomain": "https://masterflowplumbing.us",
+  "dryRun": false,
+  "includeMedia": false,
+  "objectCountExcludingReleaseManifest": 1307,
+  "objectCountIncludingReleaseManifest": 1309,
+  "sampleKeys": [
+    "masterflow-plumbing/LLM.txt",
+    "masterflow-plumbing/admin-sitemap.xml",
+    "masterflow-plumbing/areas_we_serve-sitemap.xml",
+    "masterflow-plumbing/category-sitemap.xml",
+    "masterflow-plumbing/index.html",
+    "masterflow-plumbing/",
+    "masterflow-plumbing",
+    "masterflow-plumbing/llms.txt",
+    "masterflow-plumbing/page-sitemap.xml",
+    "masterflow-plumbing/post-sitemap.xml",
+    "masterflow-plumbing/robots.txt",
+    "masterflow-plumbing/services-sitemap.xml",
+    "masterflow-plumbing/sitemap.xml",
+    "masterflow-plumbing/sitemap_index.xml",
+    "masterflow-plumbing/about/index.html",
+    "masterflow-plumbing/about/",
+    "masterflow-plumbing/about",
+    "masterflow-plumbing/admin/index.html",
+    "masterflow-plumbing/admin/",
+    "masterflow-plumbing/admin"
+  ],
+  "git": {
+    "head": "cf59e3d",
+    "branch": "codex/masterflow-commercial-cdn",
+    "remote": "git@github.com:Valen-Systems-Inc/client-site-tools.git"
+  }
+}

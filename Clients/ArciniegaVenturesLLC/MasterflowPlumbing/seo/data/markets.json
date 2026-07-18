@@ -36,7 +36,7 @@
     "zips": ["92501", "92503", "92504", "92505", "92506", "92507", "92508"],
     "geo": {"lat": 33.9806, "lng": -117.3755},
     "population": 314998,
-    "neighborhoods": ["Arlington", "Canyon Crest", "La Sierra", "Orangecrest", "Wood Streets"],
+    "neighborhoods": ["Orangecrest", "Canyon Crest", "Mission Grove", "La Sierra", "Arlington", "Wood Streets", "Downtown Riverside"],
     "nearby_slugs": ["corona", "moreno-valley", "jurupa-valley", "perris"],
     "priority": "primary",
     "local_signals": ["historic neighborhoods", "student rentals and busy multifamily calls", "older galvanized or cast-iron concerns"]
@@ -260,7 +260,7 @@
     "zips": ["92551", "92553", "92555", "92557"],
     "geo": {"lat": 33.9425, "lng": -117.2297},
     "population": 208634,
-    "neighborhoods": ["Sunnymead", "Rancho Belago", "Edgemont", "Towngate"],
+    "neighborhoods": ["Rancho Belago", "Sunnymead Ranch", "Hidden Springs", "Towngate", "Sunnymead"],
     "nearby_slugs": ["riverside", "perris", "redlands", "san-bernardino"],
     "priority": "primary",
     "local_signals": ["high-volume family plumbing", "newer east-side homes", "older Sunnymead-area infrastructure"]
@@ -344,10 +344,10 @@
     "zips": ["92530", "92532"],
     "geo": {"lat": 33.6681, "lng": -117.3273},
     "population": 71000,
-    "neighborhoods": ["Canyon Hills", "Lake Elsinore Historic District", "Rosetta Canyon", "Alberhill"],
+    "neighborhoods": ["Canyon Hills", "Tuscany Hills", "Alberhill", "Summerly", "Rosetta Canyon", "Lakeland Village"],
     "nearby_slugs": ["corona", "wildomar", "murrieta", "menifee"],
     "priority": "primary",
-    "local_signals": ["lake-area homes and hillside routing", "newer tract plumbing in Canyon Hills", "older downtown sewer and drain lines"]
+    "local_signals": ["homes across Lake Elsinore communities", "newer tract plumbing in Canyon Hills and Summerly", "lake-area and hillside routing near Tuscany Hills and Lakeland Village"]
   },
   {
     "slug": "calabasas",

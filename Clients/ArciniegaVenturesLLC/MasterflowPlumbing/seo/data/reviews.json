@@ -1,29 +1,154 @@
 [
   {
-    "first_name": "Local customer",
-    "city_slug": "corona",
+    "first_name": "William R.",
+    "date": "2025-07-28",
     "rating": 5,
-    "service_slug": "emergency-plumbing",
-    "text": "Fast response, clear explanation, and the repair area was left clean.",
+    "text": "Gianni helped my mom and I get a major project done and made sure we had everything we needed no matter what. Wonderful customer service, took care of us like family, and gave us a great deal.",
     "consented": true,
-    "source": "sanitized-public-summary"
+    "source": "client-provided-yelp-review"
   },
   {
-    "first_name": "Homeowner",
-    "city_slug": "riverside",
+    "first_name": "Shou W.",
+    "date": "2025-07-02",
     "rating": 5,
-    "service_slug": "drain-cleaning",
-    "text": "The drain issue was handled professionally and the next steps were easy to understand.",
+    "text": "Fast response, quick availability, friendly, quick and efficient with a same-day appointment. Very professional and did a great job promptly replacing my laundry shutoff valves.",
     "consented": true,
-    "source": "sanitized-public-summary"
+    "source": "client-provided-yelp-review"
   },
   {
-    "first_name": "Business owner",
-    "city_slug": "ontario",
+    "first_name": "O'Brien M.",
+    "date": "2025-06-29",
     "rating": 5,
-    "service_slug": "sewer-line-repair",
-    "text": "The crew diagnosed the sewer problem and kept the work practical instead of overcomplicating it.",
+    "text": "Was able to get a quote and schedule service on the same call. Showed up on time, did great work, finished ahead of schedule, and communicated well.",
     "consented": true,
-    "source": "sanitized-public-summary"
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Satbir G.",
+    "date": "2025-06-28",
+    "rating": 5,
+    "text": "Very professional and very reasonable price for an under the slab driveway main leak. Recommend as best plumbers.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Wayne L.",
+    "date": "2025-06-22",
+    "rating": 5,
+    "text": "Huge thanks for coming through during an emergency late on a Friday night when multiple other plumbing companies could not fit us in. Their teamwork and dedication helped get our business back up and running the very next day.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Daniel G.",
+    "date": "2025-06-20",
+    "rating": 5,
+    "text": "Masterflow Plumbing got back to me quickly and fixed my plumbing issues in a timely manner. Friendly, professional, and quoted me a life-saving price.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Daisy R.",
+    "date": "2025-06-20",
+    "rating": 5,
+    "text": "Masterflow Plumbing saved the day. They fixed my leaky shower quickly and the price was great. I highly recommend them.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Mario B.",
+    "date": "2025-06-20",
+    "rating": 5,
+    "text": "Master Flow Plumbing is the real deal. They have done work at my barbershop and my home, and every time it has been top-quality, professional, and reliable.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Naomi",
+    "date": "2025-06-19",
+    "rating": 5,
+    "text": "MasterFlow Plumbing fixed my plumbing problem ASAP. Gianni was knowledgeable about the issues and very responsive. I will reach out to him for services in the future.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Alex T.",
+    "date": "2025-06-19",
+    "rating": 5,
+    "text": "Great company, really respectful team and trustworthy. Would definitely recommend them to any friends and family.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Vincent G.",
+    "date": "2025-06-19",
+    "rating": 5,
+    "text": "My shower valve was leaking like crazy. They came out promptly, diagnosed the issue quickly, and fixed it perfectly. Knowledgeable, efficient, and very courteous.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Maccoy L.",
+    "date": "2025-06-19",
+    "rating": 5,
+    "text": "I had a seriously clogged kitchen sink and Masterflow Plumbing came to the rescue. They were quick to respond, professional, and got the job done without any hassle.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Jonah W.",
+    "date": "2025-06-19",
+    "rating": 5,
+    "text": "This small family-owned company is very well priced all around, respectful, and teaches you as he goes about his work.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Seth H.",
+    "date": "2025-06-19",
+    "rating": 5,
+    "text": "Called MasterFlow out for low water pressure throughout my home. They quickly found the issue and solved it immediately, explained it well and thoroughly, and I would rehire again.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Luis P.",
+    "date": "2025-06-18",
+    "rating": 5,
+    "text": "From start to finish, their service was top-notch. My water heater gave out unexpectedly and they responded quickly, scheduled me right away, showed up on time, and left no mess behind.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Ally M.",
+    "date": "2025-06-18",
+    "rating": 5,
+    "text": "I had a water leak in my front yard and Masterflow Plumbing was fantastic. They were quick to respond, professional, explained everything clearly, fixed the issue efficiently, and cleaned up afterward.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Maria G. V.",
+    "date": "2025-06-17",
+    "rating": 5,
+    "text": "Gianni replaced my toilet with professionalism and attention to detail. He was courteous, knowledgeable, helpful, and made the process smooth and stress-free.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Paola A.",
+    "date": "2025-06-17",
+    "rating": 5,
+    "text": "We called Masterflow back out for my backyard drains. They were fast and efficient with hydro jetting.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
+  },
+  {
+    "first_name": "Teagen H.",
+    "date": "2025-06-17",
+    "rating": 5,
+    "text": "Masterflow Plumbing replaced my old water heater and I could not be happier. Gianni arrived on time, explained all my options, answered my questions, and the price was fair and transparent.",
+    "consented": true,
+    "source": "client-provided-yelp-review"
   }
 ]

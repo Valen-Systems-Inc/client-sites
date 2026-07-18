@@ -1,0 +1,104 @@
+{
+  "site_variant": "commercial",
+  "tagline": "Commercial plumbing across Southern California.",
+  "description": "Masterflow Plumbing provides commercial plumbing, drain and sewer service, hydro jetting, camera inspections, leak detection, water-heater work, trenchless preparation, and emergency response for occupied properties and managed portfolios across Southern California.",
+  "service_area": {
+    "primary_city": "Corona",
+    "primary_county": "Riverside County",
+    "first_visibility_gap": "Commercial Southern California",
+    "priority_markets": [
+      "San Fernando Valley",
+      "Calabasas",
+      "Studio City",
+      "Hollywood",
+      "Glendale",
+      "Pasadena",
+      "Malibu",
+      "Corona",
+      "Riverside",
+      "Ontario"
+    ],
+    "region_label": "Southern California commercial service corridor"
+  },
+  "identity_claims": [
+    "Licensed California commercial plumbing contractor",
+    "24/7 emergency response for occupied and operating properties",
+    "Commercial drain, sewer, hydro-jetting, leak, water-heater, and repair capability",
+    "Portfolio service from Santa Barbara through San Diego",
+    "Direct phone line for property managers, facility teams, owners, and investors"
+  ],
+  "commercial_reputation": {
+    "eyebrow": "Commercial Plumbing",
+    "headline": "One plumbing company for the building, the tenants, and the portfolio",
+    "summary": "Masterflow handles emergency calls, planned repairs, drain and sewer maintenance, hydro jetting, camera inspections, trenchless preparation, leak detection, water heaters, and larger plumbing projects for commercial properties across Southern California.",
+    "commercial_plumbing": "Property managers and facility teams need clear communication, controlled access, clean work areas, and a plan for keeping the property usable. Masterflow works around tenants, customers, operating hours, security, loading zones, and approval requirements.",
+    "trenchless_sewer_repair": "Camera footage, pipe condition, access, branch connections, depth, and the location of the failure determine whether cleaning, targeted repair, trenchless preparation, lining support, robotic branch reinstatement, or replacement makes sense.",
+    "property_types": [
+      "Multifamily and apartment communities",
+      "Retail centers and restaurants",
+      "Office and industrial properties",
+      "HOAs and managed communities",
+      "Commercial real estate portfolios",
+      "Occupied renovation and tenant-improvement projects"
+    ],
+    "service_proof": [
+      "24/7 emergency plumbing",
+      "Commercial drain cleaning",
+      "Hydro jetting",
+      "Sewer camera inspections",
+      "Trenchless sewer preparation",
+      "Sewer line repair and replacement",
+      "Leak detection",
+      "Commercial water-heater service"
+    ],
+    "markets": [
+      "Santa Barbara",
+      "Ventura County",
+      "San Fernando Valley",
+      "Greater Los Angeles",
+      "Orange County",
+      "Inland Empire",
+      "San Diego"
+    ]
+  },
+  "commercial_site": {
+    "corridor": "Santa Barbara through San Diego",
+    "audiences": [
+      "Property managers",
+      "Facility managers",
+      "Commercial owners",
+      "Real estate investors",
+      "HOA managers",
+      "General contractors"
+    ],
+    "regions": [
+      {
+        "title": "Santa Barbara and Ventura",
+        "text": "Commercial plumbing support for managed properties, planned projects, drain and sewer work, and urgent calls along the northwest end of the service corridor."
+      },
+      {
+        "title": "San Fernando Valley and Greater Los Angeles",
+        "text": "Service for multifamily, retail, restaurant, office, HOA, and investor-owned properties across Woodland Hills, the Valley, and the greater Los Angeles market."
+      },
+      {
+        "title": "Orange County",
+        "text": "Commercial drain, sewer, leak, water-heater, repair, and maintenance work for operating properties and managed portfolios."
+      },
+      {
+        "title": "Inland Empire",
+        "text": "The Corona-centered service base supports commercial properties across Riverside and San Bernardino counties."
+      },
+      {
+        "title": "San Diego",
+        "text": "Commercial project and portfolio coverage extends south through San Diego. Call with the property address, scope, and timing to confirm dispatch."
+      }
+    ],
+    "operating_priorities": [
+      "Keep occupied areas safe and usable",
+      "Plan around tenants, customers, and operating hours",
+      "Document camera findings and completed work",
+      "Give owners and managers a direct approval path",
+      "Leave the work area ready for the property to reopen"
+    ]
+  }
+}

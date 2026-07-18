@@ -6,13 +6,14 @@ This manifest keeps the client artifact honest.
 
 | Field | Value |
 | --- | --- |
-| Client owner folder | `Sites/Clients/ArciniegaVenturesLLC/MasterflowPlumbing/` |
+| Client owner folder | `Clients/ArciniegaVenturesLLC/MasterflowPlumbing/` |
 | Wrapper file | `landing.tsx` |
 | Static entry | `index.html` |
-| Target R2 bucket | `masterflowplumbing-cdn` |
-| Target custom domain | `masterflowplumbing.net` |
+| Target R2 namespace | `valen-clients-cdn/masterflow-plumbing` |
+| Public CDN base | `https://clients.valen-systems.com/masterflow-plumbing/` |
+| Canonical domain | `https://masterflowplumbing.us/` |
 | Business | Masterflow Plumbing |
-| Artifact type | Sanitized Audos-style landing page source plus R2-ready static entry |
+| Artifact type | Canonical wrapper plus residential and commercial static site profiles |
 
 ## Current Proof
 
@@ -20,19 +21,25 @@ This manifest keeps the client artifact honest.
 | --- | --- |
 | Wrapper file exists in repo | Present. |
 | Static entry exists in repo | Present. |
-| Remote R2 bucket | Created: `masterflowplumbing-cdn`. |
-| Remote R2 upload | `index.html`, empty root object key, `index`, `cdn-manifest.json`, `landing.tsx`, and `r2-cors.json` uploaded on 2026-06-16; root, `index.html`, and key objects hash-verified against `index.html`. |
-| Custom domain | Active: `masterflowplumbing.net`, SSL active, minimum TLS 1.2. |
-| WWW custom domain | Active: `www.masterflowplumbing.net`; public root returned the hash-matched R2 object on 2026-06-16. Cloudflare SSL status was still pending immediately after binding. |
-| CORS | Applied read-only GET/HEAD CORS policy; live response includes `access-control-allow-origin: *` for cross-origin requests. |
+| Remote R2 namespace | Created: `valen-clients-cdn/masterflow-plumbing`. |
+| Rollback archive | Verified 2026-07-16: 2,120 objects and 188,943,220 bytes in the Valen rollback namespace, with zero missing or mismatched objects. |
+| Canonical routing | `masterflowplumbing.us` is served through `masterflow-site-proxy` from `clients.valen-systems.com`; apex and `www` use originless proxied DNS. |
+| Legacy source bucket | `masterflowplumbing-cdn` is empty and has zero custom-domain bindings after the verified archive/cutover. |
+| `.net` web surface | Decommissioned: no apex/`www` web DNS, Worker/API routes, redirect, public resolution, or R2 binding. Domain registration and verification records remain client-owned. |
+| CORS and object metadata | Representative HTML, XML, JSON, and image objects returned correct MIME types without forced-download or incorrect gzip headers on 2026-07-16. |
 | Wrapper compile proof | `landing.tsx` bundles with esbuild. |
 | SEO handoff | Present: `seo-handoff-2026-06-23.md` captures the canonical `.us` decision, redirect priority, missing production sitemap, homepage title/H1 recommendation, media-performance findings, and first page-promotion queue. |
 | SEO engine source | Present: `seo/` contains the local SEO engine, source data, generation scripts, and latest reports. Preview output remains intentionally separate from the reviewed root homepage. |
-| Local build proof | Not attached in this repo. |
-| Screenshot proof | Not attached in this repo. |
-| Live URL proof | `https://masterflowplumbing.net/`, `https://www.masterflowplumbing.net/`, and `https://masterflowplumbing.net/index.html?release=masterflow-plumbing-r2-20260616` returned the hash-matched R2 object on 2026-06-16. |
-| Approval state | Not recorded in this repo. |
-| Source/import note | This file is a sanitized client artifact. It is not a deployment receipt. |
+| Residential build proof | 432 generated pages passed all 15 guards on 2026-07-16. |
+| Commercial build proof | 37 generated pages, 36 public URLs, six industry pages, eight guides, and no residential city matrix passed on 2026-07-16. |
+| Brand proof | Current source, generated output, and live HTML use `Masterflow Plumbing`; the retired `& Rooter` suffix is retained only in negative regression fixtures and historical third-party evidence. |
+| Forms proof | Request-service unit tests cover residential and commercial fields. Live health checks report database storage for reviews and database plus email delivery for service requests; reviews remain private until explicit moderation. |
+| Screenshot proof | Five desktop/mobile residential/commercial captures are attached under `proof/mflow-v.1.0.8/screenshots/`. |
+| Live URL proof | `mflow-v.1.0.9` passes 483 residential artifacts and 86 commercial artifacts from the Valen-controlled CDN namespace. |
+| Sitemap control proof | All 17 active residential/commercial sitemap objects live under `masterflow-plumbing/_control/sitemaps/`; 20 stale copies outside the control and rollback prefixes were removed. |
+| IndexNow proof | The repo-local tool plans 137 canonical URLs, enforces the 10,000-URL protocol ceiling, validates host/key rules, and remains dry-run unless `--submit` is explicit. No submission was made in this release. |
+| Approval state | William explicitly requested the CDN move, residential/commercial split, publish, commit, and push. |
+| Source/import note | This is the sanitized canonical wrapper/static mirror; generator and deployment evidence live in `client-site-tools`. |
 
 ## Sanitized Versus Public
 
@@ -51,9 +58,9 @@ Do not add without fresh approval:
 - platform secrets
 - payment or publish credentials
 
-Next proof to attach: screenshot plus live URL or draft URL, with the date and
-who approved the artifact state.
-
-Next SEO execution step: promote the approved service/location pages from the
-generated preview state only after redirects, production sitemap, and indexable
-URL decisions are confirmed.
+The attached `proof/mflow-v.1.0.9/` bundle contains the current CDN release
+manifests, live route matrices, sitemap-control proof, and dry-run IndexNow
+plan. The unchanged page artifacts retain the desktop/mobile visual proof under
+`proof/mflow-v.1.0.8/`. The original exact rollback
+verification and domain decommission report remain under
+`proof/mflow-v.1.0.7/` because those are cutover records, not per-release files.

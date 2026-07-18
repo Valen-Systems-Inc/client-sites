@@ -1,16 +1,22 @@
 # Masterflow Local SEO Engine
 
-This folder owns the localized SEO engine for Masterflow Plumbing.
+This folder owns the residential and commercial site generator for Masterflow
+Plumbing. The same source layer produces the canonical residential homepage,
+the `/commercial/` site, service and location routes, blog routes, support
+pages, and sitemap families.
 
-The engine is intentionally separate from the reviewed root `index.html`.
-Generated preview pages write to `seo-preview/` so they can be served locally
-and hot-pushed to the R2 bucket without replacing the homepage.
+Generated review output stays under `.generated.nosync/`. The local review root
+serves `.generated.nosync/seo-production`, while `/generator-preview/` exposes
+the raw preview build. Publishing targets the Valen-controlled
+`valen-clients-cdn/masterflow-plumbing` namespace; it does not hand-edit the
+canonical domain or a retired Masterflow bucket.
 
 ## Commands
 
 ```bash
 npm ci
 npm run seo:enrich
+npm run seo:keyword-universe
 npm run seo:intel
 npm run seo:build
 npm run seo:test
@@ -42,10 +48,16 @@ and is intentionally not committed.
 
 ## Output
 
-- `seo-preview/`: generated static preview pages for the CDN prefix.
+- `.generated.nosync/seo-preview/`: raw generated preview pages.
+- `.generated.nosync/seo-production/`: canonical residential production output.
+- `.generated.nosync/commercial-production/`: canonical commercial production output.
 - `seo/reports/build-report.json`: page counts, guard results, source data, and
   the ValenFramework-style Build -> Match -> Verify -> Execute pipeline state.
 - `seo/reports/search-intel-report.json`: review-only public SERP scrape status.
+- `seo/reports/keyword-universe-report.json`: plumber/service/location
+  keyword permutations, demand-source coverage, and target-page mapping.
+- `seo/inputs/keyword-universe.json`: full generated query universe for rank,
+  demand, and SERP prioritization.
 - `seo/data/region-enrichment.json`: public enrichment fetched from Census ACS
   and OpenStreetMap Nominatim.
 - `seo/data/search-intel.json`: review-only competitor/keyword candidates from

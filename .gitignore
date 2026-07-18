@@ -4,6 +4,7 @@
 **/.playwright-cli/
 node_modules/
 **/node_modules/
+Clients/ArciniegaVenturesLLC/MasterflowPlumbing/seo/config/indexnow.json
 **/output/
 **/tmp/
 **/seo-preview/

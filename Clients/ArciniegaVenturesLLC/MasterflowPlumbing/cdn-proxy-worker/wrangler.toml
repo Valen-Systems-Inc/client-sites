@@ -1,0 +1,18 @@
+name = "masterflow-site-proxy"
+main = "src/worker.js"
+compatibility_date = "2026-07-16"
+account_id = "f3c8cc51d06b88d2dc0f3ff25f5aeacf"
+
+routes = [
+  { pattern = "masterflowplumbing.us/*", zone_name = "masterflowplumbing.us" }
+]
+
+[vars]
+STATIC_ORIGIN = "https://clients.valen-systems.com/masterflow-plumbing"
+SITEMAP_ORIGIN = "https://clients.valen-systems.com/masterflow-plumbing/_control/sitemaps"
+INDEXNOW_ORIGIN = "https://clients.valen-systems.com/masterflow-plumbing/_control/indexnow"
+CANONICAL_ORIGIN = "https://masterflowplumbing.us"
+
+[observability]
+enabled = true
+head_sampling_rate = 1

@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-07-16T23:25:40.543Z",
+  "mode": "verify_only",
+  "source": {
+    "accountId": "f3c8cc51d06b88d2dc0f3ff25f5aeacf",
+    "bucket": "masterflowplumbing-cdn",
+    "objectCount": 2120,
+    "totalBytes": 188943220
+  },
+  "destination": {
+    "accountId": "956cd86d8e5c90c6156a7a7d937c6415",
+    "bucket": "valen-clients-cdn",
+    "prefix": "masterflow-plumbing/_rollback/masterflowplumbing-cdn-2026-07-16",
+    "publicBaseUrl": "https://clients.valen-systems.com/masterflow-plumbing/_rollback/masterflowplumbing-cdn-2026-07-16",
+    "objectCount": 2120,
+    "totalBytes": 188943220
+  },
+  "copiedObjects": 0,
+  "copiedBytes": 0,
+  "copyFailures": [],
+  "verification": {
+    "passed": true,
+    "missing": [],
+    "mismatched": []
+  }
+}

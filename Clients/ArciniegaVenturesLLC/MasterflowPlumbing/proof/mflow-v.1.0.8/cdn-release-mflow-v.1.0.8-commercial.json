@@ -1,0 +1,43 @@
+{
+  "version": "mflow-v.1.0.8",
+  "generatedAt": "2026-07-17T02:17:26.300Z",
+  "bucket": "valen-clients-cdn",
+  "root": "commercial-production",
+  "physicalRoot": ".generated.nosync/commercial-production",
+  "keyPrefix": "masterflow-plumbing",
+  "targetPrefix": "masterflow-plumbing/commercial",
+  "cdnNamespaceBaseUrl": "https://clients.valen-systems.com/masterflow-plumbing",
+  "publicBaseUrl": "https://clients.valen-systems.com/masterflow-plumbing/commercial",
+  "canonicalDomain": "https://masterflowplumbing.us",
+  "dryRun": false,
+  "includeMedia": false,
+  "objectCountExcludingReleaseManifest": 123,
+  "objectCountIncludingReleaseManifest": 125,
+  "sampleKeys": [
+    "masterflow-plumbing/commercial/LLM.txt",
+    "masterflow-plumbing/commercial/admin-sitemap.xml",
+    "masterflow-plumbing/commercial/areas_we_serve-sitemap.xml",
+    "masterflow-plumbing/commercial/category-sitemap.xml",
+    "masterflow-plumbing/commercial/index.html",
+    "masterflow-plumbing/commercial/",
+    "masterflow-plumbing/commercial",
+    "masterflow-plumbing/commercial/industries-sitemap.xml",
+    "masterflow-plumbing/commercial/llms.txt",
+    "masterflow-plumbing/commercial/page-sitemap.xml",
+    "masterflow-plumbing/commercial/post-sitemap.xml",
+    "masterflow-plumbing/commercial/robots.txt",
+    "masterflow-plumbing/commercial/services-sitemap.xml",
+    "masterflow-plumbing/commercial/sitemap.xml",
+    "masterflow-plumbing/commercial/sitemap_index.xml",
+    "masterflow-plumbing/commercial/about/index.html",
+    "masterflow-plumbing/commercial/about/",
+    "masterflow-plumbing/commercial/about",
+    "masterflow-plumbing/commercial/admin/index.html",
+    "masterflow-plumbing/commercial/admin/"
+  ],
+  "git": {
+    "head": "154cab4",
+    "branch": "codex/masterflow-commercial-cdn",
+    "remote": "git@github.com:Valen-Systems-Inc/client-site-tools.git"
+  }
+}

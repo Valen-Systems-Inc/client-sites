@@ -66,7 +66,7 @@ function sitePreviewCard({ privateUrl, report }) {
     },
     card_data: {
       title: "Masterflow SEO Engine",
-      businessName: "Masterflow Plumbing & Rooter",
+      businessName: "Masterflow Plumbing",
       businessDescription:
         "Private STRT-7 localized plumbing demand engine for Masterflow: 6 launch regions, city-service assets, SEM research, noindex previews, and approval-gated publish.",
       body:

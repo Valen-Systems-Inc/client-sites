@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-07-18T00:46:59Z",
+  "bucket": "valen-clients-cdn",
+  "activePrefix": "masterflow-plumbing/_control/sitemaps/",
+  "rollbackPrefix": "masterflow-plumbing/_rollback/masterflowplumbing-cdn-2026-07-16/",
+  "deletedCount": 20,
+  "remainingOutsideControlOrRollback": 0,
+  "rollbackArchiveModified": false,
+  "deletedKeys": [
+    "masterflow-plumbing/admin-sitemap.xml",
+    "masterflow-plumbing/areas_we_serve-sitemap.xml",
+    "masterflow-plumbing/category-sitemap.xml",
+    "masterflow-plumbing/city-service-sitemap.xml",
+    "masterflow-plumbing/commercial/admin-sitemap.xml",
+    "masterflow-plumbing/commercial/areas_we_serve-sitemap.xml",
+    "masterflow-plumbing/commercial/category-sitemap.xml",
+    "masterflow-plumbing/commercial/industries-sitemap.xml",
+    "masterflow-plumbing/commercial/page-sitemap.xml",
+    "masterflow-plumbing/commercial/post-sitemap.xml",
+    "masterflow-plumbing/commercial/services-sitemap.xml",
+    "masterflow-plumbing/commercial/sitemap.xml",
+    "masterflow-plumbing/commercial/sitemap_index.xml",
+    "masterflow-plumbing/page-sitemap.xml",
+    "masterflow-plumbing/post-sitemap.xml",
+    "masterflow-plumbing/seo-preview/sitemap.xml",
+    "masterflow-plumbing/service-area-sitemap.xml",
+    "masterflow-plumbing/services-sitemap.xml",
+    "masterflow-plumbing/sitemap.xml",
+    "masterflow-plumbing/sitemap_index.xml"
+  ]
+}

@@ -5,8 +5,8 @@
     "schema_service_type": "Emergency Plumbing",
     "emergency": true,
     "price_band": "$$-$$$",
-    "short_desc": "Rapid help for burst pipes, active leaks, overflowing fixtures, and urgent plumbing failures.",
-    "long_desc": "Emergency plumbing is the core Masterflow response lane: stop the water, stabilize the fixture or line, explain the repair path, and leave the space usable. The work often starts with a phone triage, then moves into leak isolation, shutoff checks, fixture inspection, cleanup guidance, and a repair plan that fits the home or business. The important difference is calm execution. A rushed emergency visit should still be clean, licensed, and documented."
+    "short_desc": "24/7 emergency plumbing for burst pipes, active leaks, overflowing fixtures, sewer backups, and urgent repairs.",
+    "long_desc": "Call Masterflow for active water, sewage backups, failed shutoffs, burst pipes, or no hot water. A plumber checks the affected fixture or line, explains the repair, and gives you upfront pricing before work starts. Same-day service is available."
   },
   {
     "slug": "drain-cleaning",
@@ -14,26 +14,26 @@
     "schema_service_type": "Drain Cleaning",
     "emergency": true,
     "price_band": "$$",
-    "short_desc": "Rooter service, snaking, and clog clearing for kitchens, bathrooms, laundry lines, and main drains.",
-    "long_desc": "Drain cleaning covers the everyday clogs and the high-pressure backups that can shut down a home or business. Masterflow evaluates the fixture, the branch line, and the main line behavior before choosing the right cable, rooter, or camera-supported approach. The goal is not just to punch a hole through a clog. The goal is to understand why the line slowed down, clear it cleanly, and leave the customer with practical next steps."
+    "short_desc": "Professional drain cleaning for kitchen, bathroom, laundry, and main sewer line clogs.",
+    "long_desc": "Drain cleaning can involve one fixture, a shared branch, or the main sewer line. Masterflow checks which drains are affected, how the line responds, where cleanouts are located, and whether cable work, camera inspection, or hydro jetting fits the condition."
   },
   {
     "slug": "hydro-jetting",
-    "name": "Hydro-Jetting",
+    "name": "Hydro Jetting",
     "schema_service_type": "Hydro Jetting",
     "emergency": false,
     "price_band": "$$-$$$",
-    "short_desc": "High-pressure drain and sewer cleaning for grease, sludge, roots, and recurring backups.",
-    "long_desc": "Hydro-jetting is the heavier drain-cleaning lane for lines that need more than a basic cable pass. It can help clear grease, sludge, scale, and root intrusion when the pipe condition allows it. Masterflow treats jetting as a diagnostic and cleaning decision, not a default upsell. The crew checks access, line behavior, and the risk profile first so the service matches the actual pipe condition."
+    "short_desc": "Clear grease, roots, sludge, and heavy buildup with professional hydro jetting.",
+    "long_desc": "Hydro jetting uses high-pressure water to remove grease, sludge, roots, and buildup from drain and sewer lines. Pipe condition, access, prior repairs, camera findings, and safe discharge all matter before jetting is recommended."
   },
   {
     "slug": "water-heater-repair-install",
-    "name": "Water Heater Repair & Install",
-    "schema_service_type": "Water Heater Repair and Installation",
+    "name": "Water Heater Services",
+    "schema_service_type": "Water Heater Services",
     "emergency": true,
     "price_band": "$$-$$$",
-    "short_desc": "Repair and replacement for standard and tankless water heaters.",
-    "long_desc": "Water heater work has to balance speed, safety, and code-aware installation. Masterflow checks symptoms such as no hot water, leaks, pilot or ignition issues, corrosion, water quality problems, venting concerns, and capacity mismatch. Repair is considered when it is practical. Replacement is handled with attention to shutoffs, supply lines, drainage, venting, expansion, seismic restraint, and a clean startup so the customer is not left guessing."
+    "short_desc": "Repair, replacement, and installation for tank and tankless water heaters.",
+    "long_desc": "Water-heater service begins with the unit type, age, leak location, fuel or electrical supply, venting, controls, and the property's hot-water demand. Those findings help separate a serviceable component from a tank or system that should be replaced."
   },
   {
     "slug": "sewer-line-repair",
@@ -41,8 +41,8 @@
     "schema_service_type": "Sewer Line Repair",
     "emergency": true,
     "price_band": "$$$",
-    "short_desc": "Sewer access, diagnosis, spot repairs, and practical repair planning for damaged lines.",
-    "long_desc": "Sewer line repair starts with evidence: backups, cleanout behavior, camera findings when available, soil conditions, access, and the age of the line. Masterflow focuses on finding the actual failure point before opening more than necessary. The work can include exposing a damaged section, replacing fittings, correcting slope or access issues, and explaining when a larger replacement plan makes more sense than a small repair."
+    "short_desc": "Camera inspections, sewer access, trenchless preparation, targeted repair, and sewer line replacement.",
+    "long_desc": "Sewer work should begin with evidence about the line, failure, depth, access, branches, and prior repairs. Depending on those conditions, Masterflow may clean the line, prepare it for epoxy lining, support trenchless work, reopen branch tie-ins with robotic cutting, repair a section, or plan replacement."
   },
   {
     "slug": "leak-detection",
@@ -51,7 +51,7 @@
     "emergency": true,
     "price_band": "$$-$$$",
     "short_desc": "Visible and hidden leak checks for walls, slabs, fixtures, valves, and service lines.",
-    "long_desc": "Leak detection is about narrowing the problem before damage spreads. Masterflow looks at meter movement, fixture behavior, valve conditions, water staining, pressure changes, noise, heat, moisture patterns, and outdoor line clues. The result should be a clear repair path: isolate, expose, repair, and verify. Customers get a plain explanation of what was found and what should happen next."
+    "long_desc": "Leak detection narrows the likely source before walls, floors, or concrete are opened. Meter movement, fixture behavior, valves, pressure, sound, heat, moisture, accessible piping, and the property layout all help determine the next inspection or repair step."
   },
   {
     "slug": "slab-leak-repair",
@@ -60,7 +60,7 @@
     "emergency": true,
     "price_band": "$$$",
     "short_desc": "Slab leak investigation and repair planning for Southern California homes.",
-    "long_desc": "Slab leaks need careful investigation because the wrong repair path can create more disruption than the leak itself. Masterflow considers symptoms such as warm flooring, unexplained water bills, pressure loss, moisture, sound, and localized damage. The crew works toward a repair strategy that fits the line location, home layout, and urgency, whether that means access repair, reroute discussion, or coordination with restoration needs."
+    "long_desc": "A suspected slab leak needs careful investigation because the visible symptom may not sit directly over the failed pipe. Masterflow considers meter movement, hot and cold behavior, pressure, sound, moisture, accessible piping, and the home layout before comparing direct access, rerouting, targeted replacement, or broader repiping."
   },
   {
     "slug": "repiping",
@@ -69,7 +69,7 @@
     "emergency": false,
     "price_band": "$$$",
     "short_desc": "Whole-home and targeted pipe replacement for aging or failing plumbing systems.",
-    "long_desc": "Repiping is a planning-heavy service for homes with repeated leaks, pressure problems, aging materials, corrosion, or remodel needs. Masterflow treats it as a system decision rather than a single fixture repair. A good repipe plan considers access, shutoff strategy, fixture count, wall impacts, scheduling, material choice, inspections, and how to keep the home livable while the work is completed."
+    "long_desc": "Repiping is a larger project for homes with repeated leaks, pressure problems, aging materials, corrosion, or remodel needs. It replaces part or all of the water-distribution system rather than repairing one fixture. A good repipe plan covers access, shutoffs, fixture count, wall openings, scheduling, material choice, inspections, and how to keep the home livable while the work is completed."
   },
   {
     "slug": "gas-line-services",
@@ -78,7 +78,7 @@
     "emergency": true,
     "price_band": "$$-$$$",
     "short_desc": "Gas line checks, repairs, and appliance connection support where licensed plumbing service is needed.",
-    "long_desc": "Gas line work demands caution, clear communication, and respect for safety boundaries. Masterflow can help customers understand shutoff needs, suspected leak response, appliance connection issues, and repair planning. When gas odor or immediate danger is present, emergency utility procedures come first. Plumbing work then follows with careful testing, compliant materials, and documentation of the repair path."
+    "long_desc": "Gas odor or a suspected active leak requires leaving the area and following utility emergency instructions first. After the immediate hazard is cleared, Masterflow can review shutoffs, appliance connections, damaged lines, routing, testing, permits, and the licensed plumbing work required."
   },
   {
     "slug": "fixture-install-repair",
