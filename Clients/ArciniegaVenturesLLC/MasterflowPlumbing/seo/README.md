@@ -51,6 +51,12 @@ and is intentionally not committed.
 - `.generated.nosync/seo-preview/`: raw generated preview pages.
 - `.generated.nosync/seo-production/`: canonical residential production output.
 - `.generated.nosync/commercial-production/`: canonical commercial production output.
+- `seo/templates/sitemap.xsl`: shared human presentation for every sitemap; it
+  does not alter the standard sitemap XML payload.
+- `seo/templates/admin.eta`: dedicated noindex Valen control-record template
+  for residential and commercial `/admin/` routes.
+- `seo/assets/sitemap/`: Valen logo, Squarish Sans, and the font notice copied
+  only into the controlled sitemap deployment lane.
 - `seo/reports/build-report.json`: page counts, guard results, source data, and
   the ValenFramework-style Build -> Match -> Verify -> Execute pipeline state.
 - `seo/reports/search-intel-report.json`: review-only public SERP scrape status.

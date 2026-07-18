@@ -1,15 +1,87 @@
 {
-  "generatedAt": "2026-06-24T11:23:15.920Z",
+  "generatedAt": "2026-07-18T06:16:09.112Z",
   "allPass": true,
-  "indexable": false,
-  "output": "seo-preview",
+  "indexable": true,
+  "output": "seo-production",
+  "physicalOutput": ".generated.nosync/seo-production",
   "counts": {
-    "pages": 374,
+    "pages": 432,
     "cityHubs": 33,
     "serviceHubs": 10,
     "cityServicePages": 330,
     "markets": 33,
-    "services": 10
+    "services": 10,
+    "industries": 0,
+    "posts": 45,
+    "sitemapUrls": 101,
+    "noindexGeneratedPages": 331,
+    "orphanPublicPages": 0
+  },
+  "sitemap": {
+    "parent": "https://masterflowplumbing.us/sitemap.xml",
+    "children": [
+      {
+        "id": "page",
+        "label": "Core pages",
+        "filename": "page-sitemap.xml",
+        "publicUrl": "https://masterflowplumbing.us/page-sitemap.xml",
+        "generatedPages": 4,
+        "searchIndexablePages": 4,
+        "noindexPages": 0,
+        "searchFacing": true
+      },
+      {
+        "id": "services",
+        "label": "Services",
+        "filename": "services-sitemap.xml",
+        "publicUrl": "https://masterflowplumbing.us/services-sitemap.xml",
+        "generatedPages": 11,
+        "searchIndexablePages": 11,
+        "noindexPages": 0,
+        "searchFacing": true
+      },
+      {
+        "id": "areas_we_serve",
+        "label": "Areas we serve",
+        "filename": "areas_we_serve-sitemap.xml",
+        "publicUrl": "https://masterflowplumbing.us/areas_we_serve-sitemap.xml",
+        "generatedPages": 34,
+        "searchIndexablePages": 34,
+        "noindexPages": 0,
+        "searchFacing": true
+      },
+      {
+        "id": "post",
+        "label": "Posts",
+        "filename": "post-sitemap.xml",
+        "publicUrl": "https://masterflowplumbing.us/post-sitemap.xml",
+        "generatedPages": 46,
+        "searchIndexablePages": 46,
+        "noindexPages": 0,
+        "searchFacing": true
+      },
+      {
+        "id": "category",
+        "label": "Categories",
+        "filename": "category-sitemap.xml",
+        "publicUrl": "https://masterflowplumbing.us/category-sitemap.xml",
+        "generatedPages": 6,
+        "searchIndexablePages": 6,
+        "noindexPages": 0,
+        "searchFacing": true
+      },
+      {
+        "id": "admin",
+        "label": "Developer routes",
+        "filename": "admin-sitemap.xml",
+        "publicUrl": "https://masterflowplumbing.us/admin-sitemap.xml",
+        "generatedPages": 331,
+        "searchIndexablePages": 0,
+        "noindexPages": 331,
+        "searchFacing": false
+      }
+    ],
+    "inventoryReport": "seo/reports/pages-sitemap.json"
   },
   "guards": [
     {
@@ -37,11 +109,23 @@
       "pass": true
     },
     {
+      "name": "publicToNoindex",
+      "pass": true
+    },
+    {
+      "name": "orphanPublic",
+      "pass": true
+    },
+    {
       "name": "jsonLd",
       "pass": true
     },
     {
       "name": "badString",
+      "pass": true
+    },
+    {
+      "name": "publicCopy",
       "pass": true
     },
     {
@@ -55,13 +139,17 @@
     {
       "name": "sitemapParity",
       "pass": true
+    },
+    {
+      "name": "outputHygiene",
+      "pass": true
     }
   ],
   "issues": [],
   "maxDuplicate": {
-    "score": 0.6398176291793313,
-    "a": "/seo-preview/locations/san-fernando-valley/leak-detection/",
-    "b": "/seo-preview/locations/san-fernando-valley/repiping/"
+    "score": 0.7864306784660767,
+    "a": "/san-fernando-valley-hydro-jetting/",
+    "b": "/san-fernando-valley-repiping/"
   },
   "publicDataSources": [
     {
@@ -120,9 +208,9 @@
         "name": "build",
         "status": "pass",
         "evidence": {
-          "pages": 374,
-          "indexable": false,
-          "output": "seo-preview"
+          "pages": 432,
+          "indexable": true,
+          "output": "seo-production"
         }
       },
       {
@@ -138,20 +226,92 @@
         "name": "verify",
         "status": "pass",
         "evidence": {
-          "guards": 11,
+          "guards": 15,
           "issues": 0,
-          "maxDuplicateScore": 0.6398176291793313
+          "maxDuplicateScore": 0.7864306784660767
         }
       },
       {
         "name": "execute",
         "status": "ready",
         "evidence": [
-          "write noindex preview files",
-          "write robots.txt and sitemap.xml",
-          "emit build-report.json"
+          "write rendered files",
+          "write robots.txt, parent sitemap index, and child sitemap files",
+          "emit build-report.json and pages-sitemap.json"
         ]
       }
-    ]
+    ],
+    "sitemapFamily": {
+      "parent": "https://masterflowplumbing.us/sitemap.xml",
+      "children": [
+        {
+          "id": "page",
+          "label": "Core pages",
+          "filename": "page-sitemap.xml",
+          "publicUrl": "https://masterflowplumbing.us/page-sitemap.xml",
+          "generatedPages": 4,
+          "searchIndexablePages": 4,
+          "noindexPages": 0,
+          "searchFacing": true
+        },
+        {
+          "id": "services",
+          "label": "Services",
+          "filename": "services-sitemap.xml",
+          "publicUrl": "https://masterflowplumbing.us/services-sitemap.xml",
+          "generatedPages": 11,
+          "searchIndexablePages": 11,
+          "noindexPages": 0,
+          "searchFacing": true
+        },
+        {
+          "id": "areas_we_serve",
+          "label": "Areas we serve",
+          "filename": "areas_we_serve-sitemap.xml",
+          "publicUrl": "https://masterflowplumbing.us/areas_we_serve-sitemap.xml",
+          "generatedPages": 34,
+          "searchIndexablePages": 34,
+          "noindexPages": 0,
+          "searchFacing": true
+        },
+        {
+          "id": "post",
+          "label": "Posts",
+          "filename": "post-sitemap.xml",
+          "publicUrl": "https://masterflowplumbing.us/post-sitemap.xml",
+          "generatedPages": 46,
+          "searchIndexablePages": 46,
+          "noindexPages": 0,
+          "searchFacing": true
+        },
+        {
+          "id": "category",
+          "label": "Categories",
+          "filename": "category-sitemap.xml",
+          "publicUrl": "https://masterflowplumbing.us/category-sitemap.xml",
+          "generatedPages": 6,
+          "searchIndexablePages": 6,
+          "noindexPages": 0,
+          "searchFacing": true
+        },
+        {
+          "id": "admin",
+          "label": "Developer routes",
+          "filename": "admin-sitemap.xml",
+          "publicUrl": "https://masterflowplumbing.us/admin-sitemap.xml",
+          "generatedPages": 331,
+          "searchIndexablePages": 0,
+          "noindexPages": 331,
+          "searchFacing": false
+        }
+      ]
+    }
+  },
+  "outputHygiene": {
+    "removedStaleArtifacts": [
+      "releases",
+      "releases/mflow-v.1.0.10.json"
+    ],
+    "conflicts": []
   }
 }

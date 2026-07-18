@@ -83,10 +83,13 @@ function hasNumberedConflictSegment(relativePath) {
 }
 
 function isSitemapArtifact(relativePath) {
-  const filename = path.posix.basename(String(relativePath));
+  const normalized = String(relativePath).replace(/^\/+/, "");
+  const filename = path.posix.basename(normalized);
   return filename === "sitemap.xml"
     || filename === "sitemap_index.xml"
-    || filename.endsWith("-sitemap.xml");
+    || filename.endsWith("-sitemap.xml")
+    || filename === "sitemap.xsl"
+    || normalized.startsWith("sitemap-assets/");
 }
 
 function r2Key(targetPrefix, relUnderRoot) {
@@ -97,11 +100,13 @@ function contentType(file) {
   const ext = path.extname(file).toLowerCase();
   if (ext === ".html") return "text/html; charset=utf-8";
   if (ext === ".xml") return "application/xml; charset=utf-8";
+  if (ext === ".xsl") return "text/xsl; charset=utf-8";
   if (ext === ".txt") return "text/plain; charset=utf-8";
   if (ext === ".json") return "application/json; charset=utf-8";
   if (ext === ".jpg" || ext === ".jpeg") return "image/jpeg";
   if (ext === ".png") return "image/png";
   if (ext === ".webp") return "image/webp";
+  if (ext === ".woff2") return "font/woff2";
   if (ext === ".mp4") return "video/mp4";
   if (ext === ".mov") return "video/quicktime";
   return "application/octet-stream";

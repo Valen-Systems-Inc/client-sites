@@ -1,9 +1,9 @@
 {
   "client": "Masterflow Plumbing",
-  "release": "mflow-v.1.0.9",
+  "release": "mflow-v.1.0.10",
   "cdnBase": "https://clients.valen-systems.com/masterflow-plumbing/",
-  "entry": "https://clients.valen-systems.com/masterflow-plumbing/index.html?release=mflow-v.1.0.9",
-  "commercialEntry": "https://clients.valen-systems.com/masterflow-plumbing/commercial/index.html?release=mflow-v.1.0.9",
+  "entry": "https://clients.valen-systems.com/masterflow-plumbing/index.html?release=mflow-v.1.0.10",
+  "commercialEntry": "https://clients.valen-systems.com/masterflow-plumbing/commercial/index.html?release=mflow-v.1.0.10",
   "phone": "951-612-7912",
   "contractorLicense": "CSLB #1156577",
   "r2Account": "956cd86d8e5c90c6156a7a7d937c6415",
@@ -33,8 +33,8 @@
     "media/masterflow-logo-20260704.png",
     "_control/sitemaps/sitemap.xml",
     "_control/sitemaps/commercial/sitemap.xml",
-    "releases/mflow-v.1.0.9.json",
-    "commercial/releases/mflow-v.1.0.9.json"
+    "releases/mflow-v.1.0.10.json",
+    "commercial/releases/mflow-v.1.0.10.json"
   ],
   "rootObjectKey": "",
   "rootObjectSource": "index.html",
@@ -58,7 +58,7 @@
   "corsStatus": "applied",
   "cloudflareWorker": true,
   "cloudflareWorkerName": "masterflow-site-proxy",
-  "cloudflareWorkerVersion": "b11b2de2-ae16-44d4-bbca-460fe588ae37",
+  "cloudflareWorkerVersion": "18cc57cf-8eeb-460a-926b-96499fab1683",
   "apiWorkerName": "masterflow-review-api",
   "apiWorkerVersion": "53257a6a-dc62-432c-871c-cd292c688e2f",
   "redirectWorkerName": "masterflow-canonical-redirect",

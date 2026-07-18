@@ -1,0 +1,56 @@
+{
+  "version": "mflow-v.1.0.10",
+  "verifiedAt": "2026-07-18T06:06:04Z",
+  "canonicalBase": "https://masterflowplumbing.us",
+  "workerVersion": "18cc57cf-8eeb-460a-926b-96499fab1683",
+  "checks": {
+    "sitemap": {
+      "url": "https://masterflowplumbing.us/sitemap.xml?v=mflow-v.1.0.10",
+      "status": 200,
+      "contentType": "application/xml; charset=utf-8",
+      "contentSilo": "sitemap",
+      "publicFamilies": 5,
+      "fontLoaded": true,
+      "logoLoaded": true,
+      "horizontalOverflow": false,
+      "consoleErrors": 0,
+      "browserWarnings": [
+        "Chromium reports its platform-level future deprecation notice for client-side XSLT processing."
+      ]
+    },
+    "adminDesktop": {
+      "url": "https://masterflowplumbing.us/admin/?v=mflow-v.1.0.10",
+      "status": 200,
+      "robots": "noindex,follow",
+      "author": "https://www.valen-systems.com/",
+      "fontLoaded": true,
+      "logoLoaded": true,
+      "horizontalOverflow": false,
+      "consoleErrors": 0
+    },
+    "adminMobile": {
+      "viewport": "390x844",
+      "fontLoaded": true,
+      "logoLoaded": true,
+      "horizontalOverflow": false,
+      "consoleErrors": 0
+    }
+  },
+  "screenshots": [
+    {
+      "file": "screenshots/mflow-v.1.0.10/sitemap-desktop.png",
+      "viewport": "1440x1000",
+      "sha256": "0eea045b214124d08efc26d4e0889cfe9b54391bd4d9cb73d6b063fb785d03c0"
+    },
+    {
+      "file": "screenshots/mflow-v.1.0.10/admin-desktop.png",
+      "viewport": "1440x1000",
+      "sha256": "749d1c0cdf9edcaca284bd59bb659a64632ff99667c3f1aa5e78258df3a59827"
+    },
+    {
+      "file": "screenshots/mflow-v.1.0.10/admin-mobile.png",
+      "viewport": "390x844",
+      "sha256": "7a77fad8f211ab6a9a7101eccd44f9e1f3bf4f95ef31e2a5a991b7c6d6602096"
+    }
+  ]
+}

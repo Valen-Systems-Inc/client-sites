@@ -8,5 +8,6 @@ Clients/ArciniegaVenturesLLC/MasterflowPlumbing/seo/config/indexnow.json
 **/output/
 **/tmp/
 **/seo-preview/
+**/.generated.nosync/
 .DS_Store
 **/.DS_Store

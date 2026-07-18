@@ -1,0 +1,337 @@
+{
+  "generatedAt": "2026-07-18T06:16:22.179Z",
+  "allPass": true,
+  "indexable": true,
+  "output": "commercial-production",
+  "physicalOutput": ".generated.nosync/commercial-production",
+  "counts": {
+    "pages": 37,
+    "cityHubs": 33,
+    "serviceHubs": 10,
+    "cityServicePages": 0,
+    "markets": 33,
+    "services": 10,
+    "industries": 6,
+    "posts": 8,
+    "sitemapUrls": 36,
+    "noindexGeneratedPages": 1,
+    "orphanPublicPages": 0
+  },
+  "sitemap": {
+    "parent": "https://masterflowplumbing.us/commercial/sitemap.xml",
+    "children": [
+      {
+        "id": "page",
+        "label": "Core pages",
+        "filename": "page-sitemap.xml",
+        "publicUrl": "https://masterflowplumbing.us/commercial/page-sitemap.xml",
+        "generatedPages": 4,
+        "searchIndexablePages": 4,
+        "noindexPages": 0,
+        "searchFacing": true
+      },
+      {
+        "id": "services",
+        "label": "Services",
+        "filename": "services-sitemap.xml",
+        "publicUrl": "https://masterflowplumbing.us/commercial/services-sitemap.xml",
+        "generatedPages": 11,
+        "searchIndexablePages": 11,
+        "noindexPages": 0,
+        "searchFacing": true
+      },
+      {
+        "id": "areas_we_serve",
+        "label": "Areas we serve",
+        "filename": "areas_we_serve-sitemap.xml",
+        "publicUrl": "https://masterflowplumbing.us/commercial/areas_we_serve-sitemap.xml",
+        "generatedPages": 1,
+        "searchIndexablePages": 1,
+        "noindexPages": 0,
+        "searchFacing": true
+      },
+      {
+        "id": "industries",
+        "label": "Industries",
+        "filename": "industries-sitemap.xml",
+        "publicUrl": "https://masterflowplumbing.us/commercial/industries-sitemap.xml",
+        "generatedPages": 7,
+        "searchIndexablePages": 7,
+        "noindexPages": 0,
+        "searchFacing": true
+      },
+      {
+        "id": "post",
+        "label": "Posts",
+        "filename": "post-sitemap.xml",
+        "publicUrl": "https://masterflowplumbing.us/commercial/post-sitemap.xml",
+        "generatedPages": 9,
+        "searchIndexablePages": 9,
+        "noindexPages": 0,
+        "searchFacing": true
+      },
+      {
+        "id": "category",
+        "label": "Categories",
+        "filename": "category-sitemap.xml",
+        "publicUrl": "https://masterflowplumbing.us/commercial/category-sitemap.xml",
+        "generatedPages": 4,
+        "searchIndexablePages": 4,
+        "noindexPages": 0,
+        "searchFacing": true
+      },
+      {
+        "id": "admin",
+        "label": "Developer routes",
+        "filename": "admin-sitemap.xml",
+        "publicUrl": "https://masterflowplumbing.us/commercial/admin-sitemap.xml",
+        "generatedPages": 1,
+        "searchIndexablePages": 0,
+        "noindexPages": 1,
+        "searchFacing": false
+      }
+    ],
+    "inventoryReport": "seo/reports/pages-sitemap-commercial.json"
+  },
+  "guards": [
+    {
+      "name": "wordCount",
+      "pass": true
+    },
+    {
+      "name": "meta",
+      "pass": true
+    },
+    {
+      "name": "uniqueMeta",
+      "pass": true
+    },
+    {
+      "name": "nap",
+      "pass": true
+    },
+    {
+      "name": "robotsMeta",
+      "pass": true
+    },
+    {
+      "name": "links",
+      "pass": true
+    },
+    {
+      "name": "publicToNoindex",
+      "pass": true
+    },
+    {
+      "name": "orphanPublic",
+      "pass": true
+    },
+    {
+      "name": "jsonLd",
+      "pass": true
+    },
+    {
+      "name": "badString",
+      "pass": true
+    },
+    {
+      "name": "publicCopy",
+      "pass": true
+    },
+    {
+      "name": "noPii",
+      "pass": true
+    },
+    {
+      "name": "duplicateRisk",
+      "pass": true
+    },
+    {
+      "name": "sitemapParity",
+      "pass": true
+    },
+    {
+      "name": "outputHygiene",
+      "pass": true
+    }
+  ],
+  "issues": [],
+  "maxDuplicate": {
+    "score": 0,
+    "a": "",
+    "b": ""
+  },
+  "publicDataSources": [
+    {
+      "name": "US Census ACS 5-year profile API",
+      "url": "https://api.census.gov/data/2023/acs/acs5/profile",
+      "fields": [
+        "NAME",
+        "DP05_0001E"
+      ],
+      "use": "Population enrichment for California place records."
+    },
+    {
+      "name": "OpenStreetMap Nominatim",
+      "url": "https://nominatim.openstreetmap.org/search",
+      "fields": [
+        "lat",
+        "lon",
+        "display_name",
+        "boundingbox"
+      ],
+      "use": "Open geocoding and bounding-box enrichment for city pages."
+    },
+    {
+      "name": "schema.org vocabulary",
+      "url": "https://schema.org",
+      "fields": [
+        "Plumber",
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ],
+      "use": "Structured-data vocabulary used by generated pages."
+    }
+  ],
+  "pipeline": {
+    "framework": "ValenFramework",
+    "pattern": "Build -> Match -> Verify -> Execute",
+    "currentPhase": "usage",
+    "verifyBeforeExecute": true,
+    "phaseRecovery": {
+      "strategy": "none",
+      "targetPhase": "usage"
+    },
+    "dualSurfaceState": {
+      "desktop3d": "runtime card can ingest seo/reports/build-report-commercial.json",
+      "fieldTablet": "private GUI route /masterflow-seo reads the same report"
+    },
+    "runtimeBridge": {
+      "action": "masterflow.seo.report.ingest",
+      "payloadPath": "seo/reports/build-report-commercial.json",
+      "currentPhase": "usage",
+      "approvalGate": "queue-runtime-shipment before indexable publish, DNS, ads, outreach, or contact writes"
+    },
+    "steps": [
+      {
+        "name": "build",
+        "status": "pass",
+        "evidence": {
+          "pages": 37,
+          "indexable": true,
+          "output": "commercial-production"
+        }
+      },
+      {
+        "name": "match",
+        "status": "pass",
+        "evidence": {
+          "markets": 33,
+          "services": 10,
+          "cityServicePages": 330
+        }
+      },
+      {
+        "name": "verify",
+        "status": "pass",
+        "evidence": {
+          "guards": 15,
+          "issues": 0,
+          "maxDuplicateScore": 0
+        }
+      },
+      {
+        "name": "execute",
+        "status": "ready",
+        "evidence": [
+          "write rendered files",
+          "write robots.txt, parent sitemap index, and child sitemap files",
+          "emit build-report-commercial.json and pages-sitemap-commercial.json"
+        ]
+      }
+    ],
+    "sitemapFamily": {
+      "parent": "https://masterflowplumbing.us/commercial/sitemap.xml",
+      "children": [
+        {
+          "id": "page",
+          "label": "Core pages",
+          "filename": "page-sitemap.xml",
+          "publicUrl": "https://masterflowplumbing.us/commercial/page-sitemap.xml",
+          "generatedPages": 4,
+          "searchIndexablePages": 4,
+          "noindexPages": 0,
+          "searchFacing": true
+        },
+        {
+          "id": "services",
+          "label": "Services",
+          "filename": "services-sitemap.xml",
+          "publicUrl": "https://masterflowplumbing.us/commercial/services-sitemap.xml",
+          "generatedPages": 11,
+          "searchIndexablePages": 11,
+          "noindexPages": 0,
+          "searchFacing": true
+        },
+        {
+          "id": "areas_we_serve",
+          "label": "Areas we serve",
+          "filename": "areas_we_serve-sitemap.xml",
+          "publicUrl": "https://masterflowplumbing.us/commercial/areas_we_serve-sitemap.xml",
+          "generatedPages": 1,
+          "searchIndexablePages": 1,
+          "noindexPages": 0,
+          "searchFacing": true
+        },
+        {
+          "id": "industries",
+          "label": "Industries",
+          "filename": "industries-sitemap.xml",
+          "publicUrl": "https://masterflowplumbing.us/commercial/industries-sitemap.xml",
+          "generatedPages": 7,
+          "searchIndexablePages": 7,
+          "noindexPages": 0,
+          "searchFacing": true
+        },
+        {
+          "id": "post",
+          "label": "Posts",
+          "filename": "post-sitemap.xml",
+          "publicUrl": "https://masterflowplumbing.us/commercial/post-sitemap.xml",
+          "generatedPages": 9,
+          "searchIndexablePages": 9,
+          "noindexPages": 0,
+          "searchFacing": true
+        },
+        {
+          "id": "category",
+          "label": "Categories",
+          "filename": "category-sitemap.xml",
+          "publicUrl": "https://masterflowplumbing.us/commercial/category-sitemap.xml",
+          "generatedPages": 4,
+          "searchIndexablePages": 4,
+          "noindexPages": 0,
+          "searchFacing": true
+        },
+        {
+          "id": "admin",
+          "label": "Developer routes",
+          "filename": "admin-sitemap.xml",
+          "publicUrl": "https://masterflowplumbing.us/commercial/admin-sitemap.xml",
+          "generatedPages": 1,
+          "searchIndexablePages": 0,
+          "noindexPages": 1,
+          "searchFacing": false
+        }
+      ]
+    }
+  },
+  "outputHygiene": {
+    "removedStaleArtifacts": [
+      "releases",
+      "releases/mflow-v.1.0.10.json"
+    ],
+    "conflicts": []
+  }
+}

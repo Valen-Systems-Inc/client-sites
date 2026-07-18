@@ -1,0 +1,35 @@
+{
+  "version": "mflow-v.1.0.10",
+  "generatedAt": "2026-07-18T06:01:54.888Z",
+  "bucket": "valen-clients-cdn",
+  "root": "seo-production",
+  "physicalRoot": ".generated.nosync/seo-production",
+  "keyPrefix": "masterflow-plumbing",
+  "targetPrefix": "masterflow-plumbing/_control/sitemaps",
+  "cdnNamespaceBaseUrl": "https://clients.valen-systems.com/masterflow-plumbing",
+  "publicBaseUrl": "https://clients.valen-systems.com/masterflow-plumbing/_control/sitemaps",
+  "canonicalDomain": "https://masterflowplumbing.us",
+  "dryRun": false,
+  "includeMedia": false,
+  "objectCountExcludingReleaseManifest": 12,
+  "objectCountIncludingReleaseManifest": 14,
+  "sampleKeys": [
+    "masterflow-plumbing/_control/sitemaps/admin-sitemap.xml",
+    "masterflow-plumbing/_control/sitemaps/areas_we_serve-sitemap.xml",
+    "masterflow-plumbing/_control/sitemaps/category-sitemap.xml",
+    "masterflow-plumbing/_control/sitemaps/page-sitemap.xml",
+    "masterflow-plumbing/_control/sitemaps/post-sitemap.xml",
+    "masterflow-plumbing/_control/sitemaps/services-sitemap.xml",
+    "masterflow-plumbing/_control/sitemaps/sitemap.xml",
+    "masterflow-plumbing/_control/sitemaps/sitemap.xsl",
+    "masterflow-plumbing/_control/sitemaps/sitemap_index.xml",
+    "masterflow-plumbing/_control/sitemaps/sitemap-assets/SQUARISH-SANS-CT-NOTICE.txt",
+    "masterflow-plumbing/_control/sitemaps/sitemap-assets/squarish-sans-ct-regular.woff2",
+    "masterflow-plumbing/_control/sitemaps/sitemap-assets/valen-systems-logo.png"
+  ],
+  "git": {
+    "head": "6507e5d",
+    "branch": "codex/masterflow-valen-sitemap-theme",
+    "remote": "git@github.com:Valen-Systems-Inc/client-sites.git"
+  }
+}

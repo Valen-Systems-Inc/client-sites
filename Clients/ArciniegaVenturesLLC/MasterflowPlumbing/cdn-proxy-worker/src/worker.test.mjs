@@ -46,6 +46,28 @@ test("routes commercial sitemap files through their control-silo family", () => 
   );
 });
 
+test("routes sitemap presentation files through the Valen control silo", () => {
+  const stylesheet = originTarget(
+    new Request("https://masterflowplumbing.us/sitemap.xsl"),
+    env,
+  );
+  assert.equal(stylesheet.kind, "sitemap");
+  assert.equal(
+    stylesheet.url.toString(),
+    "https://clients.valen-systems.com/masterflow-plumbing/_control/sitemaps/sitemap.xsl",
+  );
+
+  const commercialFont = originTarget(
+    new Request("https://masterflowplumbing.us/commercial/sitemap-assets/squarish-sans-ct-regular.woff2"),
+    env,
+  );
+  assert.equal(commercialFont.kind, "sitemap");
+  assert.equal(
+    commercialFont.url.toString(),
+    "https://clients.valen-systems.com/masterflow-plumbing/_control/sitemaps/commercial/sitemap-assets/squarish-sans-ct-regular.woff2",
+  );
+});
+
 test("routes a valid root IndexNow key file through the Valen control silo", () => {
   const target = originTarget(
     new Request("https://masterflowplumbing.us/0123456789abcdef.txt"),
@@ -61,6 +83,7 @@ test("routes a valid root IndexNow key file through the Valen control silo", () 
 test("does not mistake ordinary text files or nested routes for control artifacts", () => {
   assert.equal(isSitemapPath("/robots.txt"), false);
   assert.equal(isSitemapPath("/blog/sitemap.xml"), false);
+  assert.equal(isSitemapPath("/blog/sitemap-assets/logo.png"), false);
   assert.equal(originTarget(new Request("https://masterflowplumbing.us/robots.txt"), env).kind, "site");
 });
 

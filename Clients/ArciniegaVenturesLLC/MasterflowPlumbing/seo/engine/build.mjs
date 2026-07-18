@@ -34,6 +34,21 @@ const maintainer = {
   domain: "valen-systems.com",
   url: "https://www.valen-systems.com/",
 };
+const sitemapStylesheetFilename = "sitemap.xsl";
+const sitemapPresentationAssets = [
+  {
+    output: "sitemap-assets/valen-systems-logo.png",
+    source: path.join(seoDir, "assets", "sitemap", "valen-systems-logo.png"),
+  },
+  {
+    output: "sitemap-assets/squarish-sans-ct-regular.woff2",
+    source: path.join(seoDir, "assets", "sitemap", "squarish-sans-ct-regular.woff2"),
+  },
+  {
+    output: "sitemap-assets/SQUARISH-SANS-CT-NOTICE.txt",
+    source: path.join(seoDir, "assets", "sitemap", "SQUARISH-SANS-CT-NOTICE.txt"),
+  },
+];
 const sitemapFamilies = [
   { id: "page", filename: "page-sitemap.xml", label: "Core pages" },
   { id: "services", filename: "services-sitemap.xml", label: "Services" },
@@ -704,6 +719,8 @@ function pageShell({
     adminHref: adminUrl(business),
     secondaryCtaLabel: secondaryCtaLabel(market),
     sitemapHref: makeUrl(normalizedPrefix, ["sitemap.xml"]).replace(/\/$/, ""),
+    sitemapBrandLogoHref: makeUrl(normalizedPrefix, ["sitemap-assets", "valen-systems-logo.png"]).replace(/\/$/, ""),
+    sitemapBrandFontHref: makeUrl(normalizedPrefix, ["sitemap-assets", "squarish-sans-ct-regular.woff2"]).replace(/\/$/, ""),
     locationLabel: isCommercialSite(business) ? "Southern California" : market?.city ?? "Corona",
     primaryMarket,
     primaryService,
@@ -1739,22 +1756,36 @@ ${reviewCards}
 }
 
 function adminPageBody({ business }) {
+  const commercial = isCommercialSite(business);
+  const namespacePath = commercial ? "masterflow-plumbing/commercial/" : "masterflow-plumbing/";
+  const siteLabel = commercial ? "commercial" : "residential";
+  const homeHref = makeUrl(business.preview_prefix);
+  const sitemapHref = makeUrl(business.preview_prefix, ["sitemap.xml"]).replace(/\/$/, "");
   return `
-    <section id="local-proof">
-      <span class="section-kicker">Site maintenance</span>
-      <h2>masterflowplumbing.us is maintained by Valen Systems.</h2>
-      <p class="lede">This public page records who maintains the Masterflow Plumbing website. The site, local service pages, sitemap, robots file, and LLM reference file are created and maintained by <a href="${maintainer.url}">${maintainer.domain}</a>.</p>
-      <div class="local-panel">
-        <div>
+    <section>
+      <span class="eyebrow">Website control plane</span>
+      <h2>The domain stays canonical. The site payload stays under Valen control.</h2>
+      <p>This record describes the ${siteLabel} Masterflow website surface. Visitors and search engines use <a href="${business.primary_domain}${homeHref}">${business.primary_domain.replace("https://", "")}${homeHref}</a>, while the page content is served from the Valen-controlled CDN namespace <strong>${namespacePath}</strong>. The customer domain does not store a second copy of the site.</p>
+      <div class="admin-grid">
+        <article class="admin-card">
           <h3>What Valen maintains</h3>
-          <p>Valen Systems supports the public website, generated local service pages, technical SEO files, crawlable internal links, structured data, and production publishing checks for Masterflow Plumbing.</p>
-        </div>
-        <div>
-          <h3>Canonical Masterflow site</h3>
-          <p>The canonical public website is <a href="${business.primary_domain}/">${business.primary_domain.replace("https://", "")}</a>.</p>
-        </div>
+          <p>Valen Systems maintains the website source, generated routes, structured data, sitemap families, controlled CDN objects, release checks, and the proxy path that presents those files on the canonical Masterflow hostname.</p>
+        </article>
+        <article class="admin-card">
+          <h3>What stays with Masterflow</h3>
+          <p>Masterflow owns its customer-facing domain and plumbing operations. Service requests go to Masterflow at ${business.phone_display}; contractor identity remains tied to ${displayLicenseNo(business)}.</p>
+        </article>
       </div>
-      <p>For plumbing service, call Masterflow Plumbing directly at <a href="tel:9516127912">${business.phone_display}</a>. For the company maintaining this website, visit <a href="${maintainer.url}">${maintainer.domain}</a>.</p>
+    </section>
+    <section>
+      <span class="eyebrow">Published references</span>
+      <h2>Inspect the live surface.</h2>
+      <p>The sitemap XML is stored in Valen's controlled sitemap namespace and delivered through the canonical domain. Styling is a human-facing XSL presentation only; the underlying sitemap entries remain standard crawler-readable XML.</p>
+      <div class="action-row">
+        <a href="${homeHref}">Open Masterflow</a>
+        <a href="${sitemapHref}">View sitemap index</a>
+        <a href="${maintainer.url}" rel="author noopener">Visit ${maintainer.domain}</a>
+      </div>
     </section>
   `;
 }
@@ -3659,7 +3690,7 @@ function sitemapIndexXml(plan) {
   const locs = plan.publicFamilies
     .map((family) => `  <sitemap><loc>${escapeHtml(family.publicUrl)}</loc><lastmod>${escapeHtml(COPY_LASTMOD)}</lastmod></sitemap>`)
     .join("\n");
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<!-- Created and maintained by ${maintainer.url} -->\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${locs}\n</sitemapindex>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="${sitemapStylesheetFilename}"?>\n<!-- Created and maintained by ${maintainer.url} -->\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${locs}\n</sitemapindex>\n`;
 }
 
 function urlsetSitemapXml(business, pages) {
@@ -3667,7 +3698,7 @@ function urlsetSitemapXml(business, pages) {
   const locs = uniquePages
     .map((page) => `  <url><loc>${escapeHtml(pagePublicUrl(business, page))}</loc><lastmod>${escapeHtml(page.meta?.lastmod ?? COPY_LASTMOD)}</lastmod></url>`)
     .join("\n");
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<!-- Created and maintained by ${maintainer.url} -->\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${locs}\n</urlset>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="${sitemapStylesheetFilename}"?>\n<!-- Created and maintained by ${maintainer.url} -->\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${locs}\n</urlset>\n`;
 }
 
 function sitemapFamilySummaries(plan) {
@@ -3977,6 +4008,8 @@ function outputManifestFiles({ pages, outputRoot, sitemapPlan, business, options
       path.join(outputRoot, sitemapPlan.indexFilename),
       path.join(outputRoot, sitemapPlan.indexAliasFilename),
       ...sitemapPlan.families.map((family) => path.join(outputRoot, family.filename)),
+      path.join(outputRoot, sitemapStylesheetFilename),
+      ...sitemapPresentationAssets.map((asset) => path.join(outputRoot, asset.output)),
       path.join(outputRoot, "llms.txt"),
       path.join(outputRoot, "LLM.txt"),
       path.join(outputRoot, "robots.txt"),
@@ -4088,8 +4121,9 @@ async function writeOutput({ pages, htmlByUrl, business, markets, services, outp
     await fs.writeFile(page.outFile, htmlByUrl.get(page.urlPath).replace(/[ \t]+$/gm, ""));
   }
   if (options.indexable && business.preview_prefix === "/" && !options.omitIndex) {
+    const reportHomepage = path.join(reportsDir, "homepage-index-with-tracking.html");
     const canonicalHomepage = await fs.readFile(
-      path.join(reportsDir, "homepage-index-with-tracking.html"),
+      existsSync(reportHomepage) ? reportHomepage : path.join(siteDir, "index.html"),
       "utf8",
     );
     await fs.writeFile(path.join(outputRoot, "index.html"), canonicalHomepage.replace(/[ \t]+$/gm, ""));
@@ -4100,6 +4134,15 @@ async function writeOutput({ pages, htmlByUrl, business, markets, services, outp
   for (const family of sitemapPlan.families) {
     const sitemapPages = family.searchFacing === false ? family.allPages : family.searchPages;
     await fs.writeFile(path.join(outputRoot, family.filename), urlsetSitemapXml(business, sitemapPages));
+  }
+  await fs.copyFile(
+    path.join(seoDir, "templates", sitemapStylesheetFilename),
+    path.join(outputRoot, sitemapStylesheetFilename),
+  );
+  for (const asset of sitemapPresentationAssets) {
+    const outputFile = path.join(outputRoot, asset.output);
+    await fs.mkdir(path.dirname(outputFile), { recursive: true });
+    await fs.copyFile(asset.source, outputFile);
   }
   const llms = llmsTxt({ business, markets, services, pages });
   await fs.writeFile(path.join(outputRoot, "llms.txt"), llms);
@@ -4205,11 +4248,12 @@ export async function buildSeo(rawOptions = {}) {
   }
 
   const template = await fs.readFile(path.join(seoDir, "templates", "page.eta"), "utf8");
+  const adminTemplate = await fs.readFile(path.join(seoDir, "templates", "admin.eta"), "utf8");
   const eta = new Eta({ autoEscape: true });
   const pages = buildPages({ ...data, markets, services, options });
   const htmlByUrl = new Map();
   for (const page of pages) {
-    htmlByUrl.set(page.urlPath, await eta.renderString(template, page));
+    htmlByUrl.set(page.urlPath, await eta.renderString(page.kind === "admin" ? adminTemplate : template, page));
   }
 
   const sitemapPlan = buildSitemapPlan(data.business, pages);

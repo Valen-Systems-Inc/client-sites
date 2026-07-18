@@ -86,6 +86,8 @@ const service = await readGenerated("commercial", "services/hydro-jetting/index.
 const parentSitemap = await readGenerated("commercial", "sitemap.xml");
 const industrySitemap = await readGenerated("commercial", "industries-sitemap.xml");
 const adminSitemap = await readGenerated("commercial", "admin-sitemap.xml");
+const admin = await readGenerated("commercial", "admin/index.html");
+const sitemapStylesheet = await readGenerated("commercial", "sitemap.xsl");
 const commercialBuildReport = JSON.parse(await fs.readFile(path.join(seoDir, "reports", "build-report-commercial.json"), "utf8"));
 const commercialPageInventory = JSON.parse(await fs.readFile(path.join(seoDir, "reports", "pages-sitemap-commercial.json"), "utf8"));
 
@@ -110,6 +112,15 @@ assert.match(parentSitemap, /post-sitemap\.xml/);
 assert.match(parentSitemap, /category-sitemap\.xml/);
 assert.doesNotMatch(parentSitemap, /admin-sitemap\.xml/);
 assert.match(adminSitemap, /<url><loc>/);
+assert.match(parentSitemap, /<\?xml-stylesheet type="text\/xsl" href="sitemap\.xsl"\?>/);
+assert.match(adminSitemap, /<\?xml-stylesheet type="text\/xsl" href="sitemap\.xsl"\?>/);
+assert.match(sitemapStylesheet, /Search infrastructure by/);
+assert.match(admin, /Client infrastructure control record/);
+assert.match(admin, /src="\/commercial\/sitemap-assets\/valen-systems-logo\.png"/);
+assert.equal(
+  await pathExists(path.join(siteDir, ".generated.nosync", "commercial", "sitemap-assets", "squarish-sans-ct-regular.woff2")),
+  true,
+);
 assert.doesNotMatch(industrySitemap, /<url><loc>/);
 assert.equal(commercialBuildReport.counts.pages, 37);
 assert.equal(commercialPageInventory.counts.generatedPages, 37);

@@ -11,7 +11,7 @@ residential and commercial routes from the Valen-controlled
 | --- | --- |
 | Residential pages | `masterflow-plumbing/` |
 | Commercial pages | `masterflow-plumbing/commercial/` |
-| Sitemap XML | `masterflow-plumbing/_control/sitemaps/` |
+| Sitemap XML and presentation assets | `masterflow-plumbing/_control/sitemaps/` |
 | IndexNow key | `masterflow-plumbing/_control/indexnow/` |
 | Rollback archive | `masterflow-plumbing/_rollback/masterflowplumbing-cdn-2026-07-16/` |
 
@@ -22,13 +22,16 @@ API Worker.
 
 ## Source Split
 
-This repository owns the canonical wrapper, static artifacts, mirrored control
-code, and release proof. `Valen-Systems-Inc/client-site-tools` owns the private
-deployment configuration and operational key material. Do not add the IndexNow
-key, Cloudflare credentials, customer submissions, or other private values to
-this repository. The private config path is explicitly ignored at the repository
-root.
+This repository owns the canonical wrapper, static artifacts, generator,
+control code, deployment scripts, and release proof. Private deployment
+configuration and operational key material remain in ignored local files or
+the deployment environment. Do not add the IndexNow key, Cloudflare
+credentials, customer submissions, or other private values to this repository.
+The private config path is explicitly ignored at the repository root.
 
-Ordinary production deploys exclude sitemap XML. Dedicated sitemap commands
-publish only to the `_control/sitemaps/` prefix. IndexNow planning is dry-run by
-default and must never become an implicit build or deploy step.
+Ordinary production deploys exclude sitemap XML, the shared XSL presentation,
+the Valen logo, Squarish Sans, and its license notice. Dedicated sitemap
+commands publish those files only to the `_control/sitemaps/` prefix. The
+canonical Worker exposes them on `.us` without copying them into the ordinary
+site namespace. IndexNow planning is dry-run by default and must never become
+an implicit build or deploy step.

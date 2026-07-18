@@ -25,12 +25,14 @@ const enrichmentFile = path.join(seoDir, "data", "region-enrichment.json");
 const contentTypes = new Map([
   [".html", "text/html; charset=utf-8"],
   [".xml", "application/xml; charset=utf-8"],
+  [".xsl", "text/xsl; charset=utf-8"],
   [".txt", "text/plain; charset=utf-8"],
   [".json", "application/json; charset=utf-8"],
   [".jpg", "image/jpeg"],
   [".jpeg", "image/jpeg"],
   [".png", "image/png"],
   [".webp", "image/webp"],
+  [".woff2", "font/woff2"],
   [".mp4", "video/mp4"],
   [".mov", "video/quicktime"],
 ]);
@@ -403,10 +405,15 @@ function previewTarget(pathname) {
 
 function rewritePreviewHtml(html, source) {
   if (source === "seo-production") {
-    return html.replace(
-      /(href|action)="\/(?!\/|seo-preview\/|generator-preview\/|media\/|api\/|favicon\.ico)([^"]*)"/g,
+    return html
+      .replace(
+      /(href|action|src)="\/(?!\/|seo-preview\/|generator-preview\/|media\/|api\/|favicon\.ico)([^"]*)"/g,
       '$1="/seo-preview/$2"',
-    );
+      )
+      .replace(
+        /url\("\/(?!\/|seo-preview\/|generator-preview\/|media\/|api\/)([^"]*)"\)/g,
+        'url("/seo-preview/$1")',
+      );
   }
   if (source === "seo-preview") {
     return html.replace(/(href|action)="\/seo-preview\//g, '$1="/generator-preview/');

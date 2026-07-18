@@ -1,0 +1,12 @@
+Squarish Sans CT
+Designed by Tim Larson.
+
+Squarish Sans CT was created under the SIL Open Font License.
+Project notice:
+https://raw.githubusercontent.com/Aleph-One-Marathon/alephone/master/data/default_theme/resources/SquarishSansCT.README
+
+License:
+https://openfontlicense.org/open-font-license-official-text/
+
+The webfont in this directory is used for the Valen Systems sitemap and
+administration presentation layer.

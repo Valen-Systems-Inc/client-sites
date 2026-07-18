@@ -17,12 +17,18 @@ export function canonicalRedirect(request, canonicalOrigin) {
 
 export function isSitemapPath(pathname) {
   const segments = String(pathname).split("/").filter(Boolean);
-  if (segments.length === 0 || segments.length > 2) return false;
-  if (segments.length === 2 && segments[0] !== "commercial") return false;
-  const filename = segments.at(-1);
-  return filename === "sitemap.xml"
-    || filename === "sitemap_index.xml"
-    || filename.endsWith("-sitemap.xml");
+  if (segments.length === 0) return false;
+  const relative = segments[0] === "commercial" ? segments.slice(1) : segments;
+  if (relative.length === 1) {
+    const filename = relative[0];
+    return filename === "sitemap.xml"
+      || filename === "sitemap_index.xml"
+      || filename.endsWith("-sitemap.xml")
+      || filename === "sitemap.xsl";
+  }
+  return relative.length === 2
+    && relative[0] === "sitemap-assets"
+    && /^[A-Za-z0-9._-]+$/.test(relative[1]);
 }
 
 export function originTarget(request, env) {

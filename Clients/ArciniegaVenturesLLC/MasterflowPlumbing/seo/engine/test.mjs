@@ -103,12 +103,13 @@ assert.deepEqual(await numberedConflictArtifacts("seo-preview"), [], "preview tr
 assert.ok(report.counts.cityServicePages >= 72, "first 90-day asset target must be represented");
 
 const indexHtml = await read("seo-preview/index.html");
-const homepageArtifactHtml = await read("seo/reports/homepage-index-with-tracking.html");
+const homepageArtifactHtml = await read("index.html");
 const aboutHtml = await read("seo-preview/about/index.html");
 const servicesIndexHtml = await read("seo-preview/services/index.html");
 const serviceAreaIndexHtml = await read("seo-preview/service-area/index.html");
 const contactHtml = await read("seo-preview/contact/index.html");
 const reviewsHtml = await read("seo-preview/reviews/index.html");
+const adminHtml = await read("seo-preview/admin/index.html");
 const blogHtml = await read("seo-preview/blog/index.html");
 const samplePostHtml = await read("seo-preview/blog/what-to-do-when-a-pipe-bursts/index.html");
 const sampleCategoryHtml = await read("seo-preview/category/emergency-and-maintenance/index.html");
@@ -141,6 +142,7 @@ const serviceAreaSitemap = await read("seo-preview/areas_we_serve-sitemap.xml");
 const postSitemap = await read("seo-preview/post-sitemap.xml");
 const categorySitemap = await read("seo-preview/category-sitemap.xml");
 const adminSitemap = await read("seo-preview/admin-sitemap.xml");
+const sitemapStylesheet = await read("seo-preview/sitemap.xsl");
 const deployScript = await read("seo/engine/deploy-r2-preview.mjs");
 const siteApiWorker = await read("review-worker/src/worker.js");
 const siteApiMigration = await read("review-worker/migrations/0002_service_requests_and_reviewer_contacts.sql");
@@ -217,6 +219,8 @@ assert.match(deployScript, /relUnderRoot === "index\.html"/, "deploy must update
 assert.match(deployScript, /hasNumberedConflictSegment/, "deploy must reject numbered File Provider conflict paths");
 assert.match(deployScript, /process\.env\.VALEN_WRANGLER_EMAIL/, "deploy must support an explicitly approved Valen CDN operator identity");
 assert.match(deployScript, /text\.includes\(accountId\)/, "deploy must keep the Valen clients CDN account-id guard");
+assert.match(deployScript, /filename === "sitemap\.xsl"/, "sitemap stylesheet must stay in the protected sitemap deploy lane");
+assert.match(deployScript, /normalized\.startsWith\("sitemap-assets\/"\)/, "sitemap presentation assets must stay in the protected sitemap deploy lane");
 const liveVerifyScript = await read("seo/engine/verify-live-release.mjs");
 assert.match(liveVerifyScript, /pageLedger\.pages/, "live verification must check every generated page");
 assert.match(liveVerifyScript, /comparableLiveBytes\.equals\(comparableLocalBytes\)/, "live verification must compare normalized release bytes");
@@ -242,6 +246,11 @@ assert.match(siteApiMigration, /CREATE TABLE IF NOT EXISTS service_requests/);
 assert.match(siteApiMigration, /reviewer_email/);
 assert.match(reviewModerationScript, /action === "approve"/);
 assert.match(reviewModerationScript, /consent_display = 1/);
+assert.match(adminHtml, /Client infrastructure control record/);
+assert.match(adminHtml, /font-family: "Squarish Sans"/);
+assert.match(adminHtml, /src="\/seo-preview\/sitemap-assets\/valen-systems-logo\.png"/);
+assert.match(adminHtml, /href="https:\/\/www\.valen-systems\.com\/" rel="author noopener"/);
+assert.match(adminHtml, /The domain stays canonical\. The site payload stays under Valen control\./);
 assert.match(blogHtml, /Masterflow Plumbing Guides/);
 assert.equal(BLOG_POSTS.length, 45, "the article library must contain all 45 planned guides");
 assert.match(blogHtml, /<h2>Popular plumbing guides<\/h2>/);
@@ -299,6 +308,24 @@ assert.doesNotMatch(perrisDrainCleaning, /local signals|generated service plan|m
 assert.match(murrietaDrain, /Drain Cleaning in Murrieta, CA/);
 assert.match(robots, /Disallow: \//);
 assert.match(sitemapIndex, /<sitemapindex xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/);
+for (const [label, xml] of [
+  ["parent", sitemapIndex],
+  ["page", pageSitemap],
+  ["services", servicesSitemap],
+  ["areas", serviceAreaSitemap],
+  ["posts", postSitemap],
+  ["categories", categorySitemap],
+  ["admin", adminSitemap],
+]) {
+  assert.match(xml, /<\?xml-stylesheet type="text\/xsl" href="sitemap\.xsl"\?>/, `${label} sitemap must load the Valen presentation layer`);
+}
+assert.match(sitemapStylesheet, /xmlns:sm="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9"/);
+assert.match(sitemapStylesheet, /sitemap-assets\/squarish-sans-ct-regular\.woff2/);
+assert.match(sitemapStylesheet, /sitemap-assets\/valen-systems-logo\.png/);
+assert.match(sitemapStylesheet, /Search infrastructure by/);
+assert.match(sitemapStylesheet, /https:\/\/www\.valen-systems\.com\//);
+assert.ok((await fs.stat(path.join(siteDir, ".generated.nosync", "seo-preview", "sitemap-assets", "valen-systems-logo.png"))).size > 1000);
+assert.ok((await fs.stat(path.join(siteDir, ".generated.nosync", "seo-preview", "sitemap-assets", "squarish-sans-ct-regular.woff2"))).size > 1000);
 assert.match(sitemapIndex, /\/seo-preview\/page-sitemap\.xml/);
 assert.match(sitemapIndex, /\/seo-preview\/services-sitemap\.xml/);
 assert.match(sitemapIndex, /\/seo-preview\/areas_we_serve-sitemap\.xml/);
@@ -385,6 +412,8 @@ const productionAreas = await read("seo-production/areas_we_serve-sitemap.xml");
 const productionPosts = await read("seo-production/post-sitemap.xml");
 const productionCategories = await read("seo-production/category-sitemap.xml");
 const productionAdmin = await read("seo-production/admin-sitemap.xml");
+const productionAdminHtml = await read("seo-production/admin/index.html");
+const productionStylesheet = await read("seo-production/sitemap.xsl");
 const productionRoot = await read("seo-production/index.html");
 const productionPrivacy = await read("seo-production/privacy.html");
 const productionTerms = await read("seo-production/terms.html");
@@ -409,6 +438,9 @@ assert.match(productionAreas, /https:\/\/masterflowplumbing\.us\/corona-plumber\
 assert.equal((productionPosts.match(/<url><loc>/g) ?? []).length, 46);
 assert.equal((productionCategories.match(/<url><loc>/g) ?? []).length, 6);
 assert.equal((productionAdmin.match(/<url><loc>/g) ?? []).length, 331);
+assert.match(productionParent, /<\?xml-stylesheet type="text\/xsl" href="sitemap\.xsl"\?>/);
+assert.match(productionStylesheet, /Valen Systems/);
+assert.match(productionAdminHtml, /Client infrastructure control record/);
 assert.equal(productionRoot, normalizedHomepageArtifact, "production / must use the approved canonical homepage artifact");
 assertNoLegacyAssets(productionRoot, "production root");
 assertNoLegacyAssets(productionPrivacy, "production privacy policy");

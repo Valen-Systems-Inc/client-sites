@@ -243,6 +243,10 @@ const staticFiles = new Set([
   "sitemap.xml",
   "sitemap_index.xml",
   ...pageLedger.sitemapFamilies.map((family) => family.filename),
+  "sitemap.xsl",
+  "sitemap-assets/valen-systems-logo.png",
+  "sitemap-assets/squarish-sans-ct-regular.woff2",
+  "sitemap-assets/SQUARISH-SANS-CT-NOTICE.txt",
   "robots.txt",
   "llms.txt",
   "LLM.txt",
@@ -253,11 +257,13 @@ for (const filename of staticFiles) {
     id: `static:${filename}`,
     kind: filename === "robots.txt"
       ? "robots"
-      : filename.endsWith(".xml")
+      : filename.endsWith(".xml") || filename.endsWith(".xsl")
         ? "xml"
-        : filename.endsWith(".html")
-          ? "html-static"
-          : "text",
+        : filename.endsWith(".png") || filename.endsWith(".woff2")
+          ? "media"
+          : filename.endsWith(".html")
+            ? "html-static"
+            : "text",
     url: `${options.base}${routePrefix}/${filename}`,
     localFile: path.join(generatedRoot, filename),
   });
