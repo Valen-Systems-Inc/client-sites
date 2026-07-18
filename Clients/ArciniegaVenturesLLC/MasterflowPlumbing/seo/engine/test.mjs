@@ -73,7 +73,7 @@ function heroBackgroundMedia(html) {
 
 const data = await loadSeoData();
 const report = await buildSeo({ full: true, out: "seo-preview", indexable: false });
-const staticPages = 7; // index, about, services, service-area, contact, reviews, and private admin/maintenance.
+const staticPages = 7; // index, about, services, service-area, contact, reviews, and admin accreditation.
 const blogPages = 1 + 45 + 6; // Blog index, 45 articles, and six category pages.
 const expectedPages = staticPages + blogPages + data.markets.length + data.services.length + data.markets.length * data.services.length;
 
@@ -246,11 +246,12 @@ assert.match(siteApiMigration, /CREATE TABLE IF NOT EXISTS service_requests/);
 assert.match(siteApiMigration, /reviewer_email/);
 assert.match(reviewModerationScript, /action === "approve"/);
 assert.match(reviewModerationScript, /consent_display = 1/);
-assert.match(adminHtml, /Client infrastructure control record/);
+assert.match(adminHtml, /Website accreditation/);
 assert.match(adminHtml, /font-family: "Squarish Sans"/);
 assert.match(adminHtml, /src="\/seo-preview\/sitemap-assets\/valen-systems-logo\.png"/);
 assert.match(adminHtml, /href="https:\/\/www\.valen-systems\.com\/" rel="author noopener"/);
-assert.match(adminHtml, /The domain stays canonical\. The site payload stays under Valen control\./);
+assert.match(adminHtml, /Website created and maintained by/);
+assert.doesNotMatch(adminHtml, /control plane|Content origin|Contractor|Masterflow service/i);
 assert.match(blogHtml, /Masterflow Plumbing Guides/);
 assert.equal(BLOG_POSTS.length, 45, "the article library must contain all 45 planned guides");
 assert.match(blogHtml, /<h2>Popular plumbing guides<\/h2>/);
@@ -343,7 +344,7 @@ assert.doesNotMatch(servicesSitemap, /<url><loc>/, "preview services sitemap mus
 assert.doesNotMatch(serviceAreaSitemap, /<url><loc>/, "preview service-area sitemap must not expose noindex URLs as search-facing locs");
 assert.doesNotMatch(postSitemap, /<url><loc>/, "preview post sitemap must not expose noindex URLs as search-facing locs");
 assert.doesNotMatch(categorySitemap, /<url><loc>/, "preview category sitemap must not expose noindex URLs as search-facing locs");
-assert.match(adminSitemap, /<url><loc>/, "developer sitemap logs noindex generated routes");
+assert.doesNotMatch(adminSitemap, /<url><loc>/, "preview admin sitemap must not expose its noindex preview route");
 assert.equal(report.counts.sitemapUrls, 0, "preview search sitemap has no indexable URL locs");
 assert.equal(report.counts.noindexGeneratedPages, expectedPages, "preview inventory records every generated page as noindex");
 assert.equal(pagesSitemapInventory.counts.generatedPages, expectedPages);
@@ -421,8 +422,8 @@ const productionHumanSitemap = await read("seo-production/sitemap.html");
 const normalizedHomepageArtifact = homepageArtifactHtml.replace(/[ \t]+$/gm, "");
 
 assert.equal(productionReport.allPass, true);
-assert.equal(productionReport.counts.sitemapUrls, 101);
-assert.equal(productionReport.counts.noindexGeneratedPages, 331);
+assert.equal(productionReport.counts.sitemapUrls, 102);
+assert.equal(productionReport.counts.noindexGeneratedPages, 330);
 assert.equal(productionReport.counts.orphanPublicPages, 0, "every public production page must have at least one public inbound link");
 assert.equal(productionReport.physicalOutput, ".generated.nosync/seo-production");
 assert.deepEqual(productionReport.outputHygiene.conflicts, [], "production output must not contain numbered File Provider conflict artifacts");
@@ -431,16 +432,20 @@ assert.equal(productionParentAlias, productionParent);
 assert.match(productionParent, /areas_we_serve-sitemap\.xml/);
 assert.match(productionParent, /post-sitemap\.xml/);
 assert.match(productionParent, /category-sitemap\.xml/);
-assert.doesNotMatch(productionParent, /admin-sitemap\.xml|service-area-sitemap\.xml/);
+assert.match(productionParent, /admin-sitemap\.xml/);
+assert.doesNotMatch(productionParent, /service-area-sitemap\.xml/);
 assert.match(productionPages, /https:\/\/masterflowplumbing\.us\/about\/<\/loc>/);
 assert.match(productionServices, /https:\/\/masterflowplumbing\.us\/services\/emergency-plumber\/<\/loc>/);
 assert.match(productionAreas, /https:\/\/masterflowplumbing\.us\/corona-plumber\/<\/loc>/);
 assert.equal((productionPosts.match(/<url><loc>/g) ?? []).length, 46);
 assert.equal((productionCategories.match(/<url><loc>/g) ?? []).length, 6);
-assert.equal((productionAdmin.match(/<url><loc>/g) ?? []).length, 331);
+assert.equal((productionAdmin.match(/<url><loc>/g) ?? []).length, 1);
+assert.match(productionAdmin, /https:\/\/masterflowplumbing\.us\/admin\/<\/loc>/);
 assert.match(productionParent, /<\?xml-stylesheet type="text\/xsl" href="sitemap\.xsl"\?>/);
 assert.match(productionStylesheet, /Valen Systems/);
-assert.match(productionAdminHtml, /Client infrastructure control record/);
+assert.match(productionAdminHtml, /Website accreditation/);
+assert.match(productionAdminHtml, /<meta name="robots" content="index,follow">/);
+assert.doesNotMatch(productionAdminHtml, /noindex|control plane|Content origin/i);
 assert.equal(productionRoot, normalizedHomepageArtifact, "production / must use the approved canonical homepage artifact");
 assertNoLegacyAssets(productionRoot, "production root");
 assertNoLegacyAssets(productionPrivacy, "production privacy policy");

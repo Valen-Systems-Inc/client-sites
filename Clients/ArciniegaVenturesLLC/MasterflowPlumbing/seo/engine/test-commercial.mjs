@@ -110,12 +110,14 @@ assert.match(contact, /action="https:\/\/masterflowplumbing\.us\/api\/request-se
 assert.match(parentSitemap, /industries-sitemap\.xml/);
 assert.match(parentSitemap, /post-sitemap\.xml/);
 assert.match(parentSitemap, /category-sitemap\.xml/);
-assert.doesNotMatch(parentSitemap, /admin-sitemap\.xml/);
-assert.match(adminSitemap, /<url><loc>/);
+assert.match(parentSitemap, /admin-sitemap\.xml/);
+assert.doesNotMatch(adminSitemap, /<url><loc>/);
 assert.match(parentSitemap, /<\?xml-stylesheet type="text\/xsl" href="sitemap\.xsl"\?>/);
 assert.match(adminSitemap, /<\?xml-stylesheet type="text\/xsl" href="sitemap\.xsl"\?>/);
 assert.match(sitemapStylesheet, /Search infrastructure by/);
-assert.match(admin, /Client infrastructure control record/);
+assert.match(admin, /Website accreditation/);
+assert.match(admin, /<meta name="robots" content="noindex,nofollow">/);
+assert.doesNotMatch(admin, /control plane|Content origin/i);
 assert.match(admin, /src="\/commercial\/sitemap-assets\/valen-systems-logo\.png"/);
 assert.equal(
   await pathExists(path.join(siteDir, ".generated.nosync", "commercial", "sitemap-assets", "squarish-sans-ct-regular.woff2")),
@@ -153,15 +155,22 @@ const production = await buildSeo({
 });
 const productionParent = await readGenerated("commercial-production", "sitemap.xml");
 const productionIndustries = await readGenerated("commercial-production", "industries-sitemap.xml");
+const productionAdminSitemap = await readGenerated("commercial-production", "admin-sitemap.xml");
+const productionAdmin = await readGenerated("commercial-production", "admin/index.html");
 const productionRobots = await readGenerated("commercial-production", "robots.txt");
 
 assert.equal(production.allPass, true);
 assert.equal(production.counts.pages, 37);
 assert.equal(production.counts.cityServicePages, 0);
 assert.equal(production.counts.orphanPublicPages, 0);
-assert.equal(production.counts.sitemapUrls, 36);
+assert.equal(production.counts.sitemapUrls, 37);
 assert.match(productionParent, /https:\/\/masterflowplumbing\.us\/commercial\/industries-sitemap\.xml/);
+assert.match(productionParent, /https:\/\/masterflowplumbing\.us\/commercial\/admin-sitemap\.xml/);
 assert.equal((productionIndustries.match(/<url><loc>/g) ?? []).length, 7);
+assert.equal((productionAdminSitemap.match(/<url><loc>/g) ?? []).length, 1);
+assert.match(productionAdminSitemap, /https:\/\/masterflowplumbing\.us\/commercial\/admin\/<\/loc>/);
+assert.match(productionAdmin, /<meta name="robots" content="index,follow">/);
+assert.doesNotMatch(productionAdmin, /noindex|control plane|Content origin/i);
 assert.match(productionRobots, /Sitemap: https:\/\/masterflowplumbing\.us\/commercial\/sitemap\.xml/);
 assert.doesNotMatch(productionRobots, /Disallow: \//);
 

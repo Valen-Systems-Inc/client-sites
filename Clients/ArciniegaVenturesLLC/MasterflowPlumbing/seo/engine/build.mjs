@@ -56,7 +56,7 @@ const sitemapFamilies = [
   { id: "industries", filename: "industries-sitemap.xml", label: "Industries" },
   { id: "post", filename: "post-sitemap.xml", label: "Posts" },
   { id: "category", filename: "category-sitemap.xml", label: "Categories" },
-  { id: "admin", filename: "admin-sitemap.xml", label: "Developer routes", searchFacing: false },
+  { id: "admin", filename: "admin-sitemap.xml", label: "Website accreditation" },
 ];
 
 const serviceTitleMap = new Map([
@@ -681,7 +681,7 @@ function pageShell({
 }) {
   const primaryMarket = markets.find((item) => item.slug === "corona") ?? markets[0];
   const primaryService = services.find((item) => item.slug === "emergency-plumbing") ?? services[0];
-  const shouldIndex = searchIndexable ?? (options.indexable && !["admin", "city-service"].includes(kind));
+  const shouldIndex = searchIndexable ?? (options.indexable && kind !== "city-service");
   const robots = shouldIndex ? "index,follow" : options.indexable ? "noindex,follow" : "noindex,nofollow";
   const normalizedPrefix = normalizePrefix(business.preview_prefix);
   return {
@@ -1755,38 +1755,9 @@ ${reviewCards}
   `;
 }
 
-function adminPageBody({ business }) {
-  const commercial = isCommercialSite(business);
-  const namespacePath = commercial ? "masterflow-plumbing/commercial/" : "masterflow-plumbing/";
-  const siteLabel = commercial ? "commercial" : "residential";
-  const homeHref = makeUrl(business.preview_prefix);
-  const sitemapHref = makeUrl(business.preview_prefix, ["sitemap.xml"]).replace(/\/$/, "");
+function adminPageBody() {
   return `
-    <section>
-      <span class="eyebrow">Website control plane</span>
-      <h2>The domain stays canonical. The site payload stays under Valen control.</h2>
-      <p>This record describes the ${siteLabel} Masterflow website surface. Visitors and search engines use <a href="${business.primary_domain}${homeHref}">${business.primary_domain.replace("https://", "")}${homeHref}</a>, while the page content is served from the Valen-controlled CDN namespace <strong>${namespacePath}</strong>. The customer domain does not store a second copy of the site.</p>
-      <div class="admin-grid">
-        <article class="admin-card">
-          <h3>What Valen maintains</h3>
-          <p>Valen Systems maintains the website source, generated routes, structured data, sitemap families, controlled CDN objects, release checks, and the proxy path that presents those files on the canonical Masterflow hostname.</p>
-        </article>
-        <article class="admin-card">
-          <h3>What stays with Masterflow</h3>
-          <p>Masterflow owns its customer-facing domain and plumbing operations. Service requests go to Masterflow at ${business.phone_display}; contractor identity remains tied to ${displayLicenseNo(business)}.</p>
-        </article>
-      </div>
-    </section>
-    <section>
-      <span class="eyebrow">Published references</span>
-      <h2>Inspect the live surface.</h2>
-      <p>The sitemap XML is stored in Valen's controlled sitemap namespace and delivered through the canonical domain. Styling is a human-facing XSL presentation only; the underlying sitemap entries remain standard crawler-readable XML.</p>
-      <div class="action-row">
-        <a href="${homeHref}">Open Masterflow</a>
-        <a href="${sitemapHref}">View sitemap index</a>
-        <a href="${maintainer.url}" rel="author noopener">Visit ${maintainer.domain}</a>
-      </div>
-    </section>
+    <p>Website created and maintained by <a href="${maintainer.url}" rel="author noopener">${maintainer.name}</a>.</p>
   `;
 }
 
@@ -3196,36 +3167,32 @@ function buildPages({
     pageShell({
       kind: "admin",
       urlPath: adminUrl(business),
-      metaTitle: "Site Maintenance | Masterflow Plumbing",
-      metaDescription: `masterflowplumbing.us is created and maintained by ${maintainer.domain}.`,
-      h1: "Masterflow Plumbing Site Maintenance",
-      heroCopy: `masterflowplumbing.us is created and maintained by ${maintainer.domain}.`,
-      eyebrow: "Website record",
-      body: adminPageBody({ business }),
+      metaTitle: "Website Accreditation | Masterflow Plumbing",
+      metaDescription: `Masterflow Plumbing's website is created and maintained by ${maintainer.name}.`,
+      h1: "Masterflow Plumbing",
+      heroCopy: `Website created and maintained by ${maintainer.name}.`,
+      eyebrow: "Website accreditation",
+      body: adminPageBody(),
       business,
       markets,
       services,
       market: markets[0],
       service: services[0],
       schema: [
-        localBusiness,
         {
           "@context": "https://schema.org",
           "@type": "WebPage",
-          name: "Masterflow Plumbing Site Maintenance",
+          name: "Masterflow Plumbing Website Accreditation",
           url: `${business.primary_domain}${adminUrl(business)}`,
           isPartOf: { "@type": "WebSite", url: business.primary_domain },
-          about: { "@id": businessEntityId(business) },
           creator: {
             "@type": "Organization",
             name: maintainer.name,
             url: maintainer.url,
           },
         },
-        breadcrumbSchema(business, [breadcrumbRoot(business), { name: "Site Maintenance", urlPath: adminUrl(business) }]),
       ],
       options,
-      searchIndexable: false,
     }),
   );
 
@@ -3516,7 +3483,7 @@ function validateRenderedPages({ pages, htmlByUrl, business, options }) {
               : page.kind === "category"
                 ? 140
                 : page.kind === "admin"
-                  ? 90
+                  ? 8
                   : 350;
     if (wordCount < minWords) issues.push({ guard: "wordCount", urlPath: page.urlPath, wordCount, minWords });
 
@@ -3529,7 +3496,7 @@ function validateRenderedPages({ pages, htmlByUrl, business, options }) {
     titles.set(title, page.urlPath);
     descriptions.set(description, page.urlPath);
 
-    if (!html.includes(business.phone_display) || !html.includes(business.license_no)) issues.push({ guard: "nap", urlPath: page.urlPath });
+    if (page.kind !== "admin" && (!html.includes(business.phone_display) || !html.includes(business.license_no))) issues.push({ guard: "nap", urlPath: page.urlPath });
     if (searchIndexablePage(page)) {
       if (!html.includes("index,follow") || /\bnoindex\b/i.test(html)) issues.push({ guard: "robotsMeta", urlPath: page.urlPath });
     } else if (options.indexable) {
@@ -3605,7 +3572,9 @@ function validateRenderedPages({ pages, htmlByUrl, business, options }) {
   }
   if (maxDuplicate.score > 0.84) issues.push({ guard: "duplicateRisk", ...maxDuplicate });
 
+  // Accreditation is linked from the generated human sitemap, outside this page graph.
   const orphanPublicRoutes = [...inboundPublicLinks]
+    .filter(([urlPath]) => pageByUrl.get(urlPath)?.kind !== "admin")
     .filter(([, inbound]) => inbound.size === 0)
     .map(([urlPath]) => urlPath);
   for (const urlPath of orphanPublicRoutes) issues.push({ guard: "orphanPublic", urlPath });

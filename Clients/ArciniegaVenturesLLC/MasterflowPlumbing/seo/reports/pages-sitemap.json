@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T06:16:09.583Z",
+  "generatedAt": "2026-07-18T15:28:00.178Z",
   "purpose": "Generator page ledger. This records every generated page, including noindex/non-indexed preview pages; search-facing XML sitemaps include only indexable pages.",
   "output": "seo-production",
   "physicalOutput": ".generated.nosync/seo-production",
@@ -9,9 +9,9 @@
     "generatedPages": 432,
     "supplementalSearchPages": 0,
     "totalLoggedPages": 432,
-    "searchIndexablePages": 101,
-    "noindexPages": 331,
-    "searchSitemapUrls": 101
+    "searchIndexablePages": 102,
+    "noindexPages": 330,
+    "searchSitemapUrls": 102
   },
   "sitemapFamilies": [
     {
@@ -66,13 +66,13 @@
     },
     {
       "id": "admin",
-      "label": "Developer routes",
+      "label": "Website accreditation",
       "filename": "admin-sitemap.xml",
       "publicUrl": "https://masterflowplumbing.us/admin-sitemap.xml",
       "generatedPages": 331,
-      "searchIndexablePages": 0,
-      "noindexPages": 331,
-      "searchFacing": false
+      "searchIndexablePages": 1,
+      "noindexPages": 330,
+      "searchFacing": true
     }
   ],
   "pages": [
@@ -80,15 +80,15 @@
       "path": "/admin/",
       "url": "https://masterflowplumbing.us/admin/",
       "kind": "admin",
-      "title": "Site Maintenance | Masterflow Plumbing",
+      "title": "Website Accreditation | Masterflow Plumbing",
       "canonical": "https://masterflowplumbing.us/admin/",
-      "robots": "noindex,follow",
+      "robots": "index,follow",
       "sitemapFamily": "admin",
       "sitemapFile": "admin-sitemap.xml",
       "generatedByThisRun": true,
       "lastmod": "2026-07-16T16:59:23+00:00",
-      "searchIndexable": false,
-      "searchSitemapIncluded": false
+      "searchIndexable": true,
+      "searchSitemapIncluded": true
     },
     {
       "path": "/calabasas-drain-cleaning/",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T06:16:09.112Z",
+  "generatedAt": "2026-07-18T15:27:59.678Z",
   "allPass": true,
   "indexable": true,
   "output": "seo-production",
@@ -13,8 +13,8 @@
     "services": 10,
     "industries": 0,
     "posts": 45,
-    "sitemapUrls": 101,
-    "noindexGeneratedPages": 331,
+    "sitemapUrls": 102,
+    "noindexGeneratedPages": 330,
     "orphanPublicPages": 0
   },
   "sitemap": {
@@ -72,13 +72,13 @@
       },
       {
         "id": "admin",
-        "label": "Developer routes",
+        "label": "Website accreditation",
         "filename": "admin-sitemap.xml",
         "publicUrl": "https://masterflowplumbing.us/admin-sitemap.xml",
         "generatedPages": 331,
-        "searchIndexablePages": 0,
-        "noindexPages": 331,
-        "searchFacing": false
+        "searchIndexablePages": 1,
+        "noindexPages": 330,
+        "searchFacing": true
       }
     ],
     "inventoryReport": "seo/reports/pages-sitemap.json"
@@ -296,22 +296,19 @@
         },
         {
           "id": "admin",
-          "label": "Developer routes",
+          "label": "Website accreditation",
           "filename": "admin-sitemap.xml",
           "publicUrl": "https://masterflowplumbing.us/admin-sitemap.xml",
           "generatedPages": 331,
-          "searchIndexablePages": 0,
-          "noindexPages": 331,
-          "searchFacing": false
+          "searchIndexablePages": 1,
+          "noindexPages": 330,
+          "searchFacing": true
         }
       ]
     }
   },
   "outputHygiene": {
-    "removedStaleArtifacts": [
-      "releases",
-      "releases/mflow-v.1.0.10.json"
-    ],
+    "removedStaleArtifacts": [],
     "conflicts": []
   }
 }

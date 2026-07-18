@@ -32,15 +32,22 @@ Worker has no legacy website origin behind it. The prior
 `masterflowplumbing.net` remains client-owned but is decommissioned as a web
 surface: no web DNS, Worker/API routes, redirect, or R2 custom-domain binding.
 
-Release `mflow-v.1.0.10` adds one Valen Systems XSL presentation to every
-residential and commercial sitemap family and gives both noindex `/admin/`
-routes the matching Valen control-record theme. Squarish Sans, the Valen logo,
-and the font notice live with the sitemap XML only under the controlled
-`_control/sitemaps/` namespace. The XML namespaces, canonical `<loc>` values,
-`lastmod` values, family counts, and crawler MIME types remain unchanged.
+Release `mflow-v.1.0.11` replaces the overbuilt admin control record with one
+public accreditation: the website was created and is maintained by Valen
+Systems. Residential `/admin/` and commercial `/commercial/admin/` are now
+indexable, and each dedicated admin sitemap contains only its accreditation
+URL. Private/noindex generator routes remain in the JSON page inventory and do
+not leak into the admin XML family. The Valen Systems XSL presentation,
+Squarish Sans, logo, and font notice remain isolated in the controlled
+`_control/sitemaps/` namespace.
+
+The reusable default for this crawler-safe sitemap presentation now lives at
+the repository root under `Templates/Sitemaps/`. Client implementations may
+change labels and paths, but must preserve standards-compliant XML, canonical
+`<loc>` values, truthful `lastmod` values, and correct crawler MIME types.
 
 The original CDN migration, domain-cutover, and rollback evidence remains under
-`proof/mflow-v.1.0.7/`; release-specific `mflow-v.1.0.10` proof is stored beside
+`proof/mflow-v.1.0.7/`; release-specific `mflow-v.1.0.11` proof is stored beside
 it. Final byte-parity verification covers 489 residential artifacts and 92
 commercial artifacts. Active sitemap XML and presentation assets, plus the
 IndexNow verification key, live only under Valen `_control/` namespaces; public

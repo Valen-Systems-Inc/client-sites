@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T06:16:22.409Z",
+  "generatedAt": "2026-07-18T15:28:15.219Z",
   "purpose": "Generator page ledger. This records every generated page, including noindex/non-indexed preview pages; search-facing XML sitemaps include only indexable pages.",
   "output": "commercial-production",
   "physicalOutput": ".generated.nosync/commercial-production",
@@ -9,9 +9,9 @@
     "generatedPages": 37,
     "supplementalSearchPages": 0,
     "totalLoggedPages": 37,
-    "searchIndexablePages": 36,
-    "noindexPages": 1,
-    "searchSitemapUrls": 36
+    "searchIndexablePages": 37,
+    "noindexPages": 0,
+    "searchSitemapUrls": 37
   },
   "sitemapFamilies": [
     {
@@ -76,13 +76,13 @@
     },
     {
       "id": "admin",
-      "label": "Developer routes",
+      "label": "Website accreditation",
       "filename": "admin-sitemap.xml",
       "publicUrl": "https://masterflowplumbing.us/commercial/admin-sitemap.xml",
       "generatedPages": 1,
-      "searchIndexablePages": 0,
-      "noindexPages": 1,
-      "searchFacing": false
+      "searchIndexablePages": 1,
+      "noindexPages": 0,
+      "searchFacing": true
     }
   ],
   "pages": [
@@ -90,15 +90,15 @@
       "path": "/commercial/admin/",
       "url": "https://masterflowplumbing.us/commercial/admin/",
       "kind": "admin",
-      "title": "Site Maintenance | Masterflow Plumbing",
+      "title": "Website Accreditation | Masterflow Plumbing",
       "canonical": "https://masterflowplumbing.us/commercial/admin/",
-      "robots": "noindex,follow",
+      "robots": "index,follow",
       "sitemapFamily": "admin",
       "sitemapFile": "admin-sitemap.xml",
       "generatedByThisRun": true,
       "lastmod": "2026-07-16T16:59:23+00:00",
-      "searchIndexable": false,
-      "searchSitemapIncluded": false
+      "searchIndexable": true,
+      "searchSitemapIncluded": true
     },
     {
       "path": "/commercial/service-area/",

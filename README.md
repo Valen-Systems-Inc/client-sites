@@ -17,6 +17,13 @@ Clients/
         ├── index.html
         ├── landing.tsx
         └── proof-manifest.md
+Templates/
+└── Sitemaps/
+    ├── README.md
+    ├── valen-sitemap.xsl
+    ├── sitemap-index.example.xml
+    ├── urlset.example.xml
+    └── sitemap-assets/
 ```
 
 ## Notes
@@ -25,3 +32,7 @@ Clients/
   of the internal developer repo.
 - Workspace IDs, app IDs, unpublished routes, private media, and platform
   configuration should remain sanitized before any future publication.
+- `Templates/Sitemaps/` is the basic crawler-safe Valen sitemap presentation
+  for future client sites. Copy it into a client generator, set the client name,
+  and preserve the documented XML namespace, canonical URL, `lastmod`, MIME,
+  asset-license, and controlled-CDN checks.

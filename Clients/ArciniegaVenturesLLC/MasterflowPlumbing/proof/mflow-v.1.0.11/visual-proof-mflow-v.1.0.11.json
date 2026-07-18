@@ -1,0 +1,50 @@
+{
+  "version": "mflow-v.1.0.11",
+  "verifiedAt": "2026-07-18T15:46:01Z",
+  "canonicalBase": "https://masterflowplumbing.us",
+  "checks": {
+    "adminDesktop": {
+      "url": "https://masterflowplumbing.us/admin/?v=mflow-v.1.0.11",
+      "status": 200,
+      "title": "Website Accreditation | Masterflow Plumbing",
+      "robots": "index,follow",
+      "canonical": "https://masterflowplumbing.us/admin/",
+      "statement": "Website created and maintained by Valen Systems.",
+      "author": "https://www.valen-systems.com/",
+      "horizontalOverflow": false,
+      "consoleErrors": 0
+    },
+    "adminMobile": {
+      "viewport": "390x844",
+      "robots": "index,follow",
+      "horizontalOverflow": false,
+      "consoleErrors": 0
+    },
+    "residentialAdminSitemap": {
+      "url": "https://masterflowplumbing.us/admin-sitemap.xml?v=mflow-v.1.0.11",
+      "status": 200,
+      "contentType": "application/xml; charset=utf-8",
+      "urlCount": 1,
+      "canonicalUrl": "https://masterflowplumbing.us/admin/"
+    },
+    "commercialAdminSitemap": {
+      "url": "https://masterflowplumbing.us/commercial/admin-sitemap.xml?v=mflow-v.1.0.11",
+      "status": 200,
+      "contentType": "application/xml; charset=utf-8",
+      "urlCount": 1,
+      "canonicalUrl": "https://masterflowplumbing.us/commercial/admin/"
+    }
+  },
+  "screenshots": [
+    {
+      "file": "screenshots/mflow-v.1.0.11/admin-desktop.png",
+      "viewport": "1024x768",
+      "sha256": "3f330bfba56dddb081ef598951ae71306cf4bb9f8b8d51972b767f12350f7782"
+    },
+    {
+      "file": "screenshots/mflow-v.1.0.11/admin-mobile.png",
+      "viewport": "390x844",
+      "sha256": "2bd019cbedc030ec44b5d0ea0efdc53c38919f7c3de993cd4b001fd171ce099f"
+    }
+  ]
+}

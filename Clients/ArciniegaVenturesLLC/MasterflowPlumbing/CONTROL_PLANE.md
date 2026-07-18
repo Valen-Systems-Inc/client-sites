@@ -20,6 +20,19 @@ has no web DNS or content route. Forms, service requests, moderated reviews,
 database storage, and email delivery remain on the route-specific Masterflow
 API Worker.
 
+## Public Accreditation Boundary
+
+Residential `/admin/` and commercial `/commercial/admin/` are public,
+indexable accreditation pages. Each page contains only the Masterflow name and
+a linked statement that the website was created and is maintained by Valen
+Systems. They are not operational dashboards, architecture records, or places
+to expose storage, routing, deployment, or client-control details. Those facts
+belong in this document and release proof, not on the public route.
+
+Each admin sitemap contains only its matching accreditation URL. Noindex
+generator routes remain in the JSON page inventory and never use the public
+admin sitemap as a catch-all.
+
 ## Source Split
 
 This repository owns the canonical wrapper, static artifacts, generator,
