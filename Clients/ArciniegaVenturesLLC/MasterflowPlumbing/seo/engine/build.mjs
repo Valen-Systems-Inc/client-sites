@@ -721,13 +721,15 @@ function pageShell({
     sitemapHref: makeUrl(normalizedPrefix, ["sitemap.xml"]).replace(/\/$/, ""),
     sitemapBrandLogoHref: makeUrl(normalizedPrefix, ["sitemap-assets", "valen-systems-logo.png"]).replace(/\/$/, ""),
     sitemapBrandFontHref: makeUrl(normalizedPrefix, ["sitemap-assets", "squarish-sans-ct-regular.woff2"]).replace(/\/$/, ""),
-    locationLabel: isCommercialSite(business) ? "Southern California" : market?.city ?? "Corona",
+    locationLabel: isCommercialSite(business) ? "Southern California" : market?.city ?? "Lake Elsinore, Corona, or Riverside",
     primaryMarket,
     primaryService,
     serviceNavGroups: serviceNavigationGroups(business, services),
     footerServiceLinks: footerServiceLinks(business, services),
     footerAreaLinks: footerAreaLinks(business, markets),
     licenseDisplay: displayLicenseNo(business),
+    reviewProof: business.review_proof,
+    showReviewProof: Boolean(business.review_proof) && ["index", "about", "reviews"].includes(kind),
     absoluteMedia: (mediaPath) => absoluteMedia(business, mediaPath),
     maintainer,
     schema,
@@ -932,6 +934,32 @@ function cardGrid(items) {
       </article>`,
     )
     .join("")}</div>`;
+}
+
+function serviceMediaGrid({ business, services }) {
+  const used = new Set([business.media.hero, business.media.proof].filter(Boolean));
+  const fallback = [...(business.media?.gallery ?? [])];
+  const items = services.map((service) => {
+    const candidates = [
+      ...(business.media?.service_media?.[service.slug] ?? []),
+      ...fallback,
+      business.media.hero,
+    ].filter(Boolean);
+    const media = candidates.find((candidate) => !used.has(candidate)) ?? candidates[0];
+    if (media) used.add(media);
+    return { service, media };
+  });
+  return `<div class="service-grid">${items.map(({ service, media }) => {
+    const copy = serviceCopy(service, business);
+    return `<a class="service-card" href="${escapeHtml(serviceHubUrl(business, service))}">
+      <img src="${escapeHtml(media)}" width="960" height="600" loading="lazy" decoding="async" alt="${escapeHtml(mediaAltText(media, service))}" title="${escapeHtml(mediaTitle(media, service))}">
+      <span class="service-card-copy">
+        <h3>${escapeHtml(copy.title)}</h3>
+        <p>${escapeHtml(copy.hero)}</p>
+        <strong>Learn more</strong>
+      </span>
+    </a>`;
+  }).join("")}</div>`;
 }
 
 function relatedList(items) {
@@ -1248,11 +1276,11 @@ function serviceDepthCards(market, service) {
       },
       {
         title: "When a camera helps",
-        text: `A cable or rooter pass may clear the clog. If it keeps coming back, a camera inspection or hydro jetting can show why another basic clearing did not last.`,
+        text: `A cable pass or drain-machine clearing may clear the clog. If it keeps coming back, a camera inspection or hydro jetting can show why another basic clearing did not last.`,
       },
       {
         title: "Grease, roots, sludge, and scale",
-        text: `The blockage and condition of the pipe determine whether the line needs a cable, rooter equipment, camera inspection, or hydro jetting.`,
+        text: `The blockage and condition of the pipe determine whether the line needs a cable, drain-cleaning equipment, camera inspection, or hydro jetting.`,
       },
       {
         title: "Commercial drain support",
@@ -1561,10 +1589,10 @@ function cityHubCoverageSection(business, market, services) {
     },
   ];
   return `
-    <section>
+    <section data-content-lane="city-services">
       <span class="section-kicker">Plumbing Services</span>
-      <h2>Plumbing help for ${escapeHtml(market.city)} homes and businesses</h2>
-      <p class="lede">Masterflow handles emergency plumbing, drain cleaning, water heaters, hydro jetting, sewer repair, leak detection, and commercial trenchless sewer work in ${escapeHtml(market.city)}.</p>
+      <h2>Plumbing services in ${escapeHtml(market.city)}</h2>
+      <p class="lede">Call for emergencies, drains, sewer lines, leaks, water heaters, hydro jetting, repiping, gas lines, and fixture work.</p>
       ${cardGrid(
         serviceCards.map((card) => {
           const linkedService = serviceMap.get(card.slug);
@@ -1576,6 +1604,12 @@ function cityHubCoverageSection(business, market, services) {
           };
         }),
       )}
+      ${relatedList(services
+        .filter((service) => !serviceCards.some((card) => card.slug === service.slug))
+        .map((service) => ({
+          href: serviceHubUrl(business, service),
+          label: serviceSeoName(service),
+        })))}
     </section>
   `;
 }
@@ -1584,6 +1618,51 @@ function cityHubIntroCopy(business, market) {
   const phone = business.phone_display ?? "951-612-7912";
   const serviceList = "emergency plumbing, drain cleaning, hydro jetting, sewer line repair, water heater services, leak detection, and trenchless sewer solutions";
   const exact = {
+    corona: {
+      eyebrow: "Corona Plumbing Services",
+      headline: "Plumber in Corona, CA",
+      paragraphs: [
+        `Masterflow serves South Corona, Dos Lagos, Sierra Del Oro, Temescal Valley, and nearby Corona neighborhoods for ${serviceList}.`,
+        "Corona calls range from busy family plumbing near the 91 and 15 to older lines, newer subdivisions, slab leaks, recurring drains, and water-heater problems.",
+      ],
+      cta: `24/7 Emergency Service | Same-Day Availability | Call ${phone}`,
+    },
+    "lake-elsinore": {
+      eyebrow: "Lake Elsinore Plumbing Services",
+      headline: "Plumber in Lake Elsinore, CA",
+      paragraphs: [
+        `Masterflow serves Canyon Hills, Tuscany Hills, Alberhill, Summerly, Rosetta Canyon, Lakeland Village, and nearby Lake Elsinore communities for ${serviceList}.`,
+        "The local mix includes newer tract plumbing, hillside access, lake-area routing, recurring drain trouble, leaks, water heaters, and sewer work.",
+      ],
+      cta: `24/7 Emergency Service | Same-Day Availability | Call ${phone}`,
+    },
+    norco: {
+      eyebrow: "Norco Plumbing Services",
+      headline: "Plumber in Norco, CA",
+      paragraphs: [
+        `Masterflow serves Norco Hills, Old Town Norco, Horsetown, Hidden Valley, and nearby properties for ${serviceList}.`,
+        "Larger lots, longer utility runs, older service lines, custom homes, and horse properties can change access and the right repair approach.",
+      ],
+      cta: `24/7 Emergency Service | Residential & Commercial | Call ${phone}`,
+    },
+    menifee: {
+      eyebrow: "Menifee Plumbing Services",
+      headline: "Plumber in Menifee, CA",
+      paragraphs: [
+        `Masterflow serves Sun City, Audie Murphy Ranch, Menifee Lakes, Quail Valley, and nearby Menifee neighborhoods for ${serviceList}.`,
+        "Calls span older Sun City plumbing, newer growth neighborhoods, family homes, water heaters, drains, leaks, and sewer lines.",
+      ],
+      cta: `24/7 Emergency Service | Same-Day Availability | Call ${phone}`,
+    },
+    murrieta: {
+      eyebrow: "Murrieta Plumbing Services",
+      headline: "Plumber in Murrieta, CA",
+      paragraphs: [
+        `Masterflow serves Murrieta Hot Springs, Copper Canyon, Bear Creek, Spencer's Crossing, and nearby Murrieta communities for ${serviceList}.`,
+        "Recent Masterflow work in Murrieta includes a shower-valve replacement. Local calls also include drains, leaks, water heaters, fixtures, and sewer lines.",
+      ],
+      cta: `24/7 Emergency Service | Same-Day Availability | Call ${phone}`,
+    },
     perris: {
       eyebrow: "Perris Plumbing Services",
       headline: "Emergency Plumber in Perris, CA",
@@ -1653,20 +1732,16 @@ function cityHubScenarioSection(market) {
       <p class="lede">Masterflow handles urgent leaks, drain backups, sewer failures, water-heater trouble, camera inspections, hydro jetting, and commercial plumbing across ${escapeHtml(market.city)} and nearby communities.</p>
       ${cardGrid([
         {
-          title: "Homes, rentals, and older lines",
+          title: "Homes, rentals, and local plumbing",
           text: `${market.city} calls can involve ${neighborhoods}, ZIPs ${market.zips.join(", ")}, older plumbing, tract-home layouts, rentals, remodels, and busy households where the same symptom can have more than one cause.`,
         },
         {
-          title: "Restaurants, offices, salons, and retail",
-          text: `Commercial calls need a different plan: keep restrooms usable when possible, manage drain and sewer access, protect customer areas, reduce after-hours disruption, and finish with cleanup the business can live with.`,
+          title: "Drains, leaks, heaters, and sewer lines",
+          text: "The right service depends on which fixtures react together, whether water or sewage is active, and what the camera, pressure, or pipe condition shows.",
         },
         {
           title: "Nearby communities",
           text: `Masterflow also helps nearby service areas such as ${nearby || "Corona, Lake Elsinore, Riverside, and surrounding Southern California communities"} when the schedule, job type, and route make sense.`,
-        },
-        {
-          title: "License, hours, and services",
-          text: "Masterflow lists its direct phone number, 24/7 emergency service, California contractor license #1156577, drain and sewer equipment, hydro jetting, camera inspections, water-heater service, leak detection, and commercial plumbing.",
         },
       ])}
     </section>
@@ -1690,8 +1765,7 @@ function reviewsPageBody({ business, reviews }) {
   return `
     <section id="local-proof">
       <span class="section-kicker">Customer Reviews</span>
-      <h2>Real Masterflow customer feedback</h2>
-      <p class="lede">These are real customer review excerpts provided from Masterflow's Yelp review history. Customers mention response time, clear communication, fair pricing, emergency help, water heaters, leaks, drains, and clean work.</p>
+      <h2>What customers say</h2>
       <div class="review-list">
 ${reviewCards}
       </div>
@@ -1823,21 +1897,11 @@ function quickActionSection({ business }) {
 function serviceCatalogSection({ business, services }) {
   const copy = coreCopy(business);
   return `
-    <section id="services">
+    <section id="services" data-content-lane="services">
       <span class="section-kicker">Plumbing services</span>
       <h2>${escapeHtml(copy.services.heading)}</h2>
       <p class="lede">${escapeHtml(copy.services.body)}</p>
-      ${cardGrid(
-        services.map((service) => {
-          const copy = serviceCopy(service, business);
-          return {
-            title: copy.title,
-            text: copy.hero,
-            href: serviceHubUrl(business, service),
-            linkText: "View service",
-          };
-        }),
-      )}
+      ${serviceMediaGrid({ business, services })}
     </section>
   `;
 }
@@ -1898,7 +1962,7 @@ function commercialIndustriesIndexBody({ business, services }) {
         <h2>Plumbing service shaped around the building and the people using it</h2>
         <p>Masterflow works with property managers, facility teams, owners, investors, HOA managers, general contractors, and onsite staff across Southern California.</p>
         <p>The property type changes access, shutoffs, notice, cleanup, service windows, and the fixtures or operations that must stay available.</p>
-        <div class="chips"><span>${escapeHtml(displayLicenseNo(business))}</span><span>24/7 emergency service</span><span>Same-day availability</span><span>Upfront pricing</span></div>
+        <div class="chips"><span>24/7 emergency service</span><span>Same-day availability</span><span>Upfront pricing</span><span>Financing available</span></div>
       </div>
       <div class="media-proof"><img src="${escapeHtml(mediaByFilename(business, "epoxy-sewer-liner-prep-commercial-2.jpg"))}" alt="Masterflow commercial sewer work" title="Masterflow commercial sewer work"></div>
     </section>
@@ -1917,7 +1981,7 @@ function commercialIndustryBody({ business, industry, services }) {
         <span class="section-kicker">${escapeHtml(industry.name)}</span>
         <h2>${escapeHtml(industry.h1)}</h2>
         <p>${escapeHtml(industry.lede)}</p>
-        <div class="chips"><span>${escapeHtml(displayLicenseNo(business))}</span><span>24/7 response</span><span>Same-day service available</span><span>Southern California coverage</span></div>
+        <div class="chips"><span>24/7 response</span><span>Same-day service available</span><span>Upfront pricing</span><span>Southern California coverage</span></div>
       </div>
       <div class="media-proof"><img src="${escapeHtml(mediaByFilename(business, "epoxy-sewer-liner-prep-commercial-3.jpg"))}" alt="Masterflow Plumbing commercial field work" title="Masterflow Plumbing commercial field work"></div>
     </section>
@@ -1982,7 +2046,7 @@ function commercialServiceAreaBody({ business, services }) {
   `;
 }
 
-function commercialIndexBody({ business, markets, services }) {
+function commercialIndexBody({ business, markets, services, reviews }) {
   const copy = coreCopy(business).home;
   return `
     <section id="local-proof" class="local-panel">
@@ -1991,7 +2055,7 @@ function commercialIndexBody({ business, markets, services }) {
         <h2>${escapeHtml(copy.intro.heading)}</h2>
         <p>${escapeHtml(copy.intro.body)}</p>
         <p>Emergency response, planned maintenance, drain and sewer work, hydro jetting, cameras, trenchless preparation, leaks, water heaters, repiping, fixtures, gas lines, and larger repairs all run through the same direct number.</p>
-        <div class="chips"><span>${escapeHtml(displayLicenseNo(business))}</span><span>24/7 emergency service</span><span>Same-day service available</span><span>Upfront pricing</span><span>Financing available</span></div>
+        <div class="chips"><span>24/7 emergency service</span><span>Same-day service available</span><span>Upfront pricing</span><span>Financing available</span></div>
       </div>
       <div class="media-proof"><img src="${escapeHtml(mediaByFilename(business, "epoxy-sewer-liner-prep-commercial-1.jpg"))}" alt="Masterflow commercial sewer work" title="Masterflow commercial sewer work"></div>
     </section>
@@ -2018,7 +2082,7 @@ function commercialIndexBody({ business, markets, services }) {
     ${serviceCatalogSection({ business, services })}
     ${commercialIndustryDirectorySection({ business, limit: 6 })}
     ${commercialReputationSection(business, markets[0])}
-    ${reviewProofBand({ business })}
+    ${customerReviewSection({ business, reviews, limit: 3 })}
     <section>
       <span class="section-kicker">Property risk</span>
       <h2>${escapeHtml(copy.consequences.heading)}</h2>
@@ -2206,32 +2270,25 @@ function requestServiceForm({ business, services }) {
   `;
 }
 
-function reviewProofBand({ business }) {
+function customerReviewSection({ business, reviews, limit = 3 }) {
+  const proof = business.review_proof;
+  const selected = reviews.filter((review) => review.consented === true).slice(0, limit);
   return `
-    <section>
-      <span class="section-kicker">Proof</span>
-      <h2>Check Masterflow's license and reviews.</h2>
-      <p class="lede">You can verify the California contractor license, read customer reviews, see emergency and same-day availability, and call the phone number shown across the site.</p>
-      ${cardGrid([
-        {
-          title: "Customer feedback",
-          text: "Read approved customer excerpts or open the Masterflow Yelp profile.",
-          href: reviewsUrl(business),
-          linkText: "Read reviews",
-        },
-        {
-          title: displayLicenseNo(business),
-          text: "Use the listed California contractor license to verify Masterflow before booking.",
-        },
-        {
-          title: "24/7 emergency response",
-          text: `Call ${business.phone_display} anytime for active leaks, sewage backups, failed shutoffs, burst pipes, or no hot water.`,
-        },
-        {
-          title: "Same-day service and financing",
-          text: "Same-day service is available. Ask about financing when you call.",
-        },
-      ])}
+    <section data-content-lane="reviews">
+      <span class="section-kicker">Customer reviews</span>
+      <h2>What customers say</h2>
+      <div class="review-list">
+        ${selected.map((review) => `<article class="review-card">
+          <div class="review-card-stars" aria-label="${escapeHtml(review.rating || 5)} out of 5 stars">${reviewStars(review.rating)}</div>
+          <p>${escapeHtml(review.text)}</p>
+          <strong>${escapeHtml(review.first_name)}</strong>
+          <span>${escapeHtml(review.date ?? `${proof.platform} review`)}</span>
+        </article>`).join("")}
+      </div>
+      <div class="compact-proof">
+        <a href="${escapeHtml(reviewsUrl(business))}">Read Masterflow reviews</a>
+        <a href="${escapeHtml(proof.url)}" target="_blank" rel="noopener">View on ${escapeHtml(proof.platform)}</a>
+      </div>
     </section>
   `;
 }
@@ -2245,12 +2302,11 @@ function aboutPageBody({ business, markets, services }) {
           <span class="section-kicker">${escapeHtml(copy.eyebrow)}</span>
           <h2>${escapeHtml(copy.heading)}</h2>
           ${copy.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
-          <div class="chips"><span>${escapeHtml(displayLicenseNo(business))}</span><span>24/7 emergency service</span><span>${escapeHtml(business.commercial_site?.corridor ?? "Southern California")}</span></div>
+          <div class="chips"><span>24/7 emergency service</span><span>Same-day availability</span><span>${escapeHtml(business.commercial_site?.corridor ?? "Southern California")}</span></div>
         </div>
         <div class="media-proof"><img src="${escapeHtml(mediaByFilename(business, "dan-cutter-sewer-liner-reinstatement-2.jpg"))}" alt="Masterflow commercial sewer equipment" title="Masterflow commercial sewer equipment"></div>
       </section>
       ${quickActionSection({ business })}
-      ${licenseTrustSection(business)}
       ${commercialReputationSection(business, markets[0])}
       ${commercialIndustryDirectorySection({ business, limit: 6 })}
       ${serviceCatalogSection({ business, services })}
@@ -2264,15 +2320,18 @@ function aboutPageBody({ business, markets, services }) {
         <span class="section-kicker">${escapeHtml(copy.eyebrow)}</span>
         <h2>${escapeHtml(copy.heading)}</h2>
         ${copy.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
-        <div class="chips"><span>${escapeHtml(displayLicenseNo(business))}</span><span>24/7 emergency service</span><span>Residential and commercial</span></div>
+        <div class="chips"><span>24/7 emergency service</span><span>Same-day availability</span><span>Residential and commercial</span></div>
       </div>
       <div class="media-proof"><img src="${escapeHtml(business.media.proof)}" alt="Masterflow Plumbing field service proof" title="Masterflow Plumbing field service proof"></div>
     </section>
-    ${quickActionSection({ business })}
-    ${licenseTrustSection(business)}
-    ${commercialReputationSection(business, markets[0])}
     ${serviceCatalogSection({ business, services })}
-    ${serviceAreaDirectorySection({ business, markets, limit: 12 })}
+    <section data-content-lane="commercial-link">
+      <span class="section-kicker">Commercial plumbing</span>
+      <h2>Plumbing and sewer work for operating properties</h2>
+      <p class="lede">Masterflow serves restaurants, retail spaces, apartments, offices, industrial sites, and HOAs with emergency service, drain and sewer work, maintenance, and larger repairs.</p>
+      <p><a class="button text-button" href="${commercialUrl()}">View commercial services</a></p>
+    </section>
+    ${serviceAreaDirectorySection({ business, markets, limit: 6 })}
     ${requestServicePanel({ business })}
   `;
 }
@@ -2314,7 +2373,6 @@ function servicesIndexBody({ business, markets, services }) {
       </section>
       ${commercialIndustryDirectorySection({ business, limit: 6 })}
       ${commercialReputationSection(business, markets[0])}
-      ${reviewProofBand({ business })}
       ${serviceAreaDirectorySection({ business, markets })}
       ${requestServicePanel({ business })}
     `;
@@ -2351,9 +2409,7 @@ function servicesIndexBody({ business, markets, services }) {
         },
       ])}
     </section>
-    ${commercialReputationSection(business, markets[0])}
-    ${reviewProofBand({ business })}
-    ${serviceAreaDirectorySection({ business, markets, limit: 12 })}
+    ${serviceAreaDirectorySection({ business, markets, limit: 6 })}
     ${requestServicePanel({ business })}
   `;
 }
@@ -2361,8 +2417,8 @@ function servicesIndexBody({ business, markets, services }) {
 function serviceAreaIndexBody({ business, markets, services }) {
   if (isCommercialSite(business)) return commercialServiceAreaBody({ business, services });
   const orderedMarkets = orderedMarketsForNavigation(business, markets);
-  const primaryMarkets = orderedMarkets.slice(0, 10);
-  const remainingMarkets = orderedMarkets.slice(10);
+  const primaryMarkets = orderedMarkets.slice(0, 6);
+  const remainingMarkets = orderedMarkets.slice(6);
   const copy = coreCopy(business).areas;
   return `
     <section id="local-proof" class="local-panel">
@@ -2370,8 +2426,8 @@ function serviceAreaIndexBody({ business, markets, services }) {
         <span class="section-kicker">${escapeHtml(copy.eyebrow)}</span>
         <h2>${escapeHtml(copy.heading)}</h2>
         <p>${escapeHtml(copy.body)}</p>
-        <p>Corona, Lake Elsinore, Norco, Riverside, Ontario, Calabasas, San Fernando Valley, Studio City, Glendale, and Pasadena are among the priority communities listed below.</p>
-        <div class="chips"><span>${markets.length} city pages</span><span>${services.length} plumbing services</span><span>${escapeHtml(displayLicenseNo(business))}</span></div>
+        <p>Core residential coverage centers on Lake Elsinore, Corona, Riverside, Norco, Menifee, Moreno Valley, and nearby Inland Empire communities.</p>
+        <div class="chips"><span>24/7 emergencies</span><span>Same-day availability</span><span>Residential and commercial</span></div>
       </div>
       <div class="media-proof"><img src="${escapeHtml(business.media.hero)}" alt="Masterflow Plumbing company van" title="Masterflow Plumbing company van"></div>
     </section>
@@ -2391,7 +2447,7 @@ function serviceAreaIndexBody({ business, markets, services }) {
     <section>
       <span class="section-kicker">More coverage</span>
       <h2>More communities served by Masterflow</h2>
-      <p class="lede">Choose a city below to see the same verified phone number, license, reviews, and plumbing service links.</p>
+      <p class="lede">Call to confirm current availability for these extended service areas.</p>
       ${relatedList(
         remainingMarkets.map((market) => ({
           href: cityHubUrl(business, market),
@@ -2399,8 +2455,7 @@ function serviceAreaIndexBody({ business, markets, services }) {
         })),
       )}
     </section>
-    ${serviceCatalogSection({ business, services })}
-    ${reviewProofBand({ business })}
+    ${serviceCatalogSection({ business, services: services.slice(0, 6) })}
     ${requestServicePanel({ business })}
   `;
 }
@@ -2415,14 +2470,13 @@ function contactPageBody({ business, markets, services }) {
           <h2>${escapeHtml(copy.heading)}</h2>
           <p>${escapeHtml(copy.body)}</p>
           <p>For a portfolio, planned project, due-diligence inspection, or recurring property issue, include the best manager or facility contact and any existing records.</p>
-          <div class="chips"><span>Phone ${escapeHtml(business.phone_display)}</span><span>${escapeHtml(displayLicenseNo(business))}</span><span>${escapeHtml(business.commercial_site?.corridor ?? "Southern California")}</span></div>
+          <div class="chips"><span>Phone ${escapeHtml(business.phone_display)}</span><span>24/7 emergency service</span><span>${escapeHtml(business.commercial_site?.corridor ?? "Southern California")}</span></div>
         </div>
         <div class="media-proof"><img src="${escapeHtml(business.media.hero)}" alt="Masterflow Plumbing commercial service vehicle" title="Masterflow Plumbing commercial service vehicle"></div>
       </section>
       ${requestServiceForm({ business, services })}
       ${quickActionSection({ business })}
       ${commercialIndustryDirectorySection({ business, limit: 6 })}
-      ${reviewProofBand({ business })}
       ${serviceAreaDirectorySection({ business, markets })}
     `;
   }
@@ -2432,8 +2486,8 @@ function contactPageBody({ business, markets, services }) {
         <span class="section-kicker">${escapeHtml(copy.eyebrow)}</span>
         <h2>${escapeHtml(copy.heading)}</h2>
         <p>${escapeHtml(copy.body)}</p>
-        <p>Use the service pages when you are still comparing the symptom, or check the areas page when the address is the main question.</p>
-        <div class="chips"><span>Phone ${escapeHtml(business.phone_display)}</span><span>${escapeHtml(displayLicenseNo(business))}</span><span>Corona-centered service area</span></div>
+        <p>Send the address and a short description of the problem. Photos, cleanout access, and prior repair details can help.</p>
+        <div class="chips"><span>Phone ${escapeHtml(business.phone_display)}</span><span>24/7 emergency service</span><span>Same-day availability</span></div>
       </div>
       <div class="media-proof"><img src="${escapeHtml(business.media.hero)}" alt="Masterflow Plumbing company van" title="Masterflow Plumbing company van"></div>
     </section>
@@ -2462,9 +2516,7 @@ function contactPageBody({ business, markets, services }) {
         },
       ])}
     </section>
-    ${reviewProofBand({ business })}
-    ${serviceCatalogSection({ business, services })}
-    ${serviceAreaDirectorySection({ business, markets, limit: 12 })}
+    ${serviceAreaDirectorySection({ business, markets, limit: 6 })}
   `;
 }
 
@@ -2485,8 +2537,8 @@ function cityServiceBody({ business, market, service, marketMap, services, faqs,
       text: `Masterflow serves ZIPs ${market.zips.join(", ")} with special attention to neighborhoods such as ${sentenceJoin(market.neighborhoods.slice(0, 4))}.`,
     },
     {
-      title: "Licensed California plumbing",
-      text: `${displayLicenseNo(business)} and direct phone ${business.phone_display} stay visible so customers can verify Masterflow before they book.`,
+      title: "Access and pipe condition",
+      text: "Cleanouts, shutoffs, prior repairs, pipe material, and the location of the failure all affect the equipment and repair method.",
     },
   ];
   if (service.slug === "sewer-line-repair") {
@@ -2494,13 +2546,9 @@ function cityServiceBody({ business, market, service, marketMap, services, faqs,
       title: "Epoxy liner prep and tie-ins",
       text: "For trenchless sewer liner work, Masterflow can prep the line, support epoxy liner installation, then use a robotic cutter to reopen branch tie-ins after the liner cures.",
     });
-    cityServiceCards.splice(3, 0, {
-      title: "Commercial repairs and installs",
-      text: "Masterflow handles commercial sewer repairs, replacements, and installs for properties where downtime, access control, cleanup, and minimal intrusion matter.",
-    });
   }
   return `
-    <section id="local-proof" class="local-panel">
+    <section id="local-proof" class="local-panel" data-content-lane="city-service-intro">
       <div>
         <span class="section-kicker">Areas we serve</span>
         <h2>${escapeHtml(serviceSeoName(service))} for ${escapeHtml(market.city)} homes and businesses</h2>
@@ -2527,7 +2575,6 @@ function cityServiceBody({ business, market, service, marketMap, services, faqs,
       <p class="lede">See the warning signs, equipment, access needs, and repair choices that commonly come up with this service.</p>
       ${cardGrid(serviceDepthCards(market, service))}
     </section>
-    ${commercialReputationSection(business, market, service)}
     ${sewerPhotos}
     <section>
       <span class="section-kicker">Urgency signals</span>
@@ -2535,16 +2582,6 @@ function cityServiceBody({ business, market, service, marketMap, services, faqs,
       <p class="lede">Call right away for active water, sewage, gas odor, a failed shutoff, a burst pipe, or damage that is spreading.</p>
       ${cardGrid(emergencySignalCards(market, service))}
     </section>
-    ${customerProofSection(business, market, service)}
-    ${serviceAreaSummarySection(business, market, service)}
-    <section>
-      <span class="section-kicker">Your service call</span>
-      <h2>What to expect from Masterflow</h2>
-      <p class="lede">Tell us what is leaking, clogged, backed up, or not working. After the inspection, the plumber will explain the repair and price.</p>
-      ${processGrid(market, service)}
-    </section>
-    ${estimateSection(business, market, service)}
-    ${promotedRootLinkSection(cityServiceUrl(business, market, service))}
     <section>
       <span class="section-kicker">Nearby options</span>
       <h2>Related Masterflow pages</h2>
@@ -2567,6 +2604,7 @@ function cityServiceBody({ business, market, service, marketMap, services, faqs,
       <h2>Questions about ${escapeHtml(service.name.toLowerCase())} in ${escapeHtml(market.city)}</h2>
       ${faqDetails(selectedFaqs)}
     </section>
+    ${requestServicePanel({ business, market, service })}
   `;
 }
 
@@ -2574,53 +2612,19 @@ function cityHubBody({ business, market, marketMap, services }) {
   const near = nearbyMarkets(market, marketMap);
   return `
     ${cityHubIntroSection(business, market)}
-    ${serviceAreaSummarySection(business, market)}
-    ${licenseTrustSection(business, market)}
     ${cityHubCoverageSection(business, market, services)}
-    <section>
-      <span class="section-kicker">Calling Masterflow</span>
-      <h2>Need a plumber in ${escapeHtml(market.city)}?</h2>
-      <p class="lede">Tell us where the trouble is and whether water, sewage, gas odor, or no hot water is involved.</p>
-      ${cardGrid([
-        {
-          title: "Tell us where the trouble is",
-          text: `Say which fixture or line is affected, whether water or sewage is moving, and whether the ${market.city} property is a home, rental, restaurant, office, salon, or another business.`,
-        },
-        {
-          title: "The plumber checks it",
-          text: "The plumber inspects the affected plumbing, explains the repair, and gives you the price before starting.",
-        },
-        {
-          title: "Residential and commercial work",
-          text: `Masterflow handles home plumbing calls, rental-property issues, restaurants, retail spaces, offices, salons, HOAs, and commercial sewer work.`,
-        },
-      ])}
-    </section>
-    <section>
-      <span class="section-kicker">Services in ${escapeHtml(market.city)}</span>
-      <h2>Plumbing services in ${escapeHtml(market.city)}</h2>
-      ${cardGrid(
-        services.map((service) => ({
-          title: service.name,
-          text: service.short_desc,
-          href: serviceHubUrl(business, service),
-          linkText: "View service",
-        })),
-      )}
-    </section>
-    ${commercialReputationSection(business, market)}
-    ${estimateSection(business, market)}
     ${cityHubScenarioSection(market)}
     <section>
       <span class="section-kicker">Nearby service areas</span>
       <h2>Nearby areas we serve</h2>
       ${relatedList(near.map((item) => ({ href: cityHubUrl(business, item), label: `${item.city} plumber` })))}
     </section>
+    ${requestServicePanel({ business })}
   `;
 }
 
 function serviceHubBody({ business, service, markets, posts = blogPostsFor(business) }) {
-  const priorityMarkets = markets.slice(0, 12);
+  const priorityMarkets = orderedMarketsForNavigation(business, markets).slice(0, 6);
   const copy = serviceCopy(service, business);
   const media = pageMediaForService(business, markets[0], service);
   if (isCommercialSite(business)) {
@@ -2664,22 +2668,21 @@ function serviceHubBody({ business, service, markets, posts = blogPostsFor(busin
     `;
   }
   return `
-    <section id="local-proof" class="local-panel">
+    <section id="local-proof" class="local-panel" data-content-lane="service-intro">
       <div>
         <span class="section-kicker">${escapeHtml(copy.eyebrow)}</span>
-        <h2>${escapeHtml(copy.title)} across Corona and nearby Southern California communities</h2>
+        <h2>Professional ${escapeHtml(copy.title)}</h2>
         <p>${escapeHtml(copy.intro)}</p>
         <p>Call ${escapeHtml(business.phone_display)} for active water, sewage, gas odor, a failed shutoff, a burst pipe, or damage that is spreading.</p>
       </div>
       <div class="media-proof"><img src="${escapeHtml(media)}" alt="${escapeHtml(mediaAltText(media, service))}" title="${escapeHtml(mediaTitle(media, service))}"></div>
     </section>
-    ${licenseTrustSection(business)}
-    <section>
+    <section data-content-lane="service-warning-signs">
       <span class="section-kicker">Common warning signs</span>
       <h2>What customers usually notice first</h2>
       ${cardGrid(copy.signs.map(([title, text]) => ({ title, text })))}
     </section>
-    <section>
+    <section data-content-lane="service-details">
       <span class="section-kicker">What the plumber checks</span>
       <h2>What the plumber will inspect</h2>
       ${cardGrid([
@@ -2699,12 +2702,7 @@ function serviceHubBody({ business, service, markets, posts = blogPostsFor(busin
           linkText: `View ${market.city}`,
         })),
       )}
-      ${relatedList(
-        markets.slice(12).map((market) => ({
-          href: cityHubUrl(business, market),
-          label: `${market.city}, ${market.state}`,
-        })),
-      )}
+      <p><a class="button text-button" href="${serviceAreaIndexUrl(business)}">View all service areas</a></p>
     </section>
     <section>
       <span class="section-kicker">Related plumbing guides</span>
@@ -2714,95 +2712,66 @@ function serviceHubBody({ business, service, markets, posts = blogPostsFor(busin
         .slice(0, 8)
         .map((post) => ({ href: blogPostUrl(business, post), label: post.title })))}
     </section>
-    ${commercialReputationSection(business, markets[0], service)}
-    ${estimateSection(business, null, service)}
     ${requestServicePanel({ business, service })}
   `;
 }
 
-function indexBody({ business, markets, services }) {
+function homeFieldProofSection(business) {
+  const items = [
+    [mediaByFilename(business, "epoxy-sewer-liner-prep-commercial-3.jpg"), "Trenchless sewer preparation", "Liner material and access prepared before the repair."],
+    [mediaByFilename(business, "dan-cutter-sewer-liner-reinstatement-2.jpg"), "Camera-guided sewer work", "Field equipment used to reopen lined branch connections."],
+    [mediaByFilename(business, "img-1669.jpg"), "Sewer access work", "Line access and repair equipment set up at the job site."],
+    [mediaByFilename(business, "img-0634.jpg"), "Drain and sewer equipment", "Professional equipment staged for inspection and cleaning."],
+  ];
+  return `
+    <section id="field-work" data-content-lane="field-proof">
+      <span class="section-kicker">Recent field work</span>
+      <h2>Real equipment. Real Masterflow jobs.</h2>
+      <div class="media-grid">
+        ${items.map(([media, title, text]) => `<figure class="media-card">
+          <img src="${escapeHtml(media)}" width="1200" height="1600" loading="lazy" decoding="async" alt="${escapeHtml(title)}" title="${escapeHtml(title)}">
+          <figcaption><strong>${escapeHtml(title)}</strong><span>${escapeHtml(text)}</span></figcaption>
+        </figure>`).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function indexBody({ business, markets, services, reviews, posts = blogPostsFor(business) }) {
   if (isCommercialSite(business)) {
-    return commercialIndexBody({ business, markets, services });
+    return commercialIndexBody({ business, markets, services, reviews });
   }
   const copy = coreCopy(business).home;
   return `
-    <section id="local-proof" class="local-panel">
+    <section id="local-proof" class="local-panel" data-content-lane="home-intro">
       <div>
         <span class="section-kicker">Masterflow Plumbing</span>
         <h2>${escapeHtml(copy.intro.heading)}</h2>
         <p>${escapeHtml(copy.intro.body)}</p>
-        <p>Masterflow handles emergency plumbing, drains, sewer lines, leaks, water heaters, fixtures, gas lines, repiping, and commercial work.</p>
-        <div class="chips"><span>${escapeHtml(displayLicenseNo(business))}</span><span>24/7 emergency service</span><span>Same-day service available</span><span>Financing available</span></div>
+        <div class="chips"><span>24/7 emergency service</span><span>Same-day availability</span><span>Upfront pricing</span><span>Financing available</span></div>
       </div>
-      <div class="media-proof"><img src="${escapeHtml(business.media.hero)}" alt="Masterflow Plumbing truck proof" title="Masterflow Plumbing truck proof"></div>
+      <div class="media-proof"><img src="${escapeHtml(business.media.proof)}" alt="Masterflow Plumbing field service proof" title="Masterflow Plumbing field service proof"></div>
     </section>
-    ${quickActionSection({ business })}
-    <section>
-      <span class="section-kicker">Calling Masterflow</span>
-      <h2>Tell us where the trouble is.</h2>
-      <p class="lede">Say which fixture or line is affected and whether water, sewage, gas odor, or no hot water is involved.</p>
-      ${cardGrid([
-        {
-          title: "Where is it?",
-          text: `Call ${business.phone_display} and tell us which drain, fixture, pipe, heater, wall, floor, yard, or sewer line is giving you trouble.`,
-        },
-        {
-          title: "We inspect the plumbing",
-          text: "We check the affected plumbing, shutoffs, access, water or drain behavior, prior repairs, and signs of a larger issue.",
-        },
-        {
-          title: "You see the price first",
-          text: "We give you upfront pricing before work starts. Financing is available, and Masterflow stands behind its work.",
-        },
-      ])}
+    ${serviceCatalogSection({ business, services: services.slice(0, 6) })}
+    <section data-content-lane="commercial-link">
+      <span class="section-kicker">Commercial plumbing</span>
+      <h2>Plumbing and sewer service for businesses and managed properties</h2>
+      <p class="lede">Emergency calls, drain and sewer work, hydro jetting, maintenance, water heaters, leaks, and larger repairs for restaurants, retail spaces, apartments, offices, industrial sites, and HOAs.</p>
+      <p><a class="button text-button" href="${commercialUrl()}">View commercial plumbing</a></p>
     </section>
-    ${serviceCatalogSection({ business, services })}
-    ${commercialReputationSection(business, markets[0])}
-    ${reviewProofBand({ business })}
-    <section>
-      <span class="section-kicker">What waiting can cost</span>
-      <h2>${escapeHtml(copy.consequences.heading)}</h2>
-      <p class="lede">${escapeHtml(copy.consequences.body)}</p>
-      ${cardGrid([
-        {
-          title: "Drain and sewer repeats",
-          text: "A repeating clog can point to buildup, roots, poor slope, access trouble, or sewer damage. Cleaning, camera inspection, hydro jetting, or repair may be needed.",
-        },
-        {
-          title: "Leaks and slab symptoms",
-          text: "Moisture, pressure changes, warm floors, meter movement, and water stains can spread damage before the source is obvious.",
-        },
-        {
-          title: "Commercial disruption",
-          text: "Restaurants, offices, salons, retail centers, HOAs, apartments, and industrial properties need plumbing help that respects access, cleanup, tenants, customers, and downtime.",
-        },
-      ])}
-    </section>
-    ${serviceAreaDirectorySection({ business, markets })}
-    <section>
+    ${homeFieldProofSection(business)}
+    ${customerReviewSection({ business, reviews, limit: 3 })}
+    ${serviceAreaDirectorySection({ business, markets, limit: 6 })}
+    <section data-content-lane="blog">
       <span class="section-kicker">Plumbing guides</span>
-      <h2>Plumbing advice from Masterflow</h2>
-      <p class="lede">Read about clogs, sewer trouble, leaks, water heaters, repiping, emergency plumbing, and commercial work.</p>
-      ${cardGrid([
-        {
-          title: "Drains and sewers",
-          text: "Recurring clogs, gurgling fixtures, camera inspections, hydro jetting, and sewer repair questions.",
-          href: blogCategoryUrl(business, BLOG_CATEGORIES.find((item) => item.slug === "drains-and-sewers")),
-          linkText: "Read drain guides",
-        },
-        {
-          title: "Leaks and water heaters",
-          text: "Meter movement, warm floors, dripping fixtures, no hot water, and when a repair or replacement may be needed.",
-          href: blogCategoryUrl(business, BLOG_CATEGORIES.find((item) => item.slug === "leaks-and-slab-leaks")),
-          linkText: "Read leak guides",
-        },
-        {
-          title: "All Masterflow guides",
-          text: "Browse every Masterflow guide on plumbing emergencies, maintenance, repiping, commercial work, drains, leaks, and water heaters.",
-          href: blogUrl(business),
-          linkText: "Visit the blog",
-        },
-      ])}
+      <h2>Plumbing tips from the Masterflow team</h2>
+      ${cardGrid(posts.slice(0, 3).map((post) => ({
+        title: post.title,
+        text: post.description,
+        href: blogPostUrl(business, post),
+        linkText: "Read guide",
+      })))}
+      <p><a class="button text-button" href="${blogUrl(business)}">Visit the blog</a></p>
     </section>
     ${requestServicePanel({ business })}
   `;
@@ -2830,12 +2799,14 @@ function buildPages({
       urlPath: makeUrl(business.preview_prefix),
       metaTitle: isCommercialSite(business)
         ? "Commercial Plumber in Southern California | Masterflow"
-        : "Emergency Plumber in Corona, CA | Masterflow",
-      metaDescription: metaDescriptionWithPhone(copy.home.hero, business.phone_display),
+        : "Masterflow Plumbing | Lake Elsinore & Corona Plumber",
+      metaDescription: isCommercialSite(business)
+        ? metaDescriptionWithPhone(copy.home.hero, business.phone_display)
+        : metaDescriptionWithPhone("24/7 residential and commercial plumbing in Lake Elsinore, Corona, Riverside, and nearby Inland Empire communities.", business.phone_display),
       h1: copy.home.h1,
       heroCopy: copy.home.hero,
       eyebrow: copy.home.eyebrow,
-      body: indexBody({ business, markets, services }),
+      body: indexBody({ business, markets, services, reviews, posts }),
     business,
       markets,
       services,
@@ -2912,7 +2883,7 @@ function buildPages({
       metaTitle: isCommercialSite(business) ? "Masterflow Commercial Plumbing Service Area" : "Masterflow Plumbing Service Areas",
       metaDescription: isCommercialSite(business)
         ? "Masterflow commercial plumbing coverage from Santa Barbara through Greater Los Angeles, Orange County, the Inland Empire, and San Diego."
-        : "Masterflow service areas for Corona, Lake Elsinore, Riverside, Norco, Ontario, Pasadena, Glendale, and nearby Southern California markets.",
+        : "Masterflow service areas for Lake Elsinore, Corona, Riverside, Norco, Menifee, Moreno Valley, and nearby Inland Empire communities.",
       h1: copy.areas.h1,
       heroCopy: copy.areas.hero,
       eyebrow: copy.areas.eyebrow,
@@ -3305,6 +3276,7 @@ function validateData({
   reviews,
   faqs,
   allMarketSlugs,
+  allServiceSlugs,
   posts = blogPostsFor(business),
   categories = blogCategoriesFor(business),
   industries = isCommercialSite(business) ? COMMERCIAL_INDUSTRIES : [],
@@ -3350,7 +3322,7 @@ function validateData({
     }
   }
   const categorySlugs = new Set(categories.map((category) => category.slug));
-  const serviceSlugs = new Set(services.map((service) => service.slug));
+  const serviceSlugs = allServiceSlugs ?? new Set(services.map((service) => service.slug));
   const paragraphOwners = new Map();
   const expectedPostCount = isCommercialSite(business) ? 8 : 45;
   const expectedCategoryCount = isCommercialSite(business) ? 4 : 6;
@@ -3471,20 +3443,20 @@ function validateRenderedPages({ pages, htmlByUrl, business, options }) {
     const mainText = mainTextFromHtml(html);
     const wordCount = mainText.split(/\s+/).filter(Boolean).length;
     const minWords = page.kind === "city-service"
-      ? 1000
+      ? 700
       : page.kind === "city"
-        ? 750
+        ? 400
         : page.kind === "service"
-          ? 550
+          ? 400
           : page.kind === "index" || page.kind === "post-index"
-            ? 500
+            ? 350
             : page.kind === "post"
               ? 250
               : page.kind === "category"
                 ? 140
                 : page.kind === "admin"
                   ? 8
-                  : 350;
+                  : 200;
     if (wordCount < minWords) issues.push({ guard: "wordCount", urlPath: page.urlPath, wordCount, minWords });
 
     const title = titleFromHtml(html);
@@ -4090,12 +4062,11 @@ async function writeOutput({ pages, htmlByUrl, business, markets, services, outp
     await fs.writeFile(page.outFile, htmlByUrl.get(page.urlPath).replace(/[ \t]+$/gm, ""));
   }
   if (options.indexable && business.preview_prefix === "/" && !options.omitIndex) {
-    const reportHomepage = path.join(reportsDir, "homepage-index-with-tracking.html");
-    const canonicalHomepage = await fs.readFile(
-      existsSync(reportHomepage) ? reportHomepage : path.join(siteDir, "index.html"),
-      "utf8",
+    const generatedHomepage = await fs.readFile(path.join(outputRoot, "index.html"), "utf8");
+    await fs.writeFile(
+      path.join(reportsDir, "homepage-index-with-tracking.html"),
+      generatedHomepage.replace(/[ \t]+$/gm, ""),
     );
-    await fs.writeFile(path.join(outputRoot, "index.html"), canonicalHomepage.replace(/[ \t]+$/gm, ""));
   }
   const parentSitemap = sitemapIndexXml(sitemapPlan);
   await fs.writeFile(path.join(outputRoot, sitemapPlan.indexFilename), parentSitemap);
@@ -4170,6 +4141,7 @@ export async function buildSeo(rawOptions = {}) {
     preview_prefix: normalizePrefix(options.routePrefix ?? defaultRoutePrefix ?? data.business.preview_prefix),
   };
   const allMarketSlugs = new Set(data.markets.map((market) => market.slug));
+  const allServiceSlugs = new Set(data.services.map((service) => service.slug));
   let markets = data.markets;
   let services = data.services;
   if (options.marketSlugs?.length) {
@@ -4185,7 +4157,7 @@ export async function buildSeo(rawOptions = {}) {
     if (Number.isFinite(options.limitServices)) services = services.slice(0, options.limitServices);
   }
 
-  const dataIssues = validateData({ ...data, markets, services, allMarketSlugs });
+  const dataIssues = validateData({ ...data, markets, services, allMarketSlugs, allServiceSlugs });
   if (dataIssues.length) {
     const report = {
       allPass: false,

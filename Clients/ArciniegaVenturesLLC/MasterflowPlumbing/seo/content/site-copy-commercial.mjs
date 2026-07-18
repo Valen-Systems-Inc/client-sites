@@ -1,6 +1,6 @@
 export const COMMERCIAL_CORE_COPY = {
   home: {
-    eyebrow: "Commercial plumbing | Lic #1156577",
+    eyebrow: "Commercial plumbing",
     h1: "Commercial Plumbing Across Southern California",
     hero:
       "Call Masterflow at 951-612-7912 for commercial plumbing, drain and sewer service, hydro jetting, leaks, water heaters, planned repairs, and 24/7 emergency response from Santa Barbara through San Diego.",
@@ -95,7 +95,7 @@ export const COMMERCIAL_SERVICE_COPY = {
   },
   "drain-cleaning": {
     title: "Commercial Drain Cleaning",
-    eyebrow: "Commercial drain and rooter service",
+    eyebrow: "Commercial drain cleaning",
     hero:
       "Drain cleaning for shared restrooms, kitchens, floor drains, laundry rooms, tenant spaces, main lines, and recurring commercial stoppages.",
     intro:

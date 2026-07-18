@@ -382,6 +382,20 @@ function projectHtml(state) {
 }
 
 function previewTarget(pathname) {
+  if (pathname.startsWith("/seo-preview/commercial/")) {
+    return {
+      mount: "/seo-preview/commercial/",
+      root: generatedOutputRoot("commercial-production"),
+      source: "commercial-production",
+    };
+  }
+  if (pathname.startsWith("/commercial/")) {
+    return {
+      mount: "/commercial/",
+      root: generatedOutputRoot("commercial-production"),
+      source: "commercial-production",
+    };
+  }
   if (pathname.startsWith("/seo-preview/")) {
     return {
       mount: "/seo-preview/",
@@ -404,6 +418,9 @@ function previewTarget(pathname) {
 }
 
 function rewritePreviewHtml(html, source) {
+  if (source === "commercial-production") {
+    return html.replace(/(href|action)="\/"/g, '$1="/seo-preview/"');
+  }
   if (source === "seo-production") {
     return html
       .replace(
@@ -660,7 +677,7 @@ export function createSeoServer({ token = process.env.SEO_ENGINE_TOKEN } = {}) {
         return;
       }
 
-      if ((req.method === "GET" || req.method === "HEAD") && (url.pathname.startsWith("/seo-preview/") || url.pathname.startsWith("/generator-preview/") || url.pathname.startsWith("/media/"))) {
+      if ((req.method === "GET" || req.method === "HEAD") && (url.pathname.startsWith("/seo-preview/") || url.pathname.startsWith("/generator-preview/") || url.pathname.startsWith("/commercial/") || url.pathname.startsWith("/media/"))) {
         await serveStaticPreview(req, res, url.pathname);
         return;
       }

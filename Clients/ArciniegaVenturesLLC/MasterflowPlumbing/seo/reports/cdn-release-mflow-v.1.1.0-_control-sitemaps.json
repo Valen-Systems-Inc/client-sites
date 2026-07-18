@@ -1,6 +1,6 @@
 {
   "version": "mflow-v.1.1.0",
-  "generatedAt": "2026-07-18T17:22:37.527Z",
+  "generatedAt": "2026-07-18T21:16:14.166Z",
   "bucket": "valen-clients-cdn",
   "root": "seo-production",
   "physicalRoot": ".generated.nosync/seo-production",
@@ -28,7 +28,7 @@
     "masterflow-plumbing/_control/sitemaps/sitemap-assets/valen-systems-logo.png"
   ],
   "git": {
-    "head": "759554b",
+    "head": "5a0bae0",
     "branch": "codex/masterflow-mflow-v1.1.0",
     "remote": "git@github.com:Valen-Systems-Inc/client-site-tools.git"
   }

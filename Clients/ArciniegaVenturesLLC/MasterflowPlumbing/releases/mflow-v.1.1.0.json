@@ -1,6 +1,6 @@
 {
   "version": "mflow-v.1.1.0",
-  "generatedAt": "2026-07-18T17:22:21.123Z",
+  "generatedAt": "2026-07-18T21:15:12.474Z",
   "bucket": "valen-clients-cdn",
   "root": "seo-production",
   "physicalRoot": ".generated.nosync/seo-production",
@@ -26,17 +26,17 @@
     "masterflow-plumbing/about/index.html",
     "masterflow-plumbing/about/",
     "masterflow-plumbing/about",
+    "masterflow-plumbing/blog/index.html",
+    "masterflow-plumbing/blog/",
+    "masterflow-plumbing/blog",
     "masterflow-plumbing/admin/index.html",
     "masterflow-plumbing/admin/",
     "masterflow-plumbing/admin",
     "masterflow-plumbing/calabasas-drain-cleaning/index.html",
-    "masterflow-plumbing/calabasas-drain-cleaning/",
-    "masterflow-plumbing/calabasas-drain-cleaning",
-    "masterflow-plumbing/calabasas-emergency-plumber/index.html",
-    "masterflow-plumbing/calabasas-emergency-plumber/"
+    "masterflow-plumbing/calabasas-drain-cleaning/"
   ],
   "git": {
-    "head": "759554b",
+    "head": "5a0bae0",
     "branch": "codex/masterflow-mflow-v1.1.0",
     "remote": "git@github.com:Valen-Systems-Inc/client-site-tools.git"
   }

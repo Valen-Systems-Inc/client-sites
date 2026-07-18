@@ -37,10 +37,22 @@ function assertNoLegacyOrRoboticCopy(html, label) {
     "stage check",
     "sound check",
     "dropstars",
+    "masterflow plumbing & rooter",
+    "masterflow plumbing &amp; rooter",
   ];
   for (const phrase of forbidden) {
     assert.equal(html.toLowerCase().includes(phrase), false, `${label} contains forbidden copy: ${phrase}`);
   }
+}
+
+function visibleText(html) {
+  return String(html)
+    .replace(/<script\b[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style\b[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 const data = await loadSeoData({ variant: "commercial" });
@@ -92,6 +104,10 @@ const commercialBuildReport = JSON.parse(await fs.readFile(path.join(seoDir, "re
 const commercialPageInventory = JSON.parse(await fs.readFile(path.join(seoDir, "reports", "pages-sitemap-commercial.json"), "utf8"));
 
 assert.match(home, /Commercial Plumbing Across Southern California/);
+assert.match(home, /font-family: "Lato"/);
+assert.match(home, /font-family: "Oswald"/);
+assert.match(home, /Customer reviews/);
+assert.doesNotMatch(home, /5\.0 on Yelp|1 current public review/);
 assert.match(home, /href="\/">Residential<\/a>/);
 assert.match(home, /href="\/commercial\/industries\/">Industries<\/a>/);
 assert.match(home, /href="\/commercial\/blog\/">Blog<\/a>/);
@@ -144,6 +160,21 @@ for (const [label, html] of [
   ["commercial service", service],
 ]) {
   assertNoLegacyOrRoboticCopy(html, label);
+}
+
+for (const page of commercialPageInventory.pages) {
+  const relativeUrl = page.path.replace(/^\/commercial\/?/, "").replace(/^\/+|\/+$/g, "");
+  const outputPath = relativeUrl ? `${relativeUrl}/index.html` : "index.html";
+  const html = await readGenerated("commercial", outputPath);
+  assertNoLegacyOrRoboticCopy(html, page.path);
+  if (page.path !== "/commercial/admin/") {
+    const pageText = visibleText(html);
+    assert.equal((pageText.match(/Lic #1156577/g) ?? []).length, 1, `${page.path} must show the contractor license exactly once`);
+    if (page.kind === "service") {
+      assert.doesNotMatch(html, /data-content-lane="reviews"|class="review-card"/i, `${page.path} must not render a customer-review module`);
+      assert.doesNotMatch(pageText, /customer reviews|read masterflow on yelp|current public review/i, `${page.path} must stay focused on its service topic`);
+    }
+  }
 }
 
 const production = await buildSeo({

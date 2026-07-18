@@ -37,7 +37,7 @@ This manifest keeps the client artifact honest.
 | Admin accreditation proof | Production `/admin/` and `/commercial/admin/` are indexable and contain only a linked Valen Systems accreditation; each admin sitemap contains exactly one matching public URL. Preview builds remain noindex. |
 | Sitemap template proof | `Templates/Sitemaps/` provides the repo-wide Valen-themed XSL, examples, assets, and crawler-safety contract for future client sitemaps. |
 | Screenshot proof | Release-specific browser captures and hashes are attached under `proof/mflow-v.1.1.0/`; historical page captures remain under the earlier proof bundles. |
-| Live URL proof | `mflow-v.1.1.0` passes 487 residential artifacts and 90 commercial artifacts from the Valen-controlled CDN namespace with zero failures. |
+| Live URL proof | `mflow-v.1.1.0` passes 494 residential artifacts and 97 commercial artifacts from the Valen-controlled CDN namespace with zero failures. |
 | Sitemap control proof | Residential and commercial sitemap XML, XSL, Valen logo, Squarish Sans, and the font notice live under `masterflow-plumbing/_control/sitemaps/`; the canonical Worker reports the `sitemap` content silo for those public routes. |
 | IndexNow proof | The repo-local tool plans 137 canonical URLs, enforces the 10,000-URL protocol ceiling, validates host/key rules, and remains dry-run unless `--submit` is explicit. No submission was made in this release. |
 | Approval state | William explicitly requested the CDN move, residential/commercial split, publish, commit, and push. |

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T17:35:40.196Z",
+  "generatedAt": "2026-07-18T21:12:38.385Z",
   "allPass": true,
   "indexable": true,
   "output": "seo-production",
@@ -147,9 +147,9 @@
   ],
   "issues": [],
   "maxDuplicate": {
-    "score": 0.7864306784660767,
-    "a": "/san-fernando-valley-hydro-jetting/",
-    "b": "/san-fernando-valley-repiping/"
+    "score": 0.7293540474243663,
+    "a": "/chino-sewer-line-repair/",
+    "b": "/claremont-sewer-line-repair/"
   },
   "publicDataSources": [
     {
@@ -228,7 +228,7 @@
         "evidence": {
           "guards": 15,
           "issues": 0,
-          "maxDuplicateScore": 0.7864306784660767
+          "maxDuplicateScore": 0.7293540474243663
         }
       },
       {
@@ -308,7 +308,10 @@
     }
   },
   "outputHygiene": {
-    "removedStaleArtifacts": [],
+    "removedStaleArtifacts": [
+      "releases",
+      "releases/mflow-v.1.1.0.json"
+    ],
     "conflicts": []
   }
 }

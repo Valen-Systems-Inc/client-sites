@@ -1,6 +1,6 @@
 {
   "version": "mflow-v.1.1.0",
-  "generatedAt": "2026-07-18T17:22:29.262Z",
+  "generatedAt": "2026-07-18T21:15:42.229Z",
   "bucket": "valen-clients-cdn",
   "root": "commercial-production",
   "physicalRoot": ".generated.nosync/commercial-production",
@@ -20,6 +20,9 @@
     "masterflow-plumbing/commercial",
     "masterflow-plumbing/commercial/llms.txt",
     "masterflow-plumbing/commercial/robots.txt",
+    "masterflow-plumbing/commercial/admin/index.html",
+    "masterflow-plumbing/commercial/admin/",
+    "masterflow-plumbing/commercial/admin",
     "masterflow-plumbing/commercial/about/index.html",
     "masterflow-plumbing/commercial/about/",
     "masterflow-plumbing/commercial/about",
@@ -30,13 +33,10 @@
     "masterflow-plumbing/commercial/blog/",
     "masterflow-plumbing/commercial/blog",
     "masterflow-plumbing/commercial/reviews/index.html",
-    "masterflow-plumbing/commercial/reviews/",
-    "masterflow-plumbing/commercial/reviews",
-    "masterflow-plumbing/commercial/industries/index.html",
-    "masterflow-plumbing/commercial/industries/"
+    "masterflow-plumbing/commercial/reviews/"
   ],
   "git": {
-    "head": "759554b",
+    "head": "5a0bae0",
     "branch": "codex/masterflow-mflow-v1.1.0",
     "remote": "git@github.com:Valen-Systems-Inc/client-site-tools.git"
   }

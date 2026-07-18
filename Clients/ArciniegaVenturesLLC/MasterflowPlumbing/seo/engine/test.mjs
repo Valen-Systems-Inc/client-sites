@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { BLOG_CATEGORIES } from "../content/blog-categories.mjs";
 import { BLOG_POSTS } from "../content/blog-posts.mjs";
+import { PUBLIC_COPY_FORBIDDEN } from "../content/site-copy.mjs";
 import { buildSeo, loadSeoData } from "./build.mjs";
 import { createSeoServer } from "./server.mjs";
 
@@ -71,13 +72,51 @@ function heroBackgroundMedia(html) {
   return html.match(/url\("([^"\n]+)"\) center\/cover/)?.[1] ?? "";
 }
 
+function visibleText(html) {
+  return String(html)
+    .replace(/<script\b[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style\b[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function visibleLicenseCount(html) {
+  return (visibleText(html).match(/Lic #1156577/g) ?? []).length;
+}
+
+async function htmlFilesUnder(relativeRoot) {
+  const root = path.join(siteDir, generatedFile(relativeRoot));
+  const files = [];
+  async function visit(directory) {
+    for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
+      const absolute = path.join(directory, entry.name);
+      if (entry.isDirectory()) await visit(absolute);
+      else if (entry.name.endsWith(".html")) files.push(absolute);
+    }
+  }
+  await visit(root);
+  return files.sort();
+}
+
 const data = await loadSeoData();
+const sampleValidation = await buildSeo({
+  limitMarkets: 12,
+  limitServices: 8,
+  out: "seo-preview-sample",
+  indexable: false,
+  validateOnly: true,
+});
 const report = await buildSeo({ full: true, out: "seo-preview", indexable: false });
 const staticPages = 7; // index, about, services, service-area, contact, reviews, and admin accreditation.
 const blogPages = 1 + 45 + 6; // Blog index, 45 articles, and six category pages.
 const expectedPages = staticPages + blogPages + data.markets.length + data.services.length + data.markets.length * data.services.length;
 
 assert.equal(report.allPass, true, "build report must pass all guards");
+assert.equal(sampleValidation.allPass, true, "the 12-market/8-service sample must validate against the complete source catalogs");
+assert.equal(sampleValidation.counts.markets, 12);
+assert.equal(sampleValidation.counts.services, 8);
 assert.equal(report.indexable, false, "preview builds must stay noindex");
 assert.equal(report.pipeline.framework, "ValenFramework", "build report exposes ValenFramework pipeline");
 assert.equal(report.pipeline.pattern, "Build -> Match -> Verify -> Execute");
@@ -96,6 +135,20 @@ assert.deepEqual(data.business.offers, {
   service_guarantee: true,
 }, "the complete approved offer set must remain in the business record");
 assert.equal(data.business.name, "Masterflow Plumbing");
+assert.equal(data.business.primary_domain, "https://masterflowplumbing.us");
+assert.equal(data.business.service_area.primary_city, "Corona");
+assert.ok(data.markets.some((market) => market.slug === "murrieta" && market.city === "Murrieta"));
+assert.deepEqual(data.business.review_proof, {
+  platform: "Yelp",
+  rating: 5,
+  count: 1,
+  url: "https://www.yelp.com/biz/masterflow-plumbing-lake-elsinore",
+});
+assert.equal(data.business.yelp_profile.license_verified, true);
+assert.equal(data.business.yelp_profile.photo_count, 32);
+assert.ok(data.business.yelp_profile.verified_services.includes("Backflow preventer service"));
+assert.equal(data.business.yelp_profile.listing_contact_audit.status, "conflict_requires_client_resolution");
+assert.deepEqual(data.business.service_area.priority_markets, ["Lake Elsinore", "Corona", "Riverside", "Norco", "Menifee", "Moreno Valley"]);
 assert.equal(data.business.dba, "Masterflow Plumbing");
 assert.deepEqual(data.business.alternate_names, ["Masterflow Plumbing"]);
 assert.deepEqual(report.outputHygiene.conflicts, [], "preview output must not contain numbered File Provider conflict artifacts");
@@ -103,7 +156,6 @@ assert.deepEqual(await numberedConflictArtifacts("seo-preview"), [], "preview tr
 assert.ok(report.counts.cityServicePages >= 72, "first 90-day asset target must be represented");
 
 const indexHtml = await read("seo-preview/index.html");
-const homepageArtifactHtml = await read("index.html");
 const aboutHtml = await read("seo-preview/about/index.html");
 const servicesIndexHtml = await read("seo-preview/services/index.html");
 const serviceAreaIndexHtml = await read("seo-preview/service-area/index.html");
@@ -122,8 +174,10 @@ const blogCategoryHeroMedia = await Promise.all(
 const serviceHeroMedia = await Promise.all(
   data.services.map(async (service) => heroBackgroundMedia(await read(`seo-preview/services/${service.slug}/index.html`))),
 );
+const fixtureServiceHtml = await read("seo-preview/services/fixture-install-repair/index.html");
 const coronaHub = await read("seo-preview/locations/corona/index.html");
 const lakeElsinoreHub = await read("seo-preview/locations/lake-elsinore/index.html");
+const murrietaHub = await read("seo-preview/locations/murrieta/index.html");
 const riversideEmergency = await read("seo-preview/locations/riverside/emergency-plumbing/index.html");
 const lakeElsinoreEmergency = await read("seo-preview/locations/lake-elsinore/emergency-plumbing/index.html");
 const lakeElsinoreDrainCleaning = await read("seo-preview/locations/lake-elsinore/drain-cleaning/index.html");
@@ -143,6 +197,7 @@ const postSitemap = await read("seo-preview/post-sitemap.xml");
 const categorySitemap = await read("seo-preview/category-sitemap.xml");
 const adminSitemap = await read("seo-preview/admin-sitemap.xml");
 const sitemapStylesheet = await read("seo-preview/sitemap.xsl");
+const packageSource = await read("package.json");
 const deployScript = await read("seo/engine/deploy-r2-preview.mjs");
 const siteApiWorker = await read("review-worker/src/worker.js");
 const siteApiMigration = await read("review-worker/migrations/0002_service_requests_and_reviewer_contacts.sql");
@@ -157,17 +212,41 @@ assert.match(indexHtml, /href="\/seo-preview\/services\/"/);
 assert.match(indexHtml, /href="\/seo-preview\/service-area\/"/);
 assert.match(indexHtml, /href="\/seo-preview\/blog\/">Blog<\/a>/);
 assert.match(indexHtml, /Request Service/);
-assert.match(indexHtml, /Drain and sewer/);
 assert.match(indexHtml, /href="\/seo-preview\/reviews\/"/);
+assert.match(indexHtml, /<details class="service-menu" data-service-menu>/);
+assert.match(indexHtml, /serviceMenu\.addEventListener\("pointerenter"/);
+assert.match(indexHtml, /serviceMenu\.addEventListener\("keydown"/);
+assert.match(indexHtml, /Quality Plumbing Solutions That Shine Above the Rest/);
+assert.match(indexHtml, /Quality craftsmanship with honest pricing and friendly service\. When plumbing problems strike, we&#39;ve got you covered, day or night\./);
+assert.match(indexHtml, /font-family: "Lato"/);
+assert.match(indexHtml, /font-family: "Oswald"/);
+assert.match(indexHtml, /\/media\/fonts\/lato-400\.ttf/);
+assert.match(indexHtml, /\/media\/fonts\/oswald-700\.ttf/);
+assert.match(indexHtml, /\.service-card img \{[\s\S]*?height: 220px;/);
+assert.match(indexHtml, /\.service-grid \{ grid-template-columns: repeat\(2, minmax\(0, 1fr\)\); \}/);
+assert.match(indexHtml, /\.service-card p \{ display: none; \}/);
+assert.match(indexHtml, /<strong>Customer reviews<\/strong>/);
+assert.match(indexHtml, /Read Masterflow on Yelp/);
+assert.doesNotMatch(visibleText(indexHtml), /5\.0 on Yelp|1 current (?:public )?review/);
+assert.match(indexHtml, /data-content-lane="services"/);
+assert.match(indexHtml, /data-content-lane="field-proof"/);
+assert.match(indexHtml, /data-content-lane="reviews"/);
+assert.doesNotMatch(indexHtml, /class="utility-proof"|class="proof"|proof-strip/);
+assert.equal(visibleLicenseCount(indexHtml), 1, "the homepage shows the contractor license once, in the footer");
 assert.match(aboutHtml, /About Masterflow Plumbing/);
-assert.match(aboutHtml, /The company behind the Masterflow trucks/);
-assert.match(aboutHtml, /Same-Day Service Available/);
-assert.match(aboutHtml, /Upfront Pricing/);
-assert.match(aboutHtml, /Work Backed by Masterflow/);
+assert.match(aboutHtml, /Built on local trust and proven work/);
+assert.match(aboutHtml, /Same-day service and financing are available/);
+assert.match(aboutHtml, /Read Masterflow on Yelp/);
+assert.equal(visibleLicenseCount(aboutHtml), 1, "the about page shows the contractor license once, in the footer");
 assert.match(servicesIndexHtml, /Masterflow Plumbing Services/);
 assert.match(servicesIndexHtml, /We give you upfront pricing before work starts/);
+assert.doesNotMatch(servicesIndexHtml, /data-content-lane="reviews"|Read Masterflow on Yelp|current review on Yelp/);
+assert.equal(visibleLicenseCount(servicesIndexHtml), 1, "the service index shows the contractor license once, in the footer");
 assert.match(serviceAreaIndexHtml, /Masterflow Plumbing Service Areas/);
 assert.match(serviceAreaIndexHtml, /High-priority service areas/);
+assert.match(serviceAreaIndexHtml, /Lake Elsinore/);
+assert.match(serviceAreaIndexHtml, /Moreno Valley/);
+assert.equal(visibleLicenseCount(serviceAreaIndexHtml), 1, "the service-area page shows the contractor license once, in the footer");
 assert.match(contactHtml, /Contact Masterflow Plumbing/);
 assert.match(contactHtml, /What to tell us when you call/);
 assert.match(contactHtml, /id="request-service"/);
@@ -176,40 +255,18 @@ assert.match(contactHtml, /name="customerName"/);
 assert.match(contactHtml, /name="phone" type="tel"[^>]+required/);
 assert.match(contactHtml, /name="consentContact" required/);
 assert.match(contactHtml, /data-form-kind="request"/);
-assert.match(homepageArtifactHtml, /<section class="hero" id="hero">/);
-assert.match(homepageArtifactHtml, /<link rel="icon" type="image\/png" href="\.\.\/\.\.\/media\/masterflow-logo-20260704\.png">/);
-assert.match(homepageArtifactHtml, /<img src="\.\.\/\.\.\/media\/masterflow-logo-20260704\.png" alt="Masterflow Plumbing logo"/);
-assert.match(homepageArtifactHtml, /<details class="service-menu" data-service-menu>/);
-assert.match(homepageArtifactHtml, /<strong>Commercial services<\/strong>/);
-assert.match(homepageArtifactHtml, /href="\/services\/hydro-jetting"/);
-assert.match(homepageArtifactHtml, /serviceMenu\.addEventListener\("pointerenter"/);
-assert.match(homepageArtifactHtml, /serviceMenu\.addEventListener\("keydown"/);
-assert.match(indexHtml, /<details class="service-menu" data-service-menu>/);
-assert.match(indexHtml, /serviceMenu\.addEventListener\("pointerenter"/);
-assert.match(indexHtml, /serviceMenu\.addEventListener\("keydown"/);
-assert.match(homepageArtifactHtml, /<a class="navlink" href="\/service-area">Service Area<\/a>/);
-assert.ok((homepageArtifactHtml.match(/href="\/blog\/"/g) ?? []).length >= 3, "Blog must be visible in desktop, mobile, and footer navigation");
-assert.ok((homepageArtifactHtml.match(/>Blog<\/a>/g) ?? []).length >= 3, "Blog label must stay congruent across canonical navigation surfaces");
-assert.match(homepageArtifactHtml, /<a class="request-pill" href="\/contact\/#request-service">Request Service<\/a>/);
-assert.doesNotMatch(homepageArtifactHtml, /<button class="navlink" type="button" data-target="services">Services<\/button>|data-target="commercial"|data-target="payment">Estimates/);
-assert.match(homepageArtifactHtml, /<aside class="proof-strip"/);
-assert.match(homepageArtifactHtml, /What to expect/);
-assert.match(homepageArtifactHtml, /Plumbing services/);
-assert.match(homepageArtifactHtml, /What waiting can cost/);
-assert.match(homepageArtifactHtml, /Honest Estimates\. No Surprises\./);
-assert.match(homepageArtifactHtml, /Same-day service is available/);
-assert.match(homepageArtifactHtml, /Upfront pricing and financing/);
-assert.match(homepageArtifactHtml, /warranty or guarantee/);
-assert.match(homepageArtifactHtml, /"addressLocality": "Corona"/);
-assert.match(homepageArtifactHtml, /https:\/\/www\.yelp\.com\/biz\/masterflow-plumbing-lake-elsinore/);
-assert.doesNotMatch(homepageArtifactHtml, /hero-video|masterflow-plumbing-murrieta-2|"addressLocality": "Murrieta"/);
-assert.doesNotMatch(homepageArtifactHtml, /src="media\/|poster="media\/|href="\/media\/masterflow-logo|Family-owned|fully licensed and insured|within the hour|repair path|dispatch machine|hidden fees|Fast, Reliable Service|Quality Workmanship|Proudly serving Corona|What happens next|How service works|closest to the problem|close to the decision|Call for the Next Step|Scope Explained First|cannot wait|what is happening|actual failure|before approved work|fastest practical next step/i);
-const homepageServiceImages = sectionImageSources(homepageArtifactHtml, "services");
-const homepageFieldImages = sectionImageSources(homepageArtifactHtml, "field-work");
-assert.equal(homepageServiceImages.length, 7, "homepage service grid keeps seven problem-led entries");
+assert.equal(visibleLicenseCount(contactHtml), 1, "the contact page shows the contractor license once, in the footer");
+assert.ok((indexHtml.match(/>Blog<\/a>/g) ?? []).length >= 3, "Blog stays visible in desktop, mobile, and footer navigation");
+assert.doesNotMatch(indexHtml, /hero-video|masterflow-plumbing-murrieta-2|"addressLocality":"Murrieta"/);
+assert.doesNotMatch(indexHtml, /repair path|dispatch machine|What happens next|How service works|cannot wait|what is happening|actual failure|before approved work/i);
+const homepageServiceImages = sectionImageSources(indexHtml, "services");
+const homepageFieldImages = sectionImageSources(indexHtml, "field-work");
+assert.equal(homepageServiceImages.length, 6, "homepage service grid keeps six focused entries");
 assert.equal(new Set(homepageServiceImages).size, homepageServiceImages.length, "homepage service grid must not reuse images");
-assert.ok(homepageFieldImages.length >= 18, "homepage field-work gallery must show the recovered job-site range");
+assert.equal(homepageFieldImages.length, 4, "homepage field-work section stays compact");
 assert.equal(new Set(homepageFieldImages).size, homepageFieldImages.length, "homepage field-work gallery must not duplicate images");
+assert.equal(new Set([...homepageServiceImages, ...homepageFieldImages]).size, homepageServiceImages.length + homepageFieldImages.length, "homepage service and field-work sections must use distinct media");
+assert.match(packageSource, /--limit-markets=12 --limit-services=8/);
 assert.match(deployScript, /extensionlessKey/);
 assert.match(deployScript, /slashKey\.replace\(\/\\\/\$\/, ""\)/);
 assert.match(deployScript, /generatedSourceRoot/, "deploy must read from the clean physical output tree");
@@ -233,7 +290,11 @@ assert.match(liveVerifyScript, /privacy\.html.*terms\.html.*sitemap\.html/s, "li
 assert.match(liveVerifyScript, /filename\.endsWith\("\.html"\).*"html-static"/s, "support HTML must normalize known Cloudflare edge injection");
 assert.match(liveVerifyScript, /walkFiles\(path\.join\(siteDir, "media"\)\)/, "live verification must check published media");
 assert.match(reviewsHtml, /Masterflow Plumbing Reviews/);
-assert.match(reviewsHtml, /Real Masterflow customer feedback/);
+assert.match(reviewsHtml, /Read what Masterflow customers have to say/);
+assert.match(reviewsHtml, /<h2>What customers say<\/h2>/);
+assert.doesNotMatch(visibleText(reviewsHtml), /originally posted on Yelp|Yelp currently shows only one/i);
+assert.doesNotMatch(visibleText(reviewsHtml), /provided by Masterflow and approved for display/i);
+assert.doesNotMatch(visibleText(reviewsHtml), /5\.0 on Yelp|1 current (?:public )?review/);
 assert.match(reviewsHtml, /Leave a Review/);
 assert.match(reviewsHtml, /action="https:\/\/masterflowplumbing\.us\/api\/reviews"/);
 assert.match(reviewsHtml, /name="reviewerEmail" type="email"[^>]+required/);
@@ -267,9 +328,17 @@ assert.ok(new Set(serviceHeroMedia).size >= 7, "service heroes must use more tha
 assert.match(coronaHub, /<title>Plumber in Corona, CA \| Masterflow<\/title>/);
 assert.match(coronaHub, /<h1>Plumber in Corona, CA<\/h1>/);
 assert.doesNotMatch(coronaHub, /<h1>Emergency Plumber in Corona, CA<\/h1>/);
+assert.match(coronaHub, /South Corona, Dos Lagos, Sierra Del Oro, Temescal Valley/);
+assert.match(coronaHub, /busy family plumbing near the 91 and 15/);
 assert.match(lakeElsinoreHub, /<title>Plumber in Lake Elsinore, CA \| Masterflow<\/title>/);
 assert.match(lakeElsinoreHub, /<h1>Plumber in Lake Elsinore, CA<\/h1>/);
 assert.doesNotMatch(lakeElsinoreHub, /<h1>Emergency Plumber in Lake Elsinore, CA<\/h1>/);
+assert.match(lakeElsinoreHub, /Canyon Hills, Tuscany Hills, Alberhill, Summerly, Rosetta Canyon, Lakeland Village/);
+assert.match(lakeElsinoreHub, /newer tract plumbing, hillside access, lake-area routing/);
+assert.match(murrietaHub, /Recent Masterflow work in Murrieta includes a shower-valve replacement/);
+assert.doesNotMatch(visibleText(murrietaHub), /Yelp|customer reviews/i);
+assert.match(fixtureServiceHtml, /sump pumps, recirculation pumps, and backflow preventers/);
+assert.doesNotMatch(visibleText(fixtureServiceHtml), /Yelp|customer reviews/i);
 assert.match(riversideEmergency, /<title>24\/7 Emergency Plumber in Riverside, CA \| Masterflow<\/title>/);
 assert.match(riversideEmergency, /<h1>Emergency Plumber in Riverside, CA<\/h1>/);
 assert.doesNotMatch(riversideEmergency, /<title>Emergency Plumbing in Riverside, CA \| Masterflow<\/title>|<h1>Emergency Plumbing in Riverside, CA<\/h1>/);
@@ -293,7 +362,7 @@ assert.match(riversideHub, /Serving Riverside &amp; the Inland Empire/);
 assert.match(riversideHub, /Masterflow serves Riverside homes, rentals, businesses, HOAs, and managed properties/);
 assert.match(riversideHub, /Orangecrest, Canyon Crest, Mission Grove, La Sierra, Arlington, Wood Streets and Downtown Riverside/);
 assert.match(riversideHub, /Call 951-612-7912/);
-assert.equal((riversideHub.match(/Commercial Plumbing &amp; Trenchless Sewer Services/g) ?? []).length, 1);
+assert.doesNotMatch(riversideHub, /Commercial Plumbing &amp; Trenchless Sewer Services/);
 assert.doesNotMatch(riversideHub, /Commercial and trenchless work/);
 assert.doesNotMatch(perrisHub, /local signals|generated service plan|microversions|route covers/i);
 assert.doesNotMatch(morenoValleyHub, /local signals|generated service plan|microversions|route covers/i);
@@ -304,7 +373,11 @@ assert.match(riversideDrainCleaning, /Before you call/);
 assert.match(riversideDrainCleaning, /Where is the problem\?/);
 assert.match(riversideDrainCleaning, /Is anything active\?/);
 assert.match(riversideDrainCleaning, /What is easy to reach\?/);
-assert.equal((riversideDrainCleaning.match(/Commercial Plumbing &amp; Trenchless Sewer Services/g) ?? []).length, 1);
+assert.doesNotMatch(riversideDrainCleaning, /Commercial Plumbing &amp; Trenchless Sewer Services/);
+assert.doesNotMatch(riversideDrainCleaning, /data-content-lane="reviews"|Yelp 5\.0|customer review excerpts?/i);
+assert.doesNotMatch(lakeElsinoreDrainCleaning, /data-content-lane="reviews"|Yelp 5\.0|customer review excerpts?/i);
+assert.equal(visibleLicenseCount(riversideDrainCleaning), 1, "city-service pages show the contractor license once, in the footer");
+assert.equal(visibleLicenseCount(lakeElsinoreDrainCleaning), 1, "drain-cleaning pages show the contractor license once, in the footer");
 assert.match(perrisDrainCleaning, /<span class="section-kicker">Areas we serve<\/span>/);
 assert.match(perrisDrainCleaning, /Request Service/);
 assert.doesNotMatch(riversideDrainCleaning, /local signals|generated service plan|microversions|See local fit|comparison searches|top rated plumber|5 star plumber|Repair path explained/i);
@@ -375,6 +448,24 @@ assertNoLegacyAssets(riversideHub, "riverside hub");
 assertNoLegacyAssets(murrietaDrain, "murrieta drain");
 assert.equal(data.reviews.some((review) => "service_slug" in review || "city_slug" in review), false, "reviews must not invent service or city slugs");
 
+for (const page of pagesSitemapInventory.pages) {
+  const relativeUrl = page.path.replace(/^\/seo-preview\/?/, "").replace(/^\/+|\/+$/g, "");
+  const outputPath = relativeUrl ? `seo-preview/${relativeUrl}/index.html` : "seo-preview/index.html";
+  const html = await read(outputPath);
+  assertNoLegacyAssets(html, page.path);
+  if (page.path !== "/seo-preview/admin/") {
+    assert.equal(visibleLicenseCount(html), 1, `${page.path} must show the contractor license exactly once`);
+    const pageText = visibleText(html).toLowerCase();
+    for (const forbidden of PUBLIC_COPY_FORBIDDEN) {
+      assert.equal(pageText.includes(forbidden.toLowerCase()), false, `${page.path} contains forbidden public copy: ${forbidden}`);
+    }
+    if (["service", "city-service"].includes(page.kind)) {
+      assert.doesNotMatch(html, /data-content-lane="reviews"|class="review-card"/i, `${page.path} must not render a customer-review module`);
+      assert.doesNotMatch(pageText, /customer reviews|read masterflow on yelp|current public review/i, `${page.path} must stay focused on its service topic`);
+    }
+  }
+}
+
 await withServer(createSeoServer({ token: "test-token" }), async (baseUrl) => {
   const health = await fetch(`${baseUrl}/health`).then((res) => res.json());
   assert.equal(health.ok, true, "health endpoint ok");
@@ -408,6 +499,7 @@ const productionReport = await buildSeo({
   routePrefix: "/",
   omitIndex: false,
 });
+
 const productionParent = await read("seo-production/sitemap.xml");
 const productionParentAlias = await read("seo-production/sitemap_index.xml");
 const productionPages = await read("seo-production/page-sitemap.xml");
@@ -422,7 +514,8 @@ const productionRoot = await read("seo-production/index.html");
 const productionPrivacy = await read("seo-production/privacy.html");
 const productionTerms = await read("seo-production/terms.html");
 const productionHumanSitemap = await read("seo-production/sitemap.html");
-const normalizedHomepageArtifact = homepageArtifactHtml.replace(/[ \t]+$/gm, "");
+const derivedHomepageArtifact = await read("seo/reports/homepage-index-with-tracking.html");
+const normalizedHomepageArtifact = derivedHomepageArtifact.replace(/[ \t]+$/gm, "");
 
 assert.equal(productionReport.allPass, true);
 assert.equal(productionReport.counts.sitemapUrls, 102);
@@ -431,6 +524,7 @@ assert.equal(productionReport.counts.orphanPublicPages, 0, "every public product
 assert.equal(productionReport.physicalOutput, ".generated.nosync/seo-production");
 assert.deepEqual(productionReport.outputHygiene.conflicts, [], "production output must not contain numbered File Provider conflict artifacts");
 assert.deepEqual(await numberedConflictArtifacts("seo-production"), [], "production tree must stay free of numbered conflict artifacts");
+assert.equal(productionRoot, normalizedHomepageArtifact, "the report homepage must be derived from the generated canonical production root");
 assert.equal(productionParentAlias, productionParent);
 assert.match(productionParent, /areas_we_serve-sitemap\.xml/);
 assert.match(productionParent, /post-sitemap\.xml/);
@@ -449,7 +543,6 @@ assert.match(productionStylesheet, /Valen Systems/);
 assert.match(productionAdminHtml, /Website accreditation/);
 assert.match(productionAdminHtml, /<meta name="robots" content="index,follow">/);
 assert.doesNotMatch(productionAdminHtml, /noindex|control plane|Content origin/i);
-assert.equal(productionRoot, normalizedHomepageArtifact, "production / must use the approved canonical homepage artifact");
 assertNoLegacyAssets(productionRoot, "production root");
 assertNoLegacyAssets(productionPrivacy, "production privacy policy");
 assertNoLegacyAssets(productionTerms, "production terms");
@@ -458,6 +551,10 @@ assert.match(productionPrivacy, /Masterflow Plumbing respects your privacy/);
 assert.match(productionTerms, /These terms apply to this website and general communications with Masterflow Plumbing/);
 assert.match(productionHumanSitemap, /href="\/blog\/">Masterflow Plumbing Guides<\/a>/);
 assert.match(productionRoot, /href="\/blog\/">Blog<\/a>/);
+assert.match(productionRoot, /Quality Plumbing Solutions That Shine Above the Rest/);
+assert.match(productionRoot, /https:\/\/analytics\.masterflowplumbing\.us\/script\.js/);
+assert.match(productionRoot, /\/tracking\/umami-events\.js/);
+assert.equal(visibleLicenseCount(productionRoot), 1);
 assert.doesNotMatch(productionRoot, /href="\/admin\/"|Site maintenance|Dropstars-style|repair path|dispatch machine/);
 
 await withServer(createSeoServer({ token: "test-token" }), async (baseUrl) => {
@@ -465,9 +562,9 @@ await withServer(createSeoServer({ token: "test-token" }), async (baseUrl) => {
   assert.equal(reviewRoot.status, 200);
   assert.equal(reviewRoot.headers.get("x-masterflow-preview-source"), "seo-production");
   const reviewRootHtml = await reviewRoot.text();
-  assert.match(reviewRootHtml, /<div class="progress" id="progress">/);
-  assert.match(reviewRootHtml, /href="\/seo-preview\/about"/);
-  assert.doesNotMatch(reviewRootHtml, /<aside class="utility-proof"/);
+  assert.match(reviewRootHtml, /Quality Plumbing Solutions That Shine Above the Rest/);
+  assert.match(reviewRootHtml, /href="\/seo-preview\/about\/"/);
+  assert.doesNotMatch(reviewRootHtml, /class="utility-proof"|proof-strip/);
 
   const trackingStub = await fetch(`${baseUrl}/tracking/umami-events.js`);
   assert.equal(trackingStub.status, 200, "local review mode must not emit a tracking-script 404");
@@ -480,6 +577,17 @@ await withServer(createSeoServer({ token: "test-token" }), async (baseUrl) => {
   const reviewContactHtml = await reviewContact.text();
   assert.match(reviewContactHtml, /<h1>Call or request plumbing service<\/h1>/);
   assert.match(reviewContactHtml, /href="\/seo-preview\/blog\/">Blog<\/a>/);
+
+  const commercialRoot = await fetch(`${baseUrl}/seo-preview/commercial/`);
+  assert.equal(commercialRoot.status, 200, "residential preview must mount the commercial production root");
+  assert.equal(commercialRoot.headers.get("x-masterflow-preview-source"), "commercial-production");
+  const commercialRootHtml = await commercialRoot.text();
+  assert.match(commercialRootHtml, /Commercial Plumbing Across Southern California/);
+  assert.match(commercialRootHtml, /href="\/seo-preview\/">Residential<\/a>/);
+
+  const commercialService = await fetch(`${baseUrl}/commercial/services/drain-cleaning/`);
+  assert.equal(commercialService.status, 200, "commercial internal routes must resolve in local review mode");
+  assert.equal(commercialService.headers.get("x-masterflow-preview-source"), "commercial-production");
 });
 
 console.log(`Masterflow SEO engine tests passed: ${report.counts.pages} pages, ${report.guards.length} guards.`);

@@ -6,14 +6,59 @@
   "alternate_names": [
     "Masterflow Plumbing"
   ],
-  "tagline": "Emergency plumber in Corona, CA.",
-  "description": "Masterflow Plumbing handles emergency plumbing, drains, sewer lines, leaks, water heaters, hydro jetting, camera inspections, and commercial work from a Corona-centered Southern California service area.",
+  "tagline": "Quality plumbing solutions that shine above the rest.",
+  "description": "Masterflow Plumbing provides 24/7 residential and commercial plumbing, drain, sewer, leak, water-heater, hydro-jetting, and camera-inspection service across Lake Elsinore, Corona, Riverside, and nearby Inland Empire communities.",
   "offers": {
     "emergency_service_24_7": true,
     "same_day_service_available": true,
     "financing_available": true,
     "upfront_pricing": true,
     "service_guarantee": true
+  },
+  "review_proof": {
+    "platform": "Yelp",
+    "rating": 5.0,
+    "count": 1,
+    "url": "https://www.yelp.com/biz/masterflow-plumbing-lake-elsinore"
+  },
+  "yelp_profile": {
+    "verified_at": "2026-07-18",
+    "claimed": true,
+    "license_verified": true,
+    "open_24_hours": true,
+    "photo_count": 32,
+    "current_rating": 5.0,
+    "current_review_count": 1,
+    "recent_updates": [
+      "Double sink drain repair at an apartment complex",
+      "Shower valve replacement in Murrieta",
+      "Residential plumbing repair availability"
+    ],
+    "verified_services": [
+      "Plumbing inspection",
+      "Backflow preventer service",
+      "Drain service",
+      "Garbage disposal service",
+      "Hot-water recirculation pump service",
+      "Shower plumbing",
+      "Sump pump service",
+      "Water-heater service",
+      "Bathtub plumbing",
+      "Faucet service",
+      "Gas-line service",
+      "Sewer service",
+      "Sink plumbing",
+      "Toilet plumbing",
+      "Water-pipe service",
+      "Plumbing installation and replacement",
+      "Plumbing repair"
+    ],
+    "listing_contact_audit": {
+      "website_phone": "951-612-7912",
+      "profile_phone": "840-234-1041",
+      "update_post_phone": "909-272-5456",
+      "status": "conflict_requires_client_resolution"
+    }
   },
   "trust_copy": {
     "eyebrow": "Licensed Bonded & Insured",
@@ -34,8 +79,8 @@
   },
   "service_area_copy": {
     "eyebrow": "Service Areas",
-    "headline": "Serving Southern California",
-    "summary": "Masterflow serves Riverside County, the Inland Empire, and selected communities in Orange and Los Angeles counties. Call when timing matters because availability depends on the address, current calls, and type of work.",
+    "headline": "Serving Lake Elsinore, Corona, Riverside, and nearby communities",
+    "summary": "Masterflow's core residential service area covers southwest Riverside County and the Inland Empire. Call to confirm the address and current availability.",
     "cards": [
       {
         "title": "Corona & Norco",
@@ -82,23 +127,18 @@
     "primary_county": "Riverside County",
     "first_visibility_gap": "Lake Elsinore",
     "priority_markets": [
-      "Corona",
       "Lake Elsinore",
-      "Norco",
+      "Corona",
       "Riverside",
-      "Ontario",
-      "Calabasas",
-      "San Fernando Valley",
-      "Studio City",
-      "Glendale",
-      "Pasadena"
+      "Norco",
+      "Menifee",
+      "Moreno Valley"
     ],
-    "region_label": "Corona-centered Southern California service area"
+    "region_label": "Lake Elsinore, Corona, Riverside, and the Inland Empire"
   },
   "knows_about": [
     "Emergency plumbing",
     "Drain cleaning",
-    "Rooter service",
     "Hydro jetting",
     "Camera inspections",
     "Water leaks",
@@ -116,7 +156,15 @@
     "Water heater repair",
     "Slab leak repair",
     "Gas line plumbing",
-    "Fixture repair"
+    "Fixture repair",
+    "Plumbing inspections",
+    "Backflow preventer service",
+    "Garbage disposal repair",
+    "Hot-water recirculation pumps",
+    "Sump pumps",
+    "Shower and bathtub plumbing",
+    "Faucet, sink, and toilet plumbing",
+    "Water-pipe repair and replacement"
   ],
   "brand": {
     "primary": "#011633",

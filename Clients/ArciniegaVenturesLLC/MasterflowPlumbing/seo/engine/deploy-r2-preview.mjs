@@ -38,6 +38,7 @@ function parseArgs(argv = process.argv.slice(2)) {
     concurrency: 4,
     sitemapOnly: false,
     excludeSitemaps: false,
+    mediaOnly: false,
     manifestOnly: false,
     version: process.env.MASTERFLOW_CDN_VERSION || "",
   };
@@ -46,6 +47,7 @@ function parseArgs(argv = process.argv.slice(2)) {
     else if (arg === "--skip-media") opts.includeMedia = false;
     else if (arg === "--sitemap-only") opts.sitemapOnly = true;
     else if (arg === "--exclude-sitemaps") opts.excludeSitemaps = true;
+    else if (arg === "--media-only") opts.mediaOnly = true;
     else if (arg === "--manifest-only") opts.manifestOnly = true;
     else if (arg.startsWith("--prefix=")) {
       const prefix = normalizeR2Prefix(arg.slice("--prefix=".length));
@@ -58,6 +60,12 @@ function parseArgs(argv = process.argv.slice(2)) {
     else if (arg.startsWith("--version=")) opts.version = normalizeReleaseVersion(arg.slice("--version=".length));
   }
   opts.version = normalizeReleaseVersion(opts.version);
+  if (opts.mediaOnly && !opts.includeMedia) {
+    throw new Error("--media-only cannot be combined with --skip-media.");
+  }
+  if (opts.mediaOnly && opts.version) {
+    throw new Error("--media-only does not write release manifests; omit MASTERFLOW_CDN_VERSION.");
+  }
   return opts;
 }
 
@@ -231,27 +239,29 @@ async function collectUploads(opts) {
   const physicalRoot = generatedSourceRoot(opts.root);
   const sourceRoot = path.join(siteDir, physicalRoot);
   await fs.access(sourceRoot);
-  const sourceFiles = await fg("**/*", {
-    cwd: sourceRoot,
-    onlyFiles: true,
-    dot: true,
-  });
   const uploads = [];
-  for (const relUnderRoot of sourceFiles) {
-    if (hasNumberedConflictSegment(relUnderRoot)) continue;
-    const sitemapArtifact = isSitemapArtifact(relUnderRoot);
-    if (opts.sitemapOnly && !sitemapArtifact) continue;
-    if (opts.excludeSitemaps && sitemapArtifact) continue;
-    if (opts.version && relUnderRoot === `releases/${opts.version}.json`) continue;
-    const localFile = path.join(sourceRoot, relUnderRoot);
-    const key = r2Key(opts.targetPrefix, relUnderRoot);
-    uploads.push({ localFile, key });
-    if (relUnderRoot === "index.html" || relUnderRoot.endsWith("/index.html")) {
-      const slashKey = key.slice(0, -"index.html".length);
-      uploads.push({ localFile, key: slashKey });
-      const extensionlessKey = slashKey.replace(/\/$/, "");
-      if (extensionlessKey && extensionlessKey !== slashKey) {
-        uploads.push({ localFile, key: extensionlessKey });
+  if (!opts.mediaOnly) {
+    const sourceFiles = await fg("**/*", {
+      cwd: sourceRoot,
+      onlyFiles: true,
+      dot: true,
+    });
+    for (const relUnderRoot of sourceFiles) {
+      if (hasNumberedConflictSegment(relUnderRoot)) continue;
+      const sitemapArtifact = isSitemapArtifact(relUnderRoot);
+      if (opts.sitemapOnly && !sitemapArtifact) continue;
+      if (opts.excludeSitemaps && sitemapArtifact) continue;
+      if (opts.version && relUnderRoot === `releases/${opts.version}.json`) continue;
+      const localFile = path.join(sourceRoot, relUnderRoot);
+      const key = r2Key(opts.targetPrefix, relUnderRoot);
+      uploads.push({ localFile, key });
+      if (relUnderRoot === "index.html" || relUnderRoot.endsWith("/index.html")) {
+        const slashKey = key.slice(0, -"index.html".length);
+        uploads.push({ localFile, key: slashKey });
+        const extensionlessKey = slashKey.replace(/\/$/, "");
+        if (extensionlessKey && extensionlessKey !== slashKey) {
+          uploads.push({ localFile, key: extensionlessKey });
+        }
       }
     }
   }

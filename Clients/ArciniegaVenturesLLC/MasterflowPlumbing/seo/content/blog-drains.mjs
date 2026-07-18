@@ -96,7 +96,7 @@ export const DRAIN_AND_SEWER_POSTS = [
       {
         heading: "The blockage determines the equipment",
         paragraphs: [
-          "Hair near a tub, grease in a kitchen branch, roots in a sewer, and a collapsed line do not call for the same tool. Cable work, a larger rooter machine, camera inspection, hydro jetting, and excavation carry different time and equipment needs.",
+          "Hair near a tub, grease in a kitchen branch, roots in a sewer, and a collapsed line do not call for the same tool. Cable work, a larger drain-cleaning machine, camera inspection, hydro jetting, and excavation carry different time and equipment needs.",
           "A camera earns its place when there is a reason to look: repeat trouble, suspected damage, a repair decision, or a need to confirm where the line changes. It should answer a question, not just decorate the invoice.",
         ],
       },

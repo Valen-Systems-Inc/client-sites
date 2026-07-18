@@ -20,10 +20,10 @@ logo, font, and font notice from the dedicated sitemap-control prefixes.
 
 ## Live verification
 
-- Residential: 487 artifacts passed, including 432 pages, 12 aliases, 18
-  static files, 24 media objects, and the release manifest.
-- Commercial: 90 artifacts passed, including 37 pages, 12 aliases, 16 static
-  files, 24 media objects, and the release manifest.
+- Residential: 494 artifacts passed, including 432 pages, 12 aliases, 18
+  static files, 31 media objects, and the release manifest.
+- Commercial: 97 artifacts passed, including 37 pages, 12 aliases, 16 static
+  files, 31 media objects, and the release manifest.
 - Both full route matrices report `pass: true` with zero failures.
 - Production `/admin/` and `/commercial/admin/` return `index,follow`, one
   visible accreditation statement, and a link to

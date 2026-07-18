@@ -49,7 +49,7 @@ change labels and paths, but must preserve standards-compliant XML, canonical
 
 The original CDN migration, domain-cutover, and rollback evidence remains under
 `proof/mflow-v.1.0.7/`; release-specific `mflow-v.1.1.0` proof is stored beside
-it. Final live verification covers 487 residential artifacts and 90 commercial
+it. Final live verification covers 494 residential artifacts and 97 commercial
 artifacts. Active sitemap XML and presentation assets, plus the
 IndexNow verification key, live only under Valen `_control/` namespaces; public
 `.us` routes resolve there through the canonical Worker.

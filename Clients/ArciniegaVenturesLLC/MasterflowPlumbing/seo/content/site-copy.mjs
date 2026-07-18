@@ -1,7 +1,16 @@
-export const COPY_LASTMOD = "2026-07-16T16:59:23+00:00";
+export const COPY_LASTMOD = "2026-07-18T19:00:00+00:00";
 
 export const PUBLIC_COPY_FORBIDDEN = [
   "Dropstars-style",
+  "Dropstars",
+  "DropStars",
+  "rockstar",
+  "sound check",
+  "soundcheck",
+  "stage check",
+  "center stage",
+  "star services",
+  "encore",
   "5 star plumber",
   "comparison searches",
   "close to the decision",
@@ -16,7 +25,6 @@ export const PUBLIC_COPY_FORBIDDEN = [
   "generated routes",
   "generator market",
   "how service pages work",
-  "honest pricing",
   "local search coverage",
   "need a dependable plumber",
   "private review bank",
@@ -67,19 +75,19 @@ export const PUBLIC_COPY_FORBIDDEN = [
 
 export const CORE_COPY = {
   home: {
-    eyebrow: "Emergency plumber in Corona | Lic #1156577",
-    h1: "Emergency Plumber in Corona, CA",
+    eyebrow: "Residential and commercial plumbing",
+    h1: "Quality Plumbing Solutions That Shine Above the Rest",
     hero:
-      "Got a leak, clogged drain, sewer backup, or no hot water? Call Masterflow at 951-612-7912 for plumbing service in Corona and nearby communities.",
+      "Quality craftsmanship with honest pricing and friendly service. When plumbing problems strike, we've got you covered, day or night.",
     intro: {
-      heading: "Plumbing trouble can get worse fast.",
+      heading: "Local plumbers. Real work. Straightforward service.",
       body:
-        "Water on the floor, sewage coming up, a drain that keeps clogging, or no hot water can turn a normal day upside down. Call us, tell us where the trouble is, and say whether water or sewage is still moving.",
+        "Masterflow handles everyday repairs, 24/7 emergencies, drains, sewer lines, leaks, water heaters, repiping, and commercial plumbing. Same-day appointments are available, and you'll see the price before work starts.",
     },
     services: {
-      heading: "Plumbing services",
+      heading: "Plumbing services for the whole property",
       body:
-        "Not sure what the repair is called? That is fine. Pick the fixture, drain, pipe, or heater giving you trouble, or call us.",
+        "From a clogged kitchen sink to a damaged sewer line, Masterflow has the equipment and experience to handle the job.",
     },
     consequences: {
       heading: "A small leak or slow drain can become a bigger mess.",
@@ -95,13 +103,13 @@ export const CORE_COPY = {
   },
   about: {
     eyebrow: "About Masterflow",
-    h1: "A licensed plumbing company built around direct service.",
+    h1: "About Masterflow Plumbing",
     hero:
-      "Masterflow Plumbing handles emergency plumbing, drains, sewer lines, leaks, water heaters, fixtures, repiping, gas lines, and commercial work across a Corona-centered Southern California service area.",
-    heading: "The company behind the Masterflow trucks",
+      "Residential and commercial plumbing backed by real field experience, professional equipment, and service that respects the property.",
+    heading: "Built on local trust and proven work",
     paragraphs: [
-      "Masterflow serves homeowners, rental properties, restaurants, retail spaces, offices, HOAs, and other commercial properties. The work ranges from everyday fixture repairs to drain equipment, sewer cameras, hydro jetting, trenchless sewer preparation, and emergency response.",
-      "Want to check who you are calling? The direct phone number, California contractor license #1156577, customer reviews, and photos from Masterflow jobs are all on the site.",
+      "Masterflow serves homeowners, rental properties, restaurants, retail spaces, offices, HOAs, and other commercial properties. The team handles fixture repairs, drain cleaning, sewer cameras, hydro jetting, trenchless sewer work, repiping, water heaters, and emergency calls.",
+      "The work is simple to follow: inspect the problem, explain the repair and price, then get it done cleanly. Same-day service and financing are available.",
     ],
   },
   services: {
@@ -117,7 +125,7 @@ export const CORE_COPY = {
     eyebrow: "Areas we serve",
     h1: "Masterflow Plumbing Service Areas",
     hero:
-      "See whether Masterflow serves your city. The list includes Corona, Lake Elsinore, Riverside, Norco, Ontario, and other Southern California communities.",
+      "Masterflow serves Lake Elsinore, Corona, Riverside, Norco, Menifee, Moreno Valley, and nearby Inland Empire communities.",
     heading: "Find your city",
     body:
       "Call if you do not see your city or need service today. Availability depends on the address, current schedule, and type of work.",
@@ -135,7 +143,7 @@ export const CORE_COPY = {
     eyebrow: "Customer reviews",
     h1: "Masterflow Plumbing Reviews",
     hero:
-      "Read feedback from customers who called Masterflow for leaks, drains, water heaters, emergency repairs, fixtures, and commercial plumbing.",
+      "Read what Masterflow customers have to say.",
   },
 };
 
@@ -162,7 +170,7 @@ export const SERVICE_COPY = {
   },
   "drain-cleaning": {
     title: "Drain Cleaning",
-    eyebrow: "Drain and rooter service",
+    eyebrow: "Drain cleaning service",
     hero:
       "Call for slow, stopped, or recurring drains in kitchens, bathrooms, laundry rooms, floor drains, and main sewer lines.",
     intro:
@@ -176,7 +184,7 @@ export const SERVICE_COPY = {
     checks:
       "Masterflow looks at which fixtures are affected, how the drain responds, where cleanouts are located, whether the problem has happened before, and whether a camera or stronger cleaning method is warranted.",
     options:
-      "Depending on the line and blockage, the work may involve a cable, rooter equipment, trap or fixture access, camera inspection, or hydro jetting. Pipe condition matters before high-pressure cleaning is considered.",
+      "Depending on the line and blockage, the work may involve a cable, a drain-cleaning machine, trap or fixture access, camera inspection, or hydro jetting. Pipe condition matters before high-pressure cleaning is considered.",
     prepare:
       "Stop running water into a backed-up line. Clear the cabinet, fixture, cleanout, or exterior access area when possible, and share any history of prior drain clearing or sewer repairs.",
   },
@@ -322,21 +330,21 @@ export const SERVICE_COPY = {
   },
   "fixture-install-repair": {
     title: "Fixture Plumbing",
-    eyebrow: "Faucets, toilets, disposals, valves, and sinks",
+    eyebrow: "Fixtures, valves, disposals, pumps, and backflow devices",
     hero:
-      "Repair and installation for the plumbing fixtures used every day, including leaks, weak flow, running toilets, failed shutoffs, and replacement projects.",
+      "Repair and installation for faucets, toilets, sinks, showers, bathtubs, disposals, shutoffs, sump pumps, recirculation pumps, and backflow preventers.",
     intro:
-      "Fixture work looks simple until the shutoff will not close, the mounting surface is damaged, or the connection behind the fixture starts leaking. A clean repair includes the visible fixture and the valves, supplies, drains, seals, and supports that make it work.",
+      "Masterflow handles plumbing inspections, fixture work, garbage disposals, water-pipe service, sump pumps, hot-water recirculation pumps, and backflow preventers. The repair includes the visible fixture and the valves, supplies, drains, seals, and supports behind it.",
     signs: [
       ["A faucet drips or has weak flow", "Cartridges, washers, aerators, valves, pressure, or internal wear may be involved."],
       ["A toilet runs or rocks", "Tank components, the fill or flush valve, mounting, flange, seal, or drain connection may need attention."],
       ["A disposal leaks or will not run", "The problem may be electrical, mechanical, or at a sink, flange, drain, or dishwasher connection."],
-      ["A shutoff is stuck or leaking", "Working fixture valves matter because they limit water damage and make future repairs easier."],
+      ["A shutoff, pump, or backflow device needs service", "Valves, sump pumps, recirculation pumps, and backflow preventers may need inspection, repair, testing, or replacement."],
     ],
     checks:
-      "The plumber checks the fixture, supply valves and lines, drain connection, seals, mounting, nearby water damage, pressure, and compatibility of replacement parts.",
+      "The plumber checks the fixture or device, supply valves and lines, drain connection, seals, mounting, nearby water damage, pressure, and compatibility of replacement parts.",
     options:
-      "The job may call for a repair, valve or supply replacement, new fixture installation, disposal work, flange repair, or correction of an older connection that cannot support the new fixture safely.",
+      "The job may call for a repair, valve or supply replacement, new fixture installation, disposal work, pump service, backflow work, flange repair, or correction of an older connection.",
     prepare:
       "Clear the cabinet or work area and keep replacement fixtures, model numbers, and manufacturer parts available. Mention any leak below the floor, inside the wall, or at a shutoff before the visit.",
   },

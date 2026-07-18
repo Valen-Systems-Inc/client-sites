@@ -64,12 +64,17 @@ refuses more than 10,000 URLs.
 ## Publish Order
 
 ```bash
+npm run seo:deploy-production:media
 MASTERFLOW_CDN_VERSION=mflow-v.1.1.0 npm run seo:deploy-production
 MASTERFLOW_CDN_VERSION=mflow-v.1.1.0 npm run seo:deploy-commercial-production
 MASTERFLOW_CDN_VERSION=mflow-v.1.1.0 npm run seo:deploy-production:sitemaps
 MASTERFLOW_CDN_VERSION=mflow-v.1.1.0 npm run seo:deploy-commercial-production:sitemaps
 npm run seo:indexnow:key:deploy
 ```
+
+The shared-media command publishes `media/` once at the common residential and
+commercial asset root. It does not write a release manifest, so adding a font or
+image cannot silently disappear behind the normal `--skip-media` release flags.
 
 The two normal production commands carry `--exclude-sitemaps`. Only the two
 dedicated sitemap commands can write sitemap XML, XSL, the Valen logo,
