@@ -38,7 +38,10 @@ logo, font, and font notice from the dedicated sitemap-control prefixes.
 
 - Four CDN release manifests for the two site and two sitemap-control prefixes.
 - Two full live verification reports with zero failures.
-- `visual-proof-mflow-v.1.1.0.json` and five desktop/mobile screenshots.
+- `visual-proof-mflow-v.1.1.0.json`, the final eight-route
+  `live-browser-proof-mflow-v.1.1.0.json`, and the corresponding live browser
+  screenshots. The sitemap and admin presentation captures remain in the same
+  release folder.
 - The generic Valen sitemap starter is tracked in `Templates/Sitemaps/` here
   and in `Valen-Systems-Inc/valen-systems-tools`.
 

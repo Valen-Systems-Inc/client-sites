@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "release": "mflow-v.1.1.0",
+  "capturedAt": "2026-07-18T21:50:24.544Z",
+  "canonicalHost": "masterflowplumbing.us",
+  "browser": "Codex in-app browser",
+  "routes": [
+    {
+      "route": "/",
+      "url": "https://masterflowplumbing.us/",
+      "title": "Masterflow Plumbing | Lake Elsinore & Corona Plumber",
+      "h1": "Quality Plumbing Solutions That Shine Above the Rest",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "overflowX": false,
+      "contentType": "text/html",
+      "screenshot": "screenshots/live-homepage-desktop.jpg",
+      "bytes": 135638,
+      "sha256": "bc85613a5888b8b1afef46880276a8cb2084ffea37c5c6712901538199c5cb9b"
+    },
+    {
+      "route": "/services/drain-cleaning/",
+      "url": "https://masterflowplumbing.us/services/drain-cleaning/",
+      "title": "Drain Cleaning | Masterflow Plumbing",
+      "h1": "Drain Cleaning",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "overflowX": false,
+      "contentType": "text/html",
+      "screenshot": "screenshots/live-service-drain-cleaning-desktop.jpg",
+      "bytes": 150711,
+      "sha256": "4b3ccc01bac67a101ef7f3fa9f25b1c330d1b05879a5eeb7c27c139291bc16e9"
+    },
+    {
+      "route": "/lake-elsinore-plumber/",
+      "url": "https://masterflowplumbing.us/lake-elsinore-plumber/",
+      "title": "Plumber in Lake Elsinore, CA | Masterflow",
+      "h1": "Plumber in Lake Elsinore, CA",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "overflowX": false,
+      "contentType": "text/html",
+      "screenshot": "screenshots/live-city-lake-elsinore-desktop.jpg",
+      "bytes": 115119,
+      "sha256": "ec30922a4cf64940a694a42d500abd4990490a9c481c82bd7eb043b7896d9ed1"
+    },
+    {
+      "route": "/blog/",
+      "url": "https://masterflowplumbing.us/blog/",
+      "title": "Plumbing Guides | Masterflow Plumbing",
+      "h1": "Masterflow Plumbing Guides",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "overflowX": false,
+      "contentType": "text/html",
+      "screenshot": "screenshots/live-blog-desktop.jpg",
+      "bytes": 138397,
+      "sha256": "910f98959924c6ca1164da422110812a7451613ab1c53bd2b10f4162f84bcd7e"
+    },
+    {
+      "route": "/contact/",
+      "url": "https://masterflowplumbing.us/contact/",
+      "title": "Contact Masterflow Plumbing",
+      "h1": "Call or request plumbing service",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "overflowX": false,
+      "contentType": "text/html",
+      "screenshot": "screenshots/live-contact-desktop.jpg",
+      "bytes": 132655,
+      "sha256": "5a517ab38ca16d3f406ae4df2be7654ef1441794e12ff8cf5d30e44104505e63"
+    },
+    {
+      "route": "/reviews/",
+      "url": "https://masterflowplumbing.us/reviews/",
+      "title": "Leave a Review",
+      "h1": "Masterflow Plumbing Reviews",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "overflowX": false,
+      "contentType": "text/html",
+      "screenshot": "screenshots/live-reviews-desktop.jpg",
+      "bytes": 111073,
+      "sha256": "1b23e38c77ae9c1cef7e0d7bd76178cd912efc2f4312b9e2cf27f919c82d6152"
+    },
+    {
+      "route": "/commercial/",
+      "url": "https://masterflowplumbing.us/commercial/",
+      "title": "Commercial Plumber in Southern California | Masterflow",
+      "h1": "Commercial Plumbing Across Southern California",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "overflowX": false,
+      "contentType": "text/html",
+      "screenshot": "screenshots/live-commercial-desktop.jpg",
+      "bytes": 145081,
+      "sha256": "d4a778321dc68a8b219302e9aeb5f3498aa1a1e0762316b98236b0c7a5135487"
+    },
+    {
+      "route": "/admin/",
+      "url": "https://masterflowplumbing.us/admin/",
+      "title": "Website Accreditation | Masterflow Plumbing",
+      "h1": "Masterflow Plumbing",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "overflowX": false,
+      "contentType": "text/html",
+      "screenshot": "screenshots/live-admin-desktop.jpg",
+      "bytes": 24999,
+      "sha256": "82c9563f875c5ab0adea5ad0ce9d3dc692e6ce7b677c046b2d1fedccd06b48bd"
+    }
+  ],
+  "sitemapPresentation": {
+    "screenshot": "screenshots/sitemap-desktop.png",
+    "note": "Existing release screenshot retained; final XML/XSL bytes were separately verified against the controlled CDN."
+  }
+}
