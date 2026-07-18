@@ -1,0 +1,103 @@
+{
+  "generatedAt": "2026-07-18T01:02:05Z",
+  "release": "mflow-v.1.0.9",
+  "canonicalHost": "masterflowplumbing.us",
+  "staticOrigin": "https://clients.valen-systems.com/masterflow-plumbing",
+  "workerVersion": "b11b2de2-ae16-44d4-bbca-460fe588ae37",
+  "passed": true,
+  "liveArtifactVerification": {
+    "residential": {
+      "passed": true,
+      "checked": 483,
+      "pages": 432,
+      "aliases": 12,
+      "staticFiles": 14,
+      "media": 24
+    },
+    "commercial": {
+      "passed": true,
+      "checked": 86,
+      "pages": 37,
+      "aliases": 12,
+      "staticFiles": 12,
+      "media": 24
+    }
+  },
+  "canonicalRouteChecks": {
+    "checked": 6,
+    "statuses": [200],
+    "originHeader": "valen-clients-cdn",
+    "contentSiloHeader": "site",
+    "retiredRooterNameFound": false,
+    "representativePaths": [
+      "/",
+      "/blog/",
+      "/service-area/",
+      "/murrieta-plumber/",
+      "/commercial/",
+      "/commercial/services/emergency-plumbing/"
+    ]
+  },
+  "sitemaps": {
+    "storagePrefix": "masterflow-plumbing/_control/sitemaps/",
+    "activeObjects": 17,
+    "objectsOutsideControlOrRollback": 0,
+    "publicChecks": 6,
+    "statuses": [200],
+    "originHeader": "valen-clients-cdn",
+    "contentSiloHeader": "sitemap",
+    "residentialFamilies": {
+      "page-sitemap.xml": 4,
+      "services-sitemap.xml": 11,
+      "areas_we_serve-sitemap.xml": 34,
+      "post-sitemap.xml": 46,
+      "category-sitemap.xml": 6
+    },
+    "commercialFamilies": {
+      "page-sitemap.xml": 4,
+      "services-sitemap.xml": 11,
+      "areas_we_serve-sitemap.xml": 1,
+      "industries-sitemap.xml": 7,
+      "post-sitemap.xml": 9,
+      "category-sitemap.xml": 4
+    },
+    "allUrlsCanonical": true,
+    "allUrlsHaveLastmod": true,
+    "legacyCityServiceDumpInServicesFamily": false,
+    "stalePublicPrefixResponse": 404,
+    "controlPrefixResponse": 200
+  },
+  "indexNow": {
+    "storagePrefix": "masterflow-plumbing/_control/indexnow/",
+    "keyRouteStatus": 200,
+    "keyBodyMatchesPrivateConfig": true,
+    "originHeader": "valen-clients-cdn",
+    "contentSiloHeader": "indexnow-key",
+    "plannedUrls": 137,
+    "protocolCap": 10000,
+    "submitted": false
+  },
+  "siteApis": {
+    "reviewsHealth": 200,
+    "requestServiceHealth": 200,
+    "reviewsPrivateUntilModerated": true
+  },
+  "legacyDelivery": {
+    "legacyBucket": "masterflowplumbing-cdn",
+    "legacyBucketObjects": 0,
+    "rollbackArchiveObjects": 2120,
+    "rollbackArchiveBytes": 188943220,
+    "netDns": {
+      "A": [],
+      "AAAA": [],
+      "CNAME": []
+    },
+    "netHttpsReachable": false
+  },
+  "clientSitesArtifactParity": {
+    "residentialFilesChecked": 446,
+    "commercialFilesChecked": 49,
+    "missing": 0,
+    "different": 0
+  }
+}

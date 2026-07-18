@@ -35,12 +35,14 @@ function parseArgs(argv = process.argv.slice(2)) {
     includeMedia: true,
     concurrency: 4,
     sitemapOnly: false,
+    excludeSitemaps: false,
     version: process.env.MASTERFLOW_CDN_VERSION || "",
   };
   for (const arg of argv) {
     if (arg === "--dry-run") opts.dryRun = true;
     else if (arg === "--skip-media") opts.includeMedia = false;
     else if (arg === "--sitemap-only") opts.sitemapOnly = true;
+    else if (arg === "--exclude-sitemaps") opts.excludeSitemaps = true;
     else if (arg.startsWith("--prefix=")) {
       const prefix = normalizeR2Prefix(arg.slice("--prefix=".length));
       opts.root = prefix;
@@ -78,6 +80,13 @@ function hasNumberedConflictSegment(relativePath) {
   return String(relativePath)
     .split("/")
     .some((segment) => / \d+(?:\.[^.]+)?$/.test(segment));
+}
+
+function isSitemapArtifact(relativePath) {
+  const filename = path.posix.basename(String(relativePath));
+  return filename === "sitemap.xml"
+    || filename === "sitemap_index.xml"
+    || filename.endsWith("-sitemap.xml");
 }
 
 function r2Key(targetPrefix, relUnderRoot) {
@@ -213,7 +222,9 @@ async function collectUploads(opts) {
   const uploads = [];
   for (const relUnderRoot of sourceFiles) {
     if (hasNumberedConflictSegment(relUnderRoot)) continue;
-    if (opts.sitemapOnly && !relUnderRoot.endsWith("sitemap.xml")) continue;
+    const sitemapArtifact = isSitemapArtifact(relUnderRoot);
+    if (opts.sitemapOnly && !sitemapArtifact) continue;
+    if (opts.excludeSitemaps && sitemapArtifact) continue;
     if (opts.version && relUnderRoot === `releases/${opts.version}.json`) continue;
     const localFile = path.join(sourceRoot, relUnderRoot);
     const key = r2Key(opts.targetPrefix, relUnderRoot);

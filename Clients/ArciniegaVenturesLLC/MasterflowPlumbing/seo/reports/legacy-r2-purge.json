@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-07-18T00:45:47.740Z",
+  "mode": "dry_run",
+  "source": {
+    "accountId": "f3c8cc51d06b88d2dc0f3ff25f5aeacf",
+    "bucket": "masterflowplumbing-cdn",
+    "objectCount": 0,
+    "totalBytes": 0
+  },
+  "archive": {
+    "accountId": "956cd86d8e5c90c6156a7a7d937c6415",
+    "bucket": "valen-clients-cdn",
+    "prefix": "masterflow-plumbing/_rollback/masterflowplumbing-cdn-2026-07-16",
+    "objectCount": 2120,
+    "totalBytes": 188943220
+  },
+  "sourceAlreadyEmpty": true,
+  "archiveVerification": {
+    "passed": true,
+    "proofFile": "seo/reports/valen-clients-cdn-rollback-migration.json",
+    "proofGeneratedAt": "2026-07-16T23:25:40.543Z",
+    "missing": [],
+    "mismatched": [],
+    "unexpected": []
+  },
+  "deletedObjects": 0,
+  "deleteFailures": [],
+  "remaining": {
+    "accountId": "f3c8cc51d06b88d2dc0f3ff25f5aeacf",
+    "bucket": "masterflowplumbing-cdn",
+    "objectCount": 0,
+    "totalBytes": 0
+  },
+  "passed": true
+}

@@ -16,17 +16,17 @@ source repo: git@github.com:Valen-Systems-Inc/client-site-tools.git
 release branch: codex/masterflow-commercial-cdn
 canonical site: https://masterflowplumbing.us
 decommissioned web domain: https://masterflowplumbing.net
-current release: mflow-v.1.0.8
+current release: mflow-v.1.0.9
 residential output: 432 pages; 101 indexable; 331 noindex
 commercial output: 37 pages; 36 indexable; 1 noindex
-latest live verification: 2026-07-17T02:28Z
+latest live verification: 2026-07-18T00:41Z
 ```
 
 The live residential verifier passed 483 artifacts and the commercial verifier
 passed 86. Release evidence is recorded in
-`seo/reports/*mflow-v.1.0.8*.json`. Older sections that cite June 2026 signal,
+`seo/reports/*mflow-v.1.0.9*.json`. Older sections that cite June 2026 signal,
 rank, or runner snapshots remain historical operating notes and must not
-override the v1.0.8 release reports.
+override the v1.0.9 release reports.
 
 ## The Owner Split
 
@@ -35,7 +35,7 @@ override the v1.0.8 release reports.
 | Source data | repo | `seo/data/*`, `seo/config/stack.json` | Business/profile facts still need client proof. |
 | Page generation | repo | 432 residential pages and 37 commercial pages; 15 guards passing | Generated pages are not ranking proof. |
 | Promotion gate | repo/editorial | `root-promotion-artifacts.json`: 32 approved root artifacts | Future pages still need approval. |
-| Live site | Valen R2 plus Cloudflare proxy | `mflow-v.1.0.8`: 483 residential and 86 commercial live artifacts pass | Live pages still need Google index/rank proof. |
+| Live site | Valen R2 plus Cloudflare proxy | `mflow-v.1.0.9`: 483 residential and 86 commercial live artifacts pass | Live pages still need Google index/rank proof. |
 | Canonical policy | repo/live site | `.us` is served through the Valen CDN proxy; `.net` has no web route | Keep checking after CDN changes. |
 | Sitemap | live site/GSC | Parent sitemap plus page, services, areas, post, and category families return 200 with trailing-slash canonicals and `lastmod` | Search Console submission and indexing remain external steps. |
 | SERP truth | manual import/OpenSERP/SerpBear | 36 manual Google SERPs imported, 90 competitors | Continuous tracking is not running yet. |

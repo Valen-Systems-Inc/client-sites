@@ -35,7 +35,9 @@ This manifest keeps the client artifact honest.
 | Brand proof | Current source, generated output, and live HTML use `Masterflow Plumbing`; the retired `& Rooter` suffix is retained only in negative regression fixtures and historical third-party evidence. |
 | Forms proof | Request-service unit tests cover residential and commercial fields. Live health checks report database storage for reviews and database plus email delivery for service requests; reviews remain private until explicit moderation. |
 | Screenshot proof | Five desktop/mobile residential/commercial captures are attached under `proof/mflow-v.1.0.8/screenshots/`. |
-| Live URL proof | `mflow-v.1.0.8` passes 483 residential artifacts and 86 commercial artifacts from the Valen-controlled CDN namespace. |
+| Live URL proof | `mflow-v.1.0.9` passes 483 residential artifacts and 86 commercial artifacts from the Valen-controlled CDN namespace. |
+| Sitemap control proof | All 17 active residential/commercial sitemap objects live under `masterflow-plumbing/_control/sitemaps/`; 20 stale copies outside the control and rollback prefixes were removed. |
+| IndexNow proof | The repo-local tool plans 137 canonical URLs, enforces the 10,000-URL protocol ceiling, validates host/key rules, and remains dry-run unless `--submit` is explicit. No submission was made in this release. |
 | Approval state | William explicitly requested the CDN move, residential/commercial split, publish, commit, and push. |
 | Source/import note | This is the sanitized canonical wrapper/static mirror; generator and deployment evidence live in `client-site-tools`. |
 
@@ -56,7 +58,9 @@ Do not add without fresh approval:
 - platform secrets
 - payment or publish credentials
 
-The attached `proof/mflow-v.1.0.8/` bundle contains the current CDN release
-manifests, live route matrices, and visual proof. The original exact rollback
+The attached `proof/mflow-v.1.0.9/` bundle contains the current CDN release
+manifests, live route matrices, sitemap-control proof, and dry-run IndexNow
+plan. The unchanged page artifacts retain the desktop/mobile visual proof under
+`proof/mflow-v.1.0.8/`. The original exact rollback
 verification and domain decommission report remain under
 `proof/mflow-v.1.0.7/` because those are cutover records, not per-release files.

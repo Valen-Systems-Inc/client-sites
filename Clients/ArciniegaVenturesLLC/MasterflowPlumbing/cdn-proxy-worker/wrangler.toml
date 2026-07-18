@@ -9,6 +9,8 @@ routes = [
 
 [vars]
 STATIC_ORIGIN = "https://clients.valen-systems.com/masterflow-plumbing"
+SITEMAP_ORIGIN = "https://clients.valen-systems.com/masterflow-plumbing/_control/sitemaps"
+INDEXNOW_ORIGIN = "https://clients.valen-systems.com/masterflow-plumbing/_control/indexnow"
 CANONICAL_ORIGIN = "https://masterflowplumbing.us"
 
 [observability]

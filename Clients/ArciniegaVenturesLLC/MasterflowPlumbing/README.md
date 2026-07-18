@@ -32,13 +32,16 @@ Worker has no legacy website origin behind it. The prior
 `masterflowplumbing.net` remains client-owned but is decommissioned as a web
 surface: no web DNS, Worker/API routes, redirect, or R2 custom-domain binding.
 
-Release `mflow-v.1.0.8` keeps the residential and commercial site profiles
+Release `mflow-v.1.0.9` keeps the residential and commercial site profiles
 separate, removes the retired "& Rooter" name, and makes the local review root
 serve the exact residential production artifact. The original CDN migration,
 domain-cutover, and rollback evidence remains under `proof/mflow-v.1.0.7/`;
-release-specific `mflow-v.1.0.8` proof is stored beside it. The final live
+release-specific `mflow-v.1.0.9` proof is stored beside it. The final live
 verification covers 483 residential artifacts and 86 commercial artifacts,
-plus desktop/mobile browser proof and the form/API health checks.
+plus sitemap-control, IndexNow dry-run, legacy-bucket, and form/API health
+checks. Active sitemap XML and the IndexNow verification key live only under
+the Valen `_control/` namespace; public `.us` routes resolve there through the
+canonical Worker.
 
 Production HTML is tracked at this directory root and under `commercial/`.
 Do not add a second `seo-production/` mirror: it creates an extra route surface

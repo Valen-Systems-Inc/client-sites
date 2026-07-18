@@ -1,5 +1,6 @@
 const STATIC_METHODS = new Set(["GET", "HEAD"]);
 const CANONICAL_HOST = "masterflowplumbing.us";
+const INDEXNOW_KEY_PATH = /^\/[A-Za-z0-9-]{8,128}\.txt$/;
 
 function trimTrailingSlash(value) {
   return String(value ?? "").replace(/\/+$/, "");
@@ -14,11 +15,45 @@ export function canonicalRedirect(request, canonicalOrigin) {
   return Response.redirect(target.toString(), 301);
 }
 
-export function staticOriginUrl(request, staticOrigin) {
+export function isSitemapPath(pathname) {
+  const segments = String(pathname).split("/").filter(Boolean);
+  if (segments.length === 0 || segments.length > 2) return false;
+  if (segments.length === 2 && segments[0] !== "commercial") return false;
+  const filename = segments.at(-1);
+  return filename === "sitemap.xml"
+    || filename === "sitemap_index.xml"
+    || filename.endsWith("-sitemap.xml");
+}
+
+export function originTarget(request, env) {
   const incoming = new URL(request.url);
-  const upstream = new URL(`${trimTrailingSlash(staticOrigin)}${incoming.pathname}`);
+  const staticOrigin = env.STATIC_ORIGIN || "https://clients.valen-systems.com/masterflow-plumbing";
+  const sitemapOrigin = env.SITEMAP_ORIGIN || `${trimTrailingSlash(staticOrigin)}/_control/sitemaps`;
+  const indexNowOrigin = env.INDEXNOW_ORIGIN || `${trimTrailingSlash(staticOrigin)}/_control/indexnow`;
+  let kind = "site";
+  let base = staticOrigin;
+  let pathname = incoming.pathname;
+
+  if (isSitemapPath(pathname)) {
+    kind = "sitemap";
+    base = sitemapOrigin;
+  } else if (INDEXNOW_KEY_PATH.test(pathname)) {
+    kind = "indexnow-key";
+    base = indexNowOrigin;
+    pathname = `/${pathname.slice(1)}`;
+  }
+
+  const upstream = new URL(`${trimTrailingSlash(base)}${pathname}`);
   upstream.search = incoming.search;
-  return upstream;
+  return { kind, originBase: trimTrailingSlash(base), url: upstream };
+}
+
+export function staticOriginUrl(request, staticOrigin, sitemapOrigin, indexNowOrigin) {
+  return originTarget(request, {
+    STATIC_ORIGIN: staticOrigin,
+    SITEMAP_ORIGIN: sitemapOrigin,
+    INDEXNOW_ORIGIN: indexNowOrigin,
+  }).url;
 }
 
 function upstreamRequest(request, upstreamUrl) {
@@ -39,13 +74,14 @@ function rewriteLocation(value, staticOrigin, canonicalOrigin) {
   return `${trimTrailingSlash(canonicalOrigin)}${value.slice(staticBase.length)}`;
 }
 
-function downstreamResponse(response, staticOrigin, canonicalOrigin) {
+function downstreamResponse(response, upstreamOrigin, canonicalOrigin, kind) {
   const headers = new Headers(response.headers);
   headers.delete("content-disposition");
   headers.set("x-content-type-options", "nosniff");
   headers.set("x-masterflow-static-origin", "valen-clients-cdn");
+  headers.set("x-masterflow-content-silo", kind);
 
-  const location = rewriteLocation(headers.get("location"), staticOrigin, canonicalOrigin);
+  const location = rewriteLocation(headers.get("location"), upstreamOrigin, canonicalOrigin);
   if (location) headers.set("location", location);
 
   return new Response(response.body, {
@@ -58,7 +94,6 @@ function downstreamResponse(response, staticOrigin, canonicalOrigin) {
 export default {
   async fetch(request, env) {
     const canonicalOrigin = env.CANONICAL_ORIGIN || "https://masterflowplumbing.us";
-    const staticOrigin = env.STATIC_ORIGIN || "https://clients.valen-systems.com/masterflow-plumbing";
     const incoming = new URL(request.url);
 
     if (incoming.pathname.startsWith("/api/")) {
@@ -78,8 +113,8 @@ export default {
       });
     }
 
-    const upstreamUrl = staticOriginUrl(request, staticOrigin);
-    const response = await fetch(upstreamRequest(request, upstreamUrl), {
+    const target = originTarget(request, env);
+    const response = await fetch(upstreamRequest(request, target.url), {
       cf: {
         cacheEverything: true,
         cacheTtlByStatus: {
@@ -91,6 +126,6 @@ export default {
       },
     });
 
-    return downstreamResponse(response, staticOrigin, canonicalOrigin);
+    return downstreamResponse(response, target.originBase, canonicalOrigin, target.kind);
   },
 };
