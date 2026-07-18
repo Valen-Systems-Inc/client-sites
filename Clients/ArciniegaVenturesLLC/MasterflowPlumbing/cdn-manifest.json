@@ -1,16 +1,16 @@
 {
   "client": "Masterflow Plumbing",
-  "release": "mflow-v.1.0.11",
+  "release": "mflow-v.1.1.0",
   "cdnBase": "https://clients.valen-systems.com/masterflow-plumbing/",
-  "entry": "https://clients.valen-systems.com/masterflow-plumbing/index.html?release=mflow-v.1.0.11",
-  "commercialEntry": "https://clients.valen-systems.com/masterflow-plumbing/commercial/index.html?release=mflow-v.1.0.11",
+  "entry": "https://clients.valen-systems.com/masterflow-plumbing/index.html?release=mflow-v.1.1.0",
+  "commercialEntry": "https://clients.valen-systems.com/masterflow-plumbing/commercial/index.html?release=mflow-v.1.1.0",
   "phone": "951-612-7912",
   "contractorLicense": "CSLB #1156577",
   "r2Account": "956cd86d8e5c90c6156a7a7d937c6415",
   "r2Bucket": "valen-clients-cdn",
   "r2KeyPrefix": "masterflow-plumbing",
   "hosting": "valen-controlled-cloudflare-r2-namespace",
-  "uploadedAt": "2026-07-17",
+  "uploadedAt": "2026-07-18",
   "sitemapObjectPrefix": "masterflow-plumbing/_control/sitemaps",
   "indexNowKeyObjectPrefix": "masterflow-plumbing/_control/indexnow",
   "rollbackArchiveVerification": {
@@ -33,8 +33,8 @@
     "media/masterflow-logo-20260704.png",
     "_control/sitemaps/sitemap.xml",
     "_control/sitemaps/commercial/sitemap.xml",
-    "releases/mflow-v.1.0.11.json",
-    "commercial/releases/mflow-v.1.0.11.json"
+    "releases/mflow-v.1.1.0.json",
+    "commercial/releases/mflow-v.1.1.0.json"
   ],
   "rootObjectKey": "",
   "rootObjectSource": "index.html",
@@ -76,6 +76,9 @@
     "objectCount": 0,
     "customDomains": 0
   },
+  "generatorRepository": "Valen-Systems-Inc/client-site-tools",
+  "generatorSourceDirectory": "clients/masterflow-plumbing",
+  "artifactRepository": "Valen-Systems-Inc/client-sites",
   "sourceDirectory": "Clients/ArciniegaVenturesLLC/MasterflowPlumbing",
   "entryFile": "index.html",
   "wrapper": "landing.tsx",

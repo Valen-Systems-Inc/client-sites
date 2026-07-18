@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T15:28:15.219Z",
+  "generatedAt": "2026-07-18T17:35:41.501Z",
   "purpose": "Generator page ledger. This records every generated page, including noindex/non-indexed preview pages; search-facing XML sitemaps include only indexable pages.",
   "output": "commercial-production",
   "physicalOutput": ".generated.nosync/commercial-production",

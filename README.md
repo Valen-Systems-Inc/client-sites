@@ -28,6 +28,10 @@ Templates/
 
 ## Notes
 
+- Masterflow's current artifact baseline is `mflow-v.1.1.0`. Canonical
+  generation, deployment, and verification source lives in
+  `Valen-Systems-Inc/client-site-tools`; this repository carries the sanitized
+  wrapper, static output, and release proof.
 - The source files here are preserved from the sanitized client-artifact section
   of the internal developer repo.
 - Workspace IDs, app IDs, unpublished routes, private media, and platform

@@ -36,12 +36,12 @@ This manifest keeps the client artifact honest.
 | Forms proof | Request-service unit tests cover residential and commercial fields. Live health checks report database storage for reviews and database plus email delivery for service requests; reviews remain private until explicit moderation. |
 | Admin accreditation proof | Production `/admin/` and `/commercial/admin/` are indexable and contain only a linked Valen Systems accreditation; each admin sitemap contains exactly one matching public URL. Preview builds remain noindex. |
 | Sitemap template proof | `Templates/Sitemaps/` provides the repo-wide Valen-themed XSL, examples, assets, and crawler-safety contract for future client sitemaps. |
-| Screenshot proof | Live admin desktop/mobile captures are attached under `seo/reports/screenshots/mflow-v.1.0.11/`; the unchanged sitemap presentation remains covered by v1.0.10 captures plus the v1.0.11 XML/XSL transform checks. Existing page captures remain under `proof/mflow-v.1.0.8/screenshots/`. |
-| Live URL proof | `mflow-v.1.0.11` passes 489 residential artifacts and 92 commercial artifacts from the Valen-controlled CDN namespace. |
+| Screenshot proof | Release-specific browser captures and hashes are attached under `proof/mflow-v.1.1.0/`; historical page captures remain under the earlier proof bundles. |
+| Live URL proof | `mflow-v.1.1.0` passes 487 residential artifacts and 90 commercial artifacts from the Valen-controlled CDN namespace with zero failures. |
 | Sitemap control proof | Residential and commercial sitemap XML, XSL, Valen logo, Squarish Sans, and the font notice live under `masterflow-plumbing/_control/sitemaps/`; the canonical Worker reports the `sitemap` content silo for those public routes. |
 | IndexNow proof | The repo-local tool plans 137 canonical URLs, enforces the 10,000-URL protocol ceiling, validates host/key rules, and remains dry-run unless `--submit` is explicit. No submission was made in this release. |
 | Approval state | William explicitly requested the CDN move, residential/commercial split, publish, commit, and push. |
-| Source/import note | `Valen-Systems-Inc/client-sites` owns the canonical Masterflow wrapper, static output, generator, deployment code, and release evidence. |
+| Source/import note | `Valen-Systems-Inc/client-site-tools` owns the canonical generator, deployment, and verification source. `Valen-Systems-Inc/client-sites` owns the sanitized wrapper, static artifact mirror, and public release evidence. |
 
 ## Sanitized Versus Public
 
@@ -60,7 +60,7 @@ Do not add without fresh approval:
 - platform secrets
 - payment or publish credentials
 
-The attached `proof/mflow-v.1.0.11/` bundle contains the current CDN release
+The attached `proof/mflow-v.1.1.0/` bundle contains the current CDN release
 manifests, live route matrices, sitemap-presentation proof, and browser-capture
 hashes. The unchanged page artifacts retain the desktop/mobile visual proof
 under `proof/mflow-v.1.0.8/`. The original exact rollback

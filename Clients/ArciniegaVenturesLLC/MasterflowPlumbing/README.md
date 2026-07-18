@@ -2,8 +2,9 @@
 
 ### This Directory is the home for Masterflow Plumbing and any related sites, assets, tools, specialized hooks, etc.
 
-This folder is the sanitized home for Masterflow Plumbing artifacts under
-Arciniega Ventures LLC.
+This folder is the sanitized public artifact mirror for Masterflow Plumbing
+under Arciniega Ventures LLC. The canonical generator, deployment, and live
+verification source lives in `Valen-Systems-Inc/client-site-tools`.
 
 Current files:
 
@@ -32,7 +33,7 @@ Worker has no legacy website origin behind it. The prior
 `masterflowplumbing.net` remains client-owned but is decommissioned as a web
 surface: no web DNS, Worker/API routes, redirect, or R2 custom-domain binding.
 
-Release `mflow-v.1.0.11` replaces the overbuilt admin control record with one
+Release `mflow-v.1.1.0` carries forward the corrected admin surface with one
 public accreditation: the website was created and is maintained by Valen
 Systems. Residential `/admin/` and commercial `/commercial/admin/` are now
 indexable, and each dedicated admin sitemap contains only its accreditation
@@ -47,9 +48,9 @@ change labels and paths, but must preserve standards-compliant XML, canonical
 `<loc>` values, truthful `lastmod` values, and correct crawler MIME types.
 
 The original CDN migration, domain-cutover, and rollback evidence remains under
-`proof/mflow-v.1.0.7/`; release-specific `mflow-v.1.0.11` proof is stored beside
-it. Final byte-parity verification covers 489 residential artifacts and 92
-commercial artifacts. Active sitemap XML and presentation assets, plus the
+`proof/mflow-v.1.0.7/`; release-specific `mflow-v.1.1.0` proof is stored beside
+it. Final live verification covers 487 residential artifacts and 90 commercial
+artifacts. Active sitemap XML and presentation assets, plus the
 IndexNow verification key, live only under Valen `_control/` namespaces; public
 `.us` routes resolve there through the canonical Worker.
 

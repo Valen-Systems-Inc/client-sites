@@ -1,0 +1,43 @@
+{
+  "version": "mflow-v.1.1.0",
+  "generatedAt": "2026-07-18T17:22:21.123Z",
+  "bucket": "valen-clients-cdn",
+  "root": "seo-production",
+  "physicalRoot": ".generated.nosync/seo-production",
+  "keyPrefix": "masterflow-plumbing",
+  "targetPrefix": "masterflow-plumbing",
+  "cdnNamespaceBaseUrl": "https://clients.valen-systems.com/masterflow-plumbing",
+  "publicBaseUrl": "https://clients.valen-systems.com/masterflow-plumbing",
+  "canonicalDomain": "https://masterflowplumbing.us",
+  "dryRun": false,
+  "includeMedia": false,
+  "objectCountExcludingReleaseManifest": 1302,
+  "objectCountIncludingReleaseManifest": 1304,
+  "sampleKeys": [
+    "masterflow-plumbing/LLM.txt",
+    "masterflow-plumbing/index.html",
+    "masterflow-plumbing/",
+    "masterflow-plumbing",
+    "masterflow-plumbing/llms.txt",
+    "masterflow-plumbing/privacy.html",
+    "masterflow-plumbing/robots.txt",
+    "masterflow-plumbing/sitemap.html",
+    "masterflow-plumbing/terms.html",
+    "masterflow-plumbing/about/index.html",
+    "masterflow-plumbing/about/",
+    "masterflow-plumbing/about",
+    "masterflow-plumbing/admin/index.html",
+    "masterflow-plumbing/admin/",
+    "masterflow-plumbing/admin",
+    "masterflow-plumbing/calabasas-drain-cleaning/index.html",
+    "masterflow-plumbing/calabasas-drain-cleaning/",
+    "masterflow-plumbing/calabasas-drain-cleaning",
+    "masterflow-plumbing/calabasas-emergency-plumber/index.html",
+    "masterflow-plumbing/calabasas-emergency-plumber/"
+  ],
+  "git": {
+    "head": "759554b",
+    "branch": "codex/masterflow-mflow-v1.1.0",
+    "remote": "git@github.com:Valen-Systems-Inc/client-site-tools.git"
+  }
+}

@@ -221,6 +221,9 @@ assert.match(deployScript, /process\.env\.VALEN_WRANGLER_EMAIL/, "deploy must su
 assert.match(deployScript, /text\.includes\(accountId\)/, "deploy must keep the Valen clients CDN account-id guard");
 assert.match(deployScript, /filename === "sitemap\.xsl"/, "sitemap stylesheet must stay in the protected sitemap deploy lane");
 assert.match(deployScript, /normalized\.startsWith\("sitemap-assets\/"\)/, "sitemap presentation assets must stay in the protected sitemap deploy lane");
+assert.match(deployScript, /canonicalGitRemote/, "release manifests must normalize local clone remotes to the canonical source repository");
+assert.match(deployScript, /--manifest-only/, "release provenance must be repairable without republishing unchanged site payloads");
+assert.match(deployScript, /releaseArtifacts\.length/, "manifest-only repair must preserve the full release object counts");
 const liveVerifyScript = await read("seo/engine/verify-live-release.mjs");
 assert.match(liveVerifyScript, /pageLedger\.pages/, "live verification must check every generated page");
 assert.match(liveVerifyScript, /comparableLiveBytes\.equals\(comparableLocalBytes\)/, "live verification must compare normalized release bytes");

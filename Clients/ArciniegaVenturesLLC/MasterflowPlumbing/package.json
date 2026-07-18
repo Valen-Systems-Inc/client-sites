@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "masterflowRelease": "mflow-v.1.1.0",
   "description": "Localized static SEO engine for Masterflow Plumbing client-site artifacts.",
   "scripts": {
     "seo:enrich": "node seo/engine/enrich-regions.mjs",

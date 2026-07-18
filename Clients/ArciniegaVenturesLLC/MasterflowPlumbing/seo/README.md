@@ -1,7 +1,8 @@
 # Masterflow SEO Engine
 
-This is the operating map for the Masterflow Plumbing SEO system in
-`Valen-Systems-Inc/client-sites`.
+This is the artifact-mirror operating map for the Masterflow Plumbing SEO
+system. Canonical generator and deployment source lives in
+`Valen-Systems-Inc/client-site-tools`.
 
 Plain read: the repo can build pages, publish approved files to Cloudflare R2,
 crawl the live site, ingest outside signals, score pages, and generate next
@@ -12,21 +13,22 @@ traffic, and calls.
 ## Current Snapshot
 
 ```text
-source repo: git@github.com:Valen-Systems-Inc/client-sites.git
-release branch: codex/masterflow-valen-sitemap-theme
+source repo: git@github.com:Valen-Systems-Inc/client-site-tools.git
+artifact repo: git@github.com:Valen-Systems-Inc/client-sites.git
+release branch: codex/masterflow-mflow-v1.1.0
 canonical site: https://masterflowplumbing.us
 decommissioned web domain: https://masterflowplumbing.net
-current release: mflow-v.1.0.11
+current release: mflow-v.1.1.0
 residential output: 432 pages; 102 indexable; 330 noindex
 commercial output: 37 pages; 37 indexable; 0 noindex
-latest live verification: 2026-07-18T15:46Z
+latest live verification: 2026-07-18T17:23:50Z
 ```
 
-The live residential verifier passed 489 artifacts and the commercial verifier
-passed 92. Release evidence is recorded in
-`seo/reports/*mflow-v.1.0.11*.json`. Older sections that cite June 2026 signal,
+The live residential verifier passed 487 artifacts and the commercial verifier
+passed 90. Release evidence is recorded in
+`seo/reports/*mflow-v.1.1.0*.json`. Older sections that cite June 2026 signal,
 rank, or runner snapshots remain historical operating notes and must not
-override the v1.0.11 release reports.
+override the v1.1.0 release reports.
 
 ## The Owner Split
 
@@ -35,7 +37,7 @@ override the v1.0.11 release reports.
 | Source data | repo | `seo/data/*`, `seo/config/stack.json` | Business/profile facts still need client proof. |
 | Page generation | repo | 432 residential pages and 37 commercial pages; 15 guards passing | Generated pages are not ranking proof. |
 | Promotion gate | repo/editorial | `root-promotion-artifacts.json`: 32 approved root artifacts | Future pages still need approval. |
-| Live site | Valen R2 plus Cloudflare proxy | `mflow-v.1.0.11`: 489 residential and 92 commercial live artifacts pass | Live pages still need Google index/rank proof. |
+| Live site | Valen R2 plus Cloudflare proxy | `mflow-v.1.1.0`: 487 residential and 90 commercial live artifacts pass with zero failures | Live pages still need Google index/rank proof. |
 | Canonical policy | repo/live site | `.us` is served through the Valen CDN proxy; `.net` has no web route | Keep checking after CDN changes. |
 | Sitemap | live site/GSC | Parent sitemap plus page, services, areas, post, category, and one-URL accreditation families return standard XML with trailing-slash canonicals and `lastmod`; Valen XSL presentation assets route through the controlled sitemap silo | Search Console submission and indexing remain external steps. |
 | SERP truth | manual import/OpenSERP/SerpBear | 36 manual Google SERPs imported, 90 competitors | Continuous tracking is not running yet. |

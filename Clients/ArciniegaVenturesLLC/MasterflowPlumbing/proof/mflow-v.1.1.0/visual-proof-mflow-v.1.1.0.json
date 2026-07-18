@@ -1,0 +1,82 @@
+{
+  "version": "mflow-v.1.1.0",
+  "verifiedAt": "2026-07-18T17:05:48Z",
+  "canonicalBase": "https://masterflowplumbing.us",
+  "checks": {
+    "residentialAdmin": {
+      "url": "https://masterflowplumbing.us/admin/?v=mflow-v.1.1.0",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "contentSilo": "site",
+      "robots": "index,follow",
+      "canonical": "https://masterflowplumbing.us/admin/",
+      "statement": "Website created and maintained by Valen Systems.",
+      "author": "https://www.valen-systems.com/"
+    },
+    "commercialAdmin": {
+      "url": "https://masterflowplumbing.us/commercial/admin/?v=mflow-v.1.1.0",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "contentSilo": "site",
+      "robots": "index,follow",
+      "canonical": "https://masterflowplumbing.us/commercial/admin/",
+      "statement": "Website created and maintained by Valen Systems.",
+      "author": "https://www.valen-systems.com/"
+    },
+    "residentialSitemap": {
+      "url": "https://masterflowplumbing.us/sitemap.xml?v=mflow-v.1.1.0",
+      "status": 200,
+      "contentType": "application/xml; charset=utf-8",
+      "contentSilo": "sitemap",
+      "familyCount": 6,
+      "includesAdminSitemap": true
+    },
+    "commercialSitemap": {
+      "url": "https://masterflowplumbing.us/commercial/sitemap.xml?v=mflow-v.1.1.0",
+      "status": 200,
+      "contentType": "application/xml; charset=utf-8",
+      "contentSilo": "sitemap",
+      "familyCount": 7,
+      "includesAdminSitemap": true
+    },
+    "residentialAdminSitemap": {
+      "url": "https://masterflowplumbing.us/admin-sitemap.xml?v=mflow-v.1.1.0",
+      "status": 200,
+      "urlCount": 1,
+      "canonicalUrl": "https://masterflowplumbing.us/admin/"
+    },
+    "commercialAdminSitemap": {
+      "url": "https://masterflowplumbing.us/commercial/admin-sitemap.xml?v=mflow-v.1.1.0",
+      "status": 200,
+      "urlCount": 1,
+      "canonicalUrl": "https://masterflowplumbing.us/commercial/admin/"
+    }
+  },
+  "screenshots": [
+    {
+      "file": "screenshots/admin-desktop.png",
+      "viewport": "1280x900",
+      "sha256": "d1a57958cf25aa3b669432396631e70eef5e908a24f4dd33c29f0e89396a2916"
+    },
+    {
+      "file": "screenshots/commercial-admin-desktop.png",
+      "viewport": "1280x900",
+      "sha256": "d1a57958cf25aa3b669432396631e70eef5e908a24f4dd33c29f0e89396a2916"
+    },
+    {
+      "file": "screenshots/sitemap-desktop.png",
+      "viewport": "1280x900",
+      "sha256": "843d0a2eda557acf179004a5d5450727de63f72c3da73ba631134dbfbd44da80"
+    },
+    {
+      "file": "screenshots/commercial-sitemap-desktop.png",
+      "viewport": "1280x900",
+      "sha256": "98449fb4d4c5b9fef4d64282da7c15af1569c679386acdc0201acee7d1a53ab2"
+    },
+    {
+      "file": "screenshots/admin-mobile.png",
+      "viewport": "390x844",
+      "sha256": "4a5b6aaa747b7c6a0b7286ea1a2b46371c9393e0d14447c592c8fe112903bbde"
+    }
+  ]
+}

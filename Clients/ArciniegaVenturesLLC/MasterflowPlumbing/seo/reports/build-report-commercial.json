@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T15:28:14.984Z",
+  "generatedAt": "2026-07-18T17:35:41.274Z",
   "allPass": true,
   "indexable": true,
   "output": "commercial-production",
@@ -328,7 +328,10 @@
     }
   },
   "outputHygiene": {
-    "removedStaleArtifacts": [],
+    "removedStaleArtifacts": [
+      "releases",
+      "releases/mflow-v.1.1.0.json"
+    ],
     "conflicts": []
   }
 }

@@ -16,6 +16,8 @@ const reportsDir = path.join(seoDir, "reports");
 const accountId = "956cd86d8e5c90c6156a7a7d937c6415";
 const expectedEmail = process.env.VALEN_WRANGLER_EMAIL || "robinson.williamp2000@gmail.com";
 const bucket = "valen-clients-cdn";
+const canonicalGitRemote = process.env.MASTERFLOW_GIT_REMOTE
+  || "git@github.com:Valen-Systems-Inc/client-site-tools.git";
 const keyPrefix = normalizeR2Prefix(
   process.env.MASTERFLOW_CDN_PREFIX || "masterflow-plumbing",
 );
@@ -36,6 +38,7 @@ function parseArgs(argv = process.argv.slice(2)) {
     concurrency: 4,
     sitemapOnly: false,
     excludeSitemaps: false,
+    manifestOnly: false,
     version: process.env.MASTERFLOW_CDN_VERSION || "",
   };
   for (const arg of argv) {
@@ -43,6 +46,7 @@ function parseArgs(argv = process.argv.slice(2)) {
     else if (arg === "--skip-media") opts.includeMedia = false;
     else if (arg === "--sitemap-only") opts.sitemapOnly = true;
     else if (arg === "--exclude-sitemaps") opts.excludeSitemaps = true;
+    else if (arg === "--manifest-only") opts.manifestOnly = true;
     else if (arg.startsWith("--prefix=")) {
       const prefix = normalizeR2Prefix(arg.slice("--prefix=".length));
       opts.root = prefix;
@@ -116,6 +120,14 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function normalizedGitRemote(remote) {
+  const value = String(remote ?? "").trim();
+  if (!value || value.startsWith("/") || value.startsWith("file:") || value.startsWith("./") || value.startsWith("../")) {
+    return canonicalGitRemote;
+  }
+  return value;
+}
+
 async function gitInfo() {
   try {
     const [head, branch, remote] = await Promise.all([
@@ -126,7 +138,7 @@ async function gitInfo() {
     return {
       head: head.stdout.trim(),
       branch: branch.stdout.trim(),
-      remote: remote.stdout.trim(),
+      remote: normalizedGitRemote(remote.stdout),
     };
   } catch {
     return null;
@@ -256,8 +268,12 @@ async function collectUploads(opts) {
 }
 
 const opts = parseArgs();
+if (opts.manifestOnly && !opts.version) {
+  throw new Error("--manifest-only requires --version=<release>.");
+}
 await assertWrangler();
-const uploads = await collectUploads(opts);
+const releaseArtifacts = await collectUploads(opts);
+const uploads = opts.manifestOnly ? [] : [...releaseArtifacts];
 if (opts.version) {
   const releaseManifest = {
     version: opts.version,
@@ -272,9 +288,9 @@ if (opts.version) {
     canonicalDomain: "https://masterflowplumbing.us",
     dryRun: opts.dryRun,
     includeMedia: opts.includeMedia,
-    objectCountExcludingReleaseManifest: uploads.length,
-    objectCountIncludingReleaseManifest: uploads.length + 2,
-    sampleKeys: uploads.slice(0, 20).map((upload) => upload.key),
+    objectCountExcludingReleaseManifest: releaseArtifacts.length,
+    objectCountIncludingReleaseManifest: releaseArtifacts.length + 2,
+    sampleKeys: releaseArtifacts.slice(0, 20).map((upload) => upload.key),
     git: await gitInfo(),
   };
   const releaseJson = `${JSON.stringify(releaseManifest, null, 2)}\n`;
